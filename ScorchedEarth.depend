@@ -1,0 +1,68 @@
+# depslib dependency file v1.0
+1395144550 source:c:\users\pawel\documents\github\scorchedearth\main.c
+	<stdio.h>
+	<stdlib.h>
+	"maps.c"
+	"drawing.c"
+	"shot.c"
+	"ai.c"
+	"menu.c"
+	"levels.c"
+
+1395058082 source:c:\users\pawel\documents\github\scorchedearth\maps.c
+	<stdio.h>
+
+1395062090 c:\users\pawel\documents\github\scorchedearth\maps.c
+	"maps_create.c"
+	"maps_save.c"
+	"maps_load.c"
+
+1395058724 source:c:\users\pawel\documents\github\scorchedearth\files\maps.c
+	<stdio.h>
+
+1395142804 c:\users\pawel\documents\github\scorchedearth\maps_create.c
+
+1395142879 c:\users\pawel\documents\github\scorchedearth\maps_save.c
+
+1395142861 c:\users\pawel\documents\github\scorchedearth\maps_load.c
+
+1395143098 c:\users\pawel\documents\github\scorchedearth\drawing.c
+	"drawing_maps.c"
+	"drawing_units.c"
+	"drawing_shots.c"
+	"drawing_destruction.c"
+
+1395142897 c:\users\pawel\documents\github\scorchedearth\drawing_maps.c
+
+1395142961 c:\users\pawel\documents\github\scorchedearth\drawing_units.c
+
+1395143041 c:\users\pawel\documents\github\scorchedearth\drawing_shots.c
+
+1395143139 c:\users\pawel\documents\github\scorchedearth\drawing_destruction.c
+
+1395143644 c:\users\pawel\documents\github\scorchedearth\shot.c
+	"shot_formula.c"
+	"shot_hit.c"
+
+1395143429 c:\users\pawel\documents\github\scorchedearth\shot_formula.c
+
+1395143626 c:\users\pawel\documents\github\scorchedearth\shot_hit.c
+
+1395144208 c:\users\pawel\documents\github\scorchedearth\ai.c
+
+1395144791 c:\users\pawel\documents\github\scorchedearth\menu.c
+	"menu_new_game.c"
+	"menu_highscore.c"
+	"menu_credits.c"
+	"menu_close_game.c"
+
+1395144698 c:\users\pawel\documents\github\scorchedearth\menu_new_game.c
+
+1395144657 c:\users\pawel\documents\github\scorchedearth\menu_highscore.c
+
+1395144763 c:\users\pawel\documents\github\scorchedearth\menu_credits.c
+
+1395144807 c:\users\pawel\documents\github\scorchedearth\menu_close_game.c
+
+1395144334 c:\users\pawel\documents\github\scorchedearth\levels.c
+
