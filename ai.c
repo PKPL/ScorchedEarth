@@ -1,7 +1,7 @@
 //---------------------------- Artificial Inteligence --------------------
 // It combines the files responsible for artificial inteligence
 //------------------------------------------------------------------------
-
+// Polish team is working on this file
 // Included libraries
 
 // Included files
