@@ -11,3 +11,11 @@
 #include "menu_highscore.c"
 #include "menu_credits.c"
 #include "menu_close_game.c"
+
+void main()
+{
+    printf("here will be Menu");
+
+    _getch();
+    return 0;
+}
