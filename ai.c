@@ -1,7 +1,7 @@
 //---------------------------- Artificial Inteligence --------------------
 // It combines the files responsible for artificial inteligence
 //------------------------------------------------------------------------
-// Team 2 is working on this file : Anna Gil, £ukasz Czechowicz , Konrad Dziurdü
+// Polish team is working on this file
 // Included libraries
 
 // Included files
