@@ -1,6 +1,9 @@
 //---------------------------- Menu --------------------------------------
 // It combines the files responsible for menu of a game
 //------------------------------------------------------------------------
+
+// Team 2 File (Polish Group)
+
 // Included libraries
 
 // Included files
