@@ -1,6 +1,7 @@
 //---------------------------- Shot --------------------------------------
 // It combines the files responsible for calculating the shot
 //------------------------------------------------------------------------
+//On this file are working Team 1: Lorenzo Romanelli and Federico Bollotta
 
 // Included libraries
 
