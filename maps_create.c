@@ -2,41 +2,46 @@
 // Creating maps
 //------------------------------------------------------------------------
 #include <stdio.h>
+#include <stdlib.h>
 #include <windows.h>
 #include <time.h>
+
+#define MAX_X 100
+#define MAX_Y 100
 #define MIN_X 0
 #define MIN_Y 0
-#define MAX_X 800
-#define MAX_Y 600
-#define GROUND 0
 
 typedef struct
 {
     int x, y;
 } tCoordinates;
 
-void createPlainMap ();
+void createMap(int map[MAX_X][MAX_Y]);
+int timeSeconds();
 
-int main (void)
+
+int main(void)
 {
-    tCoordinates coordinates;
-    int map [MAX_X][MAX_Y];
-
+    int map[MAX_X][MAX_Y]; /*Matrix containing the map information*/
     return 0;
 }
 
-void createMap ()
+void createMap(int map[MAX_X][MAX_Y])
 {
-    int x, y;
+    /*Asks which type of map the player wants, plains, mountains, etc*/
+    int x,y;
+    /*For a Plain map*/
 
-    for (x = 0; x < MAX_X; x++)
-    {
-        //draw X;
+    srand(timeSeconds);
 
-        for (y = 0; y < MAX_Y; y++)
-        {
-        //draw Y;
+    /*---End of plain map---*/
+}
 
-        }
-    }
+int timeSeconds()
+{
+    int seconds;
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    seconds = t->tm_sec;
+    return seconds;
 }
