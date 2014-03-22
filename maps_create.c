@@ -4,9 +4,8 @@ NUNO VALENTE
 ROBERTO RIBEIRO
 DANIEL PINTO
 
-Daniel: Can you write a line to return a random number between 0 and 80? Just below the srand line.
+Changes done: Plain terrain generation done.
 
-Changes done: Preparing code for terrain generation, starting with plain terrain
 */
 
 #include <stdio.h>
@@ -48,7 +47,7 @@ void createMap(int mapLayout[MAX_X][MAX_Y])
     int number, result;
     result = timeSeconds();
     srand(result);
-    number = rand() % MAX_TERRAIN_HEIGHT_PLAINS_MAP; // 0 - 80  -> need to put 81;
+    number = rand() % MAX_TERRAIN_HEIGHT_PLAINS_MAP; /* 0 - 80  -> need to put 81*/
     for (x = 0; x < MAX_X; x++)
     {
         for (y = 0; y < number; y++)
