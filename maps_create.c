@@ -1,6 +1,14 @@
-//---------------------------- Create Maps -----------------------------------
-// Creating maps
-//------------------------------------------------------------------------
+/*
+PORTUGUESE TEAM
+NUNO VALENTE
+ROBERTO RIBEIRO
+DANIEL PINTO
+
+Daniel: Can you write a line to return a random number between 0 and 80? Just below the srand line.
+
+Changes done: Preparing code for terrain generation, starting with plain terrain
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -45,3 +53,5 @@ int timeSeconds()
     seconds = t->tm_sec;
     return seconds;
 }
+
+
