@@ -63,7 +63,6 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
     do
     {
-        /*Code for the deformation begins here, will have to be put into a function to repeat itself*/
         newRndSeed(counter);
         terrainDeformationStart = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
         /*This will loop for all the x coordinates at the same height, before the first deformation*/
