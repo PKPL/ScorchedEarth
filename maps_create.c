@@ -6,7 +6,8 @@ ROBERTO RIBEIRO
 DANIEL PINTO
 
 
-Changes done: Plain terrain generation done.
+Map creation done until further notice or revision.
+Bug testing not thorougly done yet.
 
 */
 
@@ -30,7 +31,8 @@ typedef struct
     int x, y;
 } tCoordinates;
 
-void createMap(int mapLayout[MAX_X][MAX_Y], int *counter);
+void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
+void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 int timeSeconds(int *counter);
 void newRndSeed(int *counter);
 
@@ -40,58 +42,64 @@ int main(void)
     int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
     /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
 
-    createMap(mapLayout, &counterTimesUsedRandom);
+    createPlainMap(mapLayout, &counterTimesUsedRandom);
+    createMountainMap(mapLayout, &counterTimesUsedRandom);
 
     return 0;
 }
 
-void createMap(int mapLayout[MAX_X][MAX_Y], int *counter)
+void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 {
-    /*Asks which type of map the player wants, plains, mountains, etc*/
-    int x,y, number;
-
-    /*For a Plain map*/
-    newRndSeed(counter);
-    number = rand() % (MAX_TERRAIN_HEIGHT_PLAINS_MAP + 1); /* 0 - MAX HEIGHT  -> need to put MAX HEIGHT +1*/
-    /*This will loop for all the x coordinates*/
-    for (x = 0; x < MAX_X; x++)
-    {
-        for (y = 0; y < number; y++)
-        {
-            mapLayout[x][y] = 1;  /*This will set everything under the surface height to be ground*/
-        }
-    }
-    /*---End of plain map---*/
-
+    int x, y, number, finishedCreatingMap, isContinuation;
+    finishedCreatingMap = 0;
+    isContinuation = 0;
 
     /*For a mountain map*/
-    int terrainDeformationStart, deformationWidth, deformationHeight, widthMedian, terrainUnitsBuilt, terrainUnitsUntilMedian, terrainUnitsToBuild, terrainUnitsAfterMedian, lastHeight;
+    int terrainDeformationStart, deformationWidth, deformationHeight, widthMedian, terrainUnitsBuilt, terrainUnitsUntilMedian, terrainUnitsToBuild, terrainUnitsAfterMedian;
     terrainUnitsBuilt = 0;
-    lastHeight = 1; /*This line is just to avoid a warning that this var may be used uninitialized, however the variable will always be given a value with this program's code*/
     newRndSeed(counter);
     number = rand() % (MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP + 1); /*defines the initial terrain height*/
-    /*Code for the deformation begins here, will have to be put into a function to repeat itself*/
-    newRndSeed(counter);
-    terrainDeformationStart = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
-    /*This will loop for all the x coordinates at the same height, before the first deformation*/
-    for (x = 0; x < (terrainDeformationStart - 1); x++)
-    {
-        for (y = 0; y < number; y++)
-        {
-            mapLayout[x][y] = 1; /*This will create the surface line before the first deformation*/
-        }
-        terrainUnitsBuilt++;
-    }
 
     do
     {
+        /*Code for the deformation begins here, will have to be put into a function to repeat itself*/
         newRndSeed(counter);
-        deformationWidth = rand() % (MAX_WIDTH_DEFORMATION + 1); /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
-    }
-    while (deformationWidth % 2 == 0 && deformationWidth < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
+        terrainDeformationStart = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
+        /*This will loop for all the x coordinates at the same height, before the first deformation*/
 
-    if ((terrainUnitsBuilt + deformationWidth) < MAX_X) /*If this is verified, we have enough space for another deformation*/
-    {
+
+        if (isContinuation == 1)
+        {
+            terrainUnitsToBuild = (terrainDeformationStart - 1);
+            for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++)
+            {
+                for (y = 0; y < number; y++)
+                {
+                    mapLayout[x][y] = 1; /*This will create a surface after a deformation*/ /*number is the last height built on*/
+                }
+                terrainUnitsBuilt++;
+                terrainUnitsToBuild--;
+            }
+        }
+        else
+        {
+            for (x = 0; x < (terrainDeformationStart - 1); x++)
+            {
+                for (y = 0; y < number; y++)
+                {
+                    mapLayout[x][y] = 1; /*This will create the surface line before the first deformation*/
+                }
+                terrainUnitsBuilt++;
+            }
+        }
+
+        do
+        {
+            newRndSeed(counter);
+            deformationWidth = rand() % (MAX_WIDTH_DEFORMATION + 1); /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
+        }
+        while (deformationWidth % 2 == 0 && deformationWidth < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
+
         do
         {
             newRndSeed(counter);
@@ -101,13 +109,15 @@ void createMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         while (deformationHeight + number >= MAX_Y);
 
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
-        if (deformationWidth + number >= MAX_X && (MAX_X - number) % 2 != 0)
+        if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
         {
-            deformationWidth = MAX_X - number;
+            deformationWidth = (MAX_X - terrainUnitsBuilt);
+            finishedCreatingMap = 1; /*No more space for deformations after the current one*/
         }
-        else if (deformationWidth + number >= MAX_X && (MAX_X - number - 1) % 2 != 0)
+        else if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt - 1) % 2 != 0)
         {
-            deformationWidth = MAX_X - number;
+            deformationWidth = (MAX_X - terrainUnitsBuilt);
+            finishedCreatingMap = 1; /*No more space for deformations after the current one*/
         }
         /*At this point we have found the width and height for the deformation*/
         /*We need to find the width's median now*/
@@ -154,23 +164,35 @@ void createMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             for (y = 0; y < number; y++)
             {
                 mapLayout[x][y] = 1;
-                lastHeight = y;
+                number = y;
             }
             terrainUnitsBuilt++;
             terrainUnitsToBuild--;
         }
+        isContinuation = 1;
         /*This concludes the building of a deformation*/
     }
-    else /*Not enough blocks available for a deformation.*/
+    while (finishedCreatingMap != 1);
+}
+
+
+
+void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
+{
+    int x, y, number;
+
+    /*For a Plain map*/
+    newRndSeed(counter);
+    number = rand() % (MAX_TERRAIN_HEIGHT_PLAINS_MAP + 1); /* 0 - MAX HEIGHT  -> need to put MAX HEIGHT +1*/
+    /*This will loop for all the x coordinates*/
+    for (x = 0; x < MAX_X; x++)
     {
-        for (x = terrainUnitsBuilt; x < MAX_X; x++)
+        for (y = 0; y < number; y++)
         {
-            for (y = 0; y < lastHeight; y++)
-            {
-                mapLayout[x][y] = 1; /*Sets the rest of the map's surface to the last built height*/
-            }
+            mapLayout[x][y] = 1;  /*This will set everything under the surface height to be ground*/
         }
     }
+    /*---End of plain map---*/
 
 }
 
