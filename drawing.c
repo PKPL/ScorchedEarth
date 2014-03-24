@@ -9,3 +9,8 @@
 #include "drawing_units.c"
 #include "drawing_shots.c"
 #include "drawing_destruction.c"
+
+void test_drawing() // function for agreagte testing
+{
+    printf("Drawing test");
+}

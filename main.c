@@ -18,6 +18,14 @@ int main()
 {
     printf("Scorched Earth\n");
 
+    //Tests
+    test_ai();
+    test_drawing();
+    test_levels();
+    test_maps();
+    test_menu();
+    test_shot();
+
     _getch();
     return 0;
 }

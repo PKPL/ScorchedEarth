@@ -12,3 +12,7 @@
 #include "menu_credits.c"
 #include "menu_close_game.c"
 
+void test_menu() // function for agreagte testing
+{
+    printf("Menu test");
+}

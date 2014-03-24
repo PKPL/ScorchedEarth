@@ -7,3 +7,8 @@
 // Included files
 #include "levels_set.c"
 #include "levels_level.c"
+
+void test_levels() // function for agreagte testing
+{
+    printf("Levels test");
+}
