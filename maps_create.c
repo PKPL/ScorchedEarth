@@ -7,7 +7,7 @@ DANIEL PINTO
 
 
 Map creation done until further notice or revision.
-Bug testing not thorougly done yet.
+Infinite loop detected, debugging in progress
 
 */
 
