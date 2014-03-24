@@ -7,7 +7,8 @@ DANIEL PINTO
 
 
 Map creation done until further notice or revision.
-Infinite loop detected, debugging in progress
+Infinite loop fixed.
+Bug hunting in progress.
 
 */
 
@@ -50,7 +51,7 @@ int main(void)
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 {
-    int x, y, number, finishedCreatingMap, isContinuation;
+    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative;
     finishedCreatingMap = 0;
     isContinuation = 0;
 
@@ -106,7 +107,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             deformationHeight = rand() %(MAX_HEIGHT_DEFORMATION + 1); /*defines the max height for the deformation.*/
             /*For this implementation version, valleys may appear on a mountain, but valleys will never be forcefully created. This will change on a later revision*/
         }
-        while (deformationHeight + number >= MAX_Y);
+        while (deformationHeight + number >= MAX_Y || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
 
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
         if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
@@ -150,7 +151,6 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         /*Now the median value already has terrain*/
         /*We need to assign terrain to the remaining values of the deformation width*/
 
-        terrainUnitsBuilt = terrainUnitsAfterMedian;
         terrainUnitsToBuild = terrainUnitsAfterMedian;
 
         for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation after reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
@@ -158,10 +158,10 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             do
             {
                 newRndSeed(counter);
-                number = rand() % (MAX_HEIGHT_DEFORMATION + 1);
+                numberAlternative = rand() % (MAX_HEIGHT_DEFORMATION + 1);
             }
-            while (number <= deformationHeight);
-            for (y = 0; y < number; y++)
+            while (numberAlternative <= deformationHeight);
+            for (y = 0; y < numberAlternative; y++)
             {
                 mapLayout[x][y] = 1;
                 number = y;
