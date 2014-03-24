@@ -8,10 +8,10 @@ FILE *fp;
 
 int inChar;
 
-int main()
+void highscore()
 {
 printf("Highscore\n\n");
-sort();
+
 
 fp=fopen("highscore.txt", "r+");
 
@@ -23,7 +23,7 @@ putchar(inChar);
 inChar = getc(fp);
 }
 fclose(fp);
-return 0;
+
 }
 
 
