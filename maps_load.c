@@ -3,59 +3,53 @@
 //------------------------------------------------------------------------
 
 // stdilib.h and stdio.h already included in maps_create.c
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h> // includes the bool variable types, that is best when we just want true or false, 0 or 1 for the value, and takes less for RAM.
-
+#include <string.h>
 #define MAX_NAME_FILE 50
 
 char optionUser (char *str);
 void readString (char *str, int max);
+int readingfromFile ();
 
-int * maps_load () {
-	char option, nameFileMap [MAX_NAME_FILE]; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
-	FILE *mapLoad = NULL;
-	static bool existingMap = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
-	if (existingMap != 0) {
-		optionUser ("You already loaded one map, do you want to load another");
-		option = optionUser ();
-		if (option == 'Y') {
-			fflush (stdin);
-			readString(nameFileMap, MAX_NAME_FILE);
-			mapLoad = fopen (nameFileMap, r);
-			if (mapLoad == NULL) {
-				fprintf (stderr, "Error on trying to load de map file");
-			}
-			else {
-				/*
-				fscanf ();
-
-				fscanf ();
-				
-				(...)
-				Here the function will read the text file created before.
-				(...)
-
-				fscanf ();
-
-				fscanf ();
-				*/	
-			existingMap = true;
-			}
-		}
-	}
-	return mapLoad; // returns the map loaded.
+int map_load ()
+{
+    char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
+    int Map; // for now is an int (just for example), but we will change, according the struct of the map;
+    static bool existingMap = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
+    if (existingMap != 0)
+    {
+        option = optionUser ("You already loaded one map, do you want to load another");
+        if (option == 'Y')
+        {
+            Map = readingfromFile ();
+            existingMap = true;
+        }
+    }
+    else
+    {
+        Map = readingfromFile ();
+        existingMap = true;
+    }
+    return Map; // returns the map loaded.
 }
 
-char optionUser (char *str) {
-	char option;
-	printf ("%s?\n(Y/N)",option);
-	do {
-	fflush (stdin);
-	option = getchar ();
-	if (option != 'Y' && option != 'N') {
-		printf ("Only 'Y' or 'N'\n");
-		}
-	} while (option != 'Y' && option != 'N');
-	return option;
+char optionUser (char *str)
+{
+    char option;
+    printf ("%s?\n(Y/N)", str);
+    do
+    {
+        fflush (stdin);
+        option = getchar ();
+        if (option != 'Y' && option != 'N')
+        {
+            printf ("Only 'Y' or 'N'\n");
+        }
+    }
+    while (option != 'Y' && option != 'N');
+    return option;
 }
 
 void readString(char str[], int max)
@@ -63,16 +57,53 @@ void readString(char str[], int max)
     char * ptr = NULL;
     fgets(str, max, stdin);
 
-    do {
-    	if (strlen (str) == 0) {
-    		printf ("Write the name of the map.\n");
-    	}
-    	else {
-    		ptr = strchr(str, '\n');
-    			if (ptr != NULL)
-    			{
-       			 *ptr = '\0';
-    			}
-			}
-	} while (strlen (str) == 0);
+    do
+    {
+        if (strlen (str) == 0)
+        {
+            printf ("Write the name of the map.\n");
+        }
+        else
+        {
+            ptr = strchr(str, '\n');
+            if (ptr != NULL)
+            {
+                *ptr = '\0';
+            }
+        }
+    }
+    while (strlen (str) == 0);
+}
+
+int readingfromFile ()
+{
+    int Map; //thar will be a struct for the map, and not an int. This int is for example and meaning.
+    char nameFileMap[MAX_NAME_FILE];
+    FILE *mapLoad = NULL;
+    fflush (stdin);
+    printf ("Name of the map to load: ");
+    readString(nameFileMap, MAX_NAME_FILE);
+    mapLoad = fopen (nameFileMap, "r");
+    if (mapLoad == NULL)
+    {
+        fprintf (stderr, "Error on trying to load the map file");
+    }
+    else
+    {
+        /*
+        fscanf ("", ..., Map.(...));
+
+        fscanf ("", ..., Map.(...));
+
+        (...)
+        Here the function will read the text file created before.
+        (...)
+
+        fscanf ("", ..., Map.(...));
+
+        fscanf ("", ..., Map.(...));
+        */
+        fclose (mapLoad);
+    }
+    return Map; // for now it is int, but will return the struct of file;
 }
