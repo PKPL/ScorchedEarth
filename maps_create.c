@@ -51,7 +51,8 @@ int main(void)
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 {
-    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative;
+    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative, freeSpaceHeight;
+    freeSpaceHeight = (1/4) / MAX_Y;
     finishedCreatingMap = 0;
     isContinuation = 0;
 
@@ -106,7 +107,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             deformationHeight = rand() %(MAX_HEIGHT_DEFORMATION + 1); /*defines the max height for the deformation.*/
             /*For this implementation version, valleys may appear on a mountain, but valleys will never be forcefully created. This will change on a later revision*/
         }
-        while (deformationHeight + number >= MAX_Y || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
+        while (deformationHeight + number >= (MAX_Y - freeSpaceHeight) || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
 
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
         if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
