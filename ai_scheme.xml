@@ -1,0 +1,62 @@
+//ai_scheme pseudo code
+
+ai_easy
+{
+    draw angle ( 0-90);
+    draw power ( 0-x), where x depends on power system used by another team ;);
+    use shoot function to shoot with draw angle and draw power;
+}
+
+ai_medium
+{
+    at start set "radius" around player for example 20 units (+- 20); which create "radius zone";
+    draw angle (0-90);
+    min_to_zone = calculate minimal power to reach "random zone";
+    max_to_zone = calculate maximal power to reach "random zone";
+
+    draw value between min_to_zone and max_to_zone;
+    use shoot function to shoot with draw angle and draw value between max and min in zone;
+
+    decrease radius;
+}
+
+ai_hard
+{
+    queue = 0;
+
+    at_first_shot
+    {
+    use ai_easy mode;
+    if(we shot too far)queue = 1;
+    if(we shot too close)queue = 0;
+    }
+
+    at_next_shots
+    {
+    draw angle (0-90);
+    at start set "radius" but in one way for example 20 units (+20 or -20); which create "radius zone";
+
+    if(queue%2 == 0)
+        {
+        if(player_x < bot_x)
+            {
+             min_to_zone = calculate minimal power to reach "random zone" (in that case position of player)
+             max_to_zone = calculate maximal power to reach "random zone" (in that case position of player - radius)
+            }
+
+        if(player_x > bot_x)
+            {
+             min_to_zone = calculate minimal power to reach "random zone" (in that case position of player + radius)
+             max_to_zone = calculate maximal power to reach "random zone" (in that case position of player)
+            }
+
+        draw value between min_to_zone and max_to_zone;
+        use shoot function to shoot with draw angle and draw value between max and min in zone;
+
+        }
+
+    decrease radius;
+    queue = queue + 1;
+    }
+
+}
