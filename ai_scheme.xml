@@ -3,6 +3,10 @@
 int min_angle()
 {
     if (player_y > bot_y)return sin(|player_x - bot_x|/player_h);
+    else
+    {
+	return 0;
+    }
 }
 
 ai_easy
