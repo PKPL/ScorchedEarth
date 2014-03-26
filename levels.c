@@ -18,20 +18,20 @@ void levels()
 {
     level_struct easy_level;
     {
-        easy_level.level_wind = wind_type.no_wind;
-        easy_level.level_ai = ai_type.ai_easy;
+        easy_level.level_wind = WIND_NO;
+        easy_level.level_ai = AI_EASY;
     }
 
     level_struct medium_level;
     {
-        easy_level.level_wind = wind_type.const_wind;
-        easy_level.level_ai = ai_type.ai_medium;
+        medium_level.level_wind = WIND_CONST;
+        medium_level.level_ai = AI_MEDIUM;
     }
 
     level_struct hard_level;
     {
-        easy_level.level_wind = wind_type.variable_wind;
-        easy_level.level_ai = ai_type.ai_hard;
+        hard_level.level_wind = WIND_VARIABLE;
+        hard_level.level_ai = AI_HARD;
     }
 
 }

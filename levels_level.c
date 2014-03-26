@@ -2,19 +2,19 @@
 // Stuctur resposible for levels setting
 //------------------------------------------------------------------------
 
-enum wind_type
+typedef enum wind_type
 {
-  no_wind,
-  const_wind,
-  variable_wind
-};
+  WIND_NO,
+  WIND_CONST,
+  WIND_VARIABLE
+} wind_type;
 
-enum ai_type
+typedef enum ai_type
 {
-  ai_easy,
-  ai_medium,
-  ai_hard
-};
+  AI_EASY,
+  AI_MEDIUM,
+  AI_HARD
+} ai_type;
 
 typedef struct level_struct
 {
