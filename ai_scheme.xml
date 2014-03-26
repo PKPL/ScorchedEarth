@@ -1,8 +1,22 @@
 //ai_scheme pseudo code
 
+int min_angle()
+{
+    if (player_y > bot_y)return sin(|player_x - bot_x|/player_h);
+}
+
 ai_easy
 {
-    draw angle ( 0-90);
+    min_angle = min_angle();
+    max_angle = 90;
+
+    while(1)
+    {
+    	shoot angle = draw angle (min_angle, max_angle);
+    	if(player_x > bot_x)shoot angle = 180 - shoot angle; //direction
+	
+	if(raycast from bot with shoot angle dont hit ground)break;
+    }
     draw power ( 0-x), where x depends on power system used by another team ;);
     use shoot function to shoot with draw angle and draw power;
 }
@@ -10,7 +24,17 @@ ai_easy
 ai_medium
 {
     at start set "radius" around player for example 20 units (+- 20); which create "radius zone";
-    draw angle (0-90);
+    min_angle = min_angle();
+    max_angle = 90;
+
+    while(1)
+    {
+    	shoot angle = draw angle (min_angle, max_angle);
+    	if(player_x > bot_x)shoot angle = 180 - shoot angle; //direction
+	
+	if(raycast from bot with shoot angle dont hit ground)break;
+    }
+
     min_to_zone = calculate minimal power to reach "random zone";
     max_to_zone = calculate maximal power to reach "random zone";
 
@@ -22,6 +46,10 @@ ai_medium
 
 ai_hard
 {
+    at start set "radius" but in one way for example 20 units (+20 or -20); which create "radius zone";
+    min_angle = min_angle();
+    max_angle = 90;
+
     queue = 0;
 
     at_first_shot
@@ -33,21 +61,28 @@ ai_hard
 
     at_next_shots
     {
-    draw angle (0-90);
-    at start set "radius" but in one way for example 20 units (+20 or -20); which create "radius zone";
 
-    if(queue%2 == 0)
+        while(1)
         {
-        if(player_x < bot_x)
+            shoot angle = draw angle (min_angle, max_angle);
+    	    if(player_x > bot_x)shoot angle = 180 - shoot angle; //direction
+	
+	    if(raycast from bot with shoot angle dont hit ground)break;
+        }
+    
+
+   	if(queue%2 == 0)
+        {
+            if(player_x < bot_x)
             {
-             min_to_zone = calculate minimal power to reach "random zone" (in that case position of player)
-             max_to_zone = calculate maximal power to reach "random zone" (in that case position of player - radius)
+                 min_to_zone = calculate minimal power to reach "random zone" (in that case position of player)
+                 max_to_zone = calculate maximal power to reach "random zone" (in that case position of player - radius)
             }
 
-        if(player_x > bot_x)
+            if(player_x > bot_x)
             {
-             min_to_zone = calculate minimal power to reach "random zone" (in that case position of player + radius)
-             max_to_zone = calculate maximal power to reach "random zone" (in that case position of player)
+                 min_to_zone = calculate minimal power to reach "random zone" (in that case position of player + radius)
+                 max_to_zone = calculate maximal power to reach "random zone" (in that case position of player)
             }
 
         draw value between min_to_zone and max_to_zone;
@@ -55,8 +90,8 @@ ai_hard
 
         }
 
-    decrease radius;
-    queue = queue + 1;
+        decrease radius;
+        queue = queue + 1;
     }
 
 }
