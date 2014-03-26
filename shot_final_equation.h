@@ -12,7 +12,7 @@ typedef struct {
     float initial_velocity; //Meters per second
     float x_vector_velocity[LENGTH], y_vector_velocity[HEIGHT]; //We're storing velocity value (x and y components) in these vectors as time increases
     int x_turret_position, y_turret_position;
-    int x_vector_coordinate[ LENGTH ], y_vector_coordinate[ HEIGHT ]; //Coordinates of the missile inside the matrix as time increases
+    int x_vector_coordinate[LENGTH], y_vector_coordinate[HEIGHT]; //Coordinates of the missile inside the matrix as time increases
     int shot_angle; //In sexagesimal degrees
 } missile_data;
 

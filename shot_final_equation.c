@@ -22,11 +22,11 @@ missile_data* initializeMissile() { //Initializes missile information
     light_missile->weight = 1.8;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).
                     Cannonballs weights are: 4 (as for now the only one considered), 6, 9, 12, 18, 24, 32 and 42 pounds (lb).
                     1 lb = 0.45 kg
-                    NOTE: this values are only for reference! */
+                    NOTE: these values are only for reference! */
     light_missile->initial_velocity = 0;
     light_missile->shot_angle = 0;
-    light_missile->x_turret_position = HEIGHT; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
-    light_missile->y_turret_position = 0;
+    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
+    light_missile->y_turret_position = HEIGHT - 1;
     for (i = 0; i < LENGTH; i++)
         light_missile->x_vector_velocity[i] = 0;
     for (i = 0; i < HEIGHT; i++)
@@ -128,7 +128,7 @@ void xCoordinate (missile_data *m) { //Calculates x coordinate against time and 
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
     for (t = 0, i = 0; t < time; t += 0.2) { //As for velocity, we're calculating coordinates every 0.2 seconds
-        m->x_vector_coordinate[i] = x0 + (wf / b * t) + m->weight / b * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
+        m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
         i++; //This index allows "for cycle" to break if number of calculations outgoes map length
         if (i >= LENGTH) break;
     }

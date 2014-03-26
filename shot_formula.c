@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "final_equation.h"
+#include "shot_final_equation.h"
 
 void formula () {
 
@@ -15,6 +15,7 @@ void formula () {
 
     setTime();
     setWindSpeed();
+    windForce();
     setShootingAngle(missile);
     setInitialVelocity(missile);
 
@@ -23,7 +24,6 @@ void formula () {
     getchar();
     xCoordinate(missile);
     yCoordinate(missile);
-
 
     printMissileData(missile);
     getchar();
