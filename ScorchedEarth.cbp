@@ -122,6 +122,10 @@
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="shot_final_equation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="shot_final_equation.h" />
 		<Unit filename="shot_formula.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
