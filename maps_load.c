@@ -2,14 +2,16 @@
 // Loading maps
 //------------------------------------------------------------------------
 
-/*
-PORTUGUESE TEAM
++	/*
++	PORTUGUESE TEAM
++	
++	NUNO VALENTE
++	ROBERTO RIBEIRO
++	DANIEL PINTO
++	
++	*/
++	
 
-NUNO VALENTE
-ROBERTO RIBEIRO
-DANIEL PINTO
-
-*/
 
 // stdilib.h and stdio.h already included in maps_create.c
 #include <stdio.h>
@@ -64,22 +66,21 @@ char optionUser (char *str)
 void readString(char str[], int max)
 {
     char * ptr = NULL;
-    int n;
     do
     {
-        fgets(str, max, stdin);
-        ptr = strchr(str, '\n');
-        if (ptr != NULL)
-        {
-            *ptr = '\0';
-        }
+    	fgets(str, max, stdin);
+    	ptr = strchr(str, '\n');
+            if (ptr != NULL)
+            {
+                *ptr = '\0';
+            }
         if (strlen (str) == 0)
         {
             printf ("Write the name of the map.\n");
         }
         else
         {
-            strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
+           strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
         }
     }
     while (strlen (str) == 0);
