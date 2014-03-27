@@ -37,7 +37,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 int timeSeconds(int *counter);
 void newRndSeed(int *counter);
 
-void test_maps_create()
+int main(void)
 {
     int counterTimesUsedRandom = 0;
     int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
@@ -45,6 +45,7 @@ void test_maps_create()
 
     createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);
+    return 0;
 }
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
@@ -127,12 +128,10 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
         for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
-            do
-            {
-                newRndSeed(counter);
-                number = rand() % (MAX_HEIGHT_DEFORMATION + 1);
-            }
-            while (number <= deformationHeight);
+
+            newRndSeed(counter);
+            number = rand() % (deformationHeight + 1); /*Gets a number from 0 to the max deformation height to be built.*/
+
             for (y = 0; y < number; y++)
             {
                 mapLayout[x][y] = 1;
@@ -153,12 +152,8 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
         for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation after reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
-            do
-            {
-                newRndSeed(counter);
-                numberAlternative = rand() % (MAX_HEIGHT_DEFORMATION + 1);
-            }
-            while (numberAlternative <= deformationHeight);
+            newRndSeed(counter);
+            numberAlternative = rand() % (deformationHeight + 1);
             for (y = 0; y < numberAlternative; y++)
             {
                 mapLayout[x][y] = 1;
