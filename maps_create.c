@@ -37,7 +37,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 int timeSeconds(int *counter);
 void newRndSeed(int *counter);
 
-int main(void)
+void test_maps_create()
 {
     int counterTimesUsedRandom = 0;
     int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
@@ -45,8 +45,6 @@ int main(void)
 
     createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);
-
-    return 0;
 }
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)

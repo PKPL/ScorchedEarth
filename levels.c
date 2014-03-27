@@ -11,6 +11,8 @@
 
 void test_levels() // function for agreagte testing
 {
+    printf("Drawing test\n");
+
     levels();
 }
 

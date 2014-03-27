@@ -14,5 +14,5 @@
 
 void test_menu() // function for agreagte testing
 {
-    printf("Menu test");
+    printf("Menu test\n");
 }

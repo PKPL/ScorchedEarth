@@ -12,5 +12,5 @@
 
 void test_drawing() // function for agreagte testing
 {
-    printf("Drawing test");
+    printf("Drawing test\n");
 }

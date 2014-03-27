@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1395145413 source:c:\users\pawel\documents\github\scorchedearth\main.c
+1395911275 source:c:\users\pawel\documents\github\scorchedearth\main.c
 	<stdio.h>
 	<stdlib.h>
 	"maps.c"
@@ -12,7 +12,7 @@
 1395058082 source:c:\users\pawel\documents\github\scorchedearth\maps.c
 	<stdio.h>
 
-1395223237 c:\users\pawel\documents\github\scorchedearth\maps.c
+1395911536 c:\users\pawel\documents\github\scorchedearth\maps.c
 	"maps_create.c"
 	"maps_save.c"
 	"maps_load.c"
@@ -20,72 +20,92 @@
 1395058724 source:c:\users\pawel\documents\github\scorchedearth\files\maps.c
 	<stdio.h>
 
-1395656530 c:\users\pawel\documents\github\scorchedearth\maps_create.c
+1395911517 c:\users\pawel\documents\github\scorchedearth\maps_create.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	<time.h>
 
-1395142879 c:\users\pawel\documents\github\scorchedearth\maps_save.c
+1395911352 c:\users\pawel\documents\github\scorchedearth\maps_save.c
+	<stdio.h>
+	<stdlib.h>
 
-1395142861 c:\users\pawel\documents\github\scorchedearth\maps_load.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\maps_load.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
 
-1395223219 c:\users\pawel\documents\github\scorchedearth\drawing.c
+1395911665 c:\users\pawel\documents\github\scorchedearth\drawing.c
 	"drawing_maps.c"
 	"drawing_units.c"
 	"drawing_shots.c"
 	"drawing_destruction.c"
 
-1395142897 c:\users\pawel\documents\github\scorchedearth\drawing_maps.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\drawing_maps.c
 
-1395142961 c:\users\pawel\documents\github\scorchedearth\drawing_units.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\drawing_units.c
 
-1395143041 c:\users\pawel\documents\github\scorchedearth\drawing_shots.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\drawing_shots.c
 
-1395143139 c:\users\pawel\documents\github\scorchedearth\drawing_destruction.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\drawing_destruction.c
 
-1395402288 c:\users\pawel\documents\github\scorchedearth\shot.c
+1395911621 c:\users\pawel\documents\github\scorchedearth\shot.c
 	"shot_formula.c"
 	"shot_hit.c"
 
-1395402288 c:\users\pawel\documents\github\scorchedearth\shot_formula.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\shot_formula.c
+	<stdio.h>
+	<stdlib.h>
+	"shot_final_equation.h"
 
-1395402288 c:\users\pawel\documents\github\scorchedearth\shot_hit.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\shot_hit.c
 
-1395402288 c:\users\pawel\documents\github\scorchedearth\ai.c
+1395911668 c:\users\pawel\documents\github\scorchedearth\ai.c
 	"ai_easy.c"
 	"ai_medium.c"
 	"ai_hard.c"
 
-1395402288 c:\users\pawel\documents\github\scorchedearth\menu.c
+1395911625 c:\users\pawel\documents\github\scorchedearth\menu.c
 	"menu_new_game.c"
 	"menu_highscore.c"
 	"menu_credits.c"
 	"menu_close_game.c"
 
-1395144945 c:\users\pawel\documents\github\scorchedearth\menu_new_game.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\menu_new_game.c
 
-1395656530 c:\users\pawel\documents\github\scorchedearth\menu_highscore.c
+1395911598 c:\users\pawel\documents\github\scorchedearth\menu_highscore.c
+	<windows.h>
+	<time.h>
 	<stdio.h>
 
-1395656530 c:\users\pawel\documents\github\scorchedearth\menu_credits.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\menu_credits.c
 	<windows.h>
 
-1395656530 c:\users\pawel\documents\github\scorchedearth\menu_close_game.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\menu_close_game.c
 	<windows.h>
 	<stdio.h>
 
-1395223229 c:\users\pawel\documents\github\scorchedearth\levels.c
+1395911653 c:\users\pawel\documents\github\scorchedearth\levels.c
 	"levels_set.c"
 	"levels_level.c"
 
-1395223145 c:\users\pawel\documents\github\scorchedearth\ai_easy.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\ai_easy.c
 
-1395223162 c:\users\pawel\documents\github\scorchedearth\ai_medium.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\ai_medium.c
 
-1395223176 c:\users\pawel\documents\github\scorchedearth\ai_hard.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\ai_hard.c
 
-1395145712 c:\users\pawel\documents\github\scorchedearth\levels_set.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\levels_set.c
 
-1395145688 c:\users\pawel\documents\github\scorchedearth\levels_level.c
+1395911275 c:\users\pawel\documents\github\scorchedearth\levels_level.c
+
+1395911275 c:\users\pawel\documents\github\scorchedearth\shot_final_equation.h
+
+1395911275 source:c:\users\pawel\documents\github\scorchedearth\shot_final_equation.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"shot_final_equation.h"
 

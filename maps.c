@@ -11,5 +11,8 @@
 
 void test_maps() // function for agreagte testing
 {
-    printf("Maps test");
+    printf("Maps test\n");
+
+    //test_maps_save();
+    //test_maps_create();
 }

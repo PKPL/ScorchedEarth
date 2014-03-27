@@ -16,13 +16,12 @@ DANIEL PINTO
 
 void saveMap(int mapLayout[MAX_X][MAX_Y]);
 
-int main()
+void test_maps_save()
 {
     int x,y;
 
     int mapLayout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
     saveMap(mapLayout);
-    return 0;
 }
 
 void saveMap(int mapLayout[MAX_X][MAX_Y])

@@ -19,12 +19,15 @@ int main()
     printf("Scorched Earth\n");
 
     //Tests
+    printf("\n-------------------------------------------------\n");
+    printf("Testing functionality\n");
     test_ai();
     test_drawing();
     test_levels();
     test_maps();
     test_menu();
     test_shot();
+    printf("\n-------------------------------------------------\n");
 
     _getch();
     return 0;

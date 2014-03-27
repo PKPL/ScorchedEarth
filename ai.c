@@ -11,5 +11,5 @@
 
 void test_ai() // function for agreagte testing
 {
-    printf("AI test");
+    printf("AI test\n");
 }

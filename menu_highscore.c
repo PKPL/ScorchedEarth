@@ -16,20 +16,20 @@ int inChar;
 
 void bubblesort()
 {
-	int i, j, temp;
-	const int n=10;
-	for (i = 0; i<n-1; i++)
-        {
-		for (j=0; j<n-1-i; j++)
-		{
-			if (player[j].points > player[j+1].points)
-			{
-				temp =player[j+1];
-				player[j+1] = player[j];
-				player[j] = temp;
-			}
-		}
-        }
+//	int i, j, temp;
+//	const int n=10;
+//	for (i = 0; i<n-1; i++)
+//        {
+//		for (j=0; j<n-1-i; j++)
+//		{
+//			if (player[j].points > player[j+1].points)
+//			{
+//				temp =player[j+1]; //ERROR - incompatible types when assigning to type 'int' from type 'struct player'
+//				player[j+1] = player[j];
+//				player[j] = temp; //ERROR - incompatible types when assigning to type 'struct player' from type 'int'
+//			}
+//		}
+//        }
 }
 
 void add_score ()
@@ -38,9 +38,9 @@ void add_score ()
 }
 void check_top_ten()
 {
-    if (player[10].points> player[9].points)
-        sort();
-    else {}
+//    if (player[10].points> player[9].points)
+//        sort(); //ERROR - undefined reference to `sort'
+//    else {}
 }
 
 void highscore()
