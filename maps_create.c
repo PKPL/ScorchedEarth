@@ -7,8 +7,7 @@ DANIEL PINTO
 
 
 Map creation done until further notice or revision.
-Infinite loop fixed.
-Bug hunting in progress.
+Bug 2 identified by Pawel still to be fixed. Also the sky pillars randomly appearing.
 
 */
 

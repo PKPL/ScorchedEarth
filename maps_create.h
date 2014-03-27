@@ -8,11 +8,6 @@ NUNO VALENTE
 ROBERTO RIBEIRO
 DANIEL PINTO
 
-
-Map creation done until further notice or revision.
-Infinite loop fixed.
-Bug hunting in progress.
-
 */
 
 #include <stdio.h>
