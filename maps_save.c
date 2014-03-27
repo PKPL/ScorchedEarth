@@ -7,14 +7,7 @@ DANIEL PINTO
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-
-#define MAX_X 100
-#define MAX_Y 100
-
-void saveMap(int mapLayout[MAX_X][MAX_Y]);
+#include "maps_save.h"
 
 void test_maps_save()
 {

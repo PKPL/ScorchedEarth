@@ -1,18 +1,7 @@
 //---------------------------- Highscore ---------------------------------
 // Top ten scores of a game
 //------------------------------------------------------------------------
-#include <windows.h>
-#include <time.h>
-#include <stdio.h>
-FILE *fp;
-const int n= 10;
-
-  struct player
- {
-   char nickname[20];
-   int points;
- }player[11] ;
-int inChar;
+#include "menu_highscore.h"
 
 void bubblesort()
 {
@@ -45,19 +34,19 @@ void check_top_ten()
 
 void highscore()
 {
-printf("Highscore\n\n");
+    printf("Highscore\n\n");
 
 
-fp=fopen("highscore.txt", "r+");
+    fp=fopen("highscore.txt", "r+");
 
 
      inChar = getc(fp);
-while (inChar != EOF)
-{
-putchar(inChar);
-inChar = getc(fp);
-}
-fclose(fp);
+    while (inChar != EOF)
+    {
+        putchar(inChar);
+        inChar = getc(fp);
+    }
+    fclose(fp);
 
 }
 

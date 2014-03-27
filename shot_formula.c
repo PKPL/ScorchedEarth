@@ -3,9 +3,7 @@
 //------------------------------------------------------------------------
 //On this file Team 1 is working: Lorenzo Romanelli and Federico Bollotta
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "shot_final_equation.h"
+#include "shot_formula.h"
 
 void formula () {
 

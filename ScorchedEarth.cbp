@@ -33,107 +33,122 @@
 		</Compiler>
 		<Unit filename="ai.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ai.h" />
 		<Unit filename="ai_easy.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ai_easy.h" />
 		<Unit filename="ai_hard.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ai_hard.h" />
 		<Unit filename="ai_medium.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ai_medium.h" />
 		<Unit filename="drawing.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawing.h" />
 		<Unit filename="drawing_destruction.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawing_destruction.h" />
 		<Unit filename="drawing_maps.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawing_maps.h" />
 		<Unit filename="drawing_shots.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawing_shots.h" />
 		<Unit filename="drawing_units.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="drawing_units.h" />
 		<Unit filename="levels.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="levels.h" />
 		<Unit filename="levels_level.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="levels_level.h" />
 		<Unit filename="levels_set.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="levels_set.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="maps.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="maps.h" />
 		<Unit filename="maps_create.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="maps_create.h" />
 		<Unit filename="maps_load.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="maps_load.h" />
 		<Unit filename="maps_save.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="maps_save.h" />
 		<Unit filename="menu.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="menu.h" />
 		<Unit filename="menu_close_game.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="menu_close_game.h" />
 		<Unit filename="menu_credits.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="menu_credits.h" />
 		<Unit filename="menu_highscore.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="menu_highscore.h" />
 		<Unit filename="menu_new_game.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="menu_new_game.h" />
 		<Unit filename="shot.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+
 		<Unit filename="shot_final_equation.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="shot_final_equation.h" />
 		<Unit filename="shot_formula.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="shot_formula.h" />
 		<Unit filename="shot_hit.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="shot_hit.h" />
+		<Unit filename="unit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="unit.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

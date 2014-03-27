@@ -1,5 +1,8 @@
+#ifndef __DRAWING_SHOTS_H__
+#define __DRAWING_SHOTS_H__
+
 //---------------------------- Draw shots --------------------------------
 // Drawing shots
 //------------------------------------------------------------------------
 
-#include "drawing_shots.h"
+#endif // __DRAWING_SHOTS_H__

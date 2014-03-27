@@ -7,35 +7,11 @@ DANIEL PINTO
 
 
 Map creation done until further notice or revision.
-Infinite loop fixed.
-Bug hunting in progress.
+Issue 2 identified by Pawel should be fixed by now
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
-#include <time.h>
-
-#define MAX_X 200
-#define MAX_Y 80
-#define MIN_X 0
-#define MIN_Y 0
-#define MAX_TERRAIN_HEIGHT_PLAINS_MAP 60
-#define MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP 70
-#define MAX_DISTANCE_UNTIL_DEFORMATION_START 10
-#define MAX_WIDTH_DEFORMATION 31
-#define MAX_HEIGHT_DEFORMATION 75
-
-typedef struct
-{
-    int x, y;
-} tCoordinates;
-
-void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
-void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
-int timeSeconds(int *counter);
-void newRndSeed(int *counter);
+#include "maps_create.h"
 
 void test_maps_create()
 {
@@ -55,8 +31,10 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
     isContinuation = 0;
 
     /*For a mountain map*/
-    int terrainDeformationStart, deformationWidth, deformationHeight, widthMedian, terrainUnitsBuilt, terrainUnitsUntilMedian, terrainUnitsToBuild, terrainUnitsAfterMedian;
+    int terrainDeformationStart, heightOffsetHigh, heightOffsetLow, deformationWidth, deformationHeight, widthMedian, terrainUnitsBuilt, terrainUnitsUntilMedian, terrainUnitsToBuild, terrainUnitsAfterMedian;
     terrainUnitsBuilt = 0;
+    heightOffsetHigh = 0;
+    heightOffsetLow = 0;
     newRndSeed(counter);
     number = rand() % (MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP + 1); /*defines the initial terrain height*/
 
@@ -107,6 +85,9 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         }
         while (deformationHeight + number >= (MAX_Y - freeSpaceHeight) || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
 
+        heightOffsetHigh = deformationHeight + HEIGHT_OFFSET;
+        heightOffsetLow = deformationHeight + heightOffsetLow;
+
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
         if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
         {
@@ -128,8 +109,12 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
 
-            newRndSeed(counter);
-            number = rand() % (deformationHeight + 1); /*Gets a number from 0 to the max deformation height to be built.*/
+            do
+            {
+                newRndSeed(counter);
+                number = rand() % (deformationHeight + heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+            }
+            while (number < heightOffsetLow || number > heightOffsetHigh);
 
             for (y = 0; y < number; y++)
             {
@@ -151,8 +136,13 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
         for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation after reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
-            newRndSeed(counter);
-            numberAlternative = rand() % (deformationHeight + 1);
+            do
+            {
+                newRndSeed(counter);
+                number = rand() % (deformationHeight + heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+            }
+            while (number < heightOffsetLow || number > heightOffsetHigh);
+
             for (y = 0; y < numberAlternative; y++)
             {
                 mapLayout[x][y] = 1;

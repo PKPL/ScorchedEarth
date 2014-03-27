@@ -7,12 +7,13 @@
 #include <stdlib.h>
 
 // Included files
-#include "maps.c"
-#include "drawing.c"
-#include "shot.c"
-#include "ai.c"
-#include "menu.c"
-#include "levels.c"
+#include "maps.h"
+#include "drawing.h"
+#include "shot.h"
+#include "ai.h"
+#include "menu.h"
+#include "levels.h"
+#include "unit.h"
 
 int main()
 {
@@ -26,6 +27,7 @@ int main()
     test_levels();
     test_maps();
     test_menu();
+    test_unit();
     test_shot();
     printf("\n-------------------------------------------------\n");
 

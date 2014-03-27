@@ -5,11 +5,10 @@
 // Included libraries
 
 // Included files
-#include "levels_set.c"
-#include "levels_level.c"
+#include "levels.h"
 
 
-void test_levels() // function for agreagte testing
+void test_levels() // function for agreagate testing
 {
     printf("Drawing test\n");
 
