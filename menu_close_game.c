@@ -2,9 +2,7 @@
 // Closing game and single play
 //------------------------------------------------------------------------
 
-#include <windows.h>
-#include <stdio.h>
-
+#include "menu_close_game.h"
 
 int close_game()
 {

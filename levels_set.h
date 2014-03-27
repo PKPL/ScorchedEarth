@@ -1,5 +1,8 @@
+#ifndef __LEVELS_SET_H__
+#define __LEVELS_SET_H__
+
 //---------------------------- Set Level ---------------------------------
 // Seting level for a game
 //------------------------------------------------------------------------
 
-#include "levels_set.h"
+#endif // __LEVELS_SET_H__

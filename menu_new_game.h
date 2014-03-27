@@ -1,5 +1,8 @@
+#ifndef __MENU_NEW_GAME_H__
+#define __MENU_NEW_GAME_H__
+
 //---------------------------- New game ----------------------------------
 // Start new game
 //------------------------------------------------------------------------
 
-#include "menu_new_game.h"
+#endif // __MENU_NEW_GAME_H__

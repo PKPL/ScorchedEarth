@@ -1,9 +1,8 @@
 //---------------------------- Credits -----------------------------------
 // Credits - list of people involved in creating a game
 //------------------------------------------------------------------------
-#include <windows.h>
+#include "menu_credits.h"
 
-typedef enum { NOCURSOR, SOLIDCURSOR, NORMALCURSOR } CURSOR_TYPE;
 void setcursortype(CURSOR_TYPE c)
 {
 	CONSOLE_CURSOR_INFO CurInfo;

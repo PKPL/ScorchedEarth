@@ -1,5 +1,8 @@
+#ifndef __DRAWING_MAPS_H__
+#define __DRAWING_MAPS_H__
+
 //---------------------------- Draw maps ---------------------------------
 // Drawing maps
 //------------------------------------------------------------------------
 
-#include "drawing_maps.h"
+#endif // __DRAWING_MAPS_H__

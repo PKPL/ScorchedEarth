@@ -1,3 +1,6 @@
+#ifndef __SHOT_FINAL_EQUATION_H__
+#define __SHOT_FINAL_EQUATION_H__
+
 //On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
 #define MAX_WIND_SPEED 100 //Meters per second
@@ -37,3 +40,6 @@ void printIntVector(int[], int);
 void printFloatVector(float[], int);
 
 void formula();
+
+
+#endif // __SHOT_FINAL_EQUATION_H__

@@ -1,5 +1,8 @@
+#ifndef __DRAWING_UNITS_H__
+#define __DRAWING_UNITS_H__
+
 //---------------------------- Draw units --------------------------------
 // Drawing units
 //------------------------------------------------------------------------
 
-#include "drawing_units.h"
+#endif // __DRAWING_UNITS_H__
