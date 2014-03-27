@@ -21,7 +21,7 @@ char optionUser (char *str);
 void readString (char *str, int max);
 int readingfromFile ();
 
-int map_load ()
+int maps_load ()
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
     int Map; // for now is an int (just for example), but we will change, according the struct of the map;
@@ -65,28 +65,19 @@ void readString(char str[], int max)
     char * ptr = NULL;
     do
     {
-    	fgets(str, max, stdin);
-    	ptr = strchr(str, '\n');
-            if (ptr != NULL)
-            {
-                *ptr = '\0';
-            }
-    fgets(str, max, stdin);
-
-    do
-    {
+        fgets(str, max, stdin);
+        ptr = strchr(str, '\n');
+        if (ptr != NULL)
+        {
+            *ptr = '\0';
+        }
         if (strlen (str) == 0)
         {
             printf ("Write the name of the map.\n");
         }
         else
         {
-           strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
-            ptr = strchr(str, '\n');
-            if (ptr != NULL)
-            {
-                *ptr = '\0';
-            }
+            strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
         }
     }
     while (strlen (str) == 0);
