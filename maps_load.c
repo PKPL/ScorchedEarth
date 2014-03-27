@@ -2,15 +2,6 @@
 // Loading maps
 //------------------------------------------------------------------------
 
-/*
-PORTUGUESE TEAM
-
-NUNO VALENTE
-ROBERTO RIBEIRO
-DANIEL PINTO
-
-*/
-
 // stdilib.h and stdio.h already included in maps_create.c
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,7 +13,7 @@ char optionUser (char *str);
 void readString (char *str, int max);
 int readingfromFile ();
 
-int maps_load ()
+int map_load ()
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
     int Map; // for now is an int (just for example), but we will change, according the struct of the map;
@@ -64,22 +55,21 @@ char optionUser (char *str)
 void readString(char str[], int max)
 {
     char * ptr = NULL;
-    int n;
+    fgets(str, max, stdin);
+
     do
     {
-        fgets(str, max, stdin);
-        ptr = strchr(str, '\n');
-        if (ptr != NULL)
-        {
-            *ptr = '\0';
-        }
         if (strlen (str) == 0)
         {
             printf ("Write the name of the map.\n");
         }
         else
         {
-            strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
+            ptr = strchr(str, '\n');
+            if (ptr != NULL)
+            {
+                *ptr = '\0';
+            }
         }
     }
     while (strlen (str) == 0);
@@ -87,17 +77,16 @@ void readString(char str[], int max)
 
 int readingfromFile ()
 {
-    int Map; //that will be a struct for the map, and not an int. This int is for example and meaning.
+    int Map; //thar will be a struct for the map, and not an int. This int is for example and meaning.
     char nameFileMap[MAX_NAME_FILE];
     FILE *mapLoad = NULL;
     fflush (stdin);
     printf ("Name of the map to load: ");
-    readString(nameFileMap, MAX_NAME_FILE - 4);
-    //Cuts 4 chars at MAX_NAME_FILE in order to concatenate ".txt"; That will be more user-friendly, the played doesn't need to write ".txt", but just the name.
+    readString(nameFileMap, MAX_NAME_FILE);
     mapLoad = fopen (nameFileMap, "r");
     if (mapLoad == NULL)
     {
-        fprintf (stderr, "Error when trying to load the map file");
+        fprintf (stderr, "Error on trying to load the map file");
     }
     else
     {
