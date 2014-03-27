@@ -3,33 +3,45 @@
 //------------------------------------------------------------------------
 #include "menu_highscore.h"
 
-void bubblesort()
+
+ player players[11];
+// bubble sorting
+void bubblesort(void)
 {
-//	int i, j, temp;
-//	const int n=10;
-//	for (i = 0; i<n-1; i++)
-//        {
-//		for (j=0; j<n-1-i; j++)
-//		{
-//			if (player[j].points > player[j+1].points)
-//			{
-//				temp =player[j+1]; //ERROR - incompatible types when assigning to type 'int' from type 'struct player'
-//				player[j+1] = player[j];
-//				player[j] = temp; //ERROR - incompatible types when assigning to type 'struct player' from type 'int'
-//			}
-//		}
-//        }
+      fp=fopen("highscore.txt", "r+");
+	int i, j, temp;
+	const int n=10;
+	for (i = 0; i<n-1; i++)
+        {
+
+		for (j=0; j<n-1-i; j++)
+            {
+            if (players[j].points > players[j+1].points)
+			{
+				temp =players[j+1];
+				players[j+1] =players[j];
+				players[j] = temp;
+			}
+		}
+        }
+
+
+            fclose(fp);
 }
 
-void add_score ()
-{
-
+void save_score ()
+{  fp=fopen("highscore.txt", "r+w");
+    for (int i=0; i<10; i++)
+    { fputs(players[i].nickname,fp);
+    fputs(players[i].points,fp);
+    }
+ fclose(fp);
 }
 void check_top_ten()
 {
-//    if (player[10].points> player[9].points)
-//        sort(); //ERROR - undefined reference to `sort'
-//    else {}
+ if (players[10].points> player[9].points)
+     {bubblesort();} save_score();  highscore();
+
 }
 
 void highscore()
@@ -46,8 +58,8 @@ void highscore()
         putchar(inChar);
         inChar = getc(fp);
     }
-    fclose(fp);
 
+    fclose(fp);
 }
 
 

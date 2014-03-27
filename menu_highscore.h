@@ -11,13 +11,11 @@
 FILE *fp;
 const int n= 10;
 int inChar;
-
 typedef struct player
 {
     char nickname[20];
     int points;
-}player[11] ;
-
+}player;
 void bubblesort();
 void add_score ();
 void check_top_ten();
