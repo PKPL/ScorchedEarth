@@ -11,34 +11,33 @@ DANIEL PINTO
 
 #include "maps_load.h"
 
-int test_maps_load () {
+void test_maps_load () {
     int x, y;
-    int mapLayout[MAX_X][MAX_Y] = {{0}};
+    int mapLayout[MAX_X][MAX_Y] = {{0}}; // just for testing
     load_Map (mapLayout);
 }
 
-void load_Map (mapLayout[MAX_X][MAX_Y])
+void load_Map (int mapLayout[MAX_X][MAX_Y])
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
-    static bool existingMap = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
-    if (existingMap != 0)
+    static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
+    if (existing_Map != 0)
     {
-        option = optionUser ("You already loaded one map, do you want to load another and forget the last");
+        option = option_User ("You already loaded one map, do you want to load another and forget the last");
         if (option == 'Y')
         {
-            Map = readingfromFile ();
-            existingMap = true;
+            reading_from_File (mapLayout);
+            existing_Map = true;
         }
     }
     else
     {
-        Map = readingfromFile ();
-        existingMap = true;
+        reading_from_File (mapLayout);
+        existing_Map = true;
     }
-    return 0;
 }
 
-char optionUser (char *str)
+char option_User (char *str)
 {
     char option;
     printf ("%s?\n(Y/N)", str);
@@ -55,7 +54,7 @@ char optionUser (char *str)
     return option;
 }
 
-void readString(char str[], int max)
+void read_String(char str[], int max)
 {
     char * ptr = NULL;
     do
@@ -78,35 +77,26 @@ void readString(char str[], int max)
     while (strlen (str) == 0);
 }
 
-int readingfromFile (mapLayout [MAX_X][])
+void reading_from_File (int mapLayout [MAX_X][MAX_Y])
 {
-    char nameFileMap[MAX_NAME_FILE];
-    FILE *mapLoad = NULL;
+	int x, y;
+    char name_File_Map[MAX_NAME_FILE];
+    FILE *map_Load = NULL;
     fflush (stdin);
     printf ("Name of the map to load: ");
-    readString(nameFileMap, MAX_NAME_FILE);
-    mapLoad = fopen (nameFileMap, "r");
-    if (mapLoad == NULL)
+    read_String(name_File_Map, MAX_NAME_FILE);
+    map_Load = fopen (name_File_Map, "r");
+    if (map_Load == NULL)
     {
         fprintf (stderr, "Error on trying to load the map file");
     }
     else
     {
-        for (i = 0; mapLoad != EOF; i++)
-        /*
-        fscanf ("", ..., Map.(...));
-
-        fscanf ("", ..., Map.(...));
-
-        (...)
-        Here the function will read the text file created before.
-        (...)
-
-        fscanf ("", ..., Map.(...));
-
-        fscanf ("", ..., Map.(...));
-        */
-        fclose (mapLoad);
+     for (y = 0; y < MAX_Y; y++) {
+            for (x = 0; x < MAX_X; x++) {
+                fscanf (map_Load, "%d", mapLayout[x][y]);
+            }
+        }
+    fclose (map_Load);
     }
-    return 0;
 }
