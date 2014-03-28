@@ -5,9 +5,16 @@
 
 	 player players[11];
 	// bubble sorting
+
+	int add_score( players[10].nickname, players[10].points)
+	{
+	    fp=fopen("highscore.txt", "r+");
+	    check_top_ten();
+	    fclose(fp);
+	}
 	void bubblesort(void)
  	{
-	      fp=fopen("highscore.txt", "r+");
+
 		int i, j, temp;
 		const int n=10;
 		for (i = 0; i<n-1; i++)
@@ -25,15 +32,15 @@
 	        }
 
 
-	            fclose(fp);
+
 	}
 	void save_score (void)
-	{  fp=fopen("highscore.txt", "r+w");
+	{
 	    for (int i=0; i<10; i++)
 	    { fputs(players[i].nickname,fp);
 	    fputs(players[i].points,fp);
 	    }
-	 fclose(fp);
+
  	}
  	void check_top_ten(void)
  	{
