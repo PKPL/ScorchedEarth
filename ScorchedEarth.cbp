@@ -94,7 +94,6 @@
 		<Unit filename="maps.h" />
 		<Unit filename="maps_create.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="maps_create.h" />
 		<Unit filename="maps_load.c">
@@ -132,7 +131,6 @@
 		<Unit filename="shot.c">
 			<Option compilerVar="CC" />
 		</Unit>
-
 		<Unit filename="shot_final_equation.c">
 			<Option compilerVar="CC" />
 		</Unit>
