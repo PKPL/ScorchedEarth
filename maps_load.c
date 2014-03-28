@@ -11,14 +11,19 @@ DANIEL PINTO
 
 #include "maps_load.h"
 
-int maps_load ()
+int test_maps_load () {
+    int x, y;
+    int mapLayout[MAX_X][MAX_Y] = {{0}};
+    load_Map (mapLayout);
+}
+
+void load_Map (mapLayout[MAX_X][MAX_Y])
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
-    int Map; // for now is an int (just for example), but we will change, according the struct of the map;
     static bool existingMap = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
     if (existingMap != 0)
     {
-        option = optionUser ("You already loaded one map, do you want to load another");
+        option = optionUser ("You already loaded one map, do you want to load another and forget the last");
         if (option == 'Y')
         {
             Map = readingfromFile ();
@@ -30,7 +35,7 @@ int maps_load ()
         Map = readingfromFile ();
         existingMap = true;
     }
-    return Map; // returns the map loaded.
+    return 0;
 }
 
 char optionUser (char *str)
@@ -73,9 +78,8 @@ void readString(char str[], int max)
     while (strlen (str) == 0);
 }
 
-int readingfromFile ()
+int readingfromFile (mapLayout [MAX_X][])
 {
-    int Map; //thar will be a struct for the map, and not an int. This int is for example and meaning.
     char nameFileMap[MAX_NAME_FILE];
     FILE *mapLoad = NULL;
     fflush (stdin);
@@ -88,6 +92,7 @@ int readingfromFile ()
     }
     else
     {
+        for (i = 0; mapLoad != EOF; i++)
         /*
         fscanf ("", ..., Map.(...));
 
@@ -103,5 +108,5 @@ int readingfromFile ()
         */
         fclose (mapLoad);
     }
-    return Map; // for now it is int, but will return the struct of file;
+    return 0;
 }
