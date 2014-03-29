@@ -21,13 +21,15 @@ void test_maps_create()
 
     createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);
+    //drawMap(mapLayout);
 }
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 {
-    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative, freeSpaceHeight;
+    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative, freeSpaceHeight, willHaveToCreateCompensationUnit;
     freeSpaceHeight = (1/4) / MAX_Y;
     finishedCreatingMap = 0;
+    willHaveToCreateCompensationUnit = 0;
     isContinuation = 0;
 
     /*For a mountain map*/
@@ -36,7 +38,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
     heightOffsetHigh = 0;
     heightOffsetLow = 0;
     newRndSeed(counter);
-    number = rand() % (MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP + 1); /*defines the initial terrain height*/
+    number = rand() % (MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP - freeSpaceHeight + 1); /*defines the initial terrain height*/
 
     do
     {
@@ -75,7 +77,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             newRndSeed(counter);
             deformationWidth = rand() % (MAX_WIDTH_DEFORMATION + 1); /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
         }
-        while (deformationWidth % 2 == 0 && deformationWidth < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
+        while (deformationWidth % 2 == 0 || deformationWidth < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
 
         do
         {
@@ -86,7 +88,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         while (deformationHeight + number >= (MAX_Y - freeSpaceHeight) || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
 
         heightOffsetHigh = deformationHeight + HEIGHT_OFFSET;
-        heightOffsetLow = deformationHeight + heightOffsetLow;
+        heightOffsetLow = deformationHeight - HEIGHT_OFFSET;
 
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
         if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
@@ -96,7 +98,8 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
         }
         else if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt - 1) % 2 != 0)
         {
-            deformationWidth = (MAX_X - terrainUnitsBuilt);
+            deformationWidth = (MAX_X - terrainUnitsBuilt - 1); /*Now we have to build one unit in a straight line*/
+            willHaveToCreateCompensationUnit = 1;
             finishedCreatingMap = 1; /*No more space for deformations after the current one*/
         }
         /*At this point we have found the width and height for the deformation*/
@@ -112,9 +115,9 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             do
             {
                 newRndSeed(counter);
-                number = rand() % (deformationHeight + heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+                number = rand() % (heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
             }
-            while (number < heightOffsetLow || number > heightOffsetHigh);
+            while (number < heightOffsetLow || number > heightOffsetHigh || number == 0);
 
             for (y = 0; y < number; y++)
             {
@@ -126,8 +129,11 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
         /*Now we have reached the median width value, which will have the max height*/
         x = terrainUnitsBuilt; /*This step is only for us to know that x has the value of the units built, but this is not a necessary line as that is already the value x holds. This is just a reminder*/
-        y = (deformationHeight - 1);
-        mapLayout[x][y] = 1;
+
+        for (y = 0; y < deformationHeight; y++)
+        {
+            mapLayout[x][y] = 1;
+        }
         terrainUnitsBuilt++;
         /*Now the median value already has terrain*/
         /*We need to assign terrain to the remaining values of the deformation width*/
@@ -139,17 +145,27 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
             do
             {
                 newRndSeed(counter);
-                number = rand() % (deformationHeight + heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+                numberAlternative = rand() % (heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
             }
-            while (number < heightOffsetLow || number > heightOffsetHigh);
+            while (numberAlternative < heightOffsetLow || numberAlternative > heightOffsetHigh);
 
             for (y = 0; y < numberAlternative; y++)
             {
                 mapLayout[x][y] = 1;
-                number = y;
             }
+            number = y + 1;
             terrainUnitsBuilt++;
             terrainUnitsToBuild--;
+        }
+        if (willHaveToCreateCompensationUnit == 1)
+        {
+            for (x = (MAX_X - 1); x < MAX_X; x++)
+            {
+                for (y = 0; y < number; y++)
+                {
+                    mapLayout[x][y] = 1; /*Draws the last x unit of the map if the last deformation didn't include the last x position*/
+                }
+            }
         }
         isContinuation = 1;
         /*This concludes the building of a deformation*/
@@ -180,18 +196,21 @@ void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
 
 void newRndSeed(int *counter)
 {
-    int seed;
-    seed = timeSeconds(counter);
-    srand(seed);
+    struct timeval t1;
+    gettimeofday(&t1, NULL);
+    (*counter)++;
+    srand((t1.tv_usec * t1.tv_sec) + (*counter));
 }
 
-int timeSeconds(int *counter)
+void drawMap(int mapLayout[MAX_X][MAX_Y])
 {
-    int seconds;
-    time_t now = time(NULL);
-    struct tm *t = localtime(&now);
-    (*counter)++;
-    seconds = t->tm_sec;
-    seconds += (*counter);
-    return seconds;
+    int a, b;
+
+    for (a = 0; a < MAX_X; a++)
+    {
+        for (b = 0; b < MAX_Y; b++)
+        {
+            printf("%d", mapLayout[b][a]);
+        }
+    }
 }

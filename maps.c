@@ -11,5 +11,5 @@ void test_maps() // function for agreagate testing
 
     //test_maps_create();
     //test_maps_save();
-    //test_maps_create();
+    test_maps_create();
 }

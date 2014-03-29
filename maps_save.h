@@ -12,10 +12,8 @@ DANIEL PINTO
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "maps_create.h"
 
-
-#define MAX_X 100
-#define MAX_Y 100
 
 void saveMap(int mapLayout[MAX_X][MAX_Y]);
 void test_maps_save();

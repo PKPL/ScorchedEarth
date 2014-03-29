@@ -11,7 +11,6 @@ DANIEL PINTO
 
 void test_maps_save()
 {
-    int x,y;
 
     int mapLayout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
     saveMap(mapLayout);
