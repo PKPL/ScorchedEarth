@@ -210,3 +210,20 @@
 1395925371 source:c:\users\pawel\documents\github\scorchedearth\menu_new_game.c
 	"menu_new_game.h"
 
+1396029216 source:c:\users\daniel\documents\github\scorchedearth\ai.c
+	"ai.h"
+
+1396029216 c:\users\daniel\documents\github\scorchedearth\ai.h
+	"ai_easy.h"
+	"ai_medium.h"
+	"ai_hard.h"
+
+1396029216 c:\users\daniel\documents\github\scorchedearth\ai_easy.h
+
+1396029216 c:\users\daniel\documents\github\scorchedearth\ai_medium.h
+
+1396029216 c:\users\daniel\documents\github\scorchedearth\ai_hard.h
+
+1396029216 source:c:\users\daniel\documents\github\scorchedearth\ai_medium.c
+	"ai_medium.h"
+

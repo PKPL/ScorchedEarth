@@ -19,9 +19,9 @@ DANIEL PINTO
 #include <string.h>
 #define MAX_NAME_FILE 50
 
+void load_Map (int mapLayout[MAX_X][MAX_Y]);
 char optionUser (char *str);
 void readString (char *str, int max);
-int readingfromFile ();
-int map_load();
+void reading_from_File (int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __MAPS_LOAD_H__

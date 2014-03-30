@@ -26,11 +26,6 @@ DANIEL PINTO
 #define MAX_HEIGHT_DEFORMATION 75
 #define HEIGHT_OFFSET 6
 
-typedef struct
-{
-    int x, y;
-} tCoordinates;
-
 void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 void newRndSeed(int *counter);

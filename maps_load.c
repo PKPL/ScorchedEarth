@@ -1,13 +1,6 @@
 //---------------------------- Load Maps ---------------------------------
 // Loading maps
 //------------------------------------------------------------------------
-/*
-PORTUGUESE TEAM
-
-NUNO VALENTE
-ROBERTO RIBEIRO
-DANIEL PINTO
-*/
 
 #include "maps_load.h"
 
