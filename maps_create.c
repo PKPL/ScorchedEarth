@@ -204,13 +204,13 @@ void newRndSeed(int *counter)
 
 void drawMap(int mapLayout[MAX_X][MAX_Y])
 {
-    int a, b;
+    int x, y;
 
-    for (a = 0; a < MAX_X; a++)
+    for (x = 0; x < MAX_X; x++)
     {
-        for (b = 0; b < MAX_Y; b++)
+        for (y = (MAX_Y - 1); y >= 0; y--)
         {
-            printf("%d", mapLayout[b][a]);
+            printf("%d", mapLayout[x][y]);
         }
     }
 }
