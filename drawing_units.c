@@ -33,7 +33,7 @@
 			coordinates.y = rand () % (MAX_Y + 1);
  			}
  		}
- 		if (mapLayout[coordinates.x][coordinates.y] == 0) { //confirms that the generated position is on the ground and not in sky.
+ 		if (mapLayout[coordinates.x][coordinates.y] == 1) { //confirms that the generated position is on the ground and not in sky.
  			exit = 1;
  		}
  		else {
