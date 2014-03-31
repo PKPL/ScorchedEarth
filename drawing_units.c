@@ -48,7 +48,7 @@ tCoordinates position (int mapLayout[MAX_X][MAX_Y])
         }
         else
         {
-            exit == 0
+            exit == 0;
         }
     }
     while (exit != 1);

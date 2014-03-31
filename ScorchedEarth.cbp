@@ -69,7 +69,6 @@
 		<Unit filename="drawing_shots.h" />
 		<Unit filename="drawing_units.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawing_units.h" />
 		<Unit filename="levels.c">
