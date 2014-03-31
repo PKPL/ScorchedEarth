@@ -1,14 +1,10 @@
-//
-//  shot_hit.h
-//  shot_formula
-//
-//  Created by Federico Bollotta on 31/03/14.
-//  Copyright (c) 2014 Federico Bollotta. All rights reserved.
-//
+//On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
+#include <stdio.h>
 #include "shot_final_equation.h"
+#include "matrix.h"
+#define RANGE1 0.5
 
 
-void shotHit(missile_data *m, int n, int i ); // funz. finale mette nella matrice i valori dell'esplosione.
-
+void shotHit(missile_data *m, int n, int i );
 

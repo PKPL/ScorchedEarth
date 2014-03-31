@@ -1,38 +1,23 @@
-//
-//  shot_hit.c
-//  shot_formula
-//
-//  Created by Federico Bollotta on 31/03/14.
-//  Copyright (c) 2014 Federico Bollotta. All rights reserved.
-//
+//On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
+//UNDER DEVELOPMENT!!!!
 
-
-#include <stdio.h>
 #include "shot_hit.h"
-#include "matrix.h"
-
-#define range1 0.5
-void explosion ( missile_data *m, int i){
-    if ( m-> x_vector_velocity[i] < range1  ) { //andare a calcolare il vettore in maniera corretta con la legge del PARALLELEPIPEDO
-        
-        //explosiontype 1
-        
-        
-        
+void explosion (missile_data *m, int i) {
+    if (m-> x_vector_velocity[i] < RANGE1) { //We need to calculate exact velocity starting from velocity in x and y
+        //explosion type 1 (according to velocity and weight of the missile)
     }
-        //explosiontype 2
+        //explosion type 2 (as above)
 }
 
-void shotHit(missile_data *m, int n, int i){
-    
-    //prende i vettori esplosione e li mette nella matrice.
-    
+void shotHit(missile_data *m, int n, int i) { //Puts in the matrix values corresponding to explosions
+
+
     switch (n) {
-        case  1: //shotground
+        case  1: //Hits ground
             explosion(m,i);
             break;
         case  2:
-            ;   //shotunit
+            ;   //Hits unit
             break;
     }
 }
