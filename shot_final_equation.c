@@ -4,13 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "shot_final_equation.h"
 
 //Global Constants and Variables
 const float b = 0.1; // kg/s
 const float c = 0.1; // kg/s
 const float g = 9.81; //Acceleration of Gravity
-float time;
+float timer;
 float wind_speed;
 float wind_force;
 
@@ -25,12 +26,12 @@ missile_data* initializeMissile() { //Initializes missile information
                     NOTE: these values are only for reference! */
     light_missile->initial_velocity = 0;
     light_missile->shot_angle = 0;
-    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
-    light_missile->y_turret_position = HEIGHT - 1;
-    for (i = 0; i < LENGTH; i++)
+    light_missile->x_turret_position = 99; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
+    light_missile->y_turret_position = 0;
+    for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
-    for (i = 0; i < HEIGHT; i++)
         light_missile->y_vector_velocity[i] = 0;
+    }
     return light_missile;
 }
 
@@ -90,7 +91,7 @@ void windForce () { //Calculates wind force
 
 void setTime () { //Allows the user to decide the maximum time of the projectile flight
     printf("Enter time (in seconds or fractions of second) against which you want velocity and position to be calculated: ");
-    scanf("%f", &time);
+    scanf("%f", &timer);
 }
 
 void xVelocityFormula (missile_data *m) { //Calculates x component of velocity against time and stores the values in a vector
@@ -99,12 +100,12 @@ void xVelocityFormula (missile_data *m) { //Calculates x component of velocity a
     float t, wf;
     wf = wind_force;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
-    for (t = 0, i = 0; t < time; t += 0.2) { //We're calculating velocity every 0.2 seconds
+    for (t = 0, i = 0; t < timer; t += 0.02) { //We're calculating velocity every 0.2 seconds
         m->x_vector_velocity[i] = (wf / b) + ((velocity_x_0 - (wf / b)) * exp( - (b / m->weight) * t));
         i++; //This index allows "for cycle" to break if the number of components calculated outgoes map length
-        if (i >= LENGTH) break;
+        if (i >= VECTOR_LENGTH) break;
     }
-    printf("\nVelocity (x component) at %.1f seconds: %.1f m/s\n", time, m->x_vector_velocity[i-1]); //Prints the last value stored in the vector
+    printf("\nVelocity (x component) at %.1f seconds: %.1f m/s\n", timer, m->x_vector_velocity[i-1]); //Prints the last value stored in the vector
 }
 
 void yVelocityFormula (missile_data *m) { //Calculates y component of velocity against time and stores the values in a vector
@@ -112,12 +113,12 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
     float velocity_y_0; //Velocity y component at 0 seconds
     float t;
     velocity_y_0 = m->initial_velocity * sinDegrees(m->shot_angle);
-    for (t = 0, i = 0; t < time; t += 0.2) {
+    for (t = 0, i = 0; t < timer; t += 0.02) {
         m->y_vector_velocity[i] = (velocity_y_0 + m->weight * g / b) * exp( - (b / m->weight) * t) - m->weight * g / b;
         i++; //This index allows "for cycle" to break if the number of components calculates outgoes map height
-        if (i >= HEIGHT) break;
+        if (i >= VECTOR_LENGTH) break;
     }
-    printf("Velocity (y component) at %.1f seconds: %.1f m/s\n\n", time, m->y_vector_velocity[i-1]); //Prints the last value stored in the vector
+    printf("Velocity (y component) at %.1f seconds: %.1f m/s\n\n", timer, m->y_vector_velocity[i-1]); //Prints the last value stored in the vector
 }
 
 void xCoordinate (missile_data *m) { //Calculates x coordinate against time and stores the values in a vector
@@ -127,10 +128,10 @@ void xCoordinate (missile_data *m) { //Calculates x coordinate against time and 
     wf = wind_force;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
-    for (t = 0, i = 0; t < time; t += 0.2) { //As for velocity, we're calculating coordinates every 0.2 seconds
+    for (t = 0, i = 0; t < timer; t += 0.02) { //As for velocity, we're calculating coordinates every 0.2 seconds
         m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
         i++; //This index allows "for cycle" to break if number of calculations outgoes map length
-        if (i >= LENGTH) break;
+        if (i >= VECTOR_LENGTH) break;
     }
 }
 
@@ -138,13 +139,13 @@ void yCoordinate (missile_data *m) { //Calculates y coordinate against time and 
     int y0, i;
     float t;
     float velocity_y_0;
-    t = time;
+    t = timer;
     velocity_y_0 = m->initial_velocity * sinDegrees(m->shot_angle);
     y0 = m->y_turret_position;
-    for (t = 0, i = 0; t < time; t += 0.2) {
+    for (t = 0, i = 0; t < timer; t += 0.02) {
         m->y_vector_coordinate[i] = y0 + m->weight / b * (velocity_y_0 + m->weight * g / b) * (1 - exp(-(b / m->weight * t))) - m->weight * g / b * t;
         i++; //This index allows "for cycle" to break if number of calculations outgoes map height
-        if (i >= HEIGHT) break;
+        if (i >= VECTOR_LENGTH) break;
     }
 }
 
