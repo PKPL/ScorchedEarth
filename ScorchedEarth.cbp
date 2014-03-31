@@ -105,6 +105,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="maps_save.h" />
+		<Unit filename="matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="matrix.h" />
 		<Unit filename="menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
