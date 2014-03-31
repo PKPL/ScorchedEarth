@@ -19,9 +19,9 @@ void test_maps_create()
     int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
     /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
 
-    createPlainMap(mapLayout, &counterTimesUsedRandom);
+    //createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);
-    //drawMap(mapLayout);
+    drawMap(mapLayout);
 }
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
@@ -147,7 +147,7 @@ void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
                 newRndSeed(counter);
                 numberAlternative = rand() % (heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
             }
-            while (numberAlternative < heightOffsetLow || numberAlternative > heightOffsetHigh);
+            while (numberAlternative < heightOffsetLow || numberAlternative > heightOffsetHigh || numberAlternative == 0);
 
             for (y = 0; y < numberAlternative; y++)
             {
@@ -208,9 +208,30 @@ void drawMap(int mapLayout[MAX_X][MAX_Y])
 
     for (x = 0; x < MAX_X; x++)
     {
-        for (y = (MAX_Y - 1); y >= 0; y--)
+        for (y = 0; y < MAX_Y; y++)
         {
-            printf("%d", mapLayout[x][y]);
+            printf("%d",mapLayout[x][y]);
         }
     }
 }
+
+/*
+The map drawing function draws on the console as follows:
+
+  Y 0 1 2 3 4 5 6 7 8 9....
+X
+0   1 1 1 1 1 0 0 0 0 0
+1   1 1 1 1 1 1 1 0 0 0
+2   etc...
+3
+4
+5
+6
+7
+8
+9
+.
+.
+.
+
+*/

@@ -16,6 +16,6 @@ typedef struct
 } tCoordinates;
 
 void drawing_units(int mapLayout[MAX_X][MAX_Y]);
-tCoordinates position (int mapLayout[MAX_X][MAX_Y];
+tCoordinates position (int mapLayout[MAX_X][MAX_Y]);
 
 #endif // __DRAWING_UNITS_H__

@@ -15,7 +15,7 @@ DANIEL PINTO
 #include <windows.h>
 #include <time.h>
 
-#define MAX_X 200
+#define MAX_X 100
 #define MAX_Y 80
 #define MIN_X 0
 #define MIN_Y 0
