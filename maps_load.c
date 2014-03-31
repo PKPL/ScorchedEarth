@@ -4,7 +4,8 @@
 
 #include "maps_load.h"
 
-void test_maps_load () {
+void test_maps_load ()
+{
     int x, y;
     int mapLayout[MAX_X][MAX_Y] = {{0}}; // just for testing
     load_Map (mapLayout);
@@ -72,7 +73,7 @@ void read_String(char str[], int max)
 
 void reading_from_File (int mapLayout [MAX_X][MAX_Y])
 {
-	int x, y;
+    int x, y;
     char name_File_Map[MAX_NAME_FILE];
     FILE *map_Load = NULL;
     fflush (stdin);
@@ -85,11 +86,13 @@ void reading_from_File (int mapLayout [MAX_X][MAX_Y])
     }
     else
     {
-     for (y = 0; y < MAX_Y; y++) {
-            for (x = 0; x < MAX_X; x++) {
+        for (y = 0; y < MAX_Y; y++)
+        {
+            for (x = 0; x < MAX_X; x++)
+            {
                 fscanf (map_Load, "%d", mapLayout[x][y]);
             }
         }
-    fclose (map_Load);
+        fclose (map_Load);
     }
 }

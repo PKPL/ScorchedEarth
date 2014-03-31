@@ -15,6 +15,7 @@ typedef struct
     int x, y;
 } tCoordinates;
 
+void test_drawing_units();
 void drawing_units(int mapLayout[MAX_X][MAX_Y]);
 tCoordinates position (int mapLayout[MAX_X][MAX_Y]);
 
