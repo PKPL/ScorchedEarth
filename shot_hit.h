@@ -1,9 +1,14 @@
-#ifndef __SHOT_HIT_H__
-#define __SHOT_HIT_H__
+//
+//  shot_hit.h
+//  shot_formula
+//
+//  Created by Federico Bollotta on 31/03/14.
+//  Copyright (c) 2014 Federico Bollotta. All rights reserved.
+//
 
-//---------------------------- Shot hit ------------------------------
-// Checking if shoot hitted map or unit
-//------------------------------------------------------------------------
-//On this file are working Team 1: Lorenzo Romanelli and Federico Bollotta
+#include "shot_final_equation.h"
 
-#endif // __SHOT_HIT_H__
+
+void shotHit(missile_data *m, int n, int i ); // funz. finale mette nella matrice i valori dell'esplosione.
+
+
