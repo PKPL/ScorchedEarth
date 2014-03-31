@@ -25,8 +25,8 @@ missile_data* initializeMissile() { //Initializes missile information
                     NOTE: these values are only for reference! */
     light_missile->initial_velocity = 0;
     light_missile->shot_angle = 0;
-    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
-    light_missile->y_turret_position = 0;
+    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map.
+    light_missile->y_turret_position = 0; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
     for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
         light_missile->y_vector_velocity[i] = 0;
@@ -99,9 +99,9 @@ void xVelocityFormula (missile_data *m) { //Calculates x component of velocity a
     float t, wf;
     wf = wind_force;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
-    for (t = 0, i = 0; t < timer; t += 0.02) { //We're calculating velocity every 0.2 seconds
+    for (t = 0, i = 0; t < timer; t += 0.02) { //We're calculating velocity every 0.02 seconds
         m->x_vector_velocity[i] = (wf / b) + ((velocity_x_0 - (wf / b)) * exp( - (b / m->weight) * t));
-        i++; //This index allows "for cycle" to break if the number of components calculated outgoes map length
+        i++; //This index allows "for cycle" to break if the number of components calculated outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
     printf("\nVelocity (x component) at %.1f seconds: %.1f m/s\n", timer, m->x_vector_velocity[i-1]); //Prints the last value stored in the vector
@@ -114,7 +114,7 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
     velocity_y_0 = m->initial_velocity * sinDegrees(m->shot_angle);
     for (t = 0, i = 0; t < timer; t += 0.02) {
         m->y_vector_velocity[i] = (velocity_y_0 + m->weight * g / b) * exp( - (b / m->weight) * t) - m->weight * g / b;
-        i++; //This index allows "for cycle" to break if the number of components calculates outgoes map height
+        i++; //This index allows "for cycle" to break if the number of components calculated outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
     printf("Velocity (y component) at %.1f seconds: %.1f m/s\n\n", timer, m->y_vector_velocity[i-1]); //Prints the last value stored in the vector
@@ -127,9 +127,9 @@ void xCoordinate (missile_data *m) { //Calculates x coordinate against time and 
     wf = wind_force;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
-    for (t = 0, i = 0; t < timer; t += 0.02) { //As for velocity, we're calculating coordinates every 0.2 seconds
+    for (t = 0, i = 0; t < timer; t += 0.02) { //As for velocity, we're calculating coordinates every 0.02 seconds
         m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
-        i++; //This index allows "for cycle" to break if number of calculations outgoes map length
+        i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
 }
@@ -143,7 +143,7 @@ void yCoordinate (missile_data *m) { //Calculates y coordinate against time and 
     y0 = m->y_turret_position;
     for (t = 0, i = 0; t < timer; t += 0.02) {
         m->y_vector_coordinate[i] = y0 + m->weight / b * (velocity_y_0 + m->weight * g / b) * (1 - exp(-(b / m->weight * t))) - m->weight * g / b * t;
-        i++; //This index allows "for cycle" to break if number of calculations outgoes map height
+        i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
 }

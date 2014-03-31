@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "shot_final_equation.h"
+#include "matrix.h"
 
 void formula();
 
