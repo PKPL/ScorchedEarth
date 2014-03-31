@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "shot_final_equation.h"
 
 //Global Constants and Variables
@@ -26,7 +25,7 @@ missile_data* initializeMissile() { //Initializes missile information
                     NOTE: these values are only for reference! */
     light_missile->initial_velocity = 0;
     light_missile->shot_angle = 0;
-    light_missile->x_turret_position = 99; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
+    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map
     light_missile->y_turret_position = 0;
     for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
