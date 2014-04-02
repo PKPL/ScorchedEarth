@@ -5,4 +5,6 @@
 // Drawing destructions
 //------------------------------------------------------------------------
 
+#include "maps_create.h"
+
 #endif // __DRAWING_DESTRUCTION_H__
