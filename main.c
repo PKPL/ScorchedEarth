@@ -17,21 +17,22 @@
 
 int main()
 {
+    int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
+    /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
     printf("Scorched Earth\n");
 
     //Tests
     printf("\n-------------------------------------------------\n");
     printf("Testing functionality\n");
     test_ai();
-    test_drawing();
     test_levels();
     printf("\nThere is an occasional crash during the map testing,\nbut only if you are generating a mountain map.\nIf this happens just run the program again.\nWe couldn't find the source of this yet.\n\n");
-    test_maps();
+    test_maps(mapLayout);
+    test_drawing(mapLayout);
     test_menu();
     test_unit();
     test_shot();
     printf("\n-------------------------------------------------\n");
-
     _getch();
     return 0;
 }

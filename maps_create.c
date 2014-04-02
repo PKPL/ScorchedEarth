@@ -13,11 +13,9 @@ Issue 2 identified by Pawel should be fixed by now
 
 #include "maps_create.h"
 
-void test_maps_create()
+void test_maps_create(int mapLayout [MAX_X][MAX_Y])
 {
     int counterTimesUsedRandom = 0;
-    int mapLayout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere*/
-    /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
 
     //createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);

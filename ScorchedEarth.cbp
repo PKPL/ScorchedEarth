@@ -94,18 +94,12 @@
 		<Unit filename="maps_create.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="maps_create.h">
-			<Option compile="1" />
-			<Option link="1" />
-		</Unit>
+		<Unit filename="maps_create.h" />
 		<Unit filename="maps_load.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="maps_load.h">
-			<Option compile="1" />
-			<Option link="1" />
-		</Unit>
+		<Unit filename="maps_load.h" />
 		<Unit filename="maps_save.c">
 			<Option compilerVar="CC" />
 		</Unit>

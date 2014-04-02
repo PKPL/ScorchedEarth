@@ -13,6 +13,6 @@
 #include "drawing_shots.h"
 #include "drawing_destruction.h"
 
-void test_drawing();
+void test_drawing(int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __DRAWING_H__

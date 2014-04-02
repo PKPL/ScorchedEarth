@@ -4,11 +4,10 @@
 
 #include "drawing_units.h"
 
-void test_drawing_units ()
+void test_drawing_units (int mapLayout[MAX_X][MAX_Y])
 {
-    int x, y;
-    int mapLayout[MAX_X][MAX_Y] = {{0}}; // just for testing
     drawing_units(mapLayout);
+    //drawMap(mapLayout);
 }
 
 void drawing_units (int mapLayout[MAX_X][MAX_Y])
@@ -18,6 +17,10 @@ void drawing_units (int mapLayout[MAX_X][MAX_Y])
     {
         coordinates_player = position (mapLayout);
         coordinates_enemy = position (mapLayout);
+        if (abs(coordinates_enemy.x - coordinates_player.x) <= DISTANCE && abs(coordinates_enemy.y - coordinates_player.y) <= DISTANCE) {
+            mapLayout[coordinates_player.x][coordinates_player.y] = 1;
+            mapLayout[coordinates_enemy.x][coordinates_enemy.y] = 1;
+        }
     }
     while (abs(coordinates_enemy.x - coordinates_player.x) <= DISTANCE && abs(coordinates_enemy.y - coordinates_player.y) <= DISTANCE);
     mapLayout[coordinates_player.x][coordinates_player.y] = PLAYER;
@@ -26,31 +29,20 @@ void drawing_units (int mapLayout[MAX_X][MAX_Y])
 
 tCoordinates position (int mapLayout[MAX_X][MAX_Y])
 {
-    int exit, i;
+    int i;
     tCoordinates coordinates;
-    do
-    {
-        for (i = 1; i <= 2; i++)
-        {
-            srand (time (NULL) + i);
-            if (i == 1)   // if it is the first round, generate the X position
-            {
-                coordinates.x = rand () % (MAX_X + 1);
+        coordinates.x = coordinates.x = rand () % (MAX_X + 1);
+        for (i = 0; i < MAX_Y; i++) {
+            srand (time (NULL));
+            if (mapLayout[coordinates.x][i] == 0) {
+                continue;
             }
-            else   // else, generate the Y position
+            else
             {
-                coordinates.y = rand () % (MAX_Y + 1);
+                coordinates.y = i;
+                break;
             }
         }
-        if (mapLayout[coordinates.x][coordinates.y] == 1)   //confirms that the generated position is on the ground and not in sky.
-        {
-            exit = 1;
-        }
-        else
-        {
-            exit == 0;
-        }
-    }
-    while (exit != 1);
     return coordinates;
 }
+
