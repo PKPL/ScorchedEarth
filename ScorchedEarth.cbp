@@ -55,7 +55,6 @@
 		<Unit filename="drawing.h" />
 		<Unit filename="drawing_destruction.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="drawing_destruction.h" />
 		<Unit filename="drawing_maps.c">
