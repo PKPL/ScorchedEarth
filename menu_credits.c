@@ -54,7 +54,7 @@ void credits()
     printf("\n");
     Sleep( 3000 );
     system( "cls" );
-    printf("Coordinator of the project was Mr. Pawel Lempa");
+    printf("Coordinator of the project was Mr. Pawel Lempa and Mr. Grzegorz Filo");
     Sleep( 3000 );
     system( "cls" );
     printf("\n Thanks to ERASMUS IP Lifelong Learning Programme");
