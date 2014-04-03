@@ -5,4 +5,9 @@
 // AI for easy level
 //------------------------------------------------------------------------
 
+#include "maps_create.h"
+#include "unit.h"
+
+void ai_easy(unit local_bot, int mapLayout[MAX_X][MAX_Y]);
+
 #endif // __AI_EASY_H__

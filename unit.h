@@ -7,8 +7,20 @@
 
 // Included libraries
 
+//Structs
+typedef struct unit
+{
+int x;
+int y;
+int points;
+}unit;
+
 // Included files
 
 void test_unit();
+void unit_func();
+
+unit player;
+unit bot;
 
 #endif // __UNIT_H__

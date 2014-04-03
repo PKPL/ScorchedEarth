@@ -4,8 +4,57 @@
 // Polish team is working on this file
 // Included files
 #include "ai.h"
+#include "unit.h"
+#include <math.h>
+#include <stdlib.h>
+#include "maps_create.h"
+#include <stdbool.h>
+#include <time.h>
+
+float min_angle(unit local_bot)
+{
+    if(player.y > local_bot.y)return (atan((player.y-local_bot.y)/abs(player.x - local_bot.x)));
+}
+
+float find_random(int min_ang, int max_ang)
+{
+    srand ( time(NULL) );
+    return  (rand() % (max_ang - min_ang) + min_ang);
+}
+
+bool raycast(unit from, int angle,  int mapLayout[MAX_X][MAX_Y])
+{
+    int ray_length = 20;
+    int i = 1;
+    for(i = 1; i < ray_length; i++)
+    {
+        float local_x, local_y;
+
+        local_x = cos(angle)*i;
+        local_y = sin(angle)*i;
+
+        int local_x_rounded = (int)(local_x + 0.5);
+        int local_y_rounded = (int)(local_y + 0.5);
+
+        if(from.x + local_x_rounded > MAX_X || from.y + local_y_rounded > MAX_Y) break;
+        else if(mapLayout[from.x + local_x_rounded][from.y + local_y_rounded] == 1)
+        {
+            return true;
+        }
+
+    }
+    return false;
+}
 
 void test_ai() // function for agreagate testing
 {
     printf("AI test\n");
+}
+
+void ai(unit local_bot, int mapLayout[MAX_X][MAX_Y])
+{
+    //if(selected level = AI_EASY)
+
+        //ai_easy(local_bot, mapLayout[MAX_X][MAX_Y]);
+
 }
