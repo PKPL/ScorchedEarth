@@ -16,8 +16,10 @@ typedef struct player
 {
     char nickname[20];
     int points;
-}player[11] ;
+};
 
+
+struct  player players[11];
 void bubblesort();
 void add_score ();
 void check_top_ten();

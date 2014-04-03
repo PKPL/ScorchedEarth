@@ -3,18 +3,18 @@
 //------------------------------------------------------------------------
 #include "menu_highscore.h"
 
-	 player players[11];
+
 	// bubble sorting
 
-	int add_score( players[10].nickname, players[10].points)
+	void add_score()
 	{
-	    fp=fopen("highscore.txt", "r+");
+	    fp=fopen("highscore.txt", "r+w");
 	    check_top_ten();
 	    fclose(fp);
 	}
 	void bubblesort(void)
  	{
-
+ fp=fopen("highscore.txt", "r+");
 		int i, j, temp;
 		const int n=10;
 		for (i = 0; i<n-1; i++)
@@ -22,35 +22,36 @@
 
 			for (j=0; j<n-1-i; j++)
 	            {
-	            if (players[j].points > players[j+1].points)
+	            if (players[j+1].points < players[j].points)
 				{
-					temp =players[j+1];
-					players[j+1] =players[j];
-					players[j] = temp;
+					temp = players[j+1].points;
+					players[j+1].points =players[j].points;
+					players[j].points = temp;
 				}
 			}
 	        }
-
-
-
+	        fclose(fp);
 	}
+
 	void save_score (void)
-	{
-	    for (int i=0; i<10; i++)
-	    { fputs(players[i].nickname,fp);
-	    fputs(players[i].points,fp);
+	{int counter;
+	    for (counter=0; counter<10; counter++)
+	    { fputs(players[counter].nickname,fp);
+	      fputs(players[counter].points,fp);
 	    }
 
  	}
  	void check_top_ten(void)
  	{
-	 if (players[10].points> player[9].points)
-	     {bubblesort();} save_score();  highscore();
+	 if (players[10].points> players[9].points)
+	     {bubblesort();}
+	     save_score();
+        highscore();
 
  	}
 
  	void highscore(void)
-     {
+     {fp=fopen("highscore.txt", "r+");
 
      putchar(inChar);
         inChar = getc(fp);
