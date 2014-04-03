@@ -19,4 +19,6 @@ float find_random(int min_ang, int max_ang);
 bool raycast(unit from, int angle,  int mapLayout[MAX_X][MAX_Y]);
 void ai(unit local_bot, int mapLayout[MAX_X][MAX_Y]);
 
+
+
 #endif // __AI_H__
