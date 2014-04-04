@@ -4,10 +4,13 @@
 #include "matrix.h"
 
 void init_matrix() { //Initializes a matrix that we'll use for testing formulas and checking shoots
-    int i,j;
-    for (i = 0; i < HEIGHT; i++)
+    int i,j,k;
+    for (k = 0; k < HEIGHT; k++)
         for (j = 0; j < LENGTH; j++)
-            matrix[i][j] = 0;
+            matrix[k][j] = 0;
+    for (i = 0; i < HEIGHT; i++)
+        for (j = 70; j < LENGTH; j++)
+            matrix[i][j] = 1;
 }
 
 void print_matrix() { //Prints the above mentioned matrix

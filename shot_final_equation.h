@@ -28,7 +28,6 @@ double cosDegrees(double);
 double sinDegrees(double);
 
 missile_data* initializeMissile();
-void printMissileData(missile_data*);
 void setInitialVelocity(missile_data*);
 void setShootingAngle(missile_data*);
 
@@ -36,9 +35,5 @@ void xVelocityFormula(missile_data*);
 void yVelocityFormula(missile_data*);
 void xCoordinate(missile_data*);
 void yCoordinate(missile_data*);
-
-void printIntVector(int[], int);
-void printFloatVector(float[], int);
-
 
 #endif // __SHOT_FINAL_EQUATION_H__

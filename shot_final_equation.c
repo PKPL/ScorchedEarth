@@ -7,9 +7,6 @@
 #include "shot_final_equation.h"
 
 //Global Constants and Variables
-const float b = 0.1; // kg/s
-const float c = 0.1; // kg/s
-const float g = 9.81; //Acceleration of Gravity
 float timer;
 float wind_speed;
 float wind_force;
@@ -40,17 +37,6 @@ double cosDegrees (double alpha) { //Modifies cos() function in math.h so that i
 
 double sinDegrees (double alpha) { //Modifies sin() function in math.h so that it accepts values in degrees instead of radians
     return sin(M_PI * alpha / 180);
-}
-
-void printMissileData (missile_data *m) { //Prints all information about one missile type
-    if(m == NULL) {
-        printf("Uninitialized missile!\n\n"); return;
-    }
-    printf("\n***MISSILE DATA***\n\n");
-    printf("Type: %s\nWeight: %.1f kg\n", m->name, m->weight);
-    printf("Initial velocity: %.1f m/s\n", m->initial_velocity);
-    printf("Shot angle: %d degrees\n", m->shot_angle);
-    printf("Turret coordinates: %d;%d\n\n", m->x_turret_position, m->y_turret_position);
 }
 
 void setInitialVelocity (missile_data *m) { //Allows the player to set the initial velocity of the shot
@@ -85,6 +71,7 @@ void setWindSpeed () { //Allows the user to set wind speed
 }
 
 void windForce () { //Calculates wind force
+    const float c = 0.1; // kg/s
     wind_force = wind_speed * c;
 }
 
@@ -94,6 +81,7 @@ void setTime () { //Allows the user to decide the maximum time of the projectile
 }
 
 void xVelocityFormula (missile_data *m) { //Calculates x component of velocity against time and stores the values in a vector
+    const float b = 0.1; // kg/s
     int i;
     float velocity_x_0; //Velocity x component at 0 seconds
     float t, wf;
@@ -108,6 +96,8 @@ void xVelocityFormula (missile_data *m) { //Calculates x component of velocity a
 }
 
 void yVelocityFormula (missile_data *m) { //Calculates y component of velocity against time and stores the values in a vector
+    const float b = 0.1; // kg/s
+    const float g = 9.81; //Acceleration of Gravity
     int i;
     float velocity_y_0; //Velocity y component at 0 seconds
     float t;
@@ -121,6 +111,7 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
 }
 
 void xCoordinate (missile_data *m) { //Calculates x coordinate against time and stores the values in a vector
+    const float b = 0.1; // kg/s
     int x0, i;
     float wf, t;
     float velocity_x_0;
@@ -135,6 +126,8 @@ void xCoordinate (missile_data *m) { //Calculates x coordinate against time and 
 }
 
 void yCoordinate (missile_data *m) { //Calculates y coordinate against time and stores the values in a vector
+    const float g = 9.81; //Acceleration of Gravity
+    const float b = 0.1; // kg/s
     int y0, i;
     float t;
     float velocity_y_0;

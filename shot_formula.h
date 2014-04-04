@@ -9,8 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "shot_final_equation.h"
+#include "shot_hit.h"
 #include "matrix.h"
 
-void formula();
+missile_data* formula();
 
 #endif // __SHOT_FORMULA_H__

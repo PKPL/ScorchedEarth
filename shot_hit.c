@@ -2,22 +2,13 @@
 //UNDER DEVELOPMENT!!!!
 
 #include "shot_hit.h"
-void explosion (missile_data *m, int i) {
-    if (m-> x_vector_velocity[i] < RANGE1) { //We need to calculate exact velocity starting from velocity in x and y
-        //explosion type 1 (according to velocity and weight of the missile)
-    }
-        //explosion type 2 (as above)
-}
 
-void shotHit(missile_data *m, int n, int i) { //Puts in the matrix values corresponding to explosions
-
-
-    switch (n) {
-        case  1: //Hits ground
-            explosion(m,i);
-            break;
-        case  2:
-            ;   //Hits unit
-            break;
-    }
+int checkHit (int i, missile_data *m) {
+    if (m->y_vector_coordinate[i] > HEIGHT) return 0; //If the projectile outgoes map height without hitting anything, it waits for it to enter again in the map
+    if (m->x_vector_coordinate[i] >= LENGTH || m->x_vector_coordinate[i] < 0 || m->y_vector_coordinate[i] < 0) return 1; //If the projectile outgoes map length (either on the left or right side) without hitting anything, the shot goes lost
+    if (matrix[m->y_vector_coordinate[i]][m->x_vector_coordinate[i]] == 1) //Projectile hits ground
+        return 2;
+    if (matrix[m->y_vector_coordinate[i]][m->x_vector_coordinate[i]] == 10 || matrix[m->y_vector_coordinate[i]][m->x_vector_coordinate[i]] == 20) //Projectile hits unit (either player's ones or enemy's ones)
+        return 3;
+    return 4;
 }

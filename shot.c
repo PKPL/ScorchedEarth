@@ -1,13 +1,16 @@
-//---------------------------- Shot --------------------------------------
-// It combines the files responsible for calculating the shot
-//------------------------------------------------------------------------
-//On this file are working Team 1: Lorenzo Romanelli and Federico Bollotta
+// On this file team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
-// Included files
 #include "shot.h"
 
-void test_shot() // function for agreagate testing
-{
-    printf("Shot test\n");
-    //formula();
+void testShot (void) {
+
+    missile_data *missile;
+
+    init_matrix();
+
+    missile = formula();
+
+    free(missile);
+
 }
+

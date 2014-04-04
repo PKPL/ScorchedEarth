@@ -4,14 +4,13 @@
 //---------------------------- Shot --------------------------------------
 // It combines the files responsible for calculating the shot
 //------------------------------------------------------------------------
-//On this file are working Team 1: Lorenzo Romanelli and Federico Bollotta
+//On this file Team 1 is working: Lorenzo Romanelli and Federico Bollotta
 
-// Included libraries
-
-// Included files
+#include <stdio.h>
 #include "shot_formula.h"
-#include "shot_hit.h"
+#include "matrix.h"
+#include "shot_final_equation.h"
 
-void test_shot(); // function for agreagate testing
+void testShot(); // function for agreagate testing
 
 #endif // __SHOT_H__
