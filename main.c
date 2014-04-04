@@ -31,7 +31,7 @@ int main()
     test_drawing(mapLayout);
     test_menu();
     test_unit();
-    test_shot();
+    testShot();
     printf("\n-------------------------------------------------\n");
     _getch();
     return 0;
