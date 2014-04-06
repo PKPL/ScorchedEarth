@@ -4,6 +4,13 @@
 
 // Team 2 File (Polish Group)
 
+/*
+This file says Team 2 File (Polish Group)
+However I thought that this file would be the correct one to work on in order to complete the task:
+"Drawing Menu screen" Assigned to the Portuguese team.
+Should it not be in this file, advise us (Portuguese team) as soon as possible.
+*/
+
 // Included files
 #include "menu.h"
 
