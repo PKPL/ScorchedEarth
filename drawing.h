@@ -20,6 +20,5 @@
 #include "maps_create.h"
 
 void test_drawing(int mapLayout [MAX_X][MAX_Y]);
-void drawing (int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __DRAWING_H__

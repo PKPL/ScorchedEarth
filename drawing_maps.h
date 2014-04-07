@@ -5,4 +5,10 @@
 // Drawing maps
 //------------------------------------------------------------------------
 
+
+#include "maps_create.h"
+
+void test_drawing_map (int mapLayout [MAX_X][MAX_Y]);
+void gotoxy(int x, int y);
+
 #endif // __DRAWING_MAPS_H__

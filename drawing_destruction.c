@@ -6,15 +6,8 @@
 
 void test_drawing_destruction(int mapLayout [MAX_X][MAX_Y])
 {
-    checkIfHit();
     createExplosion(mapLayout); //Draws the explosion
     createDestruction(mapLayout); //Draws the destruction
-}
-
-int checkIfHit()
-{
-    int checkHitValue;
-    return checkHitValue;
 }
 
 void createDestruction(int mapLayout [MAX_X][MAX_Y])
