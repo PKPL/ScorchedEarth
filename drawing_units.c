@@ -7,7 +7,6 @@
 void test_drawing_units (int mapLayout[MAX_X][MAX_Y])
 {
     drawing_units(mapLayout);
-    //drawMap(mapLayout);
 }
 
 void drawing_units (int mapLayout[MAX_X][MAX_Y])

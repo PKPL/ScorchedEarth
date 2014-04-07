@@ -19,7 +19,6 @@ void test_maps_create(int mapLayout [MAX_X][MAX_Y])
 
     //createPlainMap(mapLayout, &counterTimesUsedRandom);
     createMountainMap(mapLayout, &counterTimesUsedRandom);
-    drawMap(mapLayout);
 }
 
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
@@ -199,37 +198,3 @@ void newRndSeed(int *counter)
     (*counter)++;
     srand((t1.tv_usec * t1.tv_sec) + (*counter));
 }
-
-void drawMap(int mapLayout[MAX_X][MAX_Y])
-{
-    int x, y;
-
-    for (x = 0; x < MAX_X; x++)
-    {
-        for (y = 0; y < MAX_Y; y++)
-        {
-            printf("%d",mapLayout[x][y]);
-        }
-    }
-}
-
-/*
-The map drawing function draws on the console as follows:
-
-  Y 0 1 2 3 4 5 6 7 8 9....
-X
-0   1 1 1 1 1 0 0 0 0 0
-1   1 1 1 1 1 1 1 0 0 0
-2   etc...
-3
-4
-5
-6
-7
-8
-9
-.
-.
-.
-
-*/

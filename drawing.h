@@ -8,11 +8,18 @@
 // Included libraries
 
 // Included files
+#define _NO_OLDNAMES
+#include <conio.h>
+#include <stdio.h>
+#include <math.h>
+#include <windows.h>
 #include "drawing_maps.h"
 #include "drawing_units.h"
 #include "drawing_shots.h"
 #include "drawing_destruction.h"
+#include "maps_create.h"
 
 void test_drawing(int mapLayout [MAX_X][MAX_Y]);
+void drawing (int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __DRAWING_H__

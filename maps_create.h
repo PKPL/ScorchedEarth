@@ -30,6 +30,5 @@ void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter);
 void newRndSeed(int *counter);
 void test_maps_create();
-void drawMap(int mapLayout[MAX_X][MAX_Y]);
 
 #endif // __MAPS_CREATE_H__
