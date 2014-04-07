@@ -22,6 +22,7 @@ void test_drawing(int mapLayout [MAX_X][MAX_Y]) // function for agreagte testing
 {
     printf("Drawing test\n");
     test_drawing_units(mapLayout);
+<<<<<<< HEAD
     test_drawing_destruction(mapLayout);
     drawing(mapLayout);
 }
@@ -39,4 +40,7 @@ void drawing (int mapLayout [MAX_X][MAX_Y])
     }
     _getch();
     return 0;
+=======
+    //test_drawing_destruction(mapLayout);
+>>>>>>> a37de7174a827e66903becc4c59ec78b9deb6950
 }
