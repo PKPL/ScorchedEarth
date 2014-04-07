@@ -10,6 +10,7 @@
 // Included files
 #include "levels_set.h"
 #include "levels_level.h"
+#include <stdio.h>
 
 void test_levels();// function for agreagate testing
 void levels();

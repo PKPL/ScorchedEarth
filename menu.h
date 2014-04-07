@@ -14,6 +14,7 @@
 //#include "menu_highscore.h"
 #include "menu_credits.h"
 #include "menu_close_game.h"
+#include <stdio.h>
 
 void test_menu(); // function for agreagate testing
 

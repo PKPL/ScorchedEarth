@@ -7,10 +7,32 @@
 // Included files
 #include "levels.h"
 
-
 void test_levels() // function for agreagate testing
 {
-    printf("Drawing test\n");
+    //printf("Drawing test\n");
+
+    int selectedOption, control;
+    int wrongInput = 0;
+    do
+    {
+        if (wrongInput == 1)
+        {
+            printf("The chosen option is not valid.\nNumber of desired option: ");
+            control = scanf("%d", &selectedOption);
+            fflush(stdin);
+        }
+        else
+        {
+            printf("\nPick the desired level|\n");
+            printf("|______________________________________________|\n\n");
+            printf("[ 1 ] -> Easy\n[ 2 ] -> Medium\n[ 3 ] -> Hard\n");
+            printf("\nNumber of desired option: ");
+            control = scanf("%d", &selectedOption);
+            fflush(stdin);
+            wrongInput = 1;
+        }
+    }
+    while (selectedOption < 1 || selectedOption > 3 || control == 0);
 
     levels();
 }
