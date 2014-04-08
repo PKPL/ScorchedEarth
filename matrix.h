@@ -1,4 +1,4 @@
-#define LENGTH 100 //x axis
+#define LENGTH 200 //x axis
 #define HEIGHT 80 //y axis
 
 int xVectorCoordinate[LENGTH];
