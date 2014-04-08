@@ -15,8 +15,7 @@ int inChar;
 typedef struct player
 {
     char nickname[20];
-    int points;
-};
+    int points;};
 
 
 struct  player players[11];

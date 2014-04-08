@@ -39,3 +39,33 @@ void test_menu() // function for agreagate testing
     }
     while (selectedOption < 1 || selectedOption > 4 || control == 0);
 }
+
+void menu_reaction(int SelectedOption)// undone
+{
+   switch (SelectedOption)
+    {
+   case 1: //new game
+       { //starting new game
+                        break;
+       }
+   case 2:// highscore
+       { // highscore();
+          break;
+       }
+
+    case 3:// credits
+       {   // credits();
+             break;
+       }
+
+    case 4://exit game
+       {    exit(EXIT_SUCCESS);
+
+       }
+       default:
+       { test_menu();
+        break;
+       }
+    }
+}
+
