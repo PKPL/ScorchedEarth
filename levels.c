@@ -7,18 +7,18 @@
 // Included files
 #include "levels.h"
 
-void test_levels() // function for agreagate testing
+level_struct test_levels() // function for agreagate testing
 {
     //printf("Drawing test\n");
-
-    int selectedOption, control;
-    int wrongInput = 0;
+    level_struct selected_level;
+    int selected_option, control;
+    int wrong_input = 0;
     do
     {
-        if (wrongInput == 1)
+        if (wrong_input == 1)
         {
             printf("The chosen option is not valid.\nNumber of desired option: ");
-            control = scanf("%d", &selectedOption);
+            control = scanf("%d", &selected_option);
             fflush(stdin);
         }
         else
@@ -27,35 +27,12 @@ void test_levels() // function for agreagate testing
             printf("|______________________________________________|\n\n");
             printf("[ 1 ] -> Easy\n[ 2 ] -> Medium\n[ 3 ] -> Hard\n");
             printf("\nNumber of desired option: ");
-            control = scanf("%d", &selectedOption);
+            control = scanf("%d", &selected_option);
             fflush(stdin);
-            wrongInput = 1;
+            wrong_input = 1;
         }
     }
-    while (selectedOption < 1 || selectedOption > 3 || control == 0);
-
-    levels();
+    while (selected_option < 1 || selected_option > 3 || control == 0);
+//    selected_level = level_set (selected_option); Problem with this function
+    return selected_level;
 }
-
-void levels()
-{
-    level_struct easy_level;
-    {
-        easy_level.level_wind = WIND_NO;
-        easy_level.level_ai = AI_EASY;
-    }
-
-    level_struct medium_level;
-    {
-        medium_level.level_wind = WIND_CONST;
-        medium_level.level_ai = AI_MEDIUM;
-    }
-
-    level_struct hard_level;
-    {
-        hard_level.level_wind = WIND_VARIABLE;
-        hard_level.level_ai = AI_HARD;
-    }
-
-}
-

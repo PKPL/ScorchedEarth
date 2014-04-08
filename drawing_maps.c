@@ -19,6 +19,7 @@ void test_drawing_map (int mapLayout [MAX_X][MAX_Y])
             printf("%d", mapLayout[(int)x0][(int)y0]);
         }
     }
+    gotoxy(0, 79);
     _getch();
     return 0;
 }
@@ -40,9 +41,9 @@ void drawing_game_screen() //the parameters will be the info needed
         printf("_");
     }
 
-    printf("\n|\tWind direction:\t%d\tPlayer:\t%s\t",&wind_direction_angle, &player_name ); // I guess it will be like this, so i set these variables example
+//    printf("\n|\tWind direction:\t%d\tPlayer:\t%s\t",&wind_direction_angle, &player_name ); // I guess it will be like this, so i set these variables example
 
-    printf("\n|\tWind force:\t%dMissile:\t%s\t",&wind_force, &missile_data.name );
+//    printf("\n|\tWind force:\t%dMissile:\t%s\t",&wind_force, &missile_data.name );
 
     for (i = 0; i < (MAX_X + 4); i++) // last frame row
     {

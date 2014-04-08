@@ -4,6 +4,8 @@
 //---------------------------- Level ------------------------------------
 // Stuctur resposible for levels setting
 //-----------------------------------------------------------------------
+#include "levels.h"
+#include "levels_set.h"
 
 typedef enum wind_type
 {
@@ -24,4 +26,7 @@ typedef struct level_struct
    wind_type level_wind;
    ai_type level_ai;
 } level_struct;
+
+level_struct levels(int option);
+
 #endif // __LEVELS_LEVEL_H__

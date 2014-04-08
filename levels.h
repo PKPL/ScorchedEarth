@@ -8,11 +8,10 @@
 // Included libraries
 
 // Included files
+#include <stdio.h>
 #include "levels_set.h"
 #include "levels_level.h"
-#include <stdio.h>
 
-void test_levels();// function for agreagate testing
-void levels();
+//level_struct test_levels();// function for agreagate testing; Problem with this function
 
 #endif // LEVELS_H_INCLUDED
