@@ -13,7 +13,6 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 
 // Included files
 #include "menu.h"
-
 void test_menu() // function for agreagate testing
 {
     int selectedOption, control;
@@ -49,17 +48,17 @@ void menu_reaction(int SelectedOption)// undone
                         break;
        }
    case 2:// highscore
-       { // highscore();
+       { //highscore();
           break;
        }
 
     case 3:// credits
-       {   // credits();
+       {    //credits();
              break;
        }
 
     case 4://exit game
-       {    exit(EXIT_SUCCESS);
+       {  // close_game();
 
        }
        default:
