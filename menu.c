@@ -41,30 +41,35 @@ void test_menu() // function for agreagate testing
 
 void menu_reaction(int SelectedOption)// undone
 {
-   switch (SelectedOption)
+    switch (SelectedOption)
     {
-   case 1: //new game
-       { //starting new game
-                        break;
-       }
-   case 2:// highscore
-       { //highscore();
-          break;
-       }
+    case 1: //new game
+    {
+        //starting new game
+        break;
+    }
+    case 2:// highscore
+    {
+        //highscore();
+        break;
+    }
 
     case 3:// credits
-       {    //credits();
-             break;
-       }
+    {
+        //credits();
+        break;
+    }
 
     case 4://exit game
-       {  // close_game();
+    {
+        // close_game();
 
-       }
-       default:
-       { test_menu();
+    }
+    default:
+    {
+        test_menu();
         break;
-       }
+    }
     }
 }
 
