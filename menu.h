@@ -14,9 +14,12 @@
 //#include "menu_highscore.h"
 #include "menu_credits.h"
 #include "menu_close_game.h"
+#include "maps_create.h"
+#include "drawing_maps.h"
+#include "drawing_units.h"
 #include <stdio.h>
 
 void test_menu(); // function for agreagate testing
-void menu_reaction(int SelectedOption);
+void menu_reaction(int SelectedOption, int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __MENU_H__

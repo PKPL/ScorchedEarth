@@ -39,13 +39,36 @@ void test_menu() // function for agreagate testing
     while (selectedOption < 1 || selectedOption > 4 || control == 0);
 }
 
-void menu_reaction(int SelectedOption)// undone
+void menu_reaction(int SelectedOption, int mapLayout [MAX_X][MAX_Y])// undone
 {
     switch (SelectedOption)
     {
     case 1: //new game
     {
         //starting new game
+        //Code to get the chosen level goes here
+
+        /*
+        EASY LEVEL:
+        createMountainMapEasy(mapLayout);
+        test_drawing_map(mapLayout);
+        test_drawing_units(mapLayout);
+        */
+
+        /*
+        MEDIUM LEVEL:
+        createMountainMapMedium(mapLayout);
+        test_drawing_map(mapLayout);
+        test_drawing_units(mapLayout);
+        */
+
+        /*
+        HARD LEVEL:
+        createMountainMapHard(mapLayout);
+        test_drawing_map(mapLayout);
+        test_drawing_units(mapLayout);
+        */
+
         break;
     }
     case 2:// highscore
