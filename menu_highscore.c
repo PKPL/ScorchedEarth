@@ -8,7 +8,7 @@
 
 	void add_score()
 	{
-	    fp=fopen("highscore.txt", "r+w");
+	    fp=fopen("highscore.txt", "r+");
 	    check_top_ten();
 	    fclose(fp);
 	}
@@ -52,9 +52,8 @@
 
  	void highscore(void)
      {fp=fopen("highscore.txt", "r+");
-
-     putchar(inChar);
-        inChar = getc(fp);
+        while ((c=fgetc(fp))!=EOF)
+        printf("%c", c);
 
     fclose(fp);
 }
