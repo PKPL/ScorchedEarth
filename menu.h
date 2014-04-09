@@ -11,7 +11,7 @@
 
 // Included files
 #include "menu_new_game.h"
-//#include "menu_highscore.h"
+#include "menu_highscore.h"
 #include "menu_credits.h"
 #include "menu_close_game.h"
 #include "maps_create.h"

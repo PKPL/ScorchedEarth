@@ -73,19 +73,19 @@ void menu_reaction(int SelectedOption, int mapLayout [MAX_X][MAX_Y])// undone
     }
     case 2:// highscore
     {
-       // highscore();
+        highscore();
         break;
     }
 
     case 3:// credits
     {
-        //credits();
+        credits();
         break;
     }
 
     case 4://exit game
     {
-       // close_game();
+        close_game();
 
     }
     default:
