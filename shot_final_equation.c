@@ -6,11 +6,6 @@
 #include <string.h>
 #include "shot_final_equation.h"
 
-//Global Constants and Variables
-float timer;
-float wind_speed;
-float wind_force;
-
 missile_data* initializeMissile() { //Initializes missile information
     int i;
     missile_data *light_missile;
@@ -39,26 +34,15 @@ double sinDegrees (double alpha) { //Modifies sin() function in math.h so that i
     return sin(M_PI * alpha / 180);
 }
 
-void setInitialVelocity (missile_data *m) { //Allows the player to set the initial velocity of the shot
-    while (m->initial_velocity < 1 || m->initial_velocity > 100) { //Offsets still to be decided
-        printf("Enter initial velocity value (1-100 m/s): ");
-        scanf("%f", &m->initial_velocity);
-        if (m->initial_velocity < 1 || m->initial_velocity > 100)
-            printf("Error: invalid choice.\n");
-    }
+void setInitialVelocity (missile_data *m, float v) { //Allows the player to set the initial velocity of the shot
+    m->initial_velocity = v;
 }
 
-void setShootingAngle (missile_data *m) { //Allows the player to set shot angle
-    while (m->shot_angle < 1 || m->shot_angle > 360) { //Measured from the horizontal axis (x)
-        printf("Enter shooting angle (1-360): ");
-        scanf("%d", &m->shot_angle);
-        if (m->shot_angle < 1 || m->shot_angle > 360) {
-            printf("Error: invalid choice.\n");
-        }
-    }
+void setShootingAngle (missile_data *m, int alpha) { //Allows the player to set shot angle
+    m->shot_angle = alpha;
 }
 
-void setWindSpeed () { //Allows the user to set wind speed
+float setWindSpeed () { //Allows the user to set wind speed
     float ws;
     ws = MAX_WIND_SPEED + 1;
     while (ws < -100 || ws > 100) {
@@ -67,32 +51,25 @@ void setWindSpeed () { //Allows the user to set wind speed
         if (ws < -100 || ws > 100)
             printf("Error: invalid choice.\n");
     }
-    wind_speed = ws;
+    return ws;
 }
 
-void windForce () { //Calculates wind force
+float windForce (float ws) { //Calculates wind force
     const float c = 0.1; // kg/s
-    wind_force = wind_speed * c;
+    return ws * c;
 }
 
-void setTime () { //Allows the user to decide the maximum time of the projectile flight
-    printf("Enter time (in seconds or fractions of second) against which you want velocity and position to be calculated: ");
-    scanf("%f", &timer);
-}
-
-void xVelocityFormula (missile_data *m) { //Calculates x component of velocity against time and stores the values in a vector
+void xVelocityFormula (missile_data *m, float wf) { //Calculates x component of velocity against time and stores the values in a vector
     const float b = 0.1; // kg/s
     int i;
     float velocity_x_0; //Velocity x component at 0 seconds
-    float t, wf;
-    wf = wind_force;
+    float t;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
-    for (t = 0, i = 0; t < timer; t += 0.02) { //We're calculating velocity every 0.02 seconds
+    for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) { //We're calculating velocity every 0.02 seconds
         m->x_vector_velocity[i] = (wf / b) + ((velocity_x_0 - (wf / b)) * exp( - (b / m->weight) * t));
         i++; //This index allows "for cycle" to break if the number of components calculated outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
-    printf("\nVelocity (x component) at %.1f seconds: %.1f m/s\n", timer, m->x_vector_velocity[i-1]); //Prints the last value stored in the vector
 }
 
 void yVelocityFormula (missile_data *m) { //Calculates y component of velocity against time and stores the values in a vector
@@ -102,23 +79,21 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
     float velocity_y_0; //Velocity y component at 0 seconds
     float t;
     velocity_y_0 = m->initial_velocity * sinDegrees(m->shot_angle);
-    for (t = 0, i = 0; t < timer; t += 0.02) {
+    for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) {
         m->y_vector_velocity[i] = (velocity_y_0 + m->weight * g / b) * exp( - (b / m->weight) * t) - m->weight * g / b;
         i++; //This index allows "for cycle" to break if the number of components calculated outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
-    printf("Velocity (y component) at %.1f seconds: %.1f m/s\n\n", timer, m->y_vector_velocity[i-1]); //Prints the last value stored in the vector
 }
 
-void xCoordinate (missile_data *m) { //Calculates x coordinate against time and stores the values in a vector
+void xCoordinate (missile_data *m, float wf) { //Calculates x coordinate against time and stores the values in a vector
     const float b = 0.1; // kg/s
     int x0, i;
-    float wf, t;
+    float t;
     float velocity_x_0;
-    wf = wind_force;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
-    for (t = 0, i = 0; t < timer; t += 0.02) { //As for velocity, we're calculating coordinates every 0.02 seconds
+    for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) { //As for velocity, we're calculating coordinates every 0.02 seconds
         m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
         i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
@@ -131,24 +106,18 @@ void yCoordinate (missile_data *m) { //Calculates y coordinate against time and 
     int y0, i;
     float t;
     float velocity_y_0;
-    t = timer;
     velocity_y_0 = m->initial_velocity * sinDegrees(m->shot_angle);
     y0 = m->y_turret_position;
-    for (t = 0, i = 0; t < timer; t += 0.02) {
+    for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) {
         m->y_vector_coordinate[i] = y0 + m->weight / b * (velocity_y_0 + m->weight * g / b) * (1 - exp(-(b / m->weight * t))) - m->weight * g / b * t;
         i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
 }
 
-void printIntVector (int vector[], int n) { //Prints all the values stored in coordinates vectors
-    int i;
-    for (i = 0; i < n; i++)
-        printf("%d ", vector[i]);
-}
-
-void printFloatVector (float vector[], int n) { //Prints all the values stored in velocities vectors
-    int i;
-    for (i = 0; i < n; i++)
-        printf("%.1f ", vector[i]);
+void shotFunction (missile_data *m, float wf) { //Puts together coordinates calculations and velocities calculations
+    xVelocityFormula(m, wf);
+    yVelocityFormula(m);
+    xCoordinate(m, wf);
+    yCoordinate(m);
 }

@@ -11,7 +11,10 @@
 #include "shot_final_equation.h"
 #include "shot_hit.h"
 #include "matrix.h"
+#include "drawing_destruction.h"
+#include "drawing_shots.h"
 
-missile_data* formula();
+missile_data* playerShot(missile_data* /*second argument: float wind_speed*/);
+//missile_data* AIShoot(missile_data*, float);
 
 #endif // __SHOT_FORMULA_H__

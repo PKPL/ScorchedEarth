@@ -7,6 +7,7 @@
 #define VECTOR_LENGTH 1000
 #define LENGTH 100 //X axis of the matrix
 #define HEIGHT 80 //Y axis of the matrix
+#define SHOT_TIME 60
 
 /* In the following struct are stored all the datas related to the firt type of missile
 (for further missile types we'll use more structs) */
@@ -20,20 +21,21 @@ typedef struct {
     int shot_angle; //In sexagesimal degrees
 } missile_data;
 
-void setTime();
-void setWindSpeed();
-void windForce();
+float setWindSpeed();
+float windForce(float);
 
 double cosDegrees(double);
 double sinDegrees(double);
 
 missile_data* initializeMissile();
-void setInitialVelocity(missile_data*);
-void setShootingAngle(missile_data*);
+void setInitialVelocity(missile_data*, float);
+void setShootingAngle(missile_data*, int);
 
-void xVelocityFormula(missile_data*);
+void xVelocityFormula(missile_data*, float);
 void yVelocityFormula(missile_data*);
-void xCoordinate(missile_data*);
+void xCoordinate(missile_data*, float);
 void yCoordinate(missile_data*);
+
+void shotFunction(missile_data*, float);
 
 #endif // __SHOT_FINAL_EQUATION_H__

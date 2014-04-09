@@ -6,9 +6,7 @@ void testShot (void) {
 
     missile_data *missile;
 
-    init_matrix();
-
-    missile = formula();
+    missile = playerShot(missile);
 
     free(missile);
 
