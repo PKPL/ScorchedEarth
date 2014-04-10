@@ -112,17 +112,14 @@
 		<Unit filename="menu.h" />
 		<Unit filename="menu_close_game.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="menu_close_game.h" />
 		<Unit filename="menu_credits.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="menu_credits.h" />
 		<Unit filename="menu_highscore.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="menu_highscore.h" />
 		<Unit filename="menu_new_game.c">
