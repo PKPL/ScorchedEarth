@@ -8,10 +8,6 @@
 #include <time.h>
 #include <stdio.h>
 
-FILE *fp;
-const int n= 10;
-int inChar;
-char c;
 typedef struct
 {
     char nickname[20];

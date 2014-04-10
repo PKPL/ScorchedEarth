@@ -3,6 +3,10 @@
 //------------------------------------------------------------------------
 #include "menu_highscore.h"
 
+FILE *fp;
+const int n= 10;
+int inChar;
+char c;
 
 	// bubble sorting
 
