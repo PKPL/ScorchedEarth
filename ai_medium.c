@@ -33,7 +33,7 @@ int max_power(unit from, int angle)
     return max_power_value;
 }
 
-void ai_medium(unit local_bot, int mapLayout[MAX_X][MAX_Y])
+void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
     int mini_angle = min_angle(local_bot);//searching for minimal angle
     int maxi_angle = 90;
@@ -42,7 +42,7 @@ void ai_medium(unit local_bot, int mapLayout[MAX_X][MAX_Y])
     {
        ai_shoot_angle = find_random(mini_angle,maxi_angle);
        if(player.x > local_bot.x)ai_shoot_angle = 180 - ai_shoot_angle;
-       if(raycast(local_bot, ai_shoot_angle, mapLayout[MAX_X][MAX_Y]) == false)break;
+       if(raycast(local_bot, ai_shoot_angle, map_layout[MAX_X][MAX_Y]) == false)break;
     }
 
     int ai_shoot_power = find_random(min_power(local_bot, ai_shoot_angle),max_power(local_bot, ai_shoot_angle));

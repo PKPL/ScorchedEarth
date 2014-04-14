@@ -39,7 +39,7 @@ void test_menu() // function for agreagate testing
     while (selectedOption < 1 || selectedOption > 4 || control == 0);
 }
 
-void menu_reaction(int SelectedOption, int mapLayout [MAX_X][MAX_Y])// undone
+void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
 {
     switch (SelectedOption)
     {
@@ -50,23 +50,23 @@ void menu_reaction(int SelectedOption, int mapLayout [MAX_X][MAX_Y])// undone
 
         /*
         EASY LEVEL:
-        createMountainMapEasy(mapLayout);
-        test_drawing_map(mapLayout);
-        test_drawing_units(mapLayout);
+        create_mountain_map_easy(map_layout);
+        test_drawing_map(map_layout);
+        test_drawing_units(map_layout);
         */
 
         /*
         MEDIUM LEVEL:
-        createMountainMapMedium(mapLayout);
-        test_drawing_map(mapLayout);
-        test_drawing_units(mapLayout);
+        create_mountain_map_medium(map_layout);
+        test_drawing_map(map_layout);
+        test_drawing_units(map_layout);
         */
 
         /*
         HARD LEVEL:
-        createMountainMapHard(mapLayout);
-        test_drawing_map(mapLayout);
-        test_drawing_units(mapLayout);
+        create_mountain_map_hard(map_layout);
+        test_drawing_map(map_layout);
+        test_drawing_units(map_layout);
         */
 
         break;

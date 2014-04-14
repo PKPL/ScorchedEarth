@@ -4,7 +4,7 @@
 
 #include "drawing_maps.h"
 
-void test_drawing_map (int mapLayout [MAX_X][MAX_Y])
+void test_drawing_map (int map_layout [MAX_X][MAX_Y])
 {
     double x0;
     double y0;
@@ -16,7 +16,7 @@ void test_drawing_map (int mapLayout [MAX_X][MAX_Y])
         for (y0 = 0.0; y0 < (double) MAX_Y; y0++)
         {
             gotoxy((int)x0, 80-(int)y0);
-            printf("%d", mapLayout[(int)x0][(int)y0]);
+            printf("%d", map_layout[(int)x0][(int)y0]);
         }
     }
     gotoxy(0, 79);
@@ -28,7 +28,7 @@ void gotoxy(int x, int y)
     COORD coord;
     coord.X = x;
     coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    set_console_cursor_position(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void drawing_game_screen() //the parameters will be the info needed

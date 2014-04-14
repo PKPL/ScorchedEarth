@@ -12,11 +12,11 @@ DANIEL PINTO
 void test_maps_save()
 {
 
-    int mapLayout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
-    saveMap(mapLayout);
+    int map_layout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
+    saveMap(map_layout);
 }
 
-void saveMap(int mapLayout[MAX_X][MAX_Y])
+void saveMap(int map_layout[MAX_X][MAX_Y])
 {
 
     FILE * mapFile;
@@ -34,7 +34,7 @@ void saveMap(int mapLayout[MAX_X][MAX_Y])
         {
             for (y = 0; y < MAX_Y; y++)
             {
-                fprintf(mapFile,"mapLayout\t[%d]\t[%d]\t%d\n",x ,y ,mapLayout[x][y]); // Not sure if the parenthesis are needed
+                fprintf(mapFile,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
             }
         }
         printf("\nMap saved in maps_save.txt\n");

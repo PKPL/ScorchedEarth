@@ -7,10 +7,10 @@
 // Included files
 #include "drawing.h"
 
-void test_drawing(int mapLayout [MAX_X][MAX_Y]) // function for agreagte testing
+void test_drawing(int map_layout [MAX_X][MAX_Y]) // function for agreagte testing
 {
     printf("Drawing test\n");
-    test_drawing_map(mapLayout);
-    //test_drawing_units(mapLayout);
-    //test_drawing_destruction(mapLayout);
+    test_drawing_map(map_layout);
+    //test_drawing_units(map_layout);
+    //test_drawing_destruction(map_layout);
 }
