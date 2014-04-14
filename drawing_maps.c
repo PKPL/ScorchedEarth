@@ -28,7 +28,7 @@ void gotoxy(int x, int y)
     COORD coord;
     coord.X = x;
     coord.Y = y;
-    set_console_cursor_position(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void drawing_game_screen() //the parameters will be the info needed
