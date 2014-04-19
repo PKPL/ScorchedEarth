@@ -26,9 +26,7 @@ DANIEL PINTO
 #define MAX_HEIGHT_DEFORMATION 75
 #define HEIGHT_OFFSET 6
 
-void create_mountain_map_easy(int map_layout[MAX_X][MAX_Y]);
-void create_mountain_map_medium(int map_layout[MAX_X][MAX_Y]);
-void create_mountain_map_hard(int map_layout[MAX_X][MAX_Y]);
+void create_mountain_map(int map_layout[MAX_X][MAX_Y]);
 void new_rnd_seed(int *counter);
 void test_maps_create();
 
