@@ -46,6 +46,10 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         if (is_continuation == 1)
         {
             terrain_units_to_build = (terrain_deformation_start - 1);
+            if (terrain_units_built + terrain_units_to_build > MAX_X)
+            {
+                terrain_units_to_build = (MAX_X - terrain_units_built);
+            }
             for (x = terrain_units_built; terrain_units_to_build > 0; x++)
             {
                 for (y = 0; y < number; y++)
@@ -92,15 +96,27 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
             deformation_width = (MAX_X - terrain_units_built);
             finished_creating_map = 1; /*No more space for deformations after the current one*/
         }
-        else if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built - 1) % 2 != 0)
+        else if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built - 1) % 2 != 0 && (MAX_X - terrain_units_built - 1) != -1)
         {
             deformation_width = (MAX_X - terrain_units_built - 1); /*Now we have to build one unit in a straight line*/
             will_have_to_create_compensation_unit = 1;
             finished_creating_map = 1; /*No more space for deformations after the current one*/
         }
+        else if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built - 1) % 2 != 0 && (MAX_X - terrain_units_built - 1) == -1)
+        {
+            deformation_width = 0;
+            finished_creating_map = 1;
+        }
         /*At this point we have found the width and height for the deformation*/
         /*We need to find the width's median now*/
-        widthMedian = (deformation_width/2) + 1; /*In this implementation version, the median of the width will have the highest height*/
+        if (deformation_width != 0)
+        {
+            widthMedian = (deformation_width/2) + 1; /*In this implementation version, the median of the width will have the highest height*/
+        }
+        else
+        {
+            widthMedian = 0;
+        }
         terrain_units_until_median = deformation_width - widthMedian;
         terrain_units_to_build = terrain_units_until_median;
         terrainUnitsAfterMedian = terrain_units_until_median;
