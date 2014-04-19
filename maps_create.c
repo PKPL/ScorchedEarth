@@ -38,10 +38,13 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 
     do
     {
-        new_rnd_seed(&counter);
-        terrain_deformation_start = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
-        /*This will loop for all the x coordinates at the same height, before the first deformation*/
-
+        do
+        {
+            new_rnd_seed(&counter);
+            terrain_deformation_start = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
+            /*This will loop for all the x coordinates at the same height, before the first deformation*/
+        }
+        while (terrain_deformation_start == 0);
 
         if (is_continuation == 1)
         {
