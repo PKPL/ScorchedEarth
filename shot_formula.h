@@ -14,7 +14,7 @@
 #include "drawing_destruction.h"
 #include "drawing_shots.h"
 
-missile_data* playerShot(missile_data* /*second argument: float wind_speed*/);
+missile_data* playerShot(missile_data*, float);
 missile_data* AIShoot(missile_data*, float, int, int, int, float);
 
 #endif // __SHOT_FORMULA_H__
