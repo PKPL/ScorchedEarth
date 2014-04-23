@@ -10,12 +10,17 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
     double y0;
 
     system("mode 100, 80");
+<<<<<<< HEAD
+    drawing_game_screen();
+    for (y0 = 0.0 ; y0 < MAX_Y; y0++)
+=======
     //drawing_game_screen();
     for (x0 = 0.0; x0 < (double) MAX_X; x0++)
+>>>>>>> e3a61c85dbb239451160cc2b37712f88c518ca82
     {
-        for (y0 = 0.0; y0 < (double) MAX_Y; y0++)
+        for (x0 = 0.0; x0 < MAX_X; x0++)
         {
-            gotoxy((int)x0, 80-(int)y0);
+            gotoxy((int)x0, 80 - (int)y0);
             printf("%d", map_layout[(int)x0][(int)y0]);
         }
     }
