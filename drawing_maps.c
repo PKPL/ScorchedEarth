@@ -10,7 +10,7 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
     double y0;
 
     system("mode 100, 80");
-    drawing_game_screen();
+    //drawing_game_screen();
     for (x0 = 0.0; x0 < (double) MAX_X; x0++)
     {
         for (y0 = 0.0; y0 < (double) MAX_Y; y0++)
