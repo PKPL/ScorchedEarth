@@ -27,7 +27,7 @@ int main()
     printf("Testing functionality\n");
    // test_ai();
     //selected_level = test_levels();
-    test_menu();
+    test_menu(map_layout);
    // test_maps(map_layout);
     //test_drawing(map_layout);
     //test_unit();
