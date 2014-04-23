@@ -4,6 +4,8 @@
 
 #include "drawing_shots.h"
 
+extern int map_layout [MAX_X][MAX_Y];
+
 void test_drawing_shots ()
 {
     int x, y;

@@ -9,6 +9,9 @@ DANIEL PINTO
 
 #include "maps_save.h"
 
+
+extern int map_layout[MAX_X][MAX_Y];
+
 void test_maps_save()
 {
 

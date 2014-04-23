@@ -4,6 +4,9 @@
 
 #include "drawing_maps.h"
 
+extern int map_layout [MAX_X][MAX_Y];
+
+
 void test_drawing_map (int map_layout [MAX_X][MAX_Y])
 {
     double x0;

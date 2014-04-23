@@ -14,6 +14,10 @@ Currently all difficulty levels generate the map the same way, and the code is n
 
 #include "maps_create.h"
 
+
+extern int map_layout [MAX_X][MAX_Y];
+
+
 void test_maps_create(int map_layout [MAX_X][MAX_Y])
 {
     create_mountain_map(map_layout);

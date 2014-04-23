@@ -4,6 +4,10 @@
 
 #include "drawing_destruction.h"
 
+
+extern int map_layout [MAX_X][MAX_Y];
+
+
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])
 {
     createExplosion(map_layout); //Draws the explosion

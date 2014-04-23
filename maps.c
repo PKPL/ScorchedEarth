@@ -5,6 +5,8 @@
 // Included files
 #include "maps.h"
 
+extern int map_layout [MAX_X][MAX_Y];
+
 void test_maps(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
     printf("Maps test\n");

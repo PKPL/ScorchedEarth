@@ -11,22 +11,7 @@ void test_maps_load ()
     load_Map (map_layout);
 }
 
-char option_User (char *str)
-{
-    char option;
-    printf ("%s?\n(Y/N)", str);
-    do
-    {
-        fflush (stdin);
-        option = getchar ();
-        if (option != 'Y' && option != 'N')
-        {
-            printf ("Only 'Y' or 'N'\n");
-        }
-    }
-    while (option != 'Y' && option != 'N');
-    return option;
-}
+extern int map_layout[MAX_X][MAX_Y];
 
 void load_Map (int map_layout[MAX_X][MAX_Y])
 {
@@ -46,6 +31,23 @@ void load_Map (int map_layout[MAX_X][MAX_Y])
         reading_from_File (map_layout);
         existing_Map = true;
     }
+}
+
+char option_User (char *str)
+{
+    char option;
+    printf ("%s?\n(Y/N)", str);
+    do
+    {
+        fflush (stdin);
+        option = getchar ();
+        if (option != 'Y' && option != 'N')
+        {
+            printf ("Only 'Y' or 'N'\n");
+        }
+    }
+    while (option != 'Y' && option != 'N');
+    return option;
 }
 
 void read_String(char str[], int max)

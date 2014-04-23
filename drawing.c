@@ -7,6 +7,10 @@
 // Included files
 #include "drawing.h"
 
+
+extern int map_layout [MAX_X][MAX_Y];
+
+
 void test_drawing(int map_layout [MAX_X][MAX_Y]) // function for agreagte testing
 {
     printf("Drawing test\n");

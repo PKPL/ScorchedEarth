@@ -4,6 +4,10 @@
 
 #include "drawing_units.h"
 
+
+extern int map_layout [MAX_X][MAX_Y];
+
+
 void test_drawing_units (int map_layout[MAX_X][MAX_Y])
 {
     drawing_units(map_layout);
