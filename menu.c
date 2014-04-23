@@ -32,6 +32,7 @@ void test_menu() // function for agreagate testing
             printf("[ 1 ] -> Start a New Game\n[ 2 ] -> View Highscores\n[ 3 ] -> View Credits\n[ 4 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
+            menu_reaction(selectedOption,map_layout [MAX_X][MAX_Y] );
             fflush(stdin);
             wrongInput = 1;
         }

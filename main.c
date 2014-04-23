@@ -25,13 +25,13 @@ int main()
     //Tests
     printf("\n-------------------------------------------------\n");
     printf("Testing functionality\n");
-    test_ai();
+   // test_ai();
     //selected_level = test_levels();
     test_menu();
-    test_maps(map_layout);
-    test_drawing(map_layout);
-    test_unit();
-    testShot();
+   // test_maps(map_layout);
+    //test_drawing(map_layout);
+    //test_unit();
+    //testShot();
     printf("\n-------------------------------------------------\n");
     _getch();
     return 0;
