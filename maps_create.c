@@ -124,7 +124,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         terrain_units_to_build = terrain_units_until_median;
         terrainUnitsAfterMedian = terrain_units_until_median;
 
-        for (x = terrain_units_built; terrain_units_to_build >= 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
+        for (x = terrain_units_built; terrain_units_to_build > 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
 
             do
@@ -147,7 +147,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 
         for (y = 0; y < deformation_height; y++)
         {
-            //map_layout[x][y] = 1;
+            map_layout[x][y] = 1;
         }
         terrain_units_built++;
         /*Now the median value already has terrain*/
