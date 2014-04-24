@@ -28,5 +28,6 @@ typedef struct level_struct
 } level_struct;
 
 void levels(int option);
+level_struct selected_level;
 
 #endif // __LEVELS_LEVEL_H__

@@ -17,6 +17,7 @@
 #include "maps_create.h"
 #include "drawing_maps.h"
 #include "drawing_units.h"
+#include "levels_level.h"
 #include <stdio.h>
 
 void test_menu(int map_layout [MAX_X][MAX_Y]); // function for agreagate testing

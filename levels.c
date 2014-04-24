@@ -48,7 +48,7 @@
 int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
     //printf("Drawing test\n");
-    level_struct selected_level;
+    extern level_struct selected_level;
     int selected_option, control;
     int wrong_input = 0;
     do
@@ -80,6 +80,7 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
                 levels(1);
                 create_mountain_map(map_layout);
                 test_drawing_map(map_layout);
+                test_drawing_units(map_layout);
             }
             else if(selected_option == 2)
             {
@@ -87,6 +88,7 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
                 levels(2);
                 create_mountain_map(map_layout);
                 test_drawing_map(map_layout);
+                test_drawing_units(map_layout);
             }
             else if(selected_option == 3)
             {
@@ -94,6 +96,7 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
                 levels(3);
                 create_mountain_map(map_layout);
                 test_drawing_map(map_layout);
+                test_drawing_units(map_layout);
             }
             getch();
 

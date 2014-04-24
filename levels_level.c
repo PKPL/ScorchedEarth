@@ -4,7 +4,7 @@
 
 #include "levels_level.h"
 
-level_struct selected_level; //It must be global xD
+extern level_struct selected_level; //It must be global xD
 
 void levels(int option)
 {
