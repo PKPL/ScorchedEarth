@@ -46,7 +46,7 @@ void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
     }
 
     int ai_shoot_power = find_random(min_power(local_bot, ai_shoot_angle),max_power(local_bot, ai_shoot_angle));
-    printf("ai_shoot angle = %f ai_shoot_power = %f",ai_shoot_angle,ai_shoot_power );
+    printf("ai_shoot angle = %d ai_shoot_power = %d",ai_shoot_angle,ai_shoot_power );
     medium_dec_range = medium_dec_range - 1;
     //in easy AI, shoot angle and shoot velocity (power) is random
     //take_a_shot(bot.x,bot.y,ai_shoot_angle,ai_shoot_power);

@@ -16,7 +16,7 @@ void testShot (int who_is_shooting, float wind_speed/*where?*/) {
     else if (who_is_shooting == ENEMY) {
         /* all the randomized stuff: ai_init_velocity, ai_shoot_angle, x_coord, y_coord, wind_speed
         CONNECTION WITH POLISH CODE, but there are things that are missing! */
-        AIShoot(missile, ai_init_velocity, ai_shoot_angle, x_coord, y_coord, wind_speed);
+       // AIShoot(missile, ai_init_velocity, ai_shoot_angle, x_coord, y_coord, wind_speed);
     }
 
     free(missile);

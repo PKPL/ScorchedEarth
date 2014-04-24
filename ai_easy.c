@@ -23,9 +23,10 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
     }
 
     int ai_shoot_power = find_random(1,100);
-    printf("ai_shoot angle = %f ai_shoot_power = %f",ai_shoot_angle,ai_shoot_power );
+    printf("ai_shoot angle = %d ai_shoot_power = %d",ai_shoot_angle,ai_shoot_power );
     //in easy AI, shoot angle and shoot velocity (power) is random
     //take_a_shot(bot.x,bot.y,ai_shoot_angle,ai_shoot_power);
     //we are waiting for complex function which take a shoot from given arguments like coords of unit, angle and power of the shoot
+    AIShoot(missile, ai_shoot_power, ai_shoot_angle, local_bot.x, local_bot.y, wind_speed);
 
 }
