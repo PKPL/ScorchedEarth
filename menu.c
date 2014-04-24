@@ -48,9 +48,6 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     case 1: //new game
     {
         system("cls");
-        printf("\n\n \tPress any button to back to menu");
-        getch();
-        test_menu(map_layout);
         //starting new game
         //Code to get the chosen level goes here
         //We also have to call the functions apropriately, for example, if difficulty is hard, AI has to be hard, and physics too etc.
@@ -74,6 +71,35 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         test_drawing_map(map_layout);
         test_drawing_units(map_layout);
         */
+        while(1)
+        {
+            int decision;
+            printf("Choose the level of difficulty: ");
+            printf("\nEASY LEVEL - 1 ");
+            printf("\nMEDIUM LEVEL - 2 ");
+            printf("\nHARD LEVEL - 3 ");
+            scanf(" %d",&decision);
+
+            if(decision == 1)
+            {
+                //Load EASY LEVEL
+            }
+            else if(decision == 2)
+            {
+                //Load MEDIUM LEVEL
+            }
+            else if(decision == 3)
+            {
+                //Load HARD LEVEL
+            }
+            else
+            {
+                test_menu(map_layout);
+            }
+
+        }
+
+
 
         break;
     }
