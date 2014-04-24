@@ -12,6 +12,7 @@
 
 void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
+    extern float wind_speed;
     int mini_angle = min_angle(local_bot);//searching for minimal angle
     int maxi_angle = 90;
     int ai_shoot_angle;

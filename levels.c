@@ -48,7 +48,7 @@
 int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
     //printf("Drawing test\n");
-    extern level_struct selected_level;
+
     int selected_option, control;
     int wrong_input = 0;
     do

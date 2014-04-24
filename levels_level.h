@@ -28,6 +28,8 @@ typedef struct level_struct
 } level_struct;
 
 void levels(int option);
-level_struct selected_level;
+float random_wind();
+extern level_struct selected_level;
+extern float wind_speed;
 
 #endif // __LEVELS_LEVEL_H__
