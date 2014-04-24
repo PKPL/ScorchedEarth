@@ -6,9 +6,7 @@ ROBERTO RIBEIRO
 DANIEL PINTO
 
 
-Map creation done until further notice or revision.
-
-Currently all difficulty levels generate the map the same way, and the code is not optimised yet.
+Bug: weird "0" pillars
 
 */
 
