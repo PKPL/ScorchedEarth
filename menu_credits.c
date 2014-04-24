@@ -65,6 +65,6 @@ void credits()
     printf("\n\n \tPress any button to back to menu");
     setcursortype(NORMALCURSOR);
     getch();
-    test_menu();
+    return(0);
 
 }

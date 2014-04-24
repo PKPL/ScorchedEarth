@@ -27,6 +27,6 @@ typedef struct level_struct
    ai_type level_ai;
 } level_struct;
 
-level_struct levels(int option);
+void levels(int option);
 
 #endif // __LEVELS_LEVEL_H__

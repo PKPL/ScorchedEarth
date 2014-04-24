@@ -4,9 +4,10 @@
 
 #include "levels_level.h"
 
-level_struct levels(int option)
+level_struct selected_level; //It must be global xD
+
+void levels(int option)
 {
-    level_struct selected_level;
     level_struct easy_level;
     {
         easy_level.level_wind = WIND_NO;
@@ -36,5 +37,5 @@ level_struct levels(int option)
         selected_level = hard_level;
         break;
     }
-    return selected_level;
+
 }

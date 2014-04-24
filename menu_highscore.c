@@ -52,7 +52,7 @@ char c_open;
 
  	}
 
- 	void highscore(void)
+ 	void highscore()
      {
          fp=fopen("highscore.txt", "r+");
         while ((c_open=fgetc(fp))!=EOF)
@@ -62,6 +62,6 @@ char c_open;
 
      printf("\n\n \tPress any button to back to menu");
      getch();
-     test_menu();
+     return(0);
 
      }

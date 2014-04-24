@@ -13,6 +13,7 @@
 
 
 #include "levels.h"
+#include "menu.h"
 
 /*level_struct test_levels() // function for agreagate testing
 {
@@ -44,7 +45,7 @@
     return selected_level;
 } */
 
-int test_levels() // function for agreagate testing
+int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
     //printf("Drawing test\n");
     level_struct selected_level;
@@ -60,9 +61,10 @@ int test_levels() // function for agreagate testing
         }
         else
         {
-            printf("\nPick the desired level|\n");
-            printf("|______________________________________________|\n\n");
-            printf("[ 1 ] -> Easy\n[ 2 ] -> Medium\n[ 3 ] -> Hard\n");
+            printf("Choose the level of difficulty: ");
+            printf("\nEASY LEVEL - 1 ");
+            printf("\nMEDIUM LEVEL - 2 ");
+            printf("\nHARD LEVEL - 3 ");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selected_option);
             fflush(stdin);
@@ -71,5 +73,31 @@ int test_levels() // function for agreagate testing
     }
     while (selected_option < 1 || selected_option > 3 || control == 0);
 //    selected_level = level_set (selected_option); Problem with this function
-    return selected_option;
+
+            if(selected_option == 1)
+            {
+                //Load EASY LEVEL
+                levels(1);
+                create_mountain_map(map_layout);
+                test_drawing_map(map_layout);
+            }
+            else if(selected_option == 2)
+            {
+                //Load MEDIUM LEVEL
+                levels(2);
+                create_mountain_map(map_layout);
+                test_drawing_map(map_layout);
+            }
+            else if(selected_option == 3)
+            {
+                //Load HARD LEVEL
+                levels(3);
+                create_mountain_map(map_layout);
+                test_drawing_map(map_layout);
+            }
+            getch();
+
+
+       return selected_option;
+
 }

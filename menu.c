@@ -71,36 +71,8 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         test_drawing_map(map_layout);
         test_drawing_units(map_layout);
         */
-        while(1)
-        {
-            int decision;
-            printf("Choose the level of difficulty: ");
-            printf("\nEASY LEVEL - 1 ");
-            printf("\nMEDIUM LEVEL - 2 ");
-            printf("\nHARD LEVEL - 3 ");
-            scanf(" %d",&decision);
 
-            if(decision == 1)
-            {
-                //Load EASY LEVEL
-            }
-            else if(decision == 2)
-            {
-                //Load MEDIUM LEVEL
-            }
-            else if(decision == 3)
-            {
-                //Load HARD LEVEL
-            }
-            else
-            {
-                test_menu(map_layout);
-            }
-
-        }
-
-
-
+        test_levels(map_layout);
         break;
     }
     case 2:// highscore
@@ -121,6 +93,7 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     {
         system("cls");
         close_game();
+        break;
 
     }
     default:
@@ -129,5 +102,6 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         break;
     }
     }
+    test_menu(map_layout);
 }
 
