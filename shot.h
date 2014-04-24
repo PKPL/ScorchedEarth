@@ -14,6 +14,6 @@
 #define PLAYER 10
 #define ENEMY 20
 
-void testShot(int, float); // function for agreagate testing
+void testShot(int, int, int,int,int,float); // function for agreagate testing
 
 #endif // __SHOT_H__
