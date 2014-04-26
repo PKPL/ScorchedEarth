@@ -4,13 +4,16 @@
 
 #include "menu_new_game.h"
 #include "unit.h"
+#include <conio.h>
 
-void game_loop()
+void game_loop(int map_layout [MAX_X][MAX_Y])
 {
     unit_func();
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
-    while(player.hp > 0 && bot.hp > 0)
+    int key_pressed;
+
+    while(player.hp > 0 && bot.hp > 0 && (key_pressed = getch() != 27))
     {
         //Main game loop :)
 
@@ -50,7 +53,7 @@ void game_loop()
     }
 
     system("cls");
-    if(player.hp <= 0)
+    if(player.hp > 0)
     {
         //Inform about victory
 
@@ -61,13 +64,18 @@ void game_loop()
         //------------
     }
 
-    else
+    else if(bot.hp > 0 || key_pressed == 27)
     {
         //Inform about defeat
 
         //--------------------
 
+        getch();
+
         //Back to menu
+
+            system("cls");
+            test_menu(map_layout);
 
         //------------
     }
