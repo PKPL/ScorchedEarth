@@ -12,7 +12,7 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
     double x;
     double y;
 
-    system("mode 100, 80");
+    //system("mode 100, 80");
     //drawing_game_screen();
 
     for (x = 0.0; x < MAX_X; x++)
