@@ -6,21 +6,23 @@
 
 #include "shot.h"
 
-void testShot (int who_is_shooting, int ai_init_velocity, int ai_shoot_angle, int x_coord, int y_coord, float wind_speed/*where?*/) {
+int testShot (int who_is_shooting, int ai_init_velocity, int ai_shoot_angle, int x_coord, int y_coord) {
 
+    int ai_shoot_instant = -1;
     missile_data *missile;
-    missile = initializeMissile();
+
+    initializeMissile(missile, x_coord, y_coord);
 
     if (who_is_shooting == PLAYER)
-        missile = playerShot(missile, wind_speed);
+        playerShot(missile);
 
     else if (who_is_shooting == ENEMY) {
-        /* all the randomized stuff: ai_init_velocity, ai_shoot_angle, x_coord, y_coord, wind_speed
-        CONNECTION WITH POLISH CODE, but there are things that are missing! */
-       AIShoot(missile, ai_init_velocity, ai_shoot_angle, x_coord, y_coord, wind_speed);
+        ai_shoot_instant = AIShoot(missile, ai_init_velocity, ai_shoot_angle);
     }
 
     free(missile);
+    return ai_shoot_instant;
 
 }
+
 

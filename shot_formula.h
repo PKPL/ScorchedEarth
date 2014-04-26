@@ -13,8 +13,9 @@
 #include "matrix.h"
 #include "drawing_destruction.h"
 #include "drawing_shots.h"
+#include "levels_level.h"
 
-missile_data* playerShot(missile_data*, float);
-missile_data* AIShoot(missile_data*, float, int, int, int, float);
+missile_data* playerShot(missile_data*);
+int AIShoot(missile_data*, float, int);
 
 #endif // __SHOT_FORMULA_H__

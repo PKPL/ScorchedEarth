@@ -8,7 +8,7 @@
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-missile_data* playerShot(missile_data *missile, float wind_speed/*missing*/) {
+missile_data* playerShot(missile_data *missile) {
 
     int i, flag = 0;
     int shooting_angle = 0;
@@ -32,7 +32,7 @@ missile_data* playerShot(missile_data *missile, float wind_speed/*missing*/) {
     }
     setShootingAngle(missile, shooting_angle);
 
-    shotFunction(missile, windForce(wind_speed)); //Wind speed NEEDS TO BE DETERMINED BY DIFFICULTY LEVEL!!!
+    shotFunction(missile, windForce(wind_speed));
 
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
@@ -67,18 +67,17 @@ missile_data* playerShot(missile_data *missile, float wind_speed/*missing*/) {
 
 /*Here we'll have an equivalent AI shooting function (instead of asking the player for necessary data, they will be passed as arguments) */
 
-missile_data* AIShoot (missile_data *missile, /*all the arguments starting from this one are missing*/float ai_init_velocity, int ai_shoot_angle, int x_coord, int y_coord, float wind_speed) {
+int AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle) {
 
     int i, flag = 0;
+    int ai_shoot_instant = -1;
 
     init_matrix();
 
     setInitialVelocity(missile, ai_init_velocity);
     setShootingAngle(missile, ai_shoot_angle);
-    missile->x_turret_position = x_coord;
-    missile->y_turret_position = y_coord;
 
-    shotFunction(missile, windForce(wind_speed)); //Wind speed NEEDS TO BE DETERMINED BY DIFFICULTY LEVEL!!!
+    shotFunction(missile, windForce(wind_speed));
 
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
@@ -87,16 +86,18 @@ missile_data* AIShoot (missile_data *missile, /*all the arguments starting from 
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/
-                    createExplosion(matrix); //connection with drawing_destruction.c
-                    flag=1;
-                    break;
+                createExplosion(matrix); //connection with drawing_destruction.c
+                flag = 1;
+                break;
             case 3: /*explosion: hit unit*/
                 //Call function Destruction of Unit or similar.
-                flag=1;
+                flag = 1;
+                ai_shoot_instant = missile->x_vector_coordinate[i];
                 break;
             case 4:
-                drawing_shots(matrix,missile);
+                drawing_shots(matrix, missile);
               //  matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
+                ai_shoot_instant = missile->x_vector_coordinate[i];
                 break;
         }
 
@@ -106,6 +107,5 @@ missile_data* AIShoot (missile_data *missile, /*all the arguments starting from 
     }
     print_matrix();
 
-    return missile;
-
+    return ai_shoot_instant;
 }

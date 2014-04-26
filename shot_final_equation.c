@@ -6,9 +6,8 @@
 #include <string.h>
 #include "shot_final_equation.h"
 
-missile_data* initializeMissile() { //Initializes missile information
+void initializeMissile(missile_data* light_missile, int x_coord, int y_coord) { //Initializes missile information
     int i;
-    missile_data *light_missile;
     light_missile = (missile_data*)malloc(sizeof(missile_data));
     strcpy(light_missile->name, "Super Light Missile");
     light_missile->weight = 1.8;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).
@@ -17,13 +16,12 @@ missile_data* initializeMissile() { //Initializes missile information
                     NOTE: these values are only for reference! */
     light_missile->initial_velocity = 0;
     light_missile->shot_angle = 0;
-    light_missile->x_turret_position = 0; //We're calculating trajectory as if the turret is placed on the bottom-left corner of the map.
-    light_missile->y_turret_position = 0; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+    light_missile->x_turret_position = x_coord;
+    light_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
     for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
         light_missile->y_vector_velocity[i] = 0;
     }
-    return light_missile;
 }
 
 double cosDegrees (double alpha) { //Modifies cos() function in math.h so that it accepts values in degrees instead of radians
@@ -40,18 +38,6 @@ void setInitialVelocity (missile_data *m, float v) { //Allows the player to set 
 
 void setShootingAngle (missile_data *m, int alpha) { //Allows the player to set shot angle
     m->shot_angle = alpha;
-}
-
-float setWindSpeed () { //Allows the user to set wind speed
-    float ws;
-    ws = MAX_WIND_SPEED + 1;
-    while (ws < -100 || ws > 100) {
-        printf("Enter wind speed (-100 to 100): "); //Useful for keeping under control all the values, I guess wind speed should be randomized
-        scanf("%f", &ws);
-        if (ws < -100 || ws > 100)
-            printf("Error: invalid choice.\n");
-    }
-    return ws;
 }
 
 float windForce (float ws) { //Calculates wind force
