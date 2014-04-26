@@ -49,5 +49,5 @@ void levels(int option)
 float random_wind()
 {
     srand ( time(NULL) );
-    return  (rand() % 100 + 1);
+    return  (rand() % 201 - 100);
 }

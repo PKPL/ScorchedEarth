@@ -5,15 +5,26 @@
 #include "menu_new_game.h"
 #include "unit.h"
 #include <conio.h>
+#include <stdio.h>
+
+int screen_bufor [MAX_X][MAX_Y];
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
+    system("cls");
+
     unit_func();
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
     int key_pressed;
+    int player_angle = 0;
+    int player_power = 100;
 
-    while(player.hp > 0 && bot.hp > 0 && (key_pressed = getch() != 27))
+    test_drawing_map(map_layout);
+    printf("\n\n\n\n");
+
+
+    while(player.hp > 0 && bot.hp > 0)
     {
         //Main game loop :)
 
@@ -22,6 +33,34 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             //Player move
 
                 //Choose power and angle
+                printf("Angle = %d", player_angle);
+                printf("\t\t\t\t\t\t\tPower = %d  ", player_power);
+                printf("\r");
+
+                key_pressed = getch();
+                if(key_pressed == 27)break;
+                else if(key_pressed == 224)
+                {
+                    switch(getch())
+                    {
+                        case 72:
+                        if(player_angle < 180)player_angle = player_angle + 1;
+                        break;
+
+                        case 75:
+                        if(player_power > 0)player_power = player_power - 1;
+                        break;
+
+                        case 77:
+                        if(player_power < 200)player_power = player_power + 1;
+                        break;
+
+                        case 80:
+                        if(player_angle > -180)player_angle = player_angle - 1;
+                        break;
+                    }
+                }
+
 
                 //----------------------
 

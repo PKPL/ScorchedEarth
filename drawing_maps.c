@@ -26,7 +26,7 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
         }
     }
     gotoxy(0, 79);
-    _getch();
+
 }
 
 void gotoxy(int x, int y)
