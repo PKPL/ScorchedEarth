@@ -19,7 +19,10 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
         for (x0 = 0.0; x0 < MAX_X; x0++)
         {
             gotoxy((int)x0, 80 - (int)y0);
-            printf("%d", map_layout[(int)x0][(int)y0]);
+            if(map_layout[(int)x0][(int)y0] != 0)
+            {
+                printf("%d", map_layout[(int)x0][(int)y0]);
+            }
         }
     }
     gotoxy(0, 79);
