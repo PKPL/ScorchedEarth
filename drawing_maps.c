@@ -9,24 +9,26 @@ extern int map_layout [MAX_X][MAX_Y];
 
 void test_drawing_map (int map_layout [MAX_X][MAX_Y])
 {
-    double x0;
-    double y0;
+    double x;
+    double y;
 
     system("mode 100, 80");
     //drawing_game_screen();
-    for (y0 = 0.0 ; y0 < MAX_Y; y0++)
+
+    for (x = 0.0; x < MAX_X; x++)
     {
-        for (x0 = 0.0; x0 < MAX_X; x0++)
+        for (y = 0.0; y < MAX_Y; y++)
         {
-            gotoxy((int)x0, 80 - (int)y0);
-            if(map_layout[(int)x0][(int)y0] != 0)
+            gotoxy((int)x, 79 - (int)y);
+            if (map_layout[(int)x][(int)y] != 0)
             {
-                printf("%d", map_layout[(int)x0][(int)y0]);
+                printf("%d", map_layout[(int)x][(int)y]);
             }
         }
     }
+
     gotoxy(0, 79);
-    _getch();
+
 }
 
 void gotoxy(int x, int y)
