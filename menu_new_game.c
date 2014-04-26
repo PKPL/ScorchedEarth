@@ -20,6 +20,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int player_angle = 0;
     int player_power = 100;
 
+    printf("EASY LEVEL");
     test_drawing_map(map_layout);
     printf("\n\n\n\n");
 
@@ -34,7 +35,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
                 //Choose power and angle
                 printf("Angle = %d", player_angle);
-                printf("\t\t\t\t\t\t\tPower = %d  ", player_power);
+                printf("\t\t\tPower = %d", player_power);
+                printf("\t\t\tPoints = %d", player.points);
                 printf("\r");
 
                 key_pressed = getch();

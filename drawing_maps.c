@@ -3,6 +3,9 @@
 //------------------------------------------------------------------------
 
 #include "drawing_maps.h"
+#include <windows.h>
+
+
 
 extern int map_layout [MAX_X][MAX_Y];
 
@@ -12,9 +15,11 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
     double x;
     double y;
 
-    //system("mode 100, 80");
-    //drawing_game_screen();
 
+
+
+
+    //drawing_game_screen();
     for (x = 0.0; x < MAX_X; x++)
     {
         for (y = 0.0; y < MAX_Y; y++)
@@ -26,7 +31,6 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
             }
         }
     }
-
     gotoxy(0, 79);
 
 }
