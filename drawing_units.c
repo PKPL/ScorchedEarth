@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------
 
 #include "drawing_units.h"
+#include "unit.h"
 
 
 extern int map_layout [MAX_X][MAX_Y];
@@ -16,6 +17,16 @@ void test_drawing_units (int map_layout[MAX_X][MAX_Y])
 void drawing_units (int map_layout[MAX_X][MAX_Y])
 {
     tCoordinates coordinates_player, coordinates_enemy;
+
+    //Small changes to remember generated position in our global unit variables
+
+    player.x = coordinates_player.x;
+    player.y = coordinates_player.y;
+    bot.x = coordinates_enemy.x;
+    bot.y = coordinates_enemy.y;
+
+    //-------------------------------------------------------------------------
+
     do
     {
         coordinates_player = position (map_layout);
@@ -35,7 +46,7 @@ tCoordinates position (int map_layout[MAX_X][MAX_Y])
     int i;
     tCoordinates coordinates;
         coordinates.x = coordinates.x = rand () % (MAX_X + 1);
-        for (i = 0; i < MAX_Y; i++) {
+        for (i = MAX_Y - 1; i > 1; i--) { //Sorry for small change son my own i just reverse your "for" loop becouse it was working form te bottoem and units always was an the bottom :)
             srand (time (NULL));
             if (map_layout[coordinates.x][i] == 0) {
                 continue;

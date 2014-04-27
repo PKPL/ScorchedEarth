@@ -21,6 +21,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int player_angle = 0;
     int player_power = 100;
 
+    test_drawing_units(map_layout);
     test_drawing_map(map_layout);
     printf("\n\n");
 
