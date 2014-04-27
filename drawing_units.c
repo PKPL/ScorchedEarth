@@ -4,6 +4,7 @@
 
 #include "drawing_units.h"
 #include "unit.h"
+#include <time.h>
 
 
 extern int map_layout [MAX_X][MAX_Y];
@@ -11,6 +12,7 @@ extern int map_layout [MAX_X][MAX_Y];
 
 void test_drawing_units (int map_layout[MAX_X][MAX_Y])
 {
+    srand (time (NULL));
     drawing_units(map_layout);
 }
 
@@ -45,15 +47,14 @@ tCoordinates position (int map_layout[MAX_X][MAX_Y])
 {
     int i;
     tCoordinates coordinates;
-        coordinates.x = coordinates.x = rand () % (MAX_X + 1);
-        for (i = MAX_Y - 1; i > 1; i--) { //Sorry for small change son my own i just reverse your "for" loop becouse it was working form te bottoem and units always was an the bottom :)
-            srand (time (NULL));
-            if (map_layout[coordinates.x][i] == 0) {
+    coordinates.x = rand () % (MAX_X) + 1;
+        for (i = 0; i < MAX_Y; i++) { //Sorry for small change son my own i just reverse your "for" loop becouse it was working form te bottoem and units always was an the bottom :)
+            if (map_layout[coordinates.x][i] == 1) {
                 continue;
             }
             else
             {
-                coordinates.y = i;
+                coordinates.y = i; // +1 to be on ground no in ground
                 break;
             }
         }
