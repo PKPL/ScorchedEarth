@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "shot_final_equation.h"
 #include "shot_hit.h"
 #include "matrix.h"
@@ -15,7 +16,8 @@
 #include "drawing_shots.h"
 #include "levels_level.h"
 
-missile_data* playerShot(missile_data*);
-int AIShoot(missile_data*, float, int);
+void playerShot(missile_data*);
+void AIShoot(missile_data*, float, int);
+float AIcheck(int, int, float, int, int, int);
 
 #endif // __SHOT_FORMULA_H__

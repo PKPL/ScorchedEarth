@@ -6,8 +6,9 @@
 #include <string.h>
 #include "shot_final_equation.h"
 
-void initializeMissile(missile_data* light_missile, int x_coord, int y_coord) { //Initializes missile information
+missile_data* initializeMissile(int x_coord, int y_coord) { //Initializes missile information
     int i;
+    missile_data *light_missile;
     light_missile = (missile_data*)malloc(sizeof(missile_data));
     strcpy(light_missile->name, "Super Light Missile");
     light_missile->weight = 1.8;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).
@@ -22,6 +23,7 @@ void initializeMissile(missile_data* light_missile, int x_coord, int y_coord) { 
         light_missile->x_vector_velocity[i] = 0;
         light_missile->y_vector_velocity[i] = 0;
     }
+    return light_missile;
 }
 
 double cosDegrees (double alpha) { //Modifies cos() function in math.h so that it accepts values in degrees instead of radians
