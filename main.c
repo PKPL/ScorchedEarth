@@ -33,7 +33,7 @@ SMALL_RECT windowSize = {0, 0, 100, 80};
 SetConsoleWindowInfo(wHnd, 1, &windowSize);
 // Change the console window size:
 // Create a COORD to hold the buffer size:
-COORD bufferSize = {10, 10};
+COORD bufferSize = {100, 80};
 SetConsoleScreenBufferSize(wHnd, bufferSize);
 
 

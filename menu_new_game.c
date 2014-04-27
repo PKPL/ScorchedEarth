@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------
 
 #include "menu_new_game.h"
+#include "levels_level.h"
 #include "unit.h"
 #include <conio.h>
 #include <stdio.h>
@@ -35,8 +36,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
                 //Choose power and angle
                 printf("Angle = %d", player_angle);
-                printf("\t\t\tPower = %d", player_power);
-                printf("\t\t\tPoints = %d", player.points);
+                printf("\t\tPower = %d", player_power);
+                printf("\t\tWind = %d", wind_speed);
+                printf("\t\tPoints = %d", player.points);
                 printf("\r");
 
                 key_pressed = getch();

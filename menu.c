@@ -15,6 +15,7 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 #include "menu.h"
 void test_menu(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
+    system("COLOR 8F");
     system("cls");
     int selectedOption, control;
     int wrongInput = 0;
