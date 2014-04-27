@@ -21,10 +21,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int player_angle = 0;
     int player_power = 100;
 
-    printf("EASY LEVEL");
     test_drawing_map(map_layout);
-    printf("\n\n\n\n");
-
+    printf("\n\n");
 
     while(player.hp > 0 && bot.hp > 0)
     {
@@ -37,7 +35,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 //Choose power and angle
                 printf("Angle = %d", player_angle);
                 printf("\t\tPower = %d", player_power);
-                printf("\t\tWind = %d", wind_speed);
+                printf("\t\tWind = %d", (int)wind_speed);
                 printf("\t\tPoints = %d", player.points);
                 printf("\r");
 
@@ -91,7 +89,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         }
 
         queue = queue + 1;
-        if(queue >= max_players)queue = 1; //Returning to player move
+        if(queue >= max_players)
+        {
+            queue = 1; //Returning to player move
+            if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
+        }
         //-----------------
     }
 

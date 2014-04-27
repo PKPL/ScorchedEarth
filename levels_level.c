@@ -35,7 +35,7 @@ void levels(int option)
         wind_speed = 0;
         break;
     case 2:
-        selected_level = hard_level;
+        selected_level = medium_level;
         wind_speed = random_wind();
         break;
     case 3:
@@ -48,6 +48,8 @@ void levels(int option)
 
 float random_wind()
 {
+    int random_value;
     srand ( time(NULL) );
-    return  (rand() % 201 - 100);
+    random_value = (rand() % 201 - 100);
+    return  (float)random_value;
 }
