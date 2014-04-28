@@ -4,15 +4,22 @@
 
 #include "menu_new_game.h"
 #include "levels_level.h"
+#include "drawing_units.h"
 #include "unit.h"
 #include <conio.h>
 #include <stdio.h>
+#include "shot.h"
 
 int screen_bufor [MAX_X][MAX_Y];
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
     system("cls");
+
+    CONSOLE_CURSOR_INFO CurInfo;
+	CurInfo.dwSize=1;
+	CurInfo.bVisible=FALSE;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 
     unit_func();
     int queue = 1; //1 - Player, 2 - Bot
@@ -42,6 +49,12 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
                 key_pressed = getch();
                 if(key_pressed == 27)break;
+                if(key_pressed == 13)
+                {
+                    missile_data *missile;
+                    missile = initializeMissile(player.x, player.y);
+                    playerShot(missile);
+                }
                 else if(key_pressed == 224)
                 {
                     switch(getch())
