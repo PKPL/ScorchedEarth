@@ -8,7 +8,7 @@
 
 #include "maps_create.h"
 
-void test_drawing_map (int map_layout [MAX_X][MAX_Y]);
+void test_drawing_map (int mapLayout [MAX_X][MAX_Y]);
 void gotoxy(int x, int y);
 void drawing_game_screen();
 

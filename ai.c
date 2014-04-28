@@ -22,7 +22,7 @@ float find_random(int min_ang, int max_ang)
     return  (rand() % (max_ang - min_ang) + min_ang);
 }
 
-bool raycast(unit from, int angle,  int map_layout[MAX_X][MAX_Y])
+bool raycast(unit from, int angle,  int mapLayout[MAX_X][MAX_Y])
 {
     int ray_length = 20;
     int i = 1;
@@ -37,7 +37,7 @@ bool raycast(unit from, int angle,  int map_layout[MAX_X][MAX_Y])
         int local_y_rounded = (int)(local_y + 0.5);
 
         if(from.x + local_x_rounded > MAX_X || from.y + local_y_rounded > MAX_Y) break;
-        else if(map_layout[from.x + local_x_rounded][from.y + local_y_rounded] == 1)
+        else if(mapLayout[from.x + local_x_rounded][from.y + local_y_rounded] == 1)
         {
             return true;
         }
@@ -51,10 +51,10 @@ void test_ai() // function for agreagate testing
     printf("AI test\n");
 }
 
-void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
+void ai(unit local_bot, int mapLayout[MAX_X][MAX_Y])
 {
     //if(selected level = AI_EASY)
 
-        //ai_easy(local_bot, map_layout[MAX_X][MAX_Y]);
+        //ai_easy(local_bot, mapLayout[MAX_X][MAX_Y]);
 
 }

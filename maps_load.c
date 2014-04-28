@@ -7,13 +7,11 @@
 void test_maps_load ()
 {
     int x, y;
-    int map_layout[MAX_X][MAX_Y] = {{0}}; // just for testing
-    load_Map (map_layout);
+    int mapLayout[MAX_X][MAX_Y] = {{0}}; // just for testing
+    load_Map (mapLayout);
 }
 
-extern int map_layout[MAX_X][MAX_Y];
-
-void load_Map (int map_layout[MAX_X][MAX_Y])
+void load_Map (int mapLayout[MAX_X][MAX_Y])
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
     static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
@@ -22,13 +20,13 @@ void load_Map (int map_layout[MAX_X][MAX_Y])
         option = option_User ("You already loaded one map, do you want to load another and forget the last");
         if (option == 'Y')
         {
-            reading_from_File (map_layout);
+            reading_from_File (mapLayout);
             existing_Map = true;
         }
     }
     else
     {
-        reading_from_File (map_layout);
+        reading_from_File (mapLayout);
         existing_Map = true;
     }
 }
@@ -73,7 +71,7 @@ void read_String(char str[], int max)
     while (strlen (str) == 0);
 }
 
-void reading_from_File (int map_layout [MAX_X][MAX_Y])
+void reading_from_File (int mapLayout [MAX_X][MAX_Y])
 {
     int x, y;
     char name_File_Map[MAX_NAME_FILE];
@@ -92,7 +90,7 @@ void reading_from_File (int map_layout [MAX_X][MAX_Y])
         {
             for (x = 0; x < MAX_X; x++)
             {
-                fscanf (map_Load, "%d", map_layout[x][y]);
+                fscanf (map_Load, "%d", mapLayout[x][y]);
             }
         }
         fclose (map_Load);

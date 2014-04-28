@@ -61,10 +61,8 @@ void credits()
     Sleep( 4000 );
 
     printf("\n\n \tLeiria, Portugal 2014");
-
-    printf("\n\n \tPress any button to back to menu");
     setcursortype(NORMALCURSOR);
     getch();
-    return(0);
+    return 0;
 
 }

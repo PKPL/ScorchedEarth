@@ -8,11 +8,10 @@
 
 #include "maps_create.h"
 #include "unit.h"
-#include "shot.h"
 
-void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y]);
+void ai_medium(unit local_bot, int mapLayout[MAX_X][MAX_Y]);
 int min_power(unit from, int angle);
-int max_power(unit from, int angle, int min_power_local);
+int max_power(unit from, int angle);
 
 
 

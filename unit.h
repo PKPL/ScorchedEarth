@@ -13,7 +13,6 @@ typedef struct unit
 int x;
 int y;
 int points;
-int hp;
 }unit;
 
 // Included files
@@ -21,7 +20,7 @@ int hp;
 void test_unit();
 void unit_func();
 
-extern unit player;
-extern unit bot;
+unit player;
+unit bot;
 
 #endif // __UNIT_H__

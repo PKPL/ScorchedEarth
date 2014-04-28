@@ -13,10 +13,8 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 
 // Included files
 #include "menu.h"
-void test_menu(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
+void test_menu() // function for agreagate testing
 {
-    system("COLOR 8F");
-    system("cls");
     int selectedOption, control;
     int wrongInput = 0;
     do
@@ -34,7 +32,6 @@ void test_menu(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             printf("[ 1 ] -> Start a New Game\n[ 2 ] -> View Highscores\n[ 3 ] -> View Credits\n[ 4 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
-            menu_reaction(selectedOption, map_layout);
             fflush(stdin);
             wrongInput = 1;
         }
@@ -42,67 +39,37 @@ void test_menu(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
     while (selectedOption < 1 || selectedOption > 4 || control == 0);
 }
 
-void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
+void menu_reaction(int SelectedOption)// undone
 {
     switch (SelectedOption)
     {
     case 1: //new game
     {
-        system("cls");
         //starting new game
-        //Code to get the chosen level goes here
-        //We also have to call the functions apropriately, for example, if difficulty is hard, AI has to be hard, and physics too etc.
-        /*
-        EASY LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        /*
-        MEDIUM LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        /*
-        HARD LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        test_levels(map_layout);
         break;
     }
     case 2:// highscore
     {
-        system("cls");
-        highscore();
+        //highscore();
         break;
     }
 
     case 3:// credits
     {
-        system("cls");
-        credits();
+        //credits();
         break;
     }
 
     case 4://exit game
     {
-        system("cls");
-        close_game();
-        break;
+        // close_game();
 
     }
     default:
     {
-        test_menu(map_layout);
+        test_menu();
         break;
     }
     }
-    test_menu(map_layout);
 }
 

@@ -3,36 +3,24 @@
 //------------------------------------------------------------------------
 
 #include "drawing_maps.h"
-#include <windows.h>
 
-
-
-extern int map_layout [MAX_X][MAX_Y];
-
-
-void test_drawing_map (int map_layout [MAX_X][MAX_Y])
+void test_drawing_map (int mapLayout [MAX_X][MAX_Y])
 {
-    double x;
-    double y;
+    double x0;
+    double y0;
 
-
-
-
-
-    //drawing_game_screen();
-    for (x = 0.0; x < MAX_X; x++)
+    system("mode 100, 80");
+    drawing_game_screen();
+    for (x0 = 0.0; x0 < (double) MAX_X; x0++)
     {
-        for (y = 0.0; y < MAX_Y; y++)
+        for (y0 = 0.0; y0 < (double) MAX_Y; y0++)
         {
-            gotoxy((int)x, 79 - (int)y);
-            if (map_layout[(int)x][(int)y] != 0)
-            {
-                printf("%d", map_layout[(int)x][(int)y]);
-            }
+            gotoxy((int)x0, 80-(int)y0);
+            printf("%d", mapLayout[(int)x0][(int)y0]);
         }
     }
     gotoxy(0, 79);
-
+    _getch();
 }
 
 void gotoxy(int x, int y)

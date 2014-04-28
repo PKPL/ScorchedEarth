@@ -3,32 +3,30 @@
 //------------------------------------------------------------------------
 #include "menu_highscore.h"
 
-FILE *fp;
-char c_open;
 
 	// bubble sorting
 
 	void add_score()
 	{
-	    fp=fopen("highscore.txt", "r+");
+	    fp=fopen("highscore.txt", "r+w");
 	    check_top_ten();
 	    fclose(fp);
 	}
 	void bubblesort(void)
  	{
  fp=fopen("highscore.txt", "r+");
-		int i_loop, j_loop, temp;
-
-		for (i_loop = 0; i_loop<9; i_loop++)
+		int i, j, temp;
+		const int n=10;
+		for (i = 0; i<n-1; i++)
 	        {
 
-			for (j_loop=0; j_loop<9-i_loop; j_loop++)
+			for (j=0; j<n-1-i; j++)
 	            {
-	            if (players[j_loop+1].points < players[j_loop].points)
+	            if (players[j+1].points < players[j].points)
 				{
-					temp = players[j_loop+1].points;
-					players[j_loop+1].points =players[j_loop].points;
-					players[j_loop].points = temp;
+					temp = players[j+1].points;
+					players[j+1].points =players[j].points;
+					players[j].points = temp;
 				}
 			}
 	        }
@@ -36,10 +34,10 @@ char c_open;
 	}
 
 	void save_score (void)
-	{int counter_loop;
-	    for (counter_loop=0; counter_loop<10; counter_loop++)
-	    { fputs(players[counter_loop].nickname,fp);
-	      fputs(players[counter_loop].points,fp);
+	{int counter;
+	    for (counter=0; counter<10; counter++)
+	    { fputs(players[counter].nickname,fp);
+	      fputs(players[counter].points,fp);
 	    }
 
  	}
@@ -52,16 +50,11 @@ char c_open;
 
  	}
 
- 	void highscore()
-     {
-         fp=fopen("highscore.txt", "r+");
-        while ((c_open=fgetc(fp))!=EOF)
-        printf("%c", c_open);
+ 	void highscore(void)
+     {fp=fopen("highscore.txt", "r+");
+
+     putchar(inChar);
+        inChar = getc(fp);
 
     fclose(fp);
-
-     printf("\n\n \tPress any button to back to menu");
-     getch();
-     return(0);
-
-     }
+}

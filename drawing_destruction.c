@@ -4,17 +4,13 @@
 
 #include "drawing_destruction.h"
 
-
-extern int map_layout [MAX_X][MAX_Y];
-
-
-void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])
+void test_drawing_destruction(int mapLayout [MAX_X][MAX_Y])
 {
-    createExplosion(map_layout); //Draws the explosion
-    createDestruction(map_layout); //Draws the destruction
+    createExplosion(mapLayout); //Draws the explosion
+    createDestruction(mapLayout); //Draws the destruction
 }
 
-void createDestruction(int map_layout [MAX_X][MAX_Y])
+void createDestruction(int mapLayout [MAX_X][MAX_Y])
 {
     int x, y;
     int breaksLoop = 0;
@@ -24,65 +20,65 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
     {
         for (y = 0; y < MAX_Y; y++)
         {
-            if (map_layout[x][y] == 50 && map_layout[x][y-1] == 1) //This means this is the final position of the player projectile, as below it there is ground, so it hits the ground
+            if (mapLayout[x][y] == 50 && mapLayout[x][y-1] == 1) //This means this is the final position of the player projectile, as below it there is ground, so it hits the ground
             {
-                map_layout[x][y] = 0;
+                mapLayout[x][y] = 0;
 
                 if ((x - 1) >= 0)
                 {
-                    map_layout[x-1][y] = 0;
+                    mapLayout[x-1][y] = 0;
                 }
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 0;
+                     mapLayout[x+1][y] = 0;
                 }
 
                 if ((y + 1) <= MAX_Y)
                 {
-                    map_layout[x][y+1] = 0;
+                    mapLayout[x][y+1] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x-1][y+1] = 0;
+                    mapLayout[x-1][y+1] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x+1][y+1] = 0;
+                    mapLayout[x+1][y+1] = 0;
                 }
                 //The code above restores the explosion to empty
 
 
                 if ((y - 1) >= 0)
                 {
-                    map_layout[x][y-1] = 0;
+                    mapLayout[x][y-1] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y - 1) >= 0)
                 {
-                    map_layout[x-1][y-1] = 0;
+                    mapLayout[x-1][y-1] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y - 1) >= 0)
                 {
-                    map_layout[x+1][y-1] = 0;
+                    mapLayout[x+1][y-1] = 0;
                 }
 
                 if ((y - 2) >= 0)
                 {
-                    map_layout[x][y-2] = 0;
+                    mapLayout[x][y-2] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y - 2) >= 0)
                 {
-                    map_layout[x-1][y-2] = 0;
+                    mapLayout[x-1][y-2] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y - 2) >= 0)
                 {
-                    map_layout[x+1][y-2] = 0;
+                    mapLayout[x+1][y-2] = 0;
                 }
 
                 y = MAX_Y;
@@ -90,65 +86,65 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
 
                 //The code above destroys terrain
             }
-            else if (map_layout[x][y] == 60 && map_layout[x][y-1] == 1) //This means this is the final position of the enemy projectile, as below it there is ground, so it hits the ground
+            else if (mapLayout[x][y] == 60 && mapLayout[x][y-1] == 1) //This means this is the final position of the enemy projectile, as below it there is ground, so it hits the ground
             {
-                map_layout[x][y] = 0;
+                mapLayout[x][y] = 0;
 
                 if ((x - 1) >= 0)
                 {
-                    map_layout[x-1][y] = 0;
+                    mapLayout[x-1][y] = 0;
                 }
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 0;
+                     mapLayout[x+1][y] = 0;
                 }
 
                 if ((y + 1) <= MAX_Y)
                 {
-                    map_layout[x][y+1] = 0;
+                    mapLayout[x][y+1] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x-1][y+1] = 0;
+                    mapLayout[x-1][y+1] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x+1][y+1] = 0;
+                    mapLayout[x+1][y+1] = 0;
                 }
                 //The code above restores the explosion to empty
 
 
                 if ((y - 1) >= 0)
                 {
-                    map_layout[x][y-1] = 0;
+                    mapLayout[x][y-1] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y - 1) >= 0)
                 {
-                    map_layout[x-1][y-1] = 0;
+                    mapLayout[x-1][y-1] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y - 1) >= 0)
                 {
-                    map_layout[x+1][y-1] = 0;
+                    mapLayout[x+1][y-1] = 0;
                 }
 
                 if ((y - 2) >= 0)
                 {
-                    map_layout[x][y-2] = 0;
+                    mapLayout[x][y-2] = 0;
                 }
 
                 if ((x - 1) >= 0 && (y - 2) >= 0)
                 {
-                    map_layout[x-1][y-2] = 0;
+                    mapLayout[x-1][y-2] = 0;
                 }
 
                 if ((x + 1) <= MAX_X && (y - 2) >= 0)
                 {
-                    map_layout[x+1][y-2] = 0;
+                    mapLayout[x+1][y-2] = 0;
                 }
 
                 y = MAX_Y;
@@ -165,7 +161,7 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
     }
 }
 
-void createExplosion(int map_layout [MAX_X][MAX_Y])
+void createExplosion(int mapLayout [MAX_X][MAX_Y])
 {
     int x, y;
     int breaksLoop = 0;
@@ -175,67 +171,67 @@ void createExplosion(int map_layout [MAX_X][MAX_Y])
     {
         for (y = 0; y < MAX_Y; y++)
         {
-            if (map_layout[x][y] == 50 && map_layout[x][y-1] == 1) //This means this is the final position of the player projectile, as below it there is ground, so it hits the ground
+            if (mapLayout[x][y] == 50 && mapLayout[x][y-1] == 1) //This means this is the final position of the player projectile, as below it there is ground, so it hits the ground
             {
                 //The code below will define where the explosion will be seen on the map. This is a basic implementation at this stage.
-                map_layout[x][y] = 100;
+                mapLayout[x][y] = 100;
 
                 if ((x - 1) >= 0)
                 {
-                    map_layout[x-1][y] = 100;
+                    mapLayout[x-1][y] = 100;
                 }
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 100;
+                     mapLayout[x+1][y] = 100;
                 }
 
                 if ((y + 1) <= MAX_Y)
                 {
-                    map_layout[x][y+1] = 100;
+                    mapLayout[x][y+1] = 100;
                 }
 
                 if ((x - 1) >= 0 && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x-1][y+1] = 100;
+                    mapLayout[x-1][y+1] = 100;
                 }
 
                 if ((x + 1) <= MAX_X && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x+1][y+1] = 100;
+                    mapLayout[x+1][y+1] = 100;
                 }
 
                 y = MAX_Y; //breaks out of the loop
                 breaksLoop = 1;
             }
-            else if (map_layout[x][y] == 60 && map_layout[x][y-1] == 1) //This means this is the final position of the enemy projectile, as below it there is ground, so it hits the ground
+            else if (mapLayout[x][y] == 60 && mapLayout[x][y-1] == 1) //This means this is the final position of the enemy projectile, as below it there is ground, so it hits the ground
             {
                 //The code below will define where the explosion will be seen on the map. This is a basic implementation at this stage.
-                map_layout[x][y] = 100;
+                mapLayout[x][y] = 100;
 
                 if ((x - 1) >= 0)
                 {
-                    map_layout[x-1][y] = 100;
+                    mapLayout[x-1][y] = 100;
                 }
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 100;
+                     mapLayout[x+1][y] = 100;
                 }
 
                 if ((y + 1) <= MAX_Y)
                 {
-                    map_layout[x][y+1] = 100;
+                    mapLayout[x][y+1] = 100;
                 }
 
                 if ((x - 1) >= 0 && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x-1][y+1] = 100;
+                    mapLayout[x-1][y+1] = 100;
                 }
 
                 if ((x + 1) <= MAX_X && (y + 1) <= MAX_Y)
                 {
-                    map_layout[x+1][y+1] = 100;
+                    mapLayout[x+1][y+1] = 100;
                 }
 
                 y = MAX_Y; //breaks out of the loop

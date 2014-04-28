@@ -21,9 +21,9 @@ DANIEL PINTO
 #define MAX_NAME_FILE 50
 
 void test_maps_load ();
-void load_Map (int map_layout[MAX_X][MAX_Y]);
+void load_Map (int mapLayout[MAX_X][MAX_Y]);
 char optionUser (char *str);
 void readString (char *str, int max);
-void reading_from_File (int map_layout [MAX_X][MAX_Y]);
+void reading_from_File (int mapLayout [MAX_X][MAX_Y]);
 
 #endif // __MAPS_LOAD_H__

@@ -8,14 +8,18 @@
 #include <time.h>
 #include <stdio.h>
 
+FILE *fp;
+const int n= 10;
+int inChar;
+
 typedef struct
 {
     char nickname[20];
     int points;
-} player_highscore;
+} player;
 
 
-player_highscore players[11];
+player players[11];
 void bubblesort();
 void add_score ();
 void check_top_ten();
