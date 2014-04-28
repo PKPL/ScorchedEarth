@@ -5,8 +5,6 @@
 // Drawing shots
 //------------------------------------------------------------------------
 
-#endif // __DRAWING_SHOTS_H__
-
 #include "shot_final_equation.h"
 
 #define MAX_X 100
@@ -17,4 +15,4 @@
 #define SKY 0
 #define GROUND 1
 
-
+#endif // __DRAWING_SHOTS_H__

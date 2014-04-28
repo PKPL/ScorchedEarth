@@ -6,195 +6,250 @@ ROBERTO RIBEIRO
 DANIEL PINTO
 
 
-Map creation done until further notice or revision.
-Issue 2 identified by Pawel should be fixed by now
+Bug: weird "0" pillars
 
 */
 
 #include "maps_create.h"
 
-void test_maps_create(int mapLayout [MAX_X][MAX_Y])
-{
-    int counterTimesUsedRandom = 0;
 
-    //createPlainMap(mapLayout, &counterTimesUsedRandom);
-    createMountainMap(mapLayout, &counterTimesUsedRandom);
+extern int map_layout [MAX_X][MAX_Y];
+
+
+void test_maps_create(int map_layout [MAX_X][MAX_Y])
+{
+    create_mountain_map(map_layout);
 }
 
-void createMountainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
+void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 {
-    int x, y, number, finishedCreatingMap, isContinuation, numberAlternative, freeSpaceHeight, willHaveToCreateCompensationUnit;
-    freeSpaceHeight = (1/4) / MAX_Y;
-    finishedCreatingMap = 0;
-    willHaveToCreateCompensationUnit = 0;
-    isContinuation = 0;
+    int x, y, auxiliary_number, parity, number, finished_creating_map, is_continuation, number_alternative, free_space_height, will_have_to_create_compensation_unit;
+    free_space_height = MAX_Y;
+    free_space_height = 0.25 * free_space_height;
+    finished_creating_map = 0;
+    will_have_to_create_compensation_unit = 0;
+    is_continuation = 0;
 
     /*For a mountain map*/
-    int terrainDeformationStart, heightOffsetHigh, heightOffsetLow, deformationWidth, deformationHeight, widthMedian, terrainUnitsBuilt, terrainUnitsUntilMedian, terrainUnitsToBuild, terrainUnitsAfterMedian;
-    terrainUnitsBuilt = 0;
-    heightOffsetHigh = 0;
-    heightOffsetLow = 0;
-    newRndSeed(counter);
-    number = rand() % (MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP - freeSpaceHeight + 1); /*defines the initial terrain height*/
+    int terrain_deformation_start, height_offset_high, height_offset_low, deformation_width, deformation_height, widthMedian, terrain_units_built, terrain_units_until_median, terrain_units_to_build, terrainUnitsAfterMedian;
+    terrain_units_built = 0;
+    height_offset_high = 0;
+    height_offset_low = 0;
+    new_rnd_seed();
+    system("cls");
+    printf("Map is being randomly generated. This may take a while sorry =]");
 
     do
     {
-        newRndSeed(counter);
-        terrainDeformationStart = rand() % (MAX_DISTANCE_UNTIL_DEFORMATION_START + 1); /*defines the max distance until a deformation appears*/
-        /*This will loop for all the x coordinates at the same height, before the first deformation*/
+        number = (rand() % MAX_TERRAIN_INITIAL_HEIGHT_MOUNTAINS_MAP) + 1; /*defines the initial terrain height*/
+    }
+    while (number == 0);
 
-
-        if (isContinuation == 1)
+    do
+    {
+        do
         {
-            terrainUnitsToBuild = (terrainDeformationStart - 1);
-            for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++)
+            new_rnd_seed();
+            terrain_deformation_start = (rand() % MAX_DISTANCE_UNTIL_DEFORMATION_START) + 1; /*defines the max distance until a deformation appears*/
+            /*This will loop for all the x coordinates at the same height, before the first deformation*/
+        }
+        while (terrain_deformation_start < 2);
+
+        if (is_continuation == 1)
+        {
+            terrain_units_to_build = (terrain_deformation_start - 1);
+            if (terrain_units_built + terrain_units_to_build > MAX_X)
+            {
+                terrain_units_to_build = (MAX_X - terrain_units_built);
+            }
+            for (x = terrain_units_built; terrain_units_to_build > 0; x++)
             {
                 for (y = 0; y < number; y++)
                 {
-                    mapLayout[x][y] = 1; /*This will create a surface after a deformation*/ /*number is the last height built on*/
+                    map_layout[x][y] = 1; /*This will create a surface after a deformation*/ /*number is the last height built on*/
                 }
-                terrainUnitsBuilt++;
-                terrainUnitsToBuild--;
+                terrain_units_built++;
+                terrain_units_to_build--;
             }
         }
         else
         {
-            for (x = 0; x < (terrainDeformationStart - 1); x++)
+            for (x = 0; x < (terrain_deformation_start - 1); x++)
             {
                 for (y = 0; y < number; y++)
                 {
-                    mapLayout[x][y] = 1; /*This will create the surface line before the first deformation*/
+                    map_layout[x][y] = 1; /*This will create the surface line before the first deformation*/
                 }
-                terrainUnitsBuilt++;
+                terrain_units_built++;
             }
         }
 
         do
         {
-            newRndSeed(counter);
-            deformationWidth = rand() % (MAX_WIDTH_DEFORMATION + 1); /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
+            new_rnd_seed();
+            deformation_width = (rand() % MAX_WIDTH_DEFORMATION) + 1; /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
         }
-        while (deformationWidth % 2 == 0 || deformationWidth < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
+        while (deformation_width % 2 == 0 || deformation_width < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
 
         do
         {
-            newRndSeed(counter);
-            deformationHeight = rand() %(MAX_HEIGHT_DEFORMATION + 1); /*defines the max height for the deformation.*/
+            new_rnd_seed();
+            deformation_height = (rand() % ((MAX_Y - free_space_height))) + 1; /*defines the max height for the deformation.*/
             /*For this implementation version, valleys may appear on a mountain, but valleys will never be forcefully created. This will change on a later revision*/
         }
-        while (deformationHeight + number >= (MAX_Y - freeSpaceHeight) || deformationHeight < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
+        while (deformation_height < 2); /*We have hardcoded the minimum height to 2 to stop the [y] value from being 0 or -1*/
 
-        heightOffsetHigh = deformationHeight + HEIGHT_OFFSET;
-        heightOffsetLow = deformationHeight - HEIGHT_OFFSET;
+        if (deformation_height + number >= (MAX_Y - free_space_height))
+        {
+            do
+            {
+                deformation_height -= (0.42 * deformation_height);
+            } while (deformation_height + number >= (MAX_Y - free_space_height));
+
+        }
+
+        if (abs(number - deformation_height) > 15)
+        {
+            auxiliary_number = (rand() % 15) +1;
+            parity = auxiliary_number % 2;
+            if (parity != 0)
+            {
+                deformation_height = number + auxiliary_number;
+            }
+            else
+            {
+                if (number - auxiliary_number > 0)
+                {
+                    deformation_height = number - auxiliary_number;
+                }
+                else
+                {
+                    deformation_height = number + auxiliary_number;
+                }
+            }
+        }
+
+        height_offset_high = deformation_height + HEIGHT_OFFSET;
+        height_offset_low = deformation_height - HEIGHT_OFFSET;
 
         /*The following code prevents the deformation width to go outside map bounds, and if a new width is to be defined, it ensures it's an odd number*/
-        if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt) % 2 != 0)
+        if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built) % 2 != 0)
         {
-            deformationWidth = (MAX_X - terrainUnitsBuilt);
-            finishedCreatingMap = 1; /*No more space for deformations after the current one*/
+            deformation_width = (MAX_X - terrain_units_built);
+            finished_creating_map = 1; /*No more space for deformations after the current one*/
         }
-        else if (deformationWidth + terrainUnitsBuilt >= MAX_X && (MAX_X - terrainUnitsBuilt - 1) % 2 != 0)
+        else if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built - 1) % 2 != 0 && (MAX_X - terrain_units_built - 1) != -1)
         {
-            deformationWidth = (MAX_X - terrainUnitsBuilt - 1); /*Now we have to build one unit in a straight line*/
-            willHaveToCreateCompensationUnit = 1;
-            finishedCreatingMap = 1; /*No more space for deformations after the current one*/
+            deformation_width = (MAX_X - terrain_units_built - 1); /*Now we have to build one unit in a straight line*/
+            will_have_to_create_compensation_unit = 1;
+            finished_creating_map = 1; /*No more space for deformations after the current one*/
+        }
+        else if (deformation_width + terrain_units_built >= MAX_X && (MAX_X - terrain_units_built - 1) % 2 != 0 && (MAX_X - terrain_units_built - 1) == -1)
+        {
+            deformation_width = 0;
+            finished_creating_map = 1;
         }
         /*At this point we have found the width and height for the deformation*/
         /*We need to find the width's median now*/
-        widthMedian = (deformationWidth/2) + 1; /*In this implementation version, the median of the width will have the highest height*/
-        terrainUnitsUntilMedian = deformationWidth - widthMedian;
-        terrainUnitsToBuild = terrainUnitsUntilMedian;
-        terrainUnitsAfterMedian = terrainUnitsUntilMedian;
-
-        for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
+        if (deformation_width != 0)
         {
+            widthMedian = (deformation_width/2) + 1; /*In this implementation version, the median of the width will have the highest height*/
+        }
+        else
+        {
+            widthMedian = 0;
+        }
+        terrain_units_until_median = deformation_width - widthMedian;
+        terrain_units_to_build = terrain_units_until_median;
+        terrainUnitsAfterMedian = terrain_units_until_median;
 
+        for (x = terrain_units_built; terrain_units_to_build > 0; x++) /*This loop creates terrain deformation before reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
+        {
             do
             {
-                newRndSeed(counter);
-                number = rand() % (heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+                new_rnd_seed();
+                number = rand() % (height_offset_high + 1); /*Gets a number from 0 to the max deformation height + the height_offset_high to be built.*/
             }
-            while (number < heightOffsetLow || number > heightOffsetHigh || number == 0);
+            while (number < height_offset_low || number > height_offset_high || number <= 0);
 
             for (y = 0; y < number; y++)
             {
-                mapLayout[x][y] = 1;
+                map_layout[x][y] = 1;
             }
-            terrainUnitsBuilt++;
-            terrainUnitsToBuild--;
+            terrain_units_built++;
+            terrain_units_to_build--;
         }
-
+        print_loading_status(terrain_units_built);
         /*Now we have reached the median width value, which will have the max height*/
-        x = terrainUnitsBuilt; /*This step is only for us to know that x has the value of the units built, but this is not a necessary line as that is already the value x holds. This is just a reminder*/
+        x = terrain_units_built; /*This step is only for us to know that x has the value of the units built, but this is not a necessary line as that is already the value x holds. This is just a reminder*/
 
-        for (y = 0; y < deformationHeight; y++)
+        for (y = 0; y < deformation_height; y++)
         {
-            mapLayout[x][y] = 1;
+            map_layout[x][y] = 1;
         }
-        terrainUnitsBuilt++;
+        terrain_units_built++;
+        print_loading_status(terrain_units_built);
         /*Now the median value already has terrain*/
         /*We need to assign terrain to the remaining values of the deformation width*/
 
-        terrainUnitsToBuild = terrainUnitsAfterMedian;
+        terrain_units_to_build = terrainUnitsAfterMedian;
 
-        for (x = terrainUnitsBuilt; terrainUnitsToBuild > 0; x++) /*This loop creates terrain deformation after reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
+        for (x = terrain_units_built; terrain_units_to_build > 0; x++) /*This loop creates terrain deformation after reaching the mountain top. This can either create a mountain or a valley on a mountain.*/
         {
             do
             {
-                newRndSeed(counter);
-                numberAlternative = rand() % (heightOffsetHigh + 1); /*Gets a number from 0 to the max deformation height + the heightOffsetHigh to be built.*/
+                new_rnd_seed();
+                number_alternative = rand() % (height_offset_high + 1); /*Gets a number from 0 to the max deformation height + the height_offset_high to be built.*/
             }
-            while (numberAlternative < heightOffsetLow || numberAlternative > heightOffsetHigh || numberAlternative == 0);
+            while (number_alternative < height_offset_low || number_alternative > height_offset_high || number_alternative <= 0);
 
-            for (y = 0; y < numberAlternative; y++)
+            for (y = 0; y < number_alternative; y++)
             {
-                mapLayout[x][y] = 1;
+                map_layout[x][y] = 1;
             }
             number = y + 1;
-            terrainUnitsBuilt++;
-            terrainUnitsToBuild--;
+            terrain_units_built++;
+            terrain_units_to_build--;
         }
-        if (willHaveToCreateCompensationUnit == 1)
+
+        print_loading_status(terrain_units_built);
+
+        if (will_have_to_create_compensation_unit == 1)
         {
             for (x = (MAX_X - 1); x < MAX_X; x++)
             {
                 for (y = 0; y < number; y++)
                 {
-                    mapLayout[x][y] = 1; /*Draws the last x unit of the map if the last deformation didn't include the last x position*/
+                    map_layout[x][y] = 1; /*Draws the last x unit of the map if the last deformation didn't include the last x position*/
                 }
             }
         }
-        isContinuation = 1;
+
+        is_continuation = 1;
         /*This concludes the building of a deformation*/
     }
-    while (finishedCreatingMap != 1);
-}
+    while (finished_creating_map != 1);
 
-
-
-void createPlainMap(int mapLayout[MAX_X][MAX_Y], int *counter)
-{
-    int x, y, number;
-
-    /*For a Plain map*/
-    newRndSeed(counter);
-    number = rand() % (MAX_TERRAIN_HEIGHT_PLAINS_MAP + 1); /* 0 - MAX HEIGHT  -> need to put MAX HEIGHT +1*/
-    /*This will loop for all the x coordinates*/
-    for (x = 0; x < MAX_X; x++)
-    {
-        for (y = 0; y < number; y++)
-        {
-            mapLayout[x][y] = 1;  /*This will set everything under the surface height to be ground*/
-        }
-    }
-    /*---End of plain map---*/
+    print_loading_status(100);
+    srand(1);
 
 }
 
-void newRndSeed(int *counter)
+void new_rnd_seed()
 {
     struct timeval t1;
     gettimeofday(&t1, NULL);
-    (*counter)++;
-    srand((t1.tv_usec * t1.tv_sec) + (*counter));
+    srand((t1.tv_usec * t1.tv_sec));
+    srand((rand() % (t1.tv_usec * t1.tv_sec)) + 1);
+}
+
+void print_loading_status(int x)
+{
+    system("cls");
+    printf("Loading: %d%%", x);
+    if (x == 100)
+    {
+        printf("\n\n\nPlease wait while the map is drawn. Thank you! :D");
+        Sleep(2500);
+    }
 }

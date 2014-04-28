@@ -3,10 +3,14 @@
 //-----------------------------------------------------------------------
 
 #include "levels_level.h"
+#include <time.h>
 
-level_struct levels(int option)
+
+level_struct selected_level; //Global variable selected_level if you want use it add "levels_level.h"
+float wind_speed; //Global variable wind_speed if you want use it add "levels_level.h"
+
+void levels(int option)
 {
-    level_struct selected_level;
     level_struct easy_level;
     {
         easy_level.level_wind = WIND_NO;
@@ -28,13 +32,24 @@ level_struct levels(int option)
     {
     case 1:
         selected_level = easy_level;
+        wind_speed = 0;
         break;
     case 2:
-        selected_level = hard_level;
+        selected_level = medium_level;
+        wind_speed = random_wind();
         break;
     case 3:
         selected_level = hard_level;
+        wind_speed = random_wind(); //And addictionally it will be generated in all next rounds
         break;
     }
-    return selected_level;
+
+}
+
+float random_wind()
+{
+    int random_value;
+    srand ( time(NULL) );
+    random_value = (rand() % 201 - 100);
+    return  (float)random_value;
 }

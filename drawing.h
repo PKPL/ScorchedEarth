@@ -19,6 +19,6 @@
 #include "drawing_destruction.h"
 #include "maps_create.h"
 
-void test_drawing(int mapLayout [MAX_X][MAX_Y]);
+void test_drawing(int map_layout [MAX_X][MAX_Y]);
 
 #endif // __DRAWING_H__

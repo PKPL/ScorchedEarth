@@ -27,6 +27,9 @@ typedef struct level_struct
    ai_type level_ai;
 } level_struct;
 
-level_struct levels(int option);
+void levels(int option);
+float random_wind();
+extern level_struct selected_level;
+extern float wind_speed;
 
 #endif // __LEVELS_LEVEL_H__
