@@ -49,7 +49,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
     {
         do
         {
-            new_rnd_seed();
+
             terrain_deformation_start = (rand() % MAX_DISTANCE_UNTIL_DEFORMATION_START) + 1; /*defines the max distance until a deformation appears*/
             /*This will loop for all the x coordinates at the same height, before the first deformation*/
         }
@@ -86,14 +86,14 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 
         do
         {
-            new_rnd_seed();
+
             deformation_width = (rand() % MAX_WIDTH_DEFORMATION) + 1; /*defines the max width for the deformation. This will have to be an odd number for this implementation version*/
         }
         while (deformation_width % 2 == 0 || deformation_width < 5); /*Ensures the deformation has at least the width of 5 units, and the deformation width is an odd number*/
 
         do
         {
-            new_rnd_seed();
+
             deformation_height = (rand() % ((MAX_Y - free_space_height))) + 1; /*defines the max height for the deformation.*/
             /*For this implementation version, valleys may appear on a mountain, but valleys will never be forcefully created. This will change on a later revision*/
         }
@@ -167,7 +167,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         {
             do
             {
-                new_rnd_seed();
+
                 number = rand() % (height_offset_high + 1); /*Gets a number from 0 to the max deformation height + the height_offset_high to be built.*/
             }
             while (number < height_offset_low || number > height_offset_high || number <= 0);
@@ -198,7 +198,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         {
             do
             {
-                new_rnd_seed();
+
                 number_alternative = rand() % (height_offset_high + 1); /*Gets a number from 0 to the max deformation height + the height_offset_high to be built.*/
             }
             while (number_alternative < height_offset_low || number_alternative > height_offset_high || number_alternative <= 0);
@@ -237,10 +237,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 
 void new_rnd_seed()
 {
-    struct timeval t1;
-    gettimeofday(&t1, NULL);
-    srand((t1.tv_usec * t1.tv_sec));
-    srand((rand() % (t1.tv_usec * t1.tv_sec)) + 1);
+    srand(time(NULL));
 }
 
 void print_loading_status(int x)
