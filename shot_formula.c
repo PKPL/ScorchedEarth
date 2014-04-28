@@ -43,7 +43,7 @@ void playerShot(missile_data *missile) {
                     // createExplosion(matrix); //connection with drawing_destruction.c
                     //EXTRA_EXPLOSION!!!!!
 
-                    extra_explosion(missile); //you can find it in shot_hit.c
+                   // extra_explosion(missile); //you can find it in shot_hit.c
                     flag=1;
                     break;
             case 3: /*explosion: hit unit*/

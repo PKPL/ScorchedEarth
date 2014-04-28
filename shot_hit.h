@@ -8,8 +8,8 @@
 
 int checkHit(int, missile_data*);
 
-<<<<<<< HEAD
+
 void extra_expolision(missile_data*);
-=======
+
 #endif // __SHOT_HIT_H__
->>>>>>> d83f53afeec47bca37dc0cce9f0bbfeef84eac1d
+
