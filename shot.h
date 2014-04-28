@@ -11,6 +11,9 @@
 #include "matrix.h"
 #include "shot_final_equation.h"
 
-void testShot(); // function for agreagate testing
+#define PLAYER 10
+#define ENEMY 20
+
+void testShot(int, int, int, int, int); // function for agreagate testing
 
 #endif // __SHOT_H__

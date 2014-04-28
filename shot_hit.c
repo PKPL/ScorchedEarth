@@ -12,3 +12,7 @@ int checkHit (int i, missile_data *m) {
         return 3;
     return 4;
 }
+
+void extra_expolision(missile *m){
+
+}

@@ -11,12 +11,16 @@
 
 // Included files
 #include "menu_new_game.h"
-//#include "menu_highscore.h"
+#include "menu_highscore.h"
 #include "menu_credits.h"
 #include "menu_close_game.h"
+#include "maps_create.h"
+#include "drawing_maps.h"
+#include "drawing_units.h"
+#include "levels_level.h"
 #include <stdio.h>
 
-void test_menu(); // function for agreagate testing
-void menu_reaction(int SelectedOption);
+void test_menu(int map_layout [MAX_X][MAX_Y]); // function for agreagate testing
+void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y]);
 
 #endif // __MENU_H__

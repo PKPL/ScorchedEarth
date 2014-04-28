@@ -9,7 +9,7 @@
 #define HEIGHT 80 //Y axis of the matrix
 #define SHOT_TIME 60
 
-/* In the following struct are stored all the datas related to the firt type of missile
+/* In the following struct are stored all the datas related to the first type of missile
 (for further missile types we'll use more structs) */
 typedef struct {
     char name[100];
@@ -21,13 +21,12 @@ typedef struct {
     int shot_angle; //In sexagesimal degrees
 } missile_data;
 
-float setWindSpeed();
 float windForce(float);
 
 double cosDegrees(double);
 double sinDegrees(double);
 
-missile_data* initializeMissile();
+missile_data* initializeMissile(int, int);
 void setInitialVelocity(missile_data*, float);
 void setShootingAngle(missile_data*, int);
 
