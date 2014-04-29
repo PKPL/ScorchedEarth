@@ -53,7 +53,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 {
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
-                    playerShot(missile);
+                    playerShot(missile, player_power, player_angle);
                 }
                 else if(key_pressed == 224)
                 {
