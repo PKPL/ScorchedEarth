@@ -7,7 +7,7 @@
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile) {
+void playerShot(missile_data *missile, float inital_velocity, int shooting_angle) {
 
     int i, flag = 0;
     int shooting_angle = 0;
@@ -15,20 +15,7 @@ void playerShot(missile_data *missile) {
 
     init_matrix();
 
-    while (initial_velocity < 1 || initial_velocity > 100) { //Offsets still to be decided
-        printf("Enter initial velocity value (1-100 m/s): ");
-        scanf("%f", &initial_velocity);
-        if (initial_velocity < 1 || initial_velocity > 100)
-            printf("Error: invalid choice.\n");
-    }
     setInitialVelocity(missile, initial_velocity);
-
-    while (shooting_angle < 1 || shooting_angle > 360) { //Measured from the horizontal axis (x)
-        printf("Enter shooting angle (1-360): ");
-        scanf("%d", &shooting_angle);
-        if (shooting_angle < 1 || shooting_angle > 360)
-            printf("Error: invalid choice.\n");
-    }
     setShootingAngle(missile, shooting_angle);
 
     shotFunction(missile, windForce(wind_speed));
@@ -102,10 +89,11 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
 
         if (flag == 1) break;
     }
-    print_matrix();
+    //print_matrix();
 
 }
 
+/* Following function returns the exact power value that is needed to exactly hit player with given angle */
 float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord) {
 
     const float b = 0.1;
@@ -123,10 +111,9 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
         t = 0;
         if (velocity > 100) break;
         vel_x0 = velocity * cosDegrees(angle);
-        vel_y0= velocity * sinDegrees(angle);
+        vel_y0 = velocity * sinDegrees(angle);
 
-        for (;;) { //This "for cycle" increases time by 0.02 seconds
-
+        for (;;) { //This "for cycle" increases time by 0.2 seconds
             t += 0.2;
             x_target = x0 + ((wf / b) * t) + (missile_weight / b) * (vel_x0 - wf / b) * (1 - exp( - (b / missile_weight) * t ));
             y_target = y0 + missile_weight / b * (vel_y0 + missile_weight * g / b) * (1 - exp(-(b / missile_weight * t))) - missile_weight * g / b * t;

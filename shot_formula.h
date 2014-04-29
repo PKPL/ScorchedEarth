@@ -16,7 +16,7 @@
 #include "drawing_shots.h"
 #include "levels_level.h"
 
-void playerShot(missile_data*);
+void playerShot(missile_data*, float, int);
 void AIShoot(missile_data*, float, int);
 float AIcheck(int, int, float, int, int, int);
 

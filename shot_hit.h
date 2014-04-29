@@ -9,7 +9,7 @@
 int checkHit(int, missile_data*);
 
 
-void extra_expolision(missile_data*);
+void extra_explosion(missile_data*);
 
 #endif // __SHOT_HIT_H__
 
