@@ -7,11 +7,9 @@
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float inital_velocity, int shooting_angle) {
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle) {
 
     int i, flag = 0;
-    int shooting_angle = 0;
-    float initial_velocity = 0;
 
     init_matrix();
 
