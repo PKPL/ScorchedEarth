@@ -11,9 +11,12 @@
 #include <stdbool.h>
 #include <time.h>
 
+
+
 float min_angle(unit local_bot)
 {
     if(player.y > local_bot.y)return (atan((player.y-local_bot.y)/abs(player.x - local_bot.x)));
+    return 0;
 }
 
 float find_random(int min_ang, int max_ang)
@@ -53,8 +56,8 @@ void test_ai() // function for agreagate testing
 
 void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
-    //if(selected level = AI_EASY)
-
-        //ai_easy(local_bot, map_layout[MAX_X][MAX_Y]);
+    if(selected_level.level_ai == AI_EASY)ai_medium(local_bot, map_layout);
+    else if(selected_level.level_ai == AI_MEDIUM)ai_medium(local_bot, map_layout);
+    else if(selected_level.level_ai == AI_HARD)ai_medium(local_bot, map_layout);
 
 }

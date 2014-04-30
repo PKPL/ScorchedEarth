@@ -8,7 +8,9 @@
 #include "unit.h"
 #include <conio.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "shot.h"
+#include "ai.h"
 
 int screen_bufor [MAX_X][MAX_Y];
 
@@ -27,19 +29,26 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int key_pressed;
     int player_angle = 0;
     int player_power = 100;
+    bool quit = false;
+
 
     test_drawing_units(map_layout);
-    test_drawing_map(map_layout);
-    printf("\n\n");
 
     while(player.hp > 0 && bot.hp > 0)
     {
         //Main game loop :)
+        system("cls");
+        test_drawing_map(map_layout);
+        printf("\n\n");
+
 
         if(queue == 1)
         {
+            if(quit == true)break;
             //Player move
-
+            while(1)
+            {
+                if(quit == true)break;
                 //Choose power and angle
                 printf("Angle = %d", player_angle);
                 printf("\t\tPower = %d", player_power);
@@ -48,12 +57,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 printf("\r");
 
                 key_pressed = getch();
-                if(key_pressed == 27)break;
+                if(key_pressed == 27)quit = true;
                 if(key_pressed == 13)
                 {
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
                     playerShot(missile, player_power, player_angle);
+                    break;
                 }
                 else if(key_pressed == 224)
                 {
@@ -72,10 +82,12 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                         break;
 
                         case 80:
-                        if(player_angle > -180)player_angle = player_angle - 1;
+                        if(player_angle > 0)player_angle = player_angle - 1;
                         break;
                     }
                 }
+
+            }
 
 
                 //----------------------
@@ -92,7 +104,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             //Bot move
 
                 //Choose power and angle
-
+                ai(bot, map_layout);
                 //----------------------
 
                 //Shooting with animation
