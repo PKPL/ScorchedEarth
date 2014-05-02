@@ -5,9 +5,6 @@ NUNO VALENTE
 ROBERTO RIBEIRO
 DANIEL PINTO
 
-
-Bug: weird "0" pillars
-
 */
 
 #include "maps_create.h"
@@ -247,6 +244,6 @@ void print_loading_status(int x)
     if (x == 100)
     {
         printf("\n\n\nPlease wait while the map is drawn. Thank you! :D");
-        Sleep(2500);
+        Sleep(1500);
     }
 }

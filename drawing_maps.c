@@ -16,9 +16,6 @@ void test_drawing_map (int map_layout [MAX_X][MAX_Y])
     double y;
 
 
-
-
-
     //drawing_game_screen();
     for (x = 0.0; x < MAX_X; x++)
     {
