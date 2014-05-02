@@ -37,8 +37,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     while(player.hp > 0 && bot.hp > 0)
     {
         //Main game loop :)
-        system("cls");
-        test_drawing_map(map_layout);
+        //system("cls");
+        if(quit == false)test_drawing_map(map_layout);
         printf("\n\n");
 
 
