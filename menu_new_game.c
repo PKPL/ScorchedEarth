@@ -12,7 +12,13 @@
 #include "shot.h"
 #include "ai.h"
 
+#define PI 3.14159265
+
 int screen_bufor [MAX_X][MAX_Y];
+
+int angle_points[3][2];
+bool first_angle = true;
+float angle_drawing_distanse = 5;
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
@@ -50,11 +56,57 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             {
                 if(quit == true)break;
                 //Choose power and angle
+                gotoxy(0,80);
                 printf("Angle = %d", player_angle);
                 printf("\t\tPower = %d", player_power);
                 printf("\t\tWind = %d", (int)wind_speed);
                 printf("\t\tPoints = %d", player.points);
-                printf("\r");
+
+                //Drawing angle tray
+                if(first_angle == true)
+                {
+                    int i = 0;
+                    for(i = 0; i < 3; i++)
+                    {
+                         angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
+                         angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
+                         if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
+                         {
+                         gotoxy(angle_points[i][0],angle_points[i][1]);
+                         printf(".");
+                         }
+                    }
+                    first_angle = false;
+
+                }
+                else
+                {
+                    int i = 0;
+                    for(i = 0; i < 3; i++)
+                    {
+                        if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
+                         {
+
+
+                         gotoxy(angle_points[i][0],angle_points[i][1]);
+                         printf("%c", map_layout[angle_points[i][0]][angle_points[i][1]]);
+                         }
+
+                    }
+
+
+                    for(i = 0; i < 3; i++)
+                    {
+                        if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
+                         {
+                         angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
+                         angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
+                         gotoxy(angle_points[i][0],angle_points[i][1]);
+                         printf(".");
+                         }
+                    }
+                }
+                //------------------
 
                 key_pressed = getch();
                 if(key_pressed == 27)quit = true;
