@@ -14,6 +14,7 @@ void test_drawing_shots ()
     drawing_shots(map_layout, m);
 }
 
+
 void drawing_shots (int map_layout[MAX_X][MAX_Y], missile_data m)
 {
     int i, j, k, x, y;
@@ -40,6 +41,7 @@ void drawing_shots (int map_layout[MAX_X][MAX_Y], missile_data m)
             map_layout[x][y]=PLAYER_SHOT; // We have no reference for the shooter, so it stays the player for now
         }
     }
+
 
 
 }

@@ -4,14 +4,15 @@
 //On this file Team 1 is working: Lorenzo Romanelli and Federico Bollotta
 
 #include "shot_formula.h"
+#include "maps_create.h"
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle) {
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y] ) {
 
     int i, flag = 0;
 
-    init_matrix();
+    //init_matrix();
 
     setInitialVelocity(missile, initial_velocity);
     setShootingAngle(missile, shooting_angle);

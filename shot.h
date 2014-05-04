@@ -10,10 +10,11 @@
 #include "shot_formula.h"
 #include "matrix.h"
 #include "shot_final_equation.h"
+#include "maps_create.h"
 
 #define PLAYER 10
 #define ENEMY 20
 
-void testShot(int, int, int, int, int); // function for agreagate testing
+void testShot(int, int, int, int, int, int map_layout[MAX_X][MAX_Y]); // function for agreagate testing
 
 #endif // __SHOT_H__
