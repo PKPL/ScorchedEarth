@@ -26,7 +26,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/
-                    // createExplosion(matrix); //connection with drawing_destruction.c
+                    // create_explosion(matrix); //connection with drawing_destruction.c
                     //EXTRA_EXPLOSION!!!!!
 
                    // extra_explosion(missile); //you can find it in shot_hit.c
@@ -42,7 +42,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 break;
         }
 
-        createDestruction(matrix);
+        create_destruction(matrix);
 
         if ( flag == 1 ) break;
     }
@@ -71,7 +71,7 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/
-                createExplosion(matrix); //connection with drawing_destruction.c
+                create_explosion(matrix); //connection with drawing_destruction.c
                 flag = 1;
                 break;
             case 3: /*explosion: hit unit*/
@@ -84,7 +84,7 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
                 break;
         }
 
-        createDestruction(matrix);
+        create_destruction(matrix);
 
         if (flag == 1) break;
     }
