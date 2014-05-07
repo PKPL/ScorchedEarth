@@ -1,5 +1,7 @@
 //---------------------------- Draw destructions -------------------------
 // Drawing destructions
+// NUNO VALENTE
+// PORTUGUESE TEAM
 //------------------------------------------------------------------------
 
 #include "drawing_destruction.h"

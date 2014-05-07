@@ -1,5 +1,8 @@
 //---------------------------- Draw maps ---------------------------------
 // Drawing maps
+// NUNO VALENTE
+// DANIEL PINTO
+// PORTUGUESE TEAM
 //------------------------------------------------------------------------
 
 #include "drawing_maps.h"
