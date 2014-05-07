@@ -16,18 +16,18 @@ void test_maps_save()
 {
 
     int map_layout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
-    saveMap(map_layout);
+    save_map(map_layout);
 }
 
-void saveMap(int map_layout[MAX_X][MAX_Y])
+void save_map(int map_layout[MAX_X][MAX_Y])
 {
 
-    FILE * mapFile;
+    FILE * map_file;
     int x = 0;
     int y = 0;
 
-    mapFile = fopen("maps_save.txt","w"); // w means we are able to write it and create it if it didn't exist
-    if (mapFile == NULL)
+    map_file = fopen("maps_save.txt","w"); // w means we are able to write it and create it if it didn't exist
+    if (map_file == NULL)
     {
         perror("Error:\t The program could not open the file where the map was saved.");
     }
@@ -37,10 +37,10 @@ void saveMap(int map_layout[MAX_X][MAX_Y])
         {
             for (y = 0; y < MAX_Y; y++)
             {
-                fprintf(mapFile,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
+                fprintf(map_file,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
             }
         }
         printf("\nMap saved in maps_save.txt\n");
-        fclose(mapFile);
+        fclose(map_file);
     }
 }

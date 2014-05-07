@@ -1,5 +1,7 @@
 //---------------------------- Draw destructions -------------------------
 // Drawing destructions
+// NUNO VALENTE
+// PORTUGUESE TEAM
 //------------------------------------------------------------------------
 
 #include "drawing_destruction.h"
@@ -10,14 +12,14 @@ extern int map_layout [MAX_X][MAX_Y];
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])
 {
-    createExplosion(map_layout); //Draws the explosion
-    createDestruction(map_layout); //Draws the destruction
+    create_explosion(map_layout); //Draws the explosion
+    create_destruction(map_layout); //Draws the destruction
 }
 
-void createDestruction(int map_layout [MAX_X][MAX_Y])
+void create_destruction(int map_layout [MAX_X][MAX_Y])
 {
     int x, y;
-    int breaksLoop = 0;
+    int breaks_loop = 0;
 
 
     for (x = 0; x < MAX_X; x++)
@@ -86,7 +88,7 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
                 }
 
                 y = MAX_Y;
-                breaksLoop = 1;
+                breaks_loop = 1;
 
                 //The code above destroys terrain
             }
@@ -152,12 +154,12 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
                 }
 
                 y = MAX_Y;
-                breaksLoop = 1;
+                breaks_loop = 1;
 
                 //The code above destroys terrain
             }
 
-            if (breaksLoop == 1)
+            if (breaks_loop == 1)
             {
                 x = MAX_X;
             }
@@ -165,10 +167,10 @@ void createDestruction(int map_layout [MAX_X][MAX_Y])
     }
 }
 
-void createExplosion(int map_layout [MAX_X][MAX_Y])
+void create_explosion(int map_layout [MAX_X][MAX_Y])
 {
     int x, y;
-    int breaksLoop = 0;
+    int breaks_loop = 0;
 
 
     for (x = 0; x < MAX_X; x++)
@@ -206,7 +208,7 @@ void createExplosion(int map_layout [MAX_X][MAX_Y])
                 }
 
                 y = MAX_Y; //breaks out of the loop
-                breaksLoop = 1;
+                breaks_loop = 1;
             }
             else if (map_layout[x][y] == 60 && map_layout[x][y-1] == 1) //This means this is the final position of the enemy projectile, as below it there is ground, so it hits the ground
             {
@@ -239,11 +241,11 @@ void createExplosion(int map_layout [MAX_X][MAX_Y])
                 }
 
                 y = MAX_Y; //breaks out of the loop
-                breaksLoop = 1;
+                breaks_loop = 1;
             }
         }
 
-        if (breaksLoop == 1)
+        if (breaks_loop == 1)
         {
             x = MAX_X;
         }
