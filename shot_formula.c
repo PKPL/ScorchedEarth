@@ -42,11 +42,11 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 break;
         }
 
-<<<<<<< HEAD
+
         //createDestruction(matrix);
-=======
+
         create_destruction(matrix);
->>>>>>> f4dfd4d42750dff918d4350fd59605e72f0ac11c
+
 
         if ( flag == 1 ) break;
     }
