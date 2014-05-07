@@ -16,10 +16,10 @@ void test_maps_save()
 {
 
     int map_layout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
-    saveMap(map_layout);
+    save_map(map_layout);
 }
 
-void saveMap(int map_layout[MAX_X][MAX_Y])
+void save_map(int map_layout[MAX_X][MAX_Y])
 {
 
     FILE * map_file;
