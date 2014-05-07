@@ -35,7 +35,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int key_pressed;
     int player_angle = 0;
     int player_power = 100;
+    bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
+    bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
 
 
     test_drawing_units(map_layout);
@@ -44,16 +46,19 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     {
         //Main game loop :)
         //system("cls");
-        if(quit == false)test_drawing_map(map_layout);
+        if(quit == false && first_frame == 1)
+        {
+        test_drawing_map(map_layout);
+        first_frame = 0;
         printf("\n\n");
+        }
 
 
-        if(queue == 1)
+        while(playerTurn)
         {
             if(quit == true)break;
             //Player move
-            while(1)
-            {
+
                 if(quit == true)break;
                 //Choose power and angle
                 gotoxy(0,80);
@@ -121,7 +126,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
                     playerShot(missile, player_power, player_angle, map_layout);
-                    break;
+                    playerTurn = false;
                 }
                 else switch(getch()){
                         case 72:
@@ -140,42 +145,16 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                         if(player_angle > 0)player_angle = player_angle - 1;
                         break;
                 }
-
-            }
-
-
-                //----------------------
-
-                //Shooting with animation
-
-                //-----------------------
-
-            //-----------
         }
+        //-----------------------------------end of player's turn
+        ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
 
-        else
-        {
-            //Bot move
+        //------------------------------------end of bots' turn
+    if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
+    Sleep(1000);
+    playerTurn = true;
 
-                //Choose power and angle
-                ai(bot, map_layout);
-                //----------------------
-
-                //Shooting with animation
-
-                //-----------------------
-
-            //--------
-        }
-
-        queue = queue + 1;
-        if(queue >= max_players)
-        {
-            queue = 1; //Returning to player move
-            if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
-        }
-        //-----------------
-    }
+    }//end of main loop
 
     system("cls");
     if(player.hp > 0)

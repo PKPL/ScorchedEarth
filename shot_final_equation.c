@@ -106,6 +106,7 @@ void yCoordinate (missile_data *m) { //Calculates y coordinate against time and 
 void shotFunction (missile_data *m, float wf) { //Puts together coordinates calculations and velocities calculations
     xVelocityFormula(m, wf);
     yVelocityFormula(m);
-    xCoordinate(m, wf);
     yCoordinate(m);
+    xCoordinate(m, wf);
+
 }

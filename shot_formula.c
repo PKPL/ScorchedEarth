@@ -37,12 +37,12 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 flag=1;
                 break;
             case 4:
-                drawing_shots(matrix,missile);
+                drawing_shots(i,matrix,missile);
               //  matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
                 break;
         }
 
-        createDestruction(matrix);
+        //createDestruction(matrix);
 
         if ( flag == 1 ) break;
     }

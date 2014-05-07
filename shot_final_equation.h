@@ -4,7 +4,7 @@
 //On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
 #define MAX_WIND_SPEED 100 //Meters per second
-#define VECTOR_LENGTH 1000
+#define VECTOR_LENGTH 1000//temporary
 #define LENGTH 100 //X axis of the matrix
 #define HEIGHT 80 //Y axis of the matrix
 #define SHOT_TIME 60

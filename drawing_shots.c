@@ -15,36 +15,28 @@ void test_drawing_shots ()
 }
 
 
-void drawing_shots (int map_layout[MAX_X][MAX_Y], missile_data m)
+void drawing_shots (int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
 {
-    int i, j, k, x, y;
 
-    int vetor[VECTOR_LENGTH];
 
-    for (j = VECTOR_LENGTH, k = 0 ; j >= 0, k < VECTOR_LENGTH ; j-- , k++)
+int sign = map_layout[m->x_vector_coordinate[i]][m->y_vector_coordinate[i]];
+
+
+if(m->x_vector_coordinate[i] != player.x && m->y_vector_coordinate[i] != player.y && (79-m->y_vector_coordinate[i]) < MAX_Y && m->x_vector_coordinate[i] >= 0 && m->x_vector_coordinate[i] <= MAX_X )
+{
+    gotoxy(m->x_vector_coordinate[i],79-(m->y_vector_coordinate[i]));
+    printf("8");
+    Sleep(20);
+}
+    gotoxy(m->x_vector_coordinate[i],79-(m->y_vector_coordinate[i]));
+    switch (sign)
     {
-        vetor[k] =  m.y_vector_coordinate[j]; // we need to change the the elements's order
+    case 0:
+    printf(" ");
+    break;
+    case 1:
+    printf("1");
+    break;
     }
-
-    for (i = 0; i < VECTOR_LENGTH; i++)
-    {
-        x = m.x_vector_coordinate[i];
-        //printf("x = %d", x);
-        y = vetor[i];
-        //printf("  y = %d", y);
-        if (map_layout[x][y] != SKY) // if the missile hits something, it explodes
-        {
-            // EXPLOSION!
-            i = VECTOR_LENGTH; // it stops the for cycle
-
-        }
-        else // it draws the missile's trajectory
-        {
-            map_layout[x][y]=PLAYER_SHOT; // We have no reference for the shooter, so it stays the player for now
-
-        }
-    }
-
-
 
 }
