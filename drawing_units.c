@@ -20,15 +20,6 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
 {
     tCoordinates coordinates_player, coordinates_enemy;
 
-    //Small changes to remember generated position in our global unit variables
-
-    player.x = coordinates_player.x;
-    player.y = coordinates_player.y;
-    bot.x = coordinates_enemy.x;
-    bot.y = coordinates_enemy.y;
-
-    //-------------------------------------------------------------------------
-
     do
     {
         coordinates_player = position (map_layout);
@@ -41,6 +32,11 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
     while (abs(coordinates_enemy.x - coordinates_player.x) <= DISTANCE && abs(coordinates_enemy.y - coordinates_player.y) <= DISTANCE);
     map_layout[coordinates_player.x][coordinates_player.y] = PLAYER;
     map_layout[coordinates_enemy.x][coordinates_enemy.y] = ENEMY;
+
+    player.x = coordinates_player.x;
+    player.y = coordinates_player.y;
+    bot.x = coordinates_enemy.x;
+    bot.y = coordinates_enemy.y;
 }
 
 tCoordinates position (int map_layout[MAX_X][MAX_Y])

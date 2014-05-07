@@ -65,12 +65,12 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 //Drawing angle tray
                 if(first_angle == true)
                 {
-                    int i = 0;
+                    int i;
                     for(i = 0; i < 3; i++)
                     {
                          angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
                          angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
-                         if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
+                         if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
                          {
                          gotoxy(angle_points[i][0],angle_points[i][1]);
                          printf(".");
@@ -81,15 +81,21 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 }
                 else
                 {
-                    int i = 0;
+                    int i;
                     for(i = 0; i < 3; i++)
                     {
-                        if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
                          {
 
 
+                         int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
                          gotoxy(angle_points[i][0],angle_points[i][1]);
-                         printf("%c", map_layout[angle_points[i][0]][angle_points[i][1]]);
+                         switch(xxx){
+                            case 0: printf(" "); break;
+                            case 1: printf("1"); break;
+//                            default: printf(" "); break;
+                         }
+
                          }
 
                     }
@@ -97,10 +103,10 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
                     for(i = 0; i < 3; i++)
                     {
-                        if(angle_points[i][0] <= MAX_X && angle_points[i][1] <= MAX_Y)
-                         {
-                         angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
-                         angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
+                       angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
+                       angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
+                       if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                       {
                          gotoxy(angle_points[i][0],angle_points[i][1]);
                          printf(".");
                          }
@@ -117,10 +123,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                     playerShot(missile, player_power, player_angle, map_layout);
                     break;
                 }
-                else if(key_pressed == 224)
-                {
-                    switch(getch())
-                    {
+                else switch(getch()){
                         case 72:
                         if(player_angle < 180)player_angle = player_angle + 1;
                         break;
@@ -136,7 +139,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                         case 80:
                         if(player_angle > 0)player_angle = player_angle - 1;
                         break;
-                    }
                 }
 
             }
