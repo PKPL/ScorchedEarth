@@ -22,7 +22,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
 
-        switch (checkHit(i, missile)) {
+        switch (checkHit(i, missile, matrix)) {
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/
@@ -71,7 +71,7 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
 
-        switch (checkHit(i, missile)) {
+        switch (checkHit(i, missile,matrix)) {
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/

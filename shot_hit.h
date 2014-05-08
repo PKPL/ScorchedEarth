@@ -5,8 +5,9 @@
 
 #include "matrix.h"
 #include "shot_final_equation.h"
+#include "maps_create.h"
 
-int checkHit(int, missile_data*);
+int checkHit(int, missile_data*, int matrix[MAX_X][MAX_Y]);
 
 
 void extra_explosion(missile_data*);
