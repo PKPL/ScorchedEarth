@@ -61,7 +61,7 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
 
     int i, flag = 0;
 
-    init_matrix();
+    //init_matrix();
 
     setInitialVelocity(missile, ai_init_velocity);
     setShootingAngle(missile, ai_shoot_angle);
