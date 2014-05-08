@@ -26,7 +26,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
             case 0: continue;
             case 1: break;
             case 2: /*explosion: hit ground*/
-                    // create_explosion(matrix); //connection with drawing_destruction.c
+                    create_explosion(matrix); //connection with drawing_destruction.c
                     //EXTRA_EXPLOSION!!!!!
 
                    // extra_explosion(missile); //you can find it in shot_hit.c
@@ -38,7 +38,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 break;
             case 4:
                 drawing_shots(i,matrix,missile);
-              //  matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
+                //matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
                 break;
         }
 
@@ -128,7 +128,7 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
                 else continue; //It might happen that in two consecutive instants, x coord of the shoot remains the same while y coord changes
             }
 
-            else if (x_target >= LENGTH || x_target < 0) //Here instead of LENGTH (of matrix) we'll have to put length of map
+            else if (x_target >= MAX_X || x_target < 0) //Here instead of LENGTH (of matrix) we'll have to put length of map
                 break;
         }
         velocity += 1;
