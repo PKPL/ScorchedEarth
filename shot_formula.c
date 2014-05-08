@@ -14,7 +14,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
     //init_matrix();
 
-    setInitialVelocity(missile, initial_velocity);
+    setInitialVelocity(missile, initial_velocity/4);
     setShootingAngle(missile, shooting_angle);
 
     shotFunction(missile, windForce(wind_speed));
@@ -45,7 +45,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
         //createDestruction(matrix);
 
-        create_destruction(matrix);
+        //create_destruction(matrix);
 
 
         if ( flag == 1 ) break;
