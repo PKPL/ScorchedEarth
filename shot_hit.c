@@ -4,7 +4,7 @@
 #include "shot_hit.h"
 
 int checkHit (int i, missile_data *m,int matrix[MAX_X][MAX_Y]) {
-    if (m->y_vector_coordinate[i] > MAX_Y)
+    if (m->y_vector_coordinate[i] >= MAX_Y)
     {
         Sleep(20);
         return 0; //If the projectile outgoes map height without hitting anything, it waits for it to enter again in the map
