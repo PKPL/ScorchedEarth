@@ -7,6 +7,7 @@
 #include "drawing_units.h"
 #include "unit.h"
 #include <time.h>
+#include <math.h>
 
 
 extern int map_layout [MAX_X][MAX_Y];
@@ -39,6 +40,36 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
     player.y = coordinates_player.y;
     bot.x = coordinates_enemy.x;
     bot.y = coordinates_enemy.y;
+
+    int i,j;
+    for(i = 0; i < MAX_X; i++)
+    {
+        for(j = 0; j < MAX_Y; j++)
+        {
+                if(j >= player.y && abs(i - player.x) <= 5 && map_layout[i][j] == 1)
+                {
+                 gotoxy(i, 79 - j);
+                 map_layout[i][j] = 0;
+                 printf(" ");
+                }
+        }
+
+    }
+
+    for(i = 0; i < MAX_X; i++)
+    {
+        for(j = 0; j < MAX_Y; j++)
+        {
+                if(j >= bot.y && abs(i - bot.x) <= 5 && map_layout[i][j] == 1)
+                {
+                 gotoxy(i, 79 - j);
+                 map_layout[i][j] = 0;
+                 printf(" ");
+                }
+        }
+
+    }
+
 }
 
 tCoordinates position (int map_layout[MAX_X][MAX_Y])
