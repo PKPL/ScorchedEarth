@@ -4,12 +4,14 @@
 // PORTUGUESE TEAM
 //------------------------------------------------------------------------
 
+
 #include "drawing_destruction.h"
+#include "drawing_shots.h"
 #include <math.h>
 
 
 extern int map_layout [MAX_X][MAX_Y];
-int destruct_radius = 5;
+int destruct_radius = 4;
 
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])
@@ -182,11 +184,19 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
             h_x = x_pos - i;
             h_y = y_pos - j;
             h = sqrt(h_x*h_x + h_y*h_y);
-            if(h <= destruct_radius)
+            if(h <= destruct_radius && map_layout[i][j] < 2)
             {
                 map_layout[i][j] = 0;
                 gotoxy(i,79 - j);
                 printf(" ");
+            }
+            else
+            {
+                if(h <= destruct_radius && map_layout[i][j] == 3)player.hp = 0;
+                else if (h <= destruct_radius)
+                {
+                   bot.hp = 0;
+                }
             }
         }
     }

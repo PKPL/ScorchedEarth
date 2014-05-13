@@ -146,6 +146,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                         break;
                 }
         }
+
+
+        if(bot.hp <= 0 || player.hp <= 0)break;
         //-----------------------------------end of player's turn
         ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
 
@@ -156,10 +159,15 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
     }//end of main loop
 
-    system("cls");
-    if(player.hp > 0)
+
+
+    if(bot.hp <= 0)
     {
         //Inform about victory
+        gotoxy(30,20);
+        printf("VICTORY");
+        Sleep(5000);
+        test_menu();
 
         //--------------------
 
@@ -168,18 +176,16 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         //------------
     }
 
-    else if(bot.hp > 0 || key_pressed == 27)
+    else if(player.hp <= 0 || key_pressed == 27)
     {
         //Inform about defeat
 
         //--------------------
 
-        getch();
-
-        //Back to menu
-
-            system("cls");
-            test_menu(map_layout);
+        gotoxy(30,20);
+        printf("DEFEAT");
+        Sleep(5000);
+        test_menu();
 
         //------------
     }

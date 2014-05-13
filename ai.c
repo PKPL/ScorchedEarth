@@ -12,7 +12,6 @@
 #include <time.h>
 
 
-
 float min_angle(unit local_bot)
 {
     if(player.y > local_bot.y)return (atan((player.y-local_bot.y)/abs(player.x - local_bot.x)));

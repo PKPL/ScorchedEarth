@@ -13,8 +13,9 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 
 // Included files
 #include "menu.h"
-void test_menu(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
+void test_menu() // function for agreagate testing
 {
+    int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
     system("COLOR 8F");
     system("cls");
     int selectedOption, control;
@@ -99,10 +100,10 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     }
     default:
     {
-        test_menu(map_layout);
+        test_menu();
         break;
     }
     }
-    test_menu(map_layout);
+    test_menu();
 }
 

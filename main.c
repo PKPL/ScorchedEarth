@@ -40,7 +40,7 @@ SetConsoleScreenBufferSize(wHnd, bufferSize);
 
     level_struct selected_level;
     //system("mode 100, 80");
-    int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
+
     /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
     printf("Scorched Earth\n");
     //Tests
@@ -48,7 +48,7 @@ SetConsoleScreenBufferSize(wHnd, bufferSize);
     printf("Testing functionality\n");
    // test_ai();
     //selected_level = test_levels();
-    test_menu(map_layout);
+    test_menu();
    // test_maps(map_layout);
     //test_drawing(map_layout);
     //test_unit();
