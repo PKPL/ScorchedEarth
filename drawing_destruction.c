@@ -5,9 +5,11 @@
 //------------------------------------------------------------------------
 
 #include "drawing_destruction.h"
+#include <math.h>
 
 
 extern int map_layout [MAX_X][MAX_Y];
+int destruct_radius = 5;
 
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])
@@ -167,24 +169,26 @@ void create_destruction(int map_layout [MAX_X][MAX_Y])
     }
 }
 
-void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int i)
+void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
 {
-    int x_pos = (int)m->x_vector_coordinate[i];
-    int y_pos = (int)m->y_vector_coordinate[i];
-    map_layout[x_pos][y_pos] = 0;
-    gotoxy(x_pos,79 - y_pos);
-    printf(" ");
-    map_layout[x_pos +1][y_pos] = 0;
-    gotoxy(x_pos+1,79 - y_pos);
-    printf(" ");
-    map_layout[x_pos-1][y_pos] = 0;
-    gotoxy(x_pos-1,79 - y_pos);
-    printf(" ");
-    map_layout[x_pos][y_pos+1] = 0;
-    gotoxy(x_pos,79 - y_pos - 1);
-    printf(" ");
-    map_layout[x_pos][y_pos-1] = 0;
-    gotoxy(x_pos,79 - y_pos +1);
-    printf(" ");
+    int x_pos = (int)m->x_vector_coordinate[number];
+    int y_pos = (int)m->y_vector_coordinate[number];
+
+    int i,j, h,h_x, h_y;
+    for(i = 0; i < MAX_X; i++)
+    {
+        for(j = 0; j < MAX_Y; j++)
+        {
+            h_x = x_pos - i;
+            h_y = y_pos - j;
+            h = sqrt(h_x*h_x + h_y*h_y);
+            if(h <= destruct_radius)
+            {
+                map_layout[i][j] = 0;
+                gotoxy(i,79 - j);
+                printf(" ");
+            }
+        }
+    }
 
 }
