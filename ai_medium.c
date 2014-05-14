@@ -85,4 +85,33 @@ printf("rnd = %d",rnd);
     playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false);
 }
 
+void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y])
+{
+
+int power;
+
+
+power = -1;
+
+while(power == -1)
+{
+ai_angle --;
+if(ai_angle <= 50)
+{
+    ai_angle = 180;
+}
+power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y);
+
+
+}
+missile_data *missile;
+    missile = initializeMissile(local_bot.x, local_bot.y);
+
+int rnd = find_random(-5,5);
+
+    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false);
+}
+
+
+
 

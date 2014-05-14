@@ -59,6 +59,6 @@ void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
     // i dont know why, but complier can't find reference to "ai_easy()" when it was if file "ai_easy.c" so i moved it to ai_medium
     if(selected_level.level_ai == AI_EASY)ai_easy(local_bot, map_layout);
     else if(selected_level.level_ai == AI_MEDIUM)ai_medium(local_bot, map_layout);
-    else if(selected_level.level_ai == AI_HARD)ai_medium(local_bot, map_layout);
+    else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout);
 
 }
