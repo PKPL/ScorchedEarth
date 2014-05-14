@@ -48,6 +48,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         //system("cls");
         if(quit == false && first_frame == 1)
         {
+
         test_drawing_map(map_layout);
         first_frame = 0;
         printf("\n\n");
@@ -126,6 +127,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
                     playerShot(missile, player_power, player_angle, map_layout,false);
+                     falling(map_layout);
+
                     playerTurn = false;
                 }
                 else switch(getch()){
@@ -150,7 +153,10 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
         if(bot.hp <= 0 || player.hp <= 0)break;
         //-----------------------------------end of player's turn
+        Sleep(2000);
         ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
+        falling(map_layout);
+
 
         //------------------------------------end of bots' turn
     if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force

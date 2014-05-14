@@ -62,3 +62,27 @@ void drawing_game_screen() //the parameters will be the info needed
     }
 
 }
+
+void falling(int map_layout[MAX_X][MAX_Y])
+{
+    int i, j, k;
+
+    for(i = 0; i < MAX_X; i++)
+    {
+        for(j = MAX_Y - 1; j > 0; j--)
+        {
+            if(map_layout[i][j] != 0 && map_layout[i][j-1] == 0)
+            {
+                //Sleep(10);
+                map_layout[i][j-1] = map_layout[i][j];
+                map_layout[i][j] = 0;
+                gotoxy(i,79-j + 1);
+                printf("%d", map_layout[i][j-1]);
+                gotoxy(i,79-j);
+                printf(" ");
+                Sleep(3);
+                j = MAX_Y;
+            }
+        }
+    }
+}
