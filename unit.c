@@ -9,10 +9,7 @@ unit player;
 unit bot;
 
 
-void test_unit() // function for agreagate testing
-{
-    printf("Unit test\n");
-}
+
 
 void unit_func()
 {
