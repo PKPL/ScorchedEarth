@@ -6,9 +6,7 @@
 //------------------------------------------------------------------------
 #include <math.h>
 #include "maps_create.h" // including this library to have MAX_X, MAX_Y and time.h
-#define PLAYER 3  //Sorry for that temporary change, but in text mode we need another char than 10 (it bad looks with ground (1);
-#define ENEMY 2
-#define DISTANCE 20 // minimum distance between player and enemy
+#include "defines.h"
 
 typedef struct
 {

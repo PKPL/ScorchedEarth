@@ -8,7 +8,6 @@
 // Included libraries
 
 // Included files
-#define _NO_OLDNAMES
 #include <conio.h>
 #include <stdio.h>
 #include <math.h>
@@ -18,6 +17,7 @@
 #include "drawing_shots.h"
 #include "drawing_destruction.h"
 #include "maps_create.h"
+#include "defines.h"
 
 void test_drawing(int map_layout [MAX_X][MAX_Y]);
 

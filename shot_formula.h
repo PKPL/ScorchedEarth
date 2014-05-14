@@ -6,12 +6,12 @@
 //------------------------------------------------------------------------
 //On this file Team 1 is working: Lorenzo Romanelli and Federico Bollotta
 
+#include "defines.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "shot_final_equation.h"
 #include "shot_hit.h"
-#include "matrix.h"
 #include "drawing_destruction.h"
 #include "drawing_shots.h"
 #include "levels_level.h"

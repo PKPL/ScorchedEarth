@@ -49,6 +49,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ai_medium.h" />
+		<Unit filename="defines.h" />
 		<Unit filename="drawing.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -125,6 +126,7 @@
 		<Unit filename="shot.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="shot.h" />
 		<Unit filename="shot_final_equation.c">
 			<Option compilerVar="CC" />
 		</Unit>

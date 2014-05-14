@@ -8,6 +8,7 @@
 #include "maps_create.h"
 #include "unit.h"
 #include "shot.h"
+#include "defines.h"
 
 void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y]);
 void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y]);

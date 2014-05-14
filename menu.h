@@ -19,6 +19,7 @@
 #include "drawing_units.h"
 #include "levels_level.h"
 #include <stdio.h>
+#include "defines.h"
 
 void test_menu(); // function for agreagate testing
 void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y]);

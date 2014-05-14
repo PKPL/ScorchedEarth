@@ -6,6 +6,7 @@
 //------------------------------------------------------------------------
 
 // Included libraries
+#include "defines.h"
 
 //Structs
 typedef struct unit

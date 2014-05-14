@@ -6,6 +6,7 @@
 //------------------------------------------------------------------------
 
 #include <windows.h>
+#include "defines.h"
 
 typedef enum { NOCURSOR, SOLIDCURSOR, NORMALCURSOR } CURSOR_TYPE;
 

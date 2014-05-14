@@ -54,48 +54,6 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
 }
 
-
-/*Here we have an equivalent AI shooting function (instead of asking the player for necessary data, they will be passed as arguments) */
-
-void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle) {
-
-    int i, flag = 0;
-
-    //init_matrix();
-
-    setInitialVelocity(missile, ai_init_velocity);
-    setShootingAngle(missile, ai_shoot_angle);
-
-    shotFunction(missile, windForce(wind_speed));
-
-    /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
-    for (i = 0; i < VECTOR_LENGTH; i++) {
-
-        switch (checkHit(i, missile,matrix)) {
-            case 0: continue;
-            case 1: break;
-            case 2: /*explosion: hit ground*/
-                create_explosion(matrix, missile, i); //connection with drawing_destruction.c
-                flag = 1;
-                break;
-            case 3: /*explosion: hit unit*/
-                //Call function Destruction of Unit or similar.
-                flag = 1;
-                break;
-            case 4:
-                drawing_shots(matrix, missile);
-              //  matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
-                break;
-        }
-
-        create_destruction(matrix);
-
-        if (flag == 1) break;
-    }
-    //print_matrix();
-
-}
-
 /* Following function returns the exact power value that is needed to exactly hit player with given angle */
 float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord) {
 

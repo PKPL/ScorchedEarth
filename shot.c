@@ -12,8 +12,6 @@ void testShot (int who_is_shooting, int init_velocity, int shoot_angle, int x_co
     if (who_is_shooting == PLAYER)
         playerShot(missile, init_velocity, shoot_angle, map_layout);
 
-    else if (who_is_shooting == ENEMY)
-        AIShoot(missile, init_velocity, shoot_angle);
 
     free(missile);
 

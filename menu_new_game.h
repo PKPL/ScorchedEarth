@@ -6,6 +6,7 @@
 //------------------------------------------------------------------------
 
 #include "maps_create.h"
+#include "defines.h"
 
 void game_loop(int map_layout [MAX_X][MAX_Y]);
 extern int screen_bufor [MAX_X][MAX_Y];

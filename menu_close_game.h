@@ -7,6 +7,7 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include "defines.h"
 
 int close_game();
 

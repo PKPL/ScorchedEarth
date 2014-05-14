@@ -6,6 +6,7 @@
 //------------------------------------------------------------------------
 #include "levels.h"
 #include "levels_level.h"
+#include "defines.h"
 
 //level_struct level_set (int option); Problem with this function
 
