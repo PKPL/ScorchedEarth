@@ -4,6 +4,7 @@
 
 *.layout
 *.depend
+*.cscope_file_list
 
 #################
 ## Eclipse
