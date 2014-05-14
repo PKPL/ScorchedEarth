@@ -16,5 +16,6 @@ typedef struct
 void test_drawing_units(int map_layout[MAX_X][MAX_Y]);
 void drawing_units(int map_layout[MAX_X][MAX_Y]);
 tCoordinates position (int map_layout[MAX_X][MAX_Y]);
+void gotoxy(int x, int y);
 
 #endif // __DRAWING_UNITS_H__
