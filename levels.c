@@ -79,7 +79,6 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             {
                 //Load EASY LEVEL
                 levels(1);
-                create_mountain_map(map_layout);
                 //test_drawing_map(map_layout);
                 //test_drawing_units(map_layout);
             }
@@ -87,7 +86,6 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             {
                 //Load MEDIUM LEVEL
                 levels(2);
-                create_mountain_map(map_layout);
                 //test_drawing_map(map_layout);
                 //test_drawing_units(map_layout);
             }
@@ -95,11 +93,10 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             {
                 //Load HARD LEVEL
                 levels(3);
-                create_mountain_map(map_layout);
                 //test_drawing_map(map_layout);
                 //test_drawing_units(map_layout);
             }
-
+            create_mountain_map(map_layout);
             game_loop(map_layout);
 
 
