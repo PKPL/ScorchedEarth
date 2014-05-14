@@ -16,6 +16,104 @@ void test_maps_create(int map_layout [MAX_X][MAX_Y])
     create_mountain_map(map_layout);
 }
 
+//void create_mountain_map(int map_layout[MAX_X][MAX_Y])
+//{
+//    srand( time( NULL ) );
+//    //int map_layout [MAX_X][MAX_Y];
+//    float result;
+//    int resultInted;
+//    int diversity;
+//    int i, j;
+//
+//
+//
+//    int startSin = RandInt(10,40);
+//    float compaction;
+//    float push;
+//    float high;
+//
+//    bool conditionX=false;
+//
+//
+//    for(i = 0; i< MAX_X; i++)
+//    {
+//        for(j = 0; j<MAX_Y; j++)
+//        {
+//
+//            map_layout [i][j]=0;
+//
+//        }
+//    }
+//    int x= 1;
+//
+//    while(conditionX==false)
+//    {
+//        diversity=0;
+//        float compaction = RandInt(3,10); // od 1 do 15
+//        float push = RandFloatDced(1,10);// od 0 do 2
+//        float high = RandFloatDced(10,25); // od -3 do 3
+//
+//
+//        for(i = 0; i< MAX_X; i++)
+//        {
+//            if(RandInt(0,2)==1)compaction =compaction + RandInt(-3,3);
+//            else compaction =compaction - RandInt(-3,3);
+//            result = (x*high)*sin((x*i*compaction)*PI/180+(PI*push*x))*10;
+//            resultInted = (int)result;
+//            if(MAX_Y -resultInted - startSin >0 && MAX_Y -resultInted - startSin <MAX_Y)
+//                map_layout [i][MAX_Y -resultInted - startSin]=1;
+//
+//            if(i>0)
+//            {
+//                if(map_layout [i-1][MAX_Y -resultInted - startSin]!=1)diversity++;
+//            }
+//
+//
+//            x=x+x*0.1;
+//
+//        }
+//
+//        system("cls");
+//        int u;
+//
+//        //filling matrix
+//        for(i = 0; i< MAX_X; i++)
+//        {
+//            for(j = 0; j<MAX_Y; j++)
+//            {
+//
+//                if(map_layout[i][j]==1)
+//                {
+//                    for(u = j; u<80; u++)
+//                    {
+//                        map_layout[i][u] = 1;
+//                    }
+//                }
+//            }
+//        }
+//
+//        for(i = 0; i< MAX_X; i++)
+//        {
+//
+//            j=79;
+//            if(map_layout [i][j]==1)
+//            {
+//                conditionX = true;
+//                continue;
+//            }
+//            else
+//            {
+//                conditionX = false;
+//                break;
+//            }
+//
+//
+//        }
+//        if(diversity < 25) conditionX = false;
+//    }
+//
+//}
+
 void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 {
     int x, y, auxiliary_number, parity, number, finished_creating_map, is_continuation, number_alternative, free_space_height, will_have_to_create_compensation_unit;
@@ -245,3 +343,21 @@ void print_loading_status(int x)
         Sleep(1500);
     }
 }
+
+
+//int RandInt(int a, int b)
+//{
+//    int result =( rand() % b-a ) + a;
+//    return result;
+//}
+//
+//float RandFloatDced(int a, int b)
+//{
+//    //float result = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
+//    float result =( rand() % b-a ) + a;
+//    result = result/10;
+//    return result;
+//
+//}
+//
+
