@@ -125,7 +125,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 {
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
-                    playerShot(missile, player_power, player_angle, map_layout);
+                    playerShot(missile, player_power, player_angle, map_layout,false);
                     playerTurn = false;
                 }
                 else switch(getch()){
@@ -166,7 +166,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         //Inform about victory
         gotoxy(30,20);
         printf("VICTORY");
-        Sleep(5000);
+        gotoxy(30,21);
+        printf("Press any button to go to the menu");
+        getch();
         test_menu();
 
         //--------------------
@@ -184,7 +186,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
         gotoxy(30,20);
         printf("DEFEAT");
-        Sleep(5000);
+        gotoxy(30,21);
+        printf("Press any button to go to the menu");
+        getch();
         test_menu();
 
         //------------

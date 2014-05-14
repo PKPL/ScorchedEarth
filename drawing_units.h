@@ -9,6 +9,7 @@
 #define PLAYER 3  //Sorry for that temporary change, but in text mode we need another char than 10 (it bad looks with ground (1);
 #define ENEMY 2
 #define DISTANCE 20 // minimum distance between player and enemy
+#include <stdbool.h>
 
 typedef struct
 {
@@ -17,6 +18,6 @@ typedef struct
 
 void test_drawing_units(int map_layout[MAX_X][MAX_Y]);
 void drawing_units(int map_layout[MAX_X][MAX_Y]);
-tCoordinates position (int map_layout[MAX_X][MAX_Y]);
+tCoordinates position (int map_layout[MAX_X][MAX_Y], bool isBot);
 
 #endif // __DRAWING_UNITS_H__

@@ -18,7 +18,7 @@ float min_angle(unit local_bot)
     return 0;
 }
 
-float find_random(int min_ang, int max_ang)
+int find_random(int min_ang, int max_ang)
 {
     srand ( time(NULL) );
     return  (rand() % (max_ang - min_ang) + min_ang);

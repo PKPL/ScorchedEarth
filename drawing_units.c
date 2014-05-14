@@ -8,6 +8,7 @@
 #include "unit.h"
 #include <time.h>
 #include <math.h>
+#include <stdbool.h>
 
 
 extern int map_layout [MAX_X][MAX_Y];
@@ -25,8 +26,8 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
 
     do
     {
-        coordinates_player = position (map_layout);
-        coordinates_enemy = position (map_layout);
+        coordinates_player = position (map_layout, false);
+        coordinates_enemy = position (map_layout,true);
         if (abs(coordinates_enemy.x - coordinates_player.x) <= DISTANCE && abs(coordinates_enemy.y - coordinates_player.y) <= DISTANCE) {
             map_layout[coordinates_player.x][coordinates_player.y] = 1;
             map_layout[coordinates_enemy.x][coordinates_enemy.y] = 1;
@@ -72,11 +73,12 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
 
 }
 
-tCoordinates position (int map_layout[MAX_X][MAX_Y])
+tCoordinates position (int map_layout[MAX_X][MAX_Y], bool isBot)
 {
     int i;
     tCoordinates coordinates;
-    coordinates.x = rand () % (MAX_X) + 1;
+    if(!isBot) coordinates.x = rand () % (MAX_X/3) + 1;
+    if(isBot) coordinates.x = rand () % (MAX_X/3) + 1 + MAX_X / 1.5;
         for (i = 0; i < MAX_Y; i++) { //Sorry for small change son my own i just reverse your "for" loop becouse it was working form te bottoem and units always was an the bottom :)
             if (map_layout[coordinates.x][i] == 1) {
                 continue;

@@ -9,7 +9,9 @@
 #include "maps_create.h"
 #include <stdbool.h>
 
+extern int destruct_radius;
 static float medium_dec_range = 10;
+int ai_angle = 180;
 
 void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
@@ -39,7 +41,7 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
     missile_data *missile;
     missile = initializeMissile(local_bot.x, local_bot.y);
-    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout);
+    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,false);
 
 
 }
@@ -47,38 +49,40 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
 void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
-    int mini_angle = min_angle(local_bot);//searching for minimal angle
-    int maxi_angle = 90;
-    int ai_shoot_angle;
-    while(true)
-    {
-       ai_shoot_angle = find_random(mini_angle,maxi_angle);
-       if(player.x < local_bot.x)ai_shoot_angle = 180 - ai_shoot_angle;
-       break;
-       //if(raycast(local_bot, ai_shoot_angle, map_layout[MAX_X][MAX_Y]) == false)break;
-    }
 
-    //gotoxy(0,0); printf("Perfect_power");
-    float perfect_power = AIcheck(local_bot.x, local_bot.y, 1.8, ai_shoot_angle, player.x, player.y);
-    //float perfect_power = 100;
-    float min_power = perfect_power - medium_dec_range;
-    float max_power = perfect_power + medium_dec_range;
+int power;
+gotoxy(20,25);
+printf("ai angle = %d", ai_angle);
 
-    //printf("Random power");
-    int ai_shoot_power = find_random(min_power,max_power);
-    if(medium_dec_range > 2)medium_dec_range = medium_dec_range - 2;
-    //in easy AI, shoot angle and shoot velocity (power) is random
-    //take_a_shot(bot.x,bot.y,ai_shoot_angle,ai_shoot_power);
-    //we are waiting for complex function which take a shoot from given arguments like coords of unit, angle and power of the shoot
-    //printf("Shoot");
-    gotoxy(0,0); printf("Perfect_power is %f for angle = %d", perfect_power, ai_shoot_angle);
-    missile_data *missile;
+power = -1;
+//gotoxy(10,29);
+while(power == -1)
+{
+ai_angle --;
+if(ai_angle <= 50)
+{
+    ai_angle = 180;
+}
+power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y);
+//gotoxy(10,29);
+//printf("angle = %d", angle);
+
+}
+missile_data *missile;
     missile = initializeMissile(local_bot.x, local_bot.y);
-    playerShot(missile, perfect_power, ai_shoot_angle, map_layout);
+gotoxy(20,26);
+printf("ai angle = %d", ai_angle);
+gotoxy(20,27);
+printf("paler = %d", power);
+
+int rnd = find_random(-5,5);
+gotoxy(20,28);
+printf("rnd = %d",rnd);
 
 
 
 
+    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false);
 }
 
 

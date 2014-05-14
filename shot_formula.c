@@ -6,9 +6,13 @@
 #include "shot_formula.h"
 #include "maps_create.h"
 
+
+extern int ai_angle;
+
+
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y] ) {
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot) {
 
     int i, flag = 0;
 
@@ -24,13 +28,18 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
         switch (checkHit(i, missile, matrix)) {
             case 0: continue;
-            case 1: break;
+            case 1:                    if(isBot)
+                        ai_angle -= 2;
+
+                break;
             case 2: /*explosion: hit ground*/
                     create_explosion(matrix,missile,i); //connection with drawing_destruction.c
                     //EXTRA_EXPLOSION!!!!!
-
+                    if(isBot)
+                        ai_angle -= 2;
                    // extra_explosion(missile); //you can find it in shot_hit.c
                     flag=1;
+
                     break;
             case 3: /*explosion: hit unit*/
                 //Call function Destruction of Unit or similar.
@@ -96,9 +105,11 @@ void AIShoot (missile_data *missile, float ai_init_velocity, int ai_shoot_angle)
 
 }
 
+
 /* Following function returns the exact power value that is needed to exactly hit player with given angle */
 float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord) {
 
+    if(x_enemy_coord > x_player_coord)angle = 180 - angle;
     const float b = 0.1;
     const float g = 9.81;
     int x0, y0, x_target, y_target;
@@ -112,7 +123,7 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
 
     for (;;) { //This "for cycle" increases initial velocity value by 1 m/s
         t = 0;
-        if (velocity > 100) break;
+        if (velocity > 50) break;
         vel_x0 = velocity * cosDegrees(angle);
         vel_y0 = velocity * sinDegrees(angle);
 
@@ -122,8 +133,8 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
             y_target = y0 + missile_weight / b * (vel_y0 + missile_weight * g / b) * (1 - exp(-(b / missile_weight * t))) - missile_weight * g / b * t;
 
             if (y_target < 0) break; //If projectile outgoes map, it is not good, so next try :)
-            if (x_target == x_player_coord) {
-                if (y_target == y_player_coord)
+            if (abs(x_target - x_player_coord)<=2)  {
+                if (abs(y_target - y_player_coord)<=2)
                     return velocity;
                 else continue; //It might happen that in two consecutive instants, x coord of the shoot remains the same while y coord changes
             }
