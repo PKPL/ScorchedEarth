@@ -7,6 +7,7 @@
 
 #include "maps_create.h"
 #include "shot_final_equation.h"
+#include "defines.h"
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y]);
 void create_explosion(int map_layout [MAX_X][MAX_Y],missile_data *m,int i);

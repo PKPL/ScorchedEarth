@@ -18,7 +18,8 @@ DANIEL PINTO
 #include "maps_create.h"
 #include <stdbool.h> // includes the bool variable types, that is best when we just want true or false, 0 or 1 for the value, and takes less for RAM.
 #include <string.h>
-#define MAX_NAME_FILE 50
+#include "defines.h"
+
 
 void test_maps_load ();
 void load_Map (int map_layout[MAX_X][MAX_Y]);

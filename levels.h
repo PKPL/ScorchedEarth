@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "levels_set.h"
 #include "levels_level.h"
+#include "defines.h"
 
 //level_struct test_levels();// function for agreagate testing; Problem with this function
 

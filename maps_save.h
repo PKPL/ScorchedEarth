@@ -13,7 +13,7 @@ DANIEL PINTO
 #include <stdio.h>
 #include <stdlib.h>
 #include "maps_create.h"
-
+#include "defines.h"
 
 void saveMap(int map_layout[MAX_X][MAX_Y]);
 void test_maps_save();

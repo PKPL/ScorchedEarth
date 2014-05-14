@@ -13,6 +13,7 @@
 #include "ai_medium.h"
 #include "ai_hard.h"
 #include <stdbool.h>
+#include "defines.h"
 
 void test_ai(); // function for agreagate testing
 float min_angle(unit local_bot);

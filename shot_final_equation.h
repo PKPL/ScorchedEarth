@@ -1,13 +1,10 @@
 #ifndef __SHOT_FINAL_EQUATION_H__
 #define __SHOT_FINAL_EQUATION_H__
 
+#include "defines.h"
+
 //On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
-#define MAX_WIND_SPEED 100 //Meters per second
-#define VECTOR_LENGTH 10000//temporary
-#define LENGTH 100 //X axis of the matrix
-#define HEIGHT 80 //Y axis of the matrix
-#define SHOT_TIME 60
 
 /* In the following struct are stored all the datas related to the first type of missile
 (for further missile types we'll use more structs) */

@@ -6,14 +6,12 @@
 //------------------------------------------------------------------------
 //On this file Team 1 is working: Lorenzo Romanelli and Federico Bollotta
 
+#include "defines.h"
 #include <stdio.h>
 #include "shot_formula.h"
-#include "matrix.h"
 #include "shot_final_equation.h"
 #include "maps_create.h"
 
-#define PLAYER 10
-#define ENEMY 20
 
 void testShot(int, int, int, int, int, int map_layout[MAX_X][MAX_Y]); // function for agreagate testing
 

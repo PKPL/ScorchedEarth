@@ -6,10 +6,11 @@
 //------------------------------------------------------------------------
 #include <math.h>
 #include "maps_create.h" // including this library to have MAX_X, MAX_Y and time.h
-#define PLAYER 3  //Sorry for that temporary change, but in text mode we need another char than 10 (it bad looks with ground (1);
-#define ENEMY 2
-#define DISTANCE 20 // minimum distance between player and enemy
+//#define PLAYER 3  //Sorry for that temporary change, but in text mode we need another char than 10 (it bad looks with ground (1);
+//#define ENEMY 2
+//#define DISTANCE 20 // minimum distance between player and enemy
 #include <stdbool.h>
+#include "defines.h"
 
 typedef struct
 {
@@ -19,5 +20,6 @@ typedef struct
 void test_drawing_units(int map_layout[MAX_X][MAX_Y]);
 void drawing_units(int map_layout[MAX_X][MAX_Y]);
 tCoordinates position (int map_layout[MAX_X][MAX_Y], bool isBot);
+void gotoxy(int x, int y);
 
 #endif // __DRAWING_UNITS_H__
