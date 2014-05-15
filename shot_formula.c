@@ -12,31 +12,32 @@ extern int ai_angle;
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot) {
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed, int *enemy_angle) {
 
     int i, flag = 0;
-
-    //init_matrix();
 
     setInitialVelocity(missile, initial_velocity/4);
     setShootingAngle(missile, shooting_angle);
 
-    shotFunction(missile, windForce(wind_speed));
+    shotFunction(missile, windForce(some_wind_speed));
 
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
 
         switch (checkHit(i, missile, matrix)) {
+
             case 0: create_arrow(i,matrix, missile);
                 continue;
 
-            case 1:     if(isBot)
-                        ai_angle -= 2;
-
-                break;
+            
+            case 1: if(isBot)
+                        *enemy_angle -= 2;
+                    break;
             case 2: /*explosion: hit ground*/
-                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c!
-                    if(isBot)ai_angle -= 2;
+                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+                    if(isBot)
+                        *enemy_angle -= 2;
+                   // extra_explosion(missile); //you can find it in shot_hit.c
                     flag=1;
 
                     break;
@@ -48,21 +49,13 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 drawing_shots(i,matrix,missile);
                 break;
         }
-
-
-        //createDestruction(matrix);
-
-        //create_destruction(matrix);
-
-
         if ( flag == 1 ) break;
     }
-    //print_matrix();
 
 }
 
 /* Following function returns the exact power value that is needed to exactly hit player with given angle */
-float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord) {
+float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord, float some_wind_speed) {
 
     if(x_enemy_coord > x_player_coord)angle = 180 - angle;
     const float b = 0.1;
@@ -70,11 +63,11 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
     int x0, y0, x_target, y_target;
     float t, velocity, vel_x0, vel_y0, wf;
 
-    wf = windForce(wind_speed);
+    wf = windForce(some_wind_speed);
     x0 = x_enemy_coord;
     y0 = y_enemy_coord;
     velocity = 1;
-    t = 0;
+    t = 0; //time
 
     for (;;) { //This "for cycle" increases initial velocity value by 1 m/s
         t = 0;

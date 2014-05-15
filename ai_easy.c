@@ -33,6 +33,6 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
     missile_data *missile;
     missile = initializeMissile(local_bot.x, local_bot.y);
-    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout);
+    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout, wind_speed, &ai_angle);
 
 }

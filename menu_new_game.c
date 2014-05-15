@@ -132,7 +132,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 {
                     missile_data *missile;
                     missile = initializeMissile(player.x, player.y);
-                    playerShot(missile, player_power, player_angle, map_layout,false);
+                    playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, &ai_angle);
                      falling(map_layout);
 
                     playerTurn = false;
