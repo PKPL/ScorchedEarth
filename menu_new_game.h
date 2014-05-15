@@ -9,7 +9,7 @@
 #include "defines.h"
 
 //extern int screen_bufor [MAX_X][MAX_Y];
-#include "ai_medium.h"
+
 
 void game_loop(int map_layout [MAX_X][MAX_Y]);
 

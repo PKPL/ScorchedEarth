@@ -39,7 +39,7 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
     missile_data *missile;
     missile = initializeMissile(local_bot.x, local_bot.y);
-    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,false);
+    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,false, wind_speed, &ai_angle);
 
 
 }
@@ -61,7 +61,7 @@ if(ai_angle <= 50)
     ai_easy(local_bot, map_layout);
     return;
 }
-power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y);
+power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y, wind_speed);
 
 }
 missile_data *missile;
@@ -73,7 +73,7 @@ int rnd = find_random(-4,5);
 
 
 
-    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false);
+    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false, wind_speed, &ai_angle);
 }
 
 void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y])
@@ -92,7 +92,7 @@ if(ai_angle <= 50)
     ai_easy(local_bot, map_layout);
     return;
 }
-power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y);
+power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y, wind_speed);
 
 
 }
@@ -101,7 +101,7 @@ missile_data *missile;
 
 int rnd = find_random(-3,4);
 
-    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false);
+    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false, wind_speed, &ai_angle);
 }
 
 
