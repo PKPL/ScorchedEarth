@@ -27,7 +27,7 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
     static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
     if (existing_Map != 0)
     {
-        option = option_User ("You already loaded one map, do you want to load another and forget the last");
+        option = option_User ("You already loaded one map, do you want to load another and forget the last?\t");
         if (option == 'Y')
         {
             reading_from_File (map_layout);

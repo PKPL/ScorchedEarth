@@ -12,27 +12,41 @@
 
 extern int map_layout [MAX_X][MAX_Y];
 
-
 void test_drawing_map (int map_layout [MAX_X][MAX_Y])
 {
     double x;
     double y;
+    int i, j;
+    int error = 0;
 
-
-    //drawing_game_screen();
-    for (x = 0.0; x < MAX_X; x++)
+    for (i = 0; i < MAX_X; i++)
     {
-        for (y = 0.0; y < MAX_Y; y++)
+        for (j = 0; j < MAX_Y; j++)
         {
-            gotoxy((int)x, 79 - (int)y);
-            if (map_layout[(int)x][(int)y] != 0)
+            if (map_layout [i][j] % 2 != 1 && map_layout [i][j] % 2 != 0)
             {
-                printf("%d", map_layout[(int)x][(int)y]);
+                error = 1;
+                printf("Map generation error. Contents of array different than expected.\n");
+                i = MAX_X;
+                j = MAX_Y;
             }
         }
     }
-    gotoxy(0, 79);
-
+    if (error != 1) {
+                //drawing_game_screen();
+                for (x = 0.0; x < MAX_X; x++)
+                {
+                    for (y = 0.0; y < MAX_Y; y++)
+                    {
+                        gotoxy((int)x, 79 - (int)y);
+                        if (map_layout[(int)x][(int)y] != 0)
+                        {
+                            printf("%d", map_layout[(int)x][(int)y]);
+                        }
+                    }
+                }
+                gotoxy(0, 79);
+    }
 }
 
 void gotoxy(int x, int y)
