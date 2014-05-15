@@ -27,27 +27,25 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
     for (i = 0; i < VECTOR_LENGTH; i++) {
 
         switch (checkHit(i, missile, matrix)) {
-            case 0: continue;
-            case 1:                    if(isBot)
+            case 0: create_arrow(i,matrix, missile);
+                continue;
+
+            case 1:     if(isBot)
                         ai_angle -= 2;
 
                 break;
             case 2: /*explosion: hit ground*/
-                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
-                    //EXTRA_EXPLOSION!!!!!
-                    if(isBot)
-                        ai_angle -= 2;
-                   // extra_explosion(missile); //you can find it in shot_hit.c
+                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c!
+                    if(isBot)ai_angle -= 2;
                     flag=1;
 
                     break;
             case 3: /*explosion: hit unit*/
-                //Call function Destruction of Unit or similar.
+                //Call function Destruction of Unit or similar. TODO
                 flag=1;
                 break;
             case 4:
                 drawing_shots(i,matrix,missile);
-                //matrix[missile->y_vector_coordinate[i]][missile->x_vector_coordinate[i]] = 5; // This print shot Parabola on ITALIAN TEAM MATRIX, for now just let it in comment.
                 break;
         }
 

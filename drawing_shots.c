@@ -8,14 +8,20 @@
 
 extern int map_layout [MAX_X][MAX_Y];
 
-//void test_drawing_shots ()
-//{
-//    int x, y;
-//    missile_data m;
-//    int map_layout[MAX_X][MAX_Y] = {{0}}; // just for testing
-//    drawing_shots(map_layout, m);
-//}
 
+void create_arrow(int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
+{
+    int arr_offset = 2;
+    gotoxy(m->x_vector_coordinate[i],arr_offset);
+    printf("|");
+    gotoxy(m->x_vector_coordinate[i],arr_offset-1);
+    printf("^");
+    Sleep(20);
+    gotoxy(m->x_vector_coordinate[i],arr_offset);
+    printf(" ");
+    gotoxy(m->x_vector_coordinate[i],arr_offset-1);
+    printf(" ");
+}
 
 void drawing_shots (int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
 {
