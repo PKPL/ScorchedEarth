@@ -8,7 +8,6 @@
 #include "maps_create.h"
 #include <stdbool.h>
 
-extern int destruct_radius;
 static float medium_dec_range = 10;
 int ai_angle = 180;
 
