@@ -7,7 +7,23 @@
 
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {
-    char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
+    bool checkInteger = true;
+    for (x = 0; x < MAX_X; x++)
+    {
+        for (y = 0; y < MAX_Y; y++)
+        {
+            if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
+            {
+                printf("Map generation error: Contents of array different than expected.\n");
+                checkInteger = !checkInteger;
+                break;
+            }
+        }
+    }
+
+    if (checkInteger)
+    {
+        char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
     static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
     if (existing_Map != 0)
     {
@@ -27,6 +43,9 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
         }
     }
     return false;
+    }
+
+
 }
 
 char option_User (char *str)
