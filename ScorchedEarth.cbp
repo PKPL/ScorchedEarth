@@ -35,19 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ai.h" />
-		<Unit filename="ai_easy.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="ai_easy.h" />
-		<Unit filename="ai_hard.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="ai_hard.h" />
-		<Unit filename="ai_medium.c">
+		<Unit filename="ai_controll.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="ai_controll.h" />
 		<Unit filename="ai_medium.h" />
 		<Unit filename="defines.h" />
 		<Unit filename="drawing.c">
@@ -78,11 +69,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="levels_level.h" />
-		<Unit filename="levels_set.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="levels_set.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

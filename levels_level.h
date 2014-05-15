@@ -5,7 +5,7 @@
 // Stuctur resposible for levels setting
 //-----------------------------------------------------------------------
 #include "levels.h"
-#include "levels_set.h"
+
 #include "defines.h"
 
 typedef enum wind_type

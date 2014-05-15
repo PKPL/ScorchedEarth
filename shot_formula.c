@@ -80,7 +80,7 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
 
     for (;;) { //This "for cycle" increases initial velocity value by 1 m/s
         t = 0;
-        if (velocity > 50) break;
+        if (velocity > 30) break;
         vel_x0 = velocity * cosDegrees(angle);
         vel_y0 = velocity * sinDegrees(angle);
 
@@ -90,8 +90,8 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
             y_target = y0 + missile_weight / b * (vel_y0 + missile_weight * g / b) * (1 - exp(-(b / missile_weight * t))) - missile_weight * g / b * t;
 
             if (y_target < 0) break; //If projectile outgoes map, it is not good, so next try :)
-            if (abs(x_target - x_player_coord)<=2)  {
-                if (abs(y_target - y_player_coord)<=2)
+            if (abs(x_target - x_player_coord)<=4)  {
+                if (abs(y_target - y_player_coord)<=4)
                     return velocity;
                 else continue; //It might happen that in two consecutive instants, x coord of the shoot remains the same while y coord changes
             }

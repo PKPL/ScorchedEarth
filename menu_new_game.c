@@ -57,16 +57,18 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
         while(playerTurn)
         {
+
             if(quit == true)break;
             //Player move
 
-                if(quit == true)break;
+
                 //Choose power and angle
                 gotoxy(0,80);
                 printf("Angle = %d", player_angle);
                 printf("\t\tPower = %d", player_power);
                 printf("\t\tWind = %d", (int)wind_speed);
                 printf("\t\tPoints = %d", player.points);
+                angle_drawing_distanse = player_power/20;
 
                 //Drawing angle tray
                 if(first_angle == true)
@@ -130,6 +132,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                      falling(map_layout);
 
                     playerTurn = false;
+
                 }
                 else switch(getch()){
                         case 72:
@@ -151,6 +154,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         }
 
 
+        if(quit == true)break;
         if(bot.hp <= 0 || player.hp <= 0)break;
         //-----------------------------------end of player's turn
         Sleep(2000);
@@ -162,6 +166,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
     Sleep(1000);
     playerTurn = true;
+
+    //fflush();
 
     }//end of main loop
 
