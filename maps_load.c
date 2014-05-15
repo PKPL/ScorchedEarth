@@ -5,16 +5,7 @@
 
 #include "maps_load.h"
 
-void test_maps_load ()
-{
-    int x, y;
-    int map_layout[MAX_X][MAX_Y] = {{0}}; // just for testing
-    load_Map (map_layout);
-}
-
-extern int map_layout[MAX_X][MAX_Y];
-
-void load_Map (int map_layout[MAX_X][MAX_Y])
+bool load_Map (int map_layout[MAX_X][MAX_Y])
 {
     char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
     static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
@@ -29,9 +20,13 @@ void load_Map (int map_layout[MAX_X][MAX_Y])
     }
     else
     {
-        reading_from_File (map_layout);
-        existing_Map = true;
+        bool sucess = reading_from_File (map_layout);
+        if (sucess) {
+            existing_Map = true;
+            return true;
+        }
     }
+    return false;
 }
 
 char option_User (char *str)
@@ -74,7 +69,7 @@ void read_String(char str[], int max)
     while (strlen (str) == 0);
 }
 
-void reading_from_File (int map_layout [MAX_X][MAX_Y])
+bool reading_from_File (int map_layout [MAX_X][MAX_Y])
 {
     int x, y;
     char name_File_Map[MAX_NAME_FILE];
@@ -94,8 +89,15 @@ void reading_from_File (int map_layout [MAX_X][MAX_Y])
             for (x = 0; x < MAX_X; x++)
             {
                 fscanf (map_Load, "%d", map_layout[x][y]);
+                if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
+                {
+                    fprintf(stderr, "Map generation error: Contents of array different than expected.\n");
+                    return false;
+                }
             }
         }
         fclose (map_Load);
+        return true;
     }
+    return false;
 }

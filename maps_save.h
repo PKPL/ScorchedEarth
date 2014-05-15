@@ -15,7 +15,6 @@ DANIEL PINTO
 #include "maps_create.h"
 #include "defines.h"
 
-void saveMap(int map_layout[MAX_X][MAX_Y]);
-void test_maps_save();
+bool save_map(int map_layout[MAX_X][MAX_Y]);
 
 #endif // __MAPS_SAVE_H__

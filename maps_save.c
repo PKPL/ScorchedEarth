@@ -9,17 +9,7 @@ DANIEL PINTO
 
 #include "maps_save.h"
 
-
-extern int map_layout[MAX_X][MAX_Y];
-
-void test_maps_save()
-{
-
-    int map_layout[MAX_X][MAX_Y] = {{0}}; // This line was just added to test the .txt writing
-    save_map(map_layout);
-}
-
-void save_map(int map_layout[MAX_X][MAX_Y])
+bool save_map(int map_layout[MAX_X][MAX_Y])
 {
 
     FILE * map_file;
@@ -38,9 +28,16 @@ void save_map(int map_layout[MAX_X][MAX_Y])
             for (y = 0; y < MAX_Y; y++)
             {
                 fprintf(map_file,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
+                if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
+                {
+                    fprintf(stderr, "Map generation error: Contents of array different than expected.\n");
+                    return false;
+                }
             }
         }
         printf("\nMap saved in maps_save.txt\n");
         fclose(map_file);
+        return true;
     }
+    return false;
 }

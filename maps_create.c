@@ -117,22 +117,21 @@ void test_maps_create(int map_layout [MAX_X][MAX_Y])
 void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 {
     int x, y;
-    int error = 0;
+    bool checkInteger = true;
     for (x = 0; x < MAX_X; x++)
     {
         for (y = 0; y < MAX_Y; y++)
         {
             if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
             {
-                error = 1;
                 printf("Map generation error: Contents of array different than expected.\n");
-                x = MAX_X;
-                y = MAX_Y;
+                checkInteger = !checkInteger;
+                break;
             }
         }
     }
 
-    if (error == 0)
+    if (!checkInteger)
     {
         int auxiliary_number, parity, number, finished_creating_map, is_continuation, number_alternative, free_space_height, will_have_to_create_compensation_unit;
         free_space_height = MAX_Y;
@@ -345,7 +344,6 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         print_loading_status(100);
         srand(1);
     }
-
 }
 
 void new_rnd_seed()
