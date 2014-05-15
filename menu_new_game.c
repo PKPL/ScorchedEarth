@@ -24,6 +24,9 @@ float angle_drawing_distanse = 5;
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
+
+    int c = '\13\n';
+
     system("cls");
     unit_func(&player);
     unit_func(&bot);
@@ -44,11 +47,29 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
 
 
+
     drawing_units(map_layout, &player, &bot);
 
     while(player.hp > 0 && bot.hp > 0)
     {
+//    int   ch;
+//    char  buf[BUFSIZ];
 
+//
+//  puts("Flushing input");
+//
+//  while ((ch = getchar()) != '\n' && ch != EOF);
+//
+//  printf ("Enter some text: ");
+//
+//    if (fgets(buf, sizeof(buf), stdin))
+//  {
+//    printf ("You entered: %s", buf);
+//  }
+
+//while ((ch = getchar()) != '\n' && ch != EOF);
+
+        //while ((key_pressed = getchar()) != '\n' && key_pressed != EOF);
         //Main game loop :)
         //system("cls");
         if(quit == false && first_frame == 1)
@@ -128,6 +149,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 }
                 //------------------
 
+                fflush(stdin);
                 key_pressed = getch();
                 if(key_pressed == 27)quit = true;
                 if(key_pressed == 13)

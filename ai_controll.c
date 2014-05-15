@@ -58,6 +58,8 @@ while(power == -1)
 ai_angle --;
 if(ai_angle <= 50)
 {
+    gotoxy(10,40);
+    printf("EASY MODE ACTIVATED");
     ai_easy(local_bot, map_layout);
     return;
 }
@@ -89,6 +91,8 @@ while(power == -1)
 ai_angle --;
 if(ai_angle <= 50)
 {
+    gotoxy(10,40);
+    printf("EASY MODE ACTIVATED");
     ai_easy(local_bot, map_layout);
     return;
 }
