@@ -10,7 +10,8 @@
 
 //extern int screen_bufor [MAX_X][MAX_Y];
 
-
 void game_loop(int map_layout [MAX_X][MAX_Y]);
+void drawing(int map_layout[MAX_X][MAX_Y], int player_angle);
+void drawing_create(int i, int player_angle);
 
 #endif // __MENU_NEW_GAME_H__

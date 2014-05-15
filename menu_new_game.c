@@ -21,6 +21,68 @@ int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
+void drawing_create(int i, int player_angle)
+{
+    angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
+    angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
+    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+    {
+        gotoxy(angle_points[i][0],angle_points[i][1]);
+        printf(".");
+    }
+}
+
+void drawing_destroy(int map_layout[MAX_X][MAX_Y], int i)
+{
+    int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
+    gotoxy(angle_points[i][0],angle_points[i][1]);
+    switch(xxx)
+    {
+    case 0:
+        printf(" ");
+        break;
+    case 1:
+        printf("1");
+        break;
+//                            default: printf(" "); break;
+    }
+}
+
+void drawing(int map_layout[MAX_X][MAX_Y], int player_angle)
+{
+    if(first_angle == true)
+    {
+        int i;
+        for(i = 0; i < 3; i++)
+        {
+            drawing_create(i, player_angle);
+        }
+        first_angle = false;
+
+    }
+    else
+    {
+        int i;
+        for(i = 0; i < 3; i++)
+        {
+            if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+            {
+
+
+                drawing_destroy(map_layout, i);
+
+            }
+
+        }
+
+
+        for(i = 0; i < 3; i++)
+        {
+            drawing_create(i, player_angle);
+        }
+    }
+}
+
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
@@ -29,9 +91,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     unit_func(&bot);
 
     CONSOLE_CURSOR_INFO CurInfo;
-	CurInfo.dwSize=1;
-	CurInfo.bVisible=FALSE;
-	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
+    CurInfo.dwSize=1;
+    CurInfo.bVisible=FALSE;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 
 
     int queue = 1; //1 - Player, 2 - Bot
@@ -54,9 +116,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         if(quit == false && first_frame == 1)
         {
 
-        test_drawing_map(map_layout);
-        first_frame = 0;
-        printf("\n\n");
+            test_drawing_map(map_layout);
+            first_frame = 0;
+            printf("\n\n");
         }
 
 
@@ -67,95 +129,48 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             //Player move
 
 
-                //Choose power and angle
-                gotoxy(0,80);
-                printf("Angle = %d", player_angle);
-                printf("\t\tPower = %d", player_power);
-                printf("\t\tWind = %d", (int)wind_speed);
-                printf("\t\tPoints = %d", player.points);
-                angle_drawing_distanse = player_power/20;
-                if(angle_drawing_distanse < 1)angle_drawing_distanse=1;
+            //Choose power and angle
+            gotoxy(0,80);
+            printf("Angle = %d", player_angle);
+            printf("\t\tPower = %d", player_power);
+            printf("\t\tWind = %d", (int)wind_speed);
+            printf("\t\tPoints = %d", player.points);
+            angle_drawing_distanse = player_power/20;
+            if(angle_drawing_distanse < 1)angle_drawing_distanse=1;
 
-                //Drawing angle tray
-                if(first_angle == true)
+            //Drawing angle tray
+            drawing(map_layout, player_angle);
+            //------------------
+
+            key_pressed = getch();
+            if(key_pressed == 27)quit = true;
+            if(key_pressed == 13)
+            {
+                missile_data *missile;
+                missile = initializeMissile(player.x, player.y);
+                playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, &ai_angle);
+                falling(map_layout);
+
+                playerTurn = false;
+
+            }
+            else switch(getch())
                 {
-                    int i;
-                    for(i = 0; i < 3; i++)
-                    {
-                         angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
-                         angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
-                         if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
-                         {
-                         gotoxy(angle_points[i][0],angle_points[i][1]);
-                         printf(".");
-                         }
-                    }
-                    first_angle = false;
+                case 72:
+                    if(player_angle < 180)player_angle = player_angle + 1;
+                    break;
 
-                }
-                else
-                {
-                    int i;
-                    for(i = 0; i < 3; i++)
-                    {
-                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
-                         {
+                case 75:
+                    if(player_power > 0)player_power = player_power - 1;
+                    break;
 
+                case 77:
+                    if(player_power < 200)player_power = player_power + 1;
+                    break;
 
-                         int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
-                         gotoxy(angle_points[i][0],angle_points[i][1]);
-                         switch(xxx){
-                            case 0: printf(" "); break;
-                            case 1: printf("1"); break;
-//                            default: printf(" "); break;
-                         }
-
-                         }
-
-                    }
-
-
-                    for(i = 0; i < 3; i++)
-                    {
-                       angle_points[i][0] = player.x + (int)angle_drawing_distanse*(i+1)*cos(player_angle * PI / 180.0 );
-                       angle_points[i][1] = 79 - (player.y + (int)angle_drawing_distanse*(i+1)*sin(player_angle * PI / 180.0 ));
-                       if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
-                       {
-                         gotoxy(angle_points[i][0],angle_points[i][1]);
-                         printf(".");
-                         }
-                    }
-                }
-                //------------------
-
-                key_pressed = getch();
-                if(key_pressed == 27)quit = true;
-                if(key_pressed == 13)
-                {
-                    missile_data *missile;
-                    missile = initializeMissile(player.x, player.y);
-                    playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, &ai_angle);
-                     falling(map_layout);
-
-                    playerTurn = false;
-
-                }
-                else switch(getch()){
-                        case 72:
-                        if(player_angle < 180)player_angle = player_angle + 1;
-                        break;
-
-                        case 75:
-                        if(player_power > 0)player_power = player_power - 1;
-                        break;
-
-                        case 77:
-                        if(player_power < 200)player_power = player_power + 1;
-                        break;
-
-                        case 80:
-                        if(player_angle > 0)player_angle = player_angle - 1;
-                        break;
+                case 80:
+                    if(player_angle > 0)player_angle = player_angle - 1;
+                    break;
                 }
         }
 
@@ -169,11 +184,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
 
         //------------------------------------end of bots' turn
-    if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
-    Sleep(1000);
-    playerTurn = true;
+        if(selected_level.level_wind == WIND_VARIABLE)wind_speed = random_wind(); //Generate new wind force
+        Sleep(1000);
+        playerTurn = true;
 
-    //fflush();
+        //fflush();
 
     }//end of main loop
 
@@ -196,7 +211,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         //------------
     }
 
-   else if(player.hp <= 0 || key_pressed == 27)
+    else if(player.hp <= 0 || key_pressed == 27)
     {
         //Inform about defeat
 
