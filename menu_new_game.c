@@ -48,6 +48,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
     while(player.hp > 0 && bot.hp > 0)
     {
+
         //Main game loop :)
         //system("cls");
         if(quit == false && first_frame == 1)
@@ -73,6 +74,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 printf("\t\tWind = %d", (int)wind_speed);
                 printf("\t\tPoints = %d", player.points);
                 angle_drawing_distanse = player_power/20;
+                if(angle_drawing_distanse < 1)angle_drawing_distanse=1;
 
                 //Drawing angle tray
                 if(first_angle == true)
