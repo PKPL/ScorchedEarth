@@ -9,8 +9,7 @@
 #include "defines.h"
 
 //Structs
-typedef struct unit
-{
+typedef struct {
 int x;
 int y;
 int points;
@@ -19,10 +18,8 @@ int hp;
 
 // Included files
 
-void test_unit();
-void unit_func();
 
 extern unit player;
 extern unit bot;
-
+void unit_func(unit *unit_set);
 #endif // __UNIT_H__

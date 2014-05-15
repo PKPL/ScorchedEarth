@@ -15,21 +15,25 @@
 #define PI 3.14159265
 
 int screen_bufor [MAX_X][MAX_Y];
-
+//unit player;
+//unit bot;
 int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
+
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
     system("cls");
+    unit_func(&player);
+    unit_func(&bot);
 
     CONSOLE_CURSOR_INFO CurInfo;
 	CurInfo.dwSize=1;
 	CurInfo.bVisible=FALSE;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 
-    unit_func();
+
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
     int key_pressed;
@@ -40,7 +44,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
 
 
-    test_drawing_units(map_layout);
+    drawing_units(map_layout, &player, &bot);
 
     while(player.hp > 0 && bot.hp > 0)
     {
@@ -190,7 +194,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         //------------
     }
 
-    else if(player.hp <= 0 || key_pressed == 27)
+   else if(player.hp <= 0 || key_pressed == 27)
     {
         //Inform about defeat
 

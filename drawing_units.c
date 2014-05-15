@@ -13,15 +13,9 @@
 
 extern int map_layout [MAX_X][MAX_Y];
 
-
-void test_drawing_units (int map_layout[MAX_X][MAX_Y])
+void drawing_units (int map_layout[MAX_X][MAX_Y], unit *player_t, unit *bot_t)
 {
-    srand (time (NULL));
-    drawing_units(map_layout);
-}
-
-void drawing_units (int map_layout[MAX_X][MAX_Y])
-{
+     srand (time (NULL));
     tCoordinates coordinates_player, coordinates_enemy;
 
     do
@@ -37,17 +31,17 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
     map_layout[coordinates_player.x][coordinates_player.y] = PLAYER;
     map_layout[coordinates_enemy.x][coordinates_enemy.y] = ENEMY;
 
-    player.x = coordinates_player.x;
-    player.y = coordinates_player.y;
-    bot.x = coordinates_enemy.x;
-    bot.y = coordinates_enemy.y;
+    player_t->x = coordinates_player.x;
+    player_t->y = coordinates_player.y;
+    bot_t->x = coordinates_enemy.x;
+    bot_t->y = coordinates_enemy.y;
 
     int i,j;
     for(i = 0; i < MAX_X; i++)
     {
         for(j = 0; j < MAX_Y; j++)
         {
-                if(j >= player.y && abs(i - player.x) <= 5 && map_layout[i][j] == 1)
+                if(j >= player_t->y && abs(i - player_t->x) <= 5 && map_layout[i][j] == 1)
                 {
                  gotoxy(i, 79 - j);
                  map_layout[i][j] = 0;
@@ -61,7 +55,7 @@ void drawing_units (int map_layout[MAX_X][MAX_Y])
     {
         for(j = 0; j < MAX_Y; j++)
         {
-                if(j >= bot.y && abs(i - bot.x) <= 5 && map_layout[i][j] == 1)
+                if(j >= bot_t->y && abs(i - bot_t->x) <= 5 && map_layout[i][j] == 1)
                 {
                  gotoxy(i, 79 - j);
                  map_layout[i][j] = 0;

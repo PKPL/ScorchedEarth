@@ -5,18 +5,11 @@
 // Included files
 #include "unit.h"
 
-unit player;
-unit bot;
+unit player, bot;
 
-
-
-
-void unit_func()
+void unit_func(unit *unit_set)
 {
     //Setting hp and points
-    player.points = 0;
-    player.hp = 100;
-
-    bot.points = 0;
-    bot.hp = 100;
+    unit_set->points = 0;
+    unit_set->hp = 100;
 }

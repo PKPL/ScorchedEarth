@@ -11,14 +11,14 @@
 //#define DISTANCE 20 // minimum distance between player and enemy
 #include <stdbool.h>
 #include "defines.h"
+#include "unit.h"
 
 typedef struct
 {
     int x, y;
 } tCoordinates;
 
-void test_drawing_units(int map_layout[MAX_X][MAX_Y]);
-void drawing_units(int map_layout[MAX_X][MAX_Y]);
+void drawing_units (int map_layout[MAX_X][MAX_Y], unit *player_t, unit *bot_t);
 tCoordinates position (int map_layout[MAX_X][MAX_Y], bool isBot);
 void gotoxy(int x, int y);
 

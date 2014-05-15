@@ -13,13 +13,14 @@ typedef struct
 {
     char nickname[20];
     int points;
+
 } player_highscore;
+extern player_highscore players[11];
 
-
-player_highscore players[11];
-void bubblesort();
 void add_score ();
-void check_top_ten();
+void bubblesort(player_highscore players[11]);
+void save_score (player_highscore players[11]);
+void check_top_ten(player_highscore players[11]);
 void highscore();
 
 #endif // __MENU_HIGHSCORE_H__
