@@ -12,6 +12,7 @@
 #include "shot.h"
 #include "ai.h"
 #include "sauron_creation.h"
+#include "menu_highscore.h"
 
 #define PI 3.14159265
 
@@ -214,7 +215,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
 
     if(bot.hp <= 0)
-    {
+    {           player_highscore players[11];
+    players[10].points=player.points;
+    add_score(players );
+
+
         //Inform about victory
         gotoxy(30,20);
         printf("VICTORY");
