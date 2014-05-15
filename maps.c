@@ -9,9 +9,27 @@ extern int map_layout [MAX_X][MAX_Y];
 
 void test_maps(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
-    printf("Maps test\n");
+    int x, y;
+    bool checkInteger = true;
+    for (x = 0; x < MAX_X; x++)
+    {
+        for (y = 0; y < MAX_Y; y++)
+        {
+            if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
+            {
+                printf("Map generation error: Contents of array different than expected.\n");
+                checkInteger = !checkInteger;
+                break;
+            }
+        }
+    }
+    if (checkInteger)
+    {
+        printf("Maps test\n");
 
-    //test_maps_save();
-    //test_maps_load();
-    test_maps_create(map_layout);
+        //test_maps_save();
+        //test_maps_load();
+        test_maps_create(map_layout);
+    }
+
 }

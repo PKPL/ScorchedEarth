@@ -8,15 +8,15 @@ char c_open;
 
 // bubble sorting
 
-void add_score()
-{player_highscore players[11];
-    fp=fopen("highscore.txt", "r+");
+void add_score(player_highscore players[11])
+{
+    fp=fopen("highscore.txt", "w+r");
     check_top_ten(players);
     fclose(fp);
 }
 void bubblesort(player_highscore players[11])
 {
-    fp=fopen("highscore.txt", "r+");
+
     int i_loop, j_loop, temp;
 
     for (i_loop = 0; i_loop<9; i_loop++)
@@ -32,7 +32,7 @@ void bubblesort(player_highscore players[11])
             }
         }
     }
-    fclose(fp);
+
 }
 
 void save_score (player_highscore players[11])
@@ -52,11 +52,10 @@ void check_top_ten(player_highscore players[11])
         bubblesort(players);
     }
     save_score(players);
-    highscore(players);
 
 }
 
-void highscore()
+void highscore(player_highscore players[11])
 {
     fp=fopen("highscore.txt", "r+");
     while ((c_open=fgetc(fp))!=EOF)
