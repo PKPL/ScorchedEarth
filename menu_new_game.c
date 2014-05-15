@@ -15,8 +15,8 @@
 #define PI 3.14159265
 
 int screen_bufor [MAX_X][MAX_Y];
-//unit player;
-//unit bot;
+unit player;
+unit bot;
 int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;

@@ -13,8 +13,9 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 
 // Included files
 #include "menu.h"
+#include "unit.h"
 void test_menu() // function for agreagate testing
-{
+{unit player, bot;
     int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
     system("COLOR 8F");
     system("cls");

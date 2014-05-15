@@ -5,8 +5,6 @@
 // Included files
 #include "unit.h"
 
-unit player, bot;
-
 void unit_func(unit *unit_set)
 {
     //Setting hp and points
