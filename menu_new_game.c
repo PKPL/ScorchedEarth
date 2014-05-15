@@ -159,7 +159,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
             key_pressed = getch();
             if (key_pressed == 32)
-                //sauron_creation(map_layout, &bot);
+                sauron_creation(map_layout, &bot);
             if(key_pressed == 27)
                 quit = true;
             if(key_pressed == 13)
