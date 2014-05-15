@@ -131,7 +131,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         }
     }
 
-    if (!checkInteger)
+    if (checkInteger)
     {
         int auxiliary_number, parity, number, finished_creating_map, is_continuation, number_alternative, free_space_height, will_have_to_create_compensation_unit;
         free_space_height = MAX_Y;
