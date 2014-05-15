@@ -108,6 +108,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu_new_game.h" />
+		<Unit filename="sauron_creation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sauron_creation.h" />
+		<Unit filename="sauron_shoot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sauron_shoot.h" />
 		<Unit filename="shot.c">
 			<Option compilerVar="CC" />
 		</Unit>
