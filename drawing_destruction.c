@@ -41,7 +41,7 @@ void create_destruction(int map_layout [MAX_X][MAX_Y])
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 0;
+                    map_layout[x+1][y] = 0;
                 }
 
                 if ((y + 1) <= MAX_Y)
@@ -107,7 +107,7 @@ void create_destruction(int map_layout [MAX_X][MAX_Y])
 
                 if ((x + 1) <= MAX_X)
                 {
-                     map_layout[x+1][y] = 0;
+                    map_layout[x+1][y] = 0;
                 }
 
                 if ((y + 1) <= MAX_Y)
@@ -177,28 +177,38 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
     int y_pos = (int)m->y_vector_coordinate[number];
 
     int i,j, h,h_x, h_y;
-    for(i = 0; i < MAX_X; i++)
+    int error = 0;
+    if (number % 2 != 1 && number % 2 != 0)
     {
-        for(j = 0; j < MAX_Y; j++)
+        error = 1;
+        printf("One of the parameters' content is different than expected.\n");
+    }
+    if (error != 1)
+    {
+        for(i = 0; i < MAX_X; i++)
         {
-            h_x = x_pos - i;
-            h_y = y_pos - j;
-            h = sqrt(h_x*h_x + h_y*h_y);
-            if(h <= destruct_radius && map_layout[i][j] < 2)
+            for(j = 0; j < MAX_Y; j++)
             {
-                map_layout[i][j] = 0;
-                gotoxy(i,79 - j);
-                printf(" ");
-            }
-            else
-            {
-                if(h <= destruct_radius && map_layout[i][j] == 3)player.hp = 0;
-                else if (h <= destruct_radius)
+                h_x = x_pos - i;
+                h_y = y_pos - j;
+                h = sqrt(h_x*h_x + h_y*h_y);
+                if(h <= destruct_radius && map_layout[i][j] < 2)
                 {
-                   bot.hp = 0;
+                    map_layout[i][j] = 0;
+                    gotoxy(i,79 - j);
+                    printf(" ");
+                }
+                else
+                {
+                    if(h <= destruct_radius && map_layout[i][j] == 3)player.hp = 0;
+                    else if (h <= destruct_radius)
+                    {
+                        bot.hp = 0;
+                    }
                 }
             }
         }
     }
+
 
 }
