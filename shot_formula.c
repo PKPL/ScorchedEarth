@@ -5,6 +5,8 @@
 
 #include "shot_formula.h"
 #include "maps_create.h"
+#include <stdlib.h>
+#include <ctype.h>
 
 
 extern int ai_angle;
@@ -12,11 +14,20 @@ extern int ai_angle;
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot) {
+int playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot) {
+
+    // TESTING PART: IT CONTROLS THAT INT VALUES ARE REALLY INT VALUES, IF IT NOT IT RETURN -1
+    int control = 0;
+
+    if ( isalpha (initial_velocity) ) control = -1;
+    if ( isalpha (shooting_angle) ) control = -1;
+    if ( isalpha (isBot) ) control = -1;
 
     int i, flag = 0;
 
     //init_matrix();
+
+    if ( control < 0 ) return -1;
 
     setInitialVelocity(missile, initial_velocity/4);
     setShootingAngle(missile, shooting_angle);
@@ -61,10 +72,28 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
     }
     //print_matrix();
 
+    return 0;
+
 }
 
 /* Following function returns the exact power value that is needed to exactly hit player with given angle */
 float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int angle, int x_player_coord, int y_player_coord) {
+
+        // TESTING PART: IT CONTROLS THAT INT VALUES ARE REALLY INT VALUES, IF IT NOT IT RETURN -1
+
+    int control = 0;
+
+    if ( isalpha(x_enemy_coord) ) control = -1;
+    if ( isalpha(y_enemy_coord) ) control = -1;
+    if ( isalpha(missile_weight) ) control = -1;
+    if ( isalpha(angle) ) control = -1;
+    if ( isalpha(x_player_coord) ) control = -1;
+    if ( isalpha(y_player_coord) ) control = -1;
+
+
+    if ( control < 0 ) return -1;
+
+
 
     if(x_enemy_coord > x_player_coord)angle = 180 - angle;
     const float b = 0.1;

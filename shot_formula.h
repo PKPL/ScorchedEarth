@@ -26,7 +26,7 @@
 #include <windows.h>
 #include <stdbool.h>
 
-void playerShot(missile_data*, float, int, int[MAX_X][MAX_Y],bool isBot);
+int playerShot(missile_data*, float, int, int[MAX_X][MAX_Y],bool isBot);
 void AIShoot(missile_data*, float, int);
 float AIcheck(int, int, float, int, int, int);
 

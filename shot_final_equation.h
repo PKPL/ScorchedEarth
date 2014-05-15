@@ -24,14 +24,14 @@ double cosDegrees(double);
 double sinDegrees(double);
 
 missile_data* initializeMissile(int, int);
-void setInitialVelocity(missile_data*, float);
-void setShootingAngle(missile_data*, int);
+int  setInitialVelocity(missile_data*, float);
+int  setShootingAngle(missile_data*, int);
 
-void xVelocityFormula(missile_data*, float);
+int  xVelocityFormula(missile_data*, float);
 void yVelocityFormula(missile_data*);
-void xCoordinate(missile_data*, float);
+int xCoordinate(missile_data*, float);
 void yCoordinate(missile_data*);
 
-void shotFunction(missile_data*, float);
+int shotFunction(missile_data*, float);
 
 #endif // __SHOT_FINAL_EQUATION_H__
