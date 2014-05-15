@@ -17,10 +17,11 @@ typedef struct
 } player_highscore;
 extern player_highscore players[11];
 
-void add_score ();
+void add_score (player_highscore players[11];);
 void bubblesort(player_highscore players[11]);
 void save_score (player_highscore players[11]);
-void check_top_ten(player_highscore players[11]);
-void highscore();
+
+void highscore(player_highscore players[11]);
 
 #endif // __MENU_HIGHSCORE_H__
+
