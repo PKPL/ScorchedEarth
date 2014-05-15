@@ -26,7 +26,8 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
         {
             printf("The chosen option is not valid.\nNumber of desired option: ");
             control = scanf("%d", &selected_option);
-            fflush(stdin);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
         }
         else
         {
@@ -36,28 +37,29 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             printf("\nHARD LEVEL - 3 ");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selected_option);
-            fflush(stdin);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
             wrong_input = 1;
         }
     }
     while (selected_option < 1 || selected_option > 3 || control == 0);
 
-            if(selected_option == 1)
-            {
-                levels(1);
-            }
-            else if(selected_option == 2)
-            {
-                levels(2);
-            }
-            else if(selected_option == 3)
-            {
-                levels(3);
-            }
-            create_mountain_map(map_layout);
-            game_loop(map_layout);
+    if(selected_option == 1)
+    {
+        levels(1);
+    }
+    else if(selected_option == 2)
+    {
+        levels(2);
+    }
+    else if(selected_option == 3)
+    {
+        levels(3);
+    }
+    create_mountain_map(map_layout);
+    game_loop(map_layout);
 
 
-       return selected_option;
+    return selected_option;
 
 }

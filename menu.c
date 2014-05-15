@@ -28,7 +28,8 @@ void test_menu() // function for agreagate testing
         {
             printf("The chosen option is not valid.\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
-            fflush(stdin);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
         }
         else
         {
@@ -37,7 +38,8 @@ void test_menu() // function for agreagate testing
             printf("[ 1 ] -> Start a New Game\n[ 2 ] -> View Highscores\n[ 3 ] -> View Credits\n[ 4 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
-            fflush(stdin);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
             wrongInput = 1;
         }
     }
