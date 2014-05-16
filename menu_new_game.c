@@ -87,7 +87,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
         while(playerTurn)
         {
-
+            while(kbhit())getch();
             if(quit == true)break;
             //Player move
 
