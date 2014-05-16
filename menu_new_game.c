@@ -25,9 +25,8 @@ float angle_drawing_distanse = 5;
 
 void game_loop(int map_layout [MAX_X][MAX_Y])
 {
-
+    setvbuf(stdout, NULL, _IONBF, 0);
     int c = '\13\n';
-
     system("cls");
     unit_func(&player);
     unit_func(&bot);
@@ -53,6 +52,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
     while(player.hp > 0 && bot.hp > 0)
     {
+
 
 //    int   ch;
 //    char  buf[BUFSIZ];
