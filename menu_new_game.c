@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include "shot.h"
 #include "ai.h"
-#include "sauron_creation.h"
+#include "sauron.h"
 #include "menu_highscore.h"
 
 #define PI 3.14159265
@@ -159,8 +159,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             //------------------
 
             key_pressed = getch();
-            if (key_pressed == 32)
-                sauron_creation(map_layout, &bot);
+            if (key_pressed == 32) {
+                 sauron_creation(map_layout, &bot);
+                 falling(map_layout);
+                 if(player.hp <= 0)quit=true;
+                 else sauron_destruction(map_layout, &bot);
+            }
+
             if(key_pressed == 27)
                 quit = true;
             if(key_pressed == 13)

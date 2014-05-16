@@ -7,6 +7,7 @@
 
 #include "drawing_maps.h"
 #include <windows.h>
+#include "unit.h"
 
 
 
@@ -81,6 +82,7 @@ void falling(int map_layout[MAX_X][MAX_Y])
 {
     int i, j, k;
 
+    Sleep (7);
     for(i = 0; i < MAX_X; i++)
     {
         for(j = MAX_Y - 1; j > 0; j--)
@@ -88,15 +90,18 @@ void falling(int map_layout[MAX_X][MAX_Y])
             if(map_layout[i][j] != 0 && map_layout[i][j-1] == 0)
             {
                 //Sleep(10);
+                if(map_layout[i][j] == 3)player.y--;
+                else if(map_layout[i][j] == 2)bot.y--;
                 map_layout[i][j-1] = map_layout[i][j];
                 map_layout[i][j] = 0;
                 gotoxy(i,79-j + 1);
                 printf("%d", map_layout[i][j-1]);
                 gotoxy(i,79-j);
                 printf(" ");
-                Sleep(3);
+//                Sleep(0.5);
                 j = MAX_Y;
             }
         }
+//        Sleep(10);
     }
 }

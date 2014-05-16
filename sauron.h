@@ -9,6 +9,7 @@
 
 
 void sauron_creation(int map_layout[MAX_X][MAX_Y], unit *bot);
-void constructor (int x, int y, int pos, int number);
+void sauron_destruction (int map_layout[MAX_X][MAX_Y], unit *bot);
+void constructor (int x, int y, int *pos, int number);
 
 #endif // SAURON_CREATION_H
