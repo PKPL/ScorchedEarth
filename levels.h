@@ -13,6 +13,6 @@
 #include "levels_level.h"
 #include "defines.h"
 
-//level_struct test_levels();// function for agreagate testing; Problem with this function
-
+int test_levels(int[MAX_X][MAX_Y]);// function for agreagate testing; Problem with this function
+int test_edge();
 #endif // LEVELS_H_INCLUDED

@@ -10,7 +10,7 @@
 int checkHit(int, missile_data*, int matrix[MAX_X][MAX_Y]);
 
 
-void extra_explosion(missile_data*);
+//void extra_explosion(missile_data*);
 
 #endif // __SHOT_HIT_H__
 

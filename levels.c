@@ -56,10 +56,57 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
     {
         levels(3);
     }
+
+    test_edge();
     create_mountain_map(map_layout);
     game_loop(map_layout);
 
 
     return selected_option;
 
+}
+
+int test_edge () {
+
+    int selected_option, control;
+    int wrong_input = 0;
+    system("cls");
+    do
+    {
+        if (wrong_input == 1)
+        {
+            printf("The chosen option is not valid.\nNumber of desired option: ");
+            control = scanf("%d", &selected_option);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
+        }
+        else
+        {
+            printf("Choose the edge type: ");
+            printf("\nNO EDGES - 1 ");
+            printf("\nBOUNCING EDGES - 2 ");
+            printf("\nCONTINUE EDGES - 3 ");
+            printf("\nNumber of desired option: ");
+            control = scanf("%d", &selected_option);
+            int c;
+            while((c = getchar()) != '\n' && c != EOF);
+            wrong_input = 1;
+        }
+    }
+    while (selected_option < 1 || selected_option > 3 || control == 0);
+
+    if(selected_option == 1)
+    {
+        selected_level.edge = EDGE_NO;
+    }
+    else if(selected_option == 2)
+    {
+        selected_level.edge = EDGE_BOUNCE;
+    }
+    else if(selected_option == 3)
+    {
+        selected_level.edge = EDGE_CONTINUE;
+    }
+
+    return selected_option;
 }

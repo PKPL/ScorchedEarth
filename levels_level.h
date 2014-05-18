@@ -22,10 +22,18 @@ typedef enum ai_type
   AI_HARD
 } ai_type;
 
+typedef enum edge_type
+{
+    EDGE_NO,
+    EDGE_BOUNCE,
+    EDGE_CONTINUE
+} edge_type;
+
 typedef struct level_struct
 {
    wind_type level_wind;
    ai_type level_ai;
+   edge_type edge;
 } level_struct;
 
 void levels(int option);

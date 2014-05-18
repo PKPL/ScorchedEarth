@@ -77,12 +77,27 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
 void xCoordinate (missile_data *m, float wf) { //Calculates x coordinate against time and stores the values in a vector
     const float b = 0.1; // kg/s
     int x0, i;
-    float t;
+    float t, temp;
     float velocity_x_0;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
     for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) { //As for velocity, we're calculating coordinates every 0.02 seconds
-        m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
+        temp = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
+        switch (selected_level.edge) {
+            case EDGE_NO:
+                m->x_vector_coordinate[i] = temp;
+                break;
+            case EDGE_BOUNCE:
+                if (temp < 0)
+                    m->x_vector_coordinate[i] = abs(temp);
+                else if (temp > MAX_X)
+                    m->x_vector_coordinate[i] = MAX_X - (temp - MAX_X);
+                else
+                    m->x_vector_coordinate[i] = temp;
+                break;
+            case EDGE_CONTINUE:
+                break;
+        }
         i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }

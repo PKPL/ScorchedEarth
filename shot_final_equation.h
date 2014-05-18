@@ -2,6 +2,7 @@
 #define __SHOT_FINAL_EQUATION_H__
 
 #include "defines.h"
+#include "levels.h"
 
 //On this file Team 1 is working: Federico Bollotta and Lorenzo Romanelli
 
