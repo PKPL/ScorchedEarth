@@ -81,12 +81,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
             //Choose power and angle
             gotoxy(0,80);
-           printf("Angle = %d", bot_angle);
-            printf("\t     Power = %d", bot_power);
+           printf("Angle = %d", player_angle);
+            printf("\t     Power = %d", player_power);
             printf("\t       Wind = %d", (int)wind_speed);
             printf("\t          Points = %d", bot.points);
             printf("\t          Hp = %d", player.hp);
             angle_drawing_distanse = player_power/20;
+            if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
 
             //Drawing angle tray
             if(first_angle == true)
@@ -208,8 +209,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             printf("\t     Power = %d", bot_power);
             printf("\t       Wind = %d", (int)wind_speed);
             printf("\t          Points = %d", bot.points);
-            printf("\t          Hp = %d", player.hp);
-            angle_drawing_distanse = player_power/20;
+            printf("\t          Hp = %d", bot.hp);
+            angle_drawing_distanse = bot_power/20;
+            if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
 
             //Drawing angle tray
             if(first_angle == true)
@@ -293,19 +295,19 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
                 {
                 case 72:
-                    if(player_angle < 180)bot_angle = bot_angle + 1;
+                    if(bot_angle < 180)bot_angle = bot_angle + 1;
                     break;
 
                 case 75:
-                    if(player_power > 0)bot_power = bot_power - 1;
+                    if(bot_power > 0)bot_power = bot_power - 1;
                     break;
 
                 case 77:
-                    if(player_power < 200)bot_power = bot_power + 1;
+                    if(bot_power < 200)bot_power = bot_power + 1;
                     break;
 
                 case 80:
-                    if(player_angle > 0)bot_angle = bot_angle - 1;
+                    if(bot_angle > 0)bot_angle = bot_angle - 1;
                     break;
                 }
         }
