@@ -54,7 +54,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     char option = option_User("Do you want to load the previous game");
     if (option == "Y")
     {
-        game_load(map_layout, &selected_level, &missile, &wind_speed);
+        if (!game_load(map_layout, &selected_level, &missile, &wind_speed, &playerTurn)) {
+            drawing_units(map_layout, &player, &bot);
+        }
     } else {
        drawing_units(map_layout, &player, &bot);
     }
@@ -209,7 +211,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     {
         player_highscore players[11];
         players[10].points=player.points;
-        add_score(players );
+        add_score(players);
 
 
         //Inform about victory
@@ -218,7 +220,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         gotoxy(30,21);
         printf("Press any button to go to the menu");
         getch();
-        test_menu();
+        menu();
 
         //--------------------
 
@@ -238,7 +240,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         gotoxy(30,21);
         printf("Press any button to go to the menu");
         getch();
-        test_menu();
+        menu();
 
         //------------
     }
