@@ -55,16 +55,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
     missile_data *missile;
 
-    char option = option_User("Do you want to load the previous game");
-    system ("cls");
-    if (option == "Y")
-    {
-        if (!game_load(map_layout, &selected_level, &missile, &wind_speed, &playerTurn)) {
-            drawing_units(map_layout, &player, &bot);
-        }
-    } else {
-       drawing_units(map_layout, &player, &bot);
-    }
+    drawing_units(map_layout, &player, &bot);
 
     while(player.hp > 0 && bot.hp > 0)
     {
