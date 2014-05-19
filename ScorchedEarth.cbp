@@ -64,6 +64,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="game_load.h" />
+		<Unit filename="game_save.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game_save.h" />
 		<Unit filename="levels.c">
 			<Option compilerVar="CC" />
 		</Unit>
