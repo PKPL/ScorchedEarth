@@ -16,7 +16,7 @@
 #include "menu_new_game.h"
 #include "menu.h"
 
-int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
+int choose_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
 {
     int selected_option, control;
     int wrong_input = 0;
@@ -35,6 +35,7 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             printf("\nEASY LEVEL - 1 ");
             printf("\nMEDIUM LEVEL - 2 ");
             printf("\nHARD LEVEL - 3 ");
+            printf("\nPVP HOTSEAT - 4 in progres !!! ");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selected_option);
             int c;
@@ -42,7 +43,7 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
             wrong_input = 1;
         }
     }
-    while (selected_option < 1 || selected_option > 3 || control == 0);
+    while (selected_option < 1 || selected_option > 4 || control == 0);
 
     if(selected_option == 1)
     {
@@ -55,6 +56,10 @@ int test_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
     else if(selected_option == 3)
     {
         levels(3);
+    }
+    else if(selected_option == 4)
+    {
+        levels(4);
     }
 
     test_edge();

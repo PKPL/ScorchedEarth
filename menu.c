@@ -14,7 +14,7 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 // Included files
 #include "menu.h"
 #include "unit.h"
-void test_menu() // function for agreagate testing
+void menu() // function for agreagate testing
 {//unit player, bot;
 
     int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
@@ -56,29 +56,7 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         system("cls");
         //starting new game
         //Code to get the chosen level goes here
-        //We also have to call the functions apropriately, for example, if difficulty is hard, AI has to be hard, and physics too etc.
-        /*
-        EASY LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        /*
-        MEDIUM LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        /*
-        HARD LEVEL:
-        create_mountain_map(map_layout);
-        test_drawing_map(map_layout);
-        test_drawing_units(map_layout);
-        */
-
-        test_levels(map_layout);
+        choose_levels(map_layout);
         break;
     }
     case 2:// highscore
@@ -104,9 +82,9 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     }
     default:
     {
-        test_menu();
+        menu();
         break;
     }
     }
-    test_menu();
+    menu();
 }

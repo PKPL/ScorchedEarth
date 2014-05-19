@@ -46,13 +46,7 @@ SetConsoleScreenBufferSize(wHnd, bufferSize);
     //Tests
     printf("\n-------------------------------------------------\n");
     printf("Testing functionality\n");
-   // test_ai();
-    //selected_level = test_levels();
-    test_menu();
-   // test_maps(map_layout);
-    //test_drawing(map_layout);
-    //test_unit();
-    //testShot();
+    menu();
     printf("\n-------------------------------------------------\n");
     _getch();
     return 0;

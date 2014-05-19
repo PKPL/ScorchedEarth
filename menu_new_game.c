@@ -41,7 +41,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
     int key_pressed;
-    int player_angle = 0;
+    int player_angle = 60;
     int player_power = 100;
     bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
@@ -209,7 +209,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         gotoxy(30,21);
         printf("Press any button to go to the menu");
         getch();
-        test_menu();
+        menu();
 
         //--------------------
 
@@ -229,7 +229,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         gotoxy(30,21);
         printf("Press any button to go to the menu");
         getch();
-        test_menu();
+        menu();
 
         //------------
     }

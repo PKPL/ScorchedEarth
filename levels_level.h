@@ -19,7 +19,8 @@ typedef enum ai_type
 {
   AI_EASY,
   AI_MEDIUM,
-  AI_HARD
+  AI_HARD,
+  PVP_MODE
 } ai_type;
 
 typedef enum edge_type
@@ -36,6 +37,7 @@ typedef struct level_struct
    edge_type edge;
 } level_struct;
 
+void choose_wind();
 void levels(int option);
 float random_wind();
 extern level_struct selected_level;

@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include "defines.h"
 
-void test_menu(); // function for agreagate testing
+void menu(); // function for agreagate testing
 void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y]);
 
 #endif // __MENU_H__
