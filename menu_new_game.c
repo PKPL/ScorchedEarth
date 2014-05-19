@@ -81,12 +81,26 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
             //Player move
 
             //Choose power and angle
+            gotoxy(8,80);
+           printf("     ");
             gotoxy(0,80);
            printf("Angle = %d", player_angle);
-            printf("\t     Power = %d", player_power);
-            printf("\t       Wind = %d", (int)wind_speed);
-            printf("\t          Points = %d", bot.points);
-            printf("\t          Hp = %d", player.hp);
+           gotoxy(28,80);
+            printf("     ");
+           gotoxy(20,80);
+            printf("Power = %d", player_power);
+            gotoxy(48,80);
+            printf("     ");
+            gotoxy(40,80);
+            printf("Wind = %d", (int)wind_speed);
+            gotoxy(68,80);
+            printf("     ");
+            gotoxy(60,80);
+            printf("Points = %d", player.points);
+            gotoxy(88,80);
+            printf("     ");
+            gotoxy(80,80);
+            printf("Hp = %d", player.hp);
 
             angle_drawing_distanse = player_power/20;
             if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
@@ -171,7 +185,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 playerTurn = false;
 
             }
-            else switch(getch())
+            else{ switch(getch())
 
                 {
                 case 72:
@@ -189,8 +203,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 case 80:
                     if(player_angle > 0)player_angle = player_angle - 1;
                     break;
-                }
+                }Sleep(30);
         }
+    }
 
 
         if(quit == true)break;
@@ -209,12 +224,16 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
 
             //Choose power and angle
-            gotoxy(0,80);
-          printf("Angle = %d", bot_angle);
-            printf("\t     Power = %d", bot_power);
-            printf("\t       Wind = %d", (int)wind_speed);
-            printf("\t          Points = %d", bot.points);
-            printf("\t          Hp = %d", bot.hp);
+         gotoxy(0,80);
+           printf("Angle = %d", bot_angle);
+           gotoxy(20,80);
+            printf("Power = %d", bot_power);
+            gotoxy(40,80);
+            printf("Wind = %d", (int)wind_speed);
+            gotoxy(60,80);
+            printf("Points = %d", bot.points);
+            gotoxy(80,80);
+            printf("Hp = %d", bot.hp);
             angle_drawing_distanse = bot_power/20;
             if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
 
