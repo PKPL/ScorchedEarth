@@ -54,28 +54,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     while(player.hp > 0 && bot.hp > 0)
     {
 
-
-//    int   ch;
-//    char  buf[BUFSIZ];
-
-//
-//  puts("Flushing input");
-//
-//  while ((ch = getchar()) != '\n' && ch != EOF);
-//
-//  printf ("Enter some text: ");
-//
-//    if (fgets(buf, sizeof(buf), stdin))
-//  {
-//    printf ("You entered: %s", buf);
-//  }
-
-//while ((ch = getchar()) != '\n' && ch != EOF);
-
-        //while ((key_pressed = getchar()) != '\n' && key_pressed != EOF);
-
-        //Main game loop :)
-        //system("cls");
         if(quit == false && first_frame == 1)
         {
 
