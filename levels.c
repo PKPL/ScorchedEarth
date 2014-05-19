@@ -35,7 +35,7 @@ int choose_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testi
             printf("\nEASY LEVEL - 1 ");
             printf("\nMEDIUM LEVEL - 2 ");
             printf("\nHARD LEVEL - 3 ");
-            printf("\nPVP HOTSEAT - 4 in progres !!! ");
+            printf("\nPVP HOTSEAT - 4 NEW !!! ");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selected_option);
             int c;
