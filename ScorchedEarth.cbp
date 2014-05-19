@@ -60,6 +60,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="drawing_units.h" />
+		<Unit filename="game_load.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game_load.h" />
 		<Unit filename="levels.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -81,7 +85,6 @@
 		<Unit filename="maps_create.h" />
 		<Unit filename="maps_load.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="maps_load.h" />
 		<Unit filename="maps_save.c">
