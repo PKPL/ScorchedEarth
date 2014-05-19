@@ -88,12 +88,7 @@ void xCoordinate (missile_data *m, float wf) { //Calculates x coordinate against
                 m->x_vector_coordinate[i] = temp;
                 break;
             case EDGE_BOUNCE:
-                if (temp < 0)
-                    m->x_vector_coordinate[i] = abs(temp);
-                else if (temp > MAX_X)
-                    m->x_vector_coordinate[i] = MAX_X - (temp - MAX_X);
-                else
-                    m->x_vector_coordinate[i] = temp;
+                m->x_vector_coordinate[i] = bounce(temp);
                 break;
             case EDGE_CONTINUE:
                 break;
@@ -124,4 +119,16 @@ void shotFunction (missile_data *m, float wf) { //Puts together coordinates calc
     yCoordinate(m);
     xCoordinate(m, wf);
 
+}
+
+float bounce (float coord) {
+    if (coord < 0) {
+        if (abs(coord) < MAX_X) return abs(coord);
+        else return bounce(abs(coord));
+    }
+    else if (coord > MAX_X) {
+        if ((MAX_X - (coord - MAX_X)) > 0) return MAX_X - (coord - MAX_X);
+        else return bounce(-(MAX_X - (coord - MAX_X)));
+    }
+    else return coord;
 }
