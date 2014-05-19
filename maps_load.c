@@ -7,6 +7,7 @@
 
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {
+    int x, y;
     bool checkInteger = true;
     for (x = 0; x < MAX_X; x++)
     {
@@ -56,8 +57,9 @@ char option_User (char *str)
     do
     {
         int c;
-        while((c = getchar()) != '\n' && c != EOF);
         option = getchar ();
+        while(kbhit())getch();
+        option = toupper (option);
         if (option != 'Y' && option != 'N')
         {
             printf ("Only 'Y' or 'N'\n");
@@ -96,9 +98,9 @@ bool reading_from_File (int map_layout [MAX_X][MAX_Y])
     char name_File_Map[MAX_NAME_FILE];
     FILE *map_Load = NULL;
     int c;
-    while((c = getchar()) != '\n' && c != EOF);
     printf ("Name of the map to load: ");
     read_String(name_File_Map, MAX_NAME_FILE);
+    fflush(stdin);
     map_Load = fopen (name_File_Map, "r");
     if (map_Load == NULL)
     {
