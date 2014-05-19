@@ -11,7 +11,7 @@ int close_game()
     scanf(" %c",&decision); //The %c (becouse we want char, no integer :)) conversion specifier won't automatically skip any leading whitespace,
     //so if there's a stray newline in the input stream (from a previous entry, for example) the scanf call will consume it immediately.
 
-    if(decision == 'y') exit(EXIT_SUCCESS);
+    if(decision == 'y'|| decision == 'Y') exit(EXIT_SUCCESS);
     else
     {
     system("cls");

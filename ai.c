@@ -48,10 +48,6 @@ bool raycast(unit from, int angle,  int map_layout[MAX_X][MAX_Y])
     return false;
 }
 
-void test_ai() // function for agreagate testing
-{
-    printf("AI test\n");
-}
 
 void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {

@@ -35,4 +35,7 @@ void yCoordinate(missile_data*);
 
 void shotFunction(missile_data*, float);
 
+float bounce(float);
+float continuous(float);
+
 #endif // __SHOT_FINAL_EQUATION_H__
