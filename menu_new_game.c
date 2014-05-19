@@ -15,12 +15,14 @@
 #include "ai.h"
 #include "sauron.h"
 #include "menu_highscore.h"
+#include "game_save.h"
 
 #define PI 3.14159265
 
 int screen_bufor [MAX_X][MAX_Y];
 unit player;
 unit bot;
+int save_pressed;
 int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
@@ -172,11 +174,16 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 else sauron_destruction(map_layout, &bot);
             }
 
-            if(key_pressed == 27)
-            {
-
+              if(key_pressed == 27) {
+                system("cls");
+                printf("Do you want to save your game? (Y/N)\n");
+                save_pressed = getch();
+                if (save_pressed == 121 || save_pressed == 89) {
+                    save_game(map_layout, selected_level, player, bot, missile, wind_speed, playerTurn);
+                }
                 quit = true;
             }
+
             if(key_pressed == 13)
             {
                 missile = initializeMissile(player.x, player.y);
@@ -304,8 +311,15 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                  else sauron_destruction(map_layout, &bot);
             }
 
-            if(key_pressed == 27)
+              if(key_pressed == 27) {
+                printf("Do you want to save your game?\n");
+                save_pressed = getch();
+                if (save_pressed == 121 || save_pressed == 89) {
+                    save_game(map_layout, selected_level, player, bot, missile, wind_speed, playerTurn);
+                }
                 quit = true;
+            }
+
             if(key_pressed == 13)
             {
                 missile_data *missile;
