@@ -8,46 +8,25 @@
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {
     int x, y;
-    bool checkInteger = true;
-    for (x = 0; x < MAX_X; x++)
+    char option, sucess; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
+    static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
+    if (existing_Map != 0)
     {
-        for (y = 0; y < MAX_Y; y++)
+        option = option_User ("You already loaded one map, do you want to load another and forget the last?\t");
+        if (option == 'Y')
         {
-            if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
-            {
-                printf("Map generation error: Contents of array different than expected.\n");
-                checkInteger = !checkInteger;
-                break;
-            }
+           sucess = reading_from_File (map_layout);
         }
     }
-
-    if (checkInteger)
+    else
     {
-        char option; // Because we will be different names for each map, we need to ask the name of the map that the user wants to load.
-        static bool existing_Map = false; // This variable allows to know if one map was already loaded. So, in order to this information will be not destroyed , we putted 'static int'
-        if (existing_Map != 0)
+        sucess = reading_from_File (map_layout);
+        if (sucess)
         {
-            option = option_User ("You already loaded one map, do you want to load another and forget the last?\t");
-            if (option == 'Y')
-            {
-                reading_from_File (map_layout);
-                existing_Map = true;
-            }
+            existing_Map = true;
         }
-        else
-        {
-            bool sucess = reading_from_File (map_layout);
-            if (sucess)
-            {
-                existing_Map = true;
-                return true;
-            }
-        }
-        return false;
     }
-
-
+    return sucess;
 }
 
 char option_User (char *str)
@@ -56,10 +35,9 @@ char option_User (char *str)
     printf ("%s?\n(Y/N)", str);
     do
     {
-        int c;
         option = getchar ();
-        while(kbhit())getch();
         option = toupper (option);
+        fflush (stdin);
         if (option != 'Y' && option != 'N')
         {
             printf ("Only 'Y' or 'N'\n");
@@ -97,7 +75,7 @@ bool reading_from_File (int map_layout [MAX_X][MAX_Y])
     int x, y;
     char name_File_Map[MAX_NAME_FILE];
     FILE *map_Load = NULL;
-    int c;
+    fflush(stdin);
     printf ("Name of the map to load: ");
     read_String(name_File_Map, MAX_NAME_FILE);
     fflush(stdin);
