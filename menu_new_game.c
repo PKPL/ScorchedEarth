@@ -81,10 +81,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
             //Choose power and angle
             gotoxy(0,80);
-            printf("Angle = %d", player_angle);
-            printf("\t\tPower = %d", player_power);
-            printf("\t\tWind = %d", (int)wind_speed);
-            printf("\t\tPoints = %d", player.points);
+           printf("Angle = %d", bot_angle);
+            printf("\t     Power = %d", bot_power);
+            printf("\t       Wind = %d", (int)wind_speed);
+            printf("\t          Points = %d", bot.points);
+            printf("\t          Hp = %d", player.hp);
             angle_drawing_distanse = player_power/20;
 
             //Drawing angle tray
@@ -203,10 +204,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
             //Choose power and angle
             gotoxy(0,80);
-            printf("Angle = %d", bot_angle);
-            printf("\t\tPower = %d", bot_power);
-            printf("\t\tWind = %d", (int)wind_speed);
-            printf("\t\tPoints = %d", bot.points);
+          printf("Angle = %d", bot_angle);
+            printf("\t     Power = %d", bot_power);
+            printf("\t       Wind = %d", (int)wind_speed);
+            printf("\t          Points = %d", bot.points);
+            printf("\t          Hp = %d", player.hp);
             angle_drawing_distanse = player_power/20;
 
             //Drawing angle tray
