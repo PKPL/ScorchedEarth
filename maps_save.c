@@ -52,7 +52,7 @@ void save_map(int map_layout[MAX_X][MAX_Y])
                 }
             }
             int i;
-            printf("\nMap saved in \"");
+            printf("\nMap saved in a file named \"");
             for (i = 11; i < strlen(name_File_Map) - 4; i++) {
                 printf ("%c", name_File_Map[i]);
 
