@@ -63,14 +63,16 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         break;
     }
     case 2: {
-        level_struct level_loaded;
-        unit player_loaded, bot_loaded;
-        float wind_speed_loaded;
-        game_load(map_layout, &level_loaded, &player_loaded, &bot_loaded, &wind_speed_loaded);
-        selected_level = level_loaded;
-        player = player_loaded;
-        bot = bot_loaded;
-        wind_speed = wind_speed_loaded;
+//        level_struct level_loaded;
+//        unit player_loaded, bot_loaded;
+//        float wind_speed_loaded;
+        game_load(map_layout, &selected_level, &player, &bot, &wind_speed);
+        printf ("%f", wind_speed);
+        system("PAUSE");
+//        selected_level = level_loaded;
+//        player = player_loaded;
+//        bot = bot_loaded;
+//        wind_speed = wind_speed_loaded;
         game_loop(map_layout);
         break;
     }

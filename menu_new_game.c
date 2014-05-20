@@ -204,7 +204,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 save_pressed = getch();
                 if (save_pressed == 121 || save_pressed == 89)
                 {
+                    map_layout[bot.x][bot.y] = 1;
+                    map_layout[player.x][player.y] = 1;
                     save_game(map_layout, selected_level, player, bot, wind_speed);
+                    map_layout[bot.x][bot.y] = 2;
+                    map_layout[player.x][player.y] = 3;
                 }
                 quit = true;
             }

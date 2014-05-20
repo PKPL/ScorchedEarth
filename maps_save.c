@@ -40,7 +40,7 @@ void save_map(int map_layout[MAX_X][MAX_Y])
         map_file = fopen(name_File_Map,"w"); // w means we are able to write it and create it if it didn't exist
         if (map_file == NULL)
         {
-            perror("Error:\t The program could not open the file where the map was saved.");
+            perror("Error:\t The program could not open the file where the map was saved");
         }
         else
         {
