@@ -13,7 +13,8 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
     char option = option_User("\n\nDo you want to load an existing map");
     if (option == 'Y')
     {
-        printf ("Name of the map to load: ");
+        list_dir ();
+        printf ("\n\nName of the map to load: ");
         read_String(name_File_Map, MAX_NAME_FILE);
         fflush(stdin);
         map_Load = fopen (name_File_Map, "r");
@@ -83,4 +84,25 @@ void read_String(char str[], int max)
         }
     }
     while (strlen (str) == 0);
+}
+
+void list_dir()
+{
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir ("Saved_Maps\\")) != NULL)
+    {
+        /* print all the files and directories within directory */
+        while ((ent = readdir (dir)) != NULL)
+        {
+            printf ("%s\n", ent->d_name);
+        }
+        closedir (dir);
+    }
+    else
+    {
+        /* could not open directory */
+        perror ("");
+        return EXIT_FAILURE;
+    }
 }
