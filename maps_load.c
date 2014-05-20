@@ -92,6 +92,7 @@ void list_dir()
     struct dirent *ent;
     if ((dir = opendir ("Saved_Maps\\")) != NULL)
     {
+        printf("List of saved maps:\n");
         /* print all the files and directories within directory */
         while ((ent = readdir (dir)) != NULL)
         {

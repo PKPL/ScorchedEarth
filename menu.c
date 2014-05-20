@@ -15,9 +15,12 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 #include "menu.h"
 #include "unit.h"
 #include "shot_final_equation.h"
+#include "maps_load.h"
+#include "remove_save_files.h"
 
 void menu() // function for agreagate testing
-{//unit player, bot;
+{
+    //unit player, bot;
 
     int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
     system("COLOR 8F");
@@ -37,7 +40,7 @@ void menu() // function for agreagate testing
         {
             printf("\n|Scorched Earth (Project Work In Progress) MENU|\n");
             printf("|______________________________________________|\n\n");
-            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> Load the last game\n[ 3 ] -> View Highscores\n[ 4 ] -> View Credits\n[ 5 ] -> Exit Game, although you don't want to do it =]\n");
+            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> Load the last game\n[ 3 ] -> View Highscores\n[ 4 ] -> Saved games management\n[ 5 ] -> View Credits\n[ 6 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
             int c;
@@ -61,7 +64,8 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         choose_levels(map_layout);
         break;
     }
-    case 2: {
+    case 2:
+    {
         level_struct level;
         unit player, bot;
         missile_data missile;
@@ -72,20 +76,32 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         break;
     }
     case 3:// highscore
-    {   player_highscore players[11];
+    {
+        player_highscore players[11];
         system("cls");
         highscore(players);
         break;
     }
 
-    case 4:// credits
+    case 4://Saved Games Management
+    {
+        system("cls");
+        list_dir();
+        char option = option_User("\nDo you want to eliminate a map");
+        if (option == 'Y')
+        {
+            remove_file();
+        }
+        break;
+    }
+    case 5:// credits
     {
         system("cls");
         credits();
         break;
     }
 
-    case 5://exit game
+    case 6://exit game
     {
         system("cls");
         close_game();
