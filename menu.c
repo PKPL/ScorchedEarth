@@ -14,6 +14,8 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 // Included files
 #include "menu.h"
 #include "unit.h"
+#include "shot_final_equation.h"
+
 void menu() // function for agreagate testing
 {//unit player, bot;
 
@@ -35,7 +37,7 @@ void menu() // function for agreagate testing
         {
             printf("\n|Scorched Earth (Project Work In Progress) MENU|\n");
             printf("|______________________________________________|\n\n");
-            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> View Highscores\n[ 3 ] -> View Credits\n[ 4 ] -> Exit Game, although you don't want to do it =]\n");
+            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> Load the last game\n[ 3 ] -> View Highscores\n[ 4 ] -> View Credits\n[ 5 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
             int c;
@@ -59,21 +61,31 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         choose_levels(map_layout);
         break;
     }
-    case 2:// highscore
+    case 2: {
+//        level_struct level;
+//        unit player, bot;
+//        missile_data missile;
+//        float wind_speed;
+//        bool playerTurn;
+//        game_load(map_layout, &level, &player, &bot, &missile, &wind_speed, &playerTurn);
+//        game_loop(map_layout);
+        break;
+    }
+    case 3:// highscore
     {   player_highscore players[11];
         system("cls");
         highscore(players);
         break;
     }
 
-    case 3:// credits
+    case 4:// credits
     {
         system("cls");
         credits();
         break;
     }
 
-    case 4://exit game
+    case 5://exit game
     {
         system("cls");
         close_game();

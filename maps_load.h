@@ -19,10 +19,10 @@ DANIEL PINTO
 #include <stdbool.h> // includes the bool variable types, that is best when we just want true or false, 0 or 1 for the value, and takes less for RAM.
 #include <string.h>
 #include "defines.h"
+#include <ctype.h>
 
 char option_User (char *str);
 bool load_Map (int map_layout[MAX_X][MAX_Y]);
 void readString (char *str, int max);
-bool reading_from_File (int map_layout [MAX_X][MAX_Y]);
 
 #endif // __MAPS_LOAD_H__

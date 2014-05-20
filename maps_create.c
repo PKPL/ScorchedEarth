@@ -361,21 +361,3 @@ void print_loading_status(int x)
         Sleep(1500);
     }
 }
-
-
-//int RandInt(int a, int b)
-//{
-//    int result =( rand() % b-a ) + a;
-//    return result;
-//}
-//
-//float RandFloatDced(int a, int b)
-//{
-//    //float result = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
-//    float result =( rand() % b-a ) + a;
-//    result = result/10;
-//    return result;
-//
-//}
-//
-

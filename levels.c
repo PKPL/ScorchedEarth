@@ -63,6 +63,8 @@ int choose_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testi
     }
 
     test_edge();
+    bool success = load_Map(map_layout);
+    if (!success)
     create_mountain_map(map_layout);
     game_loop(map_layout);
 
