@@ -200,15 +200,28 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
                 }
                 else
                 {
-                    if(h <= destruct_radius && map_layout[i][j] == 3)player.hp = 0;
+                    if(h <= destruct_radius && map_layout[i][j] == 3) {
+                        if (player.armor <= 0)
+                            player.hp -= m->unit_damage;
+                        else if (player.armor > 0) {
+                            player.armor -= m->unit_damage;
+                            if (player.armor < 0)
+                                player.hp += player.armor;
+                        }
+                        }
                     else if (h <= destruct_radius)
                     {
-                        bot.hp = 0;
+                        if (bot.armor <= 0)
+                            bot.hp -= m->unit_damage;
+                        else if (bot.armor > 0) {
+                            bot.armor -= m->unit_damage;
+                            if (bot.armor < 0)
+                                bot.hp += bot.armor;
                     }
                 }
             }
         }
     }
-
+    }
 
 }

@@ -17,6 +17,7 @@ typedef struct {
     int x_turret_position, y_turret_position;
     int x_vector_coordinate[VECTOR_LENGTH], y_vector_coordinate[VECTOR_LENGTH]; //Coordinates of the missile inside the matrix as time increases
     int shot_angle; //In sexagesimal degrees
+    int unit_damage;
 } missile_data;
 
 float windForce(float);
