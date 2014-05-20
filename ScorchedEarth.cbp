@@ -115,6 +115,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu_new_game.h" />
+		<Unit filename="remove_save_files.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="remove_save_files.h" />
 		<Unit filename="sauron.c">
 			<Option compilerVar="CC" />
 		</Unit>
