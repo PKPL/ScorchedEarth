@@ -29,7 +29,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
             case 0: create_arrow(i,matrix, missile);
                 continue;
 
-            
+
             case 1: if(isBot)
                         *enemy_angle -= 2;
                     break;
@@ -47,6 +47,10 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 break;
             case 4:
                 drawing_shots(i,matrix,missile);
+                break;
+            case 5:
+                hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
+                flag = 1;
                 break;
         }
         if ( flag == 1 ) break;

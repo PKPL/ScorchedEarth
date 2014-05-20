@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ai_controll.h" />
+		<Unit filename="armor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="armor.h" />
 		<Unit filename="defines.h" />
 		<Unit filename="drawing.c">
 			<Option compilerVar="CC" />

@@ -24,6 +24,8 @@
 #define VECTOR_LENGTH 1000
 #define LENGTH 100
 #define HEIGHT 80
+#define NUMBER_OF_ARMORS 2
+#define ARMOR 4
 #define SHOT_TIME 60
 
 
