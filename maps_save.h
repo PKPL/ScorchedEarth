@@ -15,6 +15,7 @@ DANIEL PINTO
 #include "maps_create.h"
 #include "defines.h"
 
-bool save_map(int map_layout[MAX_X][MAX_Y]);
+void save_map(int map_layout[MAX_X][MAX_Y]);
+void create_folder(char folderName[]);
 
 #endif // __MAPS_SAVE_H__

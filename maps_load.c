@@ -64,6 +64,7 @@ void read_String(char str[], int max)
     char * ptr = NULL;
     do
     {
+        char path[13] = "Saved_Maps\\";
         fgets(str, max, stdin);
         ptr = strchr(str, '\n');
         if (ptr != NULL)
@@ -77,6 +78,8 @@ void read_String(char str[], int max)
         else
         {
             strcat (str, ".txt"); //concatenating the name; in this case, because it is a text file we concatenate ".txt"
+            strcat (path, str);
+            strcpy(str, path);
         }
     }
     while (strlen (str) == 0);
