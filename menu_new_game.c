@@ -19,7 +19,6 @@
 
 #define PI 3.14159265
 
-int screen_bufor [MAX_X][MAX_Y];
 unit player;
 unit bot;
 int save_pressed;
@@ -83,12 +82,12 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
 
             //Choose power and angle
             gotoxy(8,80);
-           printf("     ");
-            gotoxy(0,80);
-           printf("Angle = %d", player_angle);
-           gotoxy(28,80);
             printf("     ");
-           gotoxy(20,80);
+            gotoxy(0,80);
+            printf("Angle = %d", player_angle);
+            gotoxy(28,80);
+            printf("     ");
+            gotoxy(20,80);
             printf("Power = %d", player_power);
             gotoxy(48,80);
             printf("     ");
@@ -172,12 +171,14 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 else sauron_destruction(map_layout, &bot);
             }
 
-              if(key_pressed == 27) {
+            if(key_pressed == 27)
+            {
                 system("cls");
                 printf("Do you want to save your game? (Y/N)\n");
                 save_pressed = getch();
-                if (save_pressed == 121 || save_pressed == 89) {
-                    save_game(map_layout, selected_level, player, bot, missile, wind_speed, playerTurn);
+                if (save_pressed == 121 || save_pressed == 89)
+                {
+                    save_game(map_layout, selected_level, player, bot, wind_speed);
                 }
                 quit = true;
             }
@@ -191,7 +192,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 playerTurn = false;
 
             }
-            else{ switch(getch())
+            else
+            {
+                switch(getch())
 
                 {
                 case 72:
@@ -209,9 +212,10 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 case 80:
                     if(player_angle > 0)player_angle = player_angle - 1;
                     break;
-                }Sleep(30);
+                }
+                Sleep(30);
+            }
         }
-    }
 
 
         if(quit == true)break;
@@ -222,132 +226,140 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
         else
         {
-        while(!playerTurn)
-        {
-            while(kbhit())getch();
-            if(quit == true)break;
-            //Player move
-
-
-            //Choose power and angle
-         gotoxy(0,80);
-           printf("Angle = %d", bot_angle);
-           gotoxy(20,80);
-            printf("Power = %d", bot_power);
-            gotoxy(40,80);
-            printf("Wind = %d", (int)wind_speed);
-            gotoxy(60,80);
-            printf("Points = %d", bot.points);
-            gotoxy(80,80);
-            printf("Hp = %d", bot.hp);
-            angle_drawing_distanse = bot_power/20;
-            if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
-
-            //Drawing angle tray
-            if(first_angle == true)
+            while(!playerTurn)
             {
-                int i;
-                for(i = 0; i < 3; i++)
+                while(kbhit())getch();
+                if(quit == true)break;
+                //Player move
+
+
+                //Choose power and angle
+                gotoxy(0,80);
+                printf("Angle = %d", bot_angle);
+                gotoxy(20,80);
+                printf("Power = %d", bot_power);
+                gotoxy(40,80);
+                printf("Wind = %d", (int)wind_speed);
+                gotoxy(60,80);
+                printf("Points = %d", bot.points);
+                gotoxy(80,80);
+                printf("Hp = %d", bot.hp);
+                angle_drawing_distanse = bot_power/20;
+                if(angle_drawing_distanse<=2)angle_drawing_distanse=2;
+
+                //Drawing angle tray
+                if(first_angle == true)
                 {
-                    angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
-                    angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                    int i;
+                    for(i = 0; i < 3; i++)
                     {
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        printf(".");
-                    }
-                }
-                first_angle = false;
-
-            }
-            else
-            {
-                int i;
-                for(i = 0; i < 3; i++)
-                {
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
-                    {
-
-
-                        int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        switch(xxx)
+                        angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
+                        angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
                         {
-                        case 0:
-                            printf(" ");
-                            break;
-                        case 1:
-                            printf("1");
-                            break;
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            printf(".");
+                        }
+                    }
+                    first_angle = false;
+
+                }
+                else
+                {
+                    int i;
+                    for(i = 0; i < 3; i++)
+                    {
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                        {
+
+
+                            int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            switch(xxx)
+                            {
+                            case 0:
+                                printf(" ");
+                                break;
+                            case 1:
+                                printf("1");
+                                break;
 //                            default: printf(" "); break;
+                            }
+
                         }
 
                     }
 
-                }
 
-
-                for(i = 0; i < 3; i++)
-                {
-                    angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
-                    angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                    for(i = 0; i < 3; i++)
                     {
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        printf(".");
+                        angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
+                        angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                        {
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            printf(".");
+                        }
                     }
+
                 }
+                //------------------
 
-            }
-            //------------------
-
-            key_pressed = getch();
-            if (key_pressed == 32) {
-                 sauron_creation(map_layout, &bot);
-                 falling(map_layout);
-                 if(player.hp <= 0)quit=true;
-                 else sauron_destruction(map_layout, &bot);
-            }
-
-              if(key_pressed == 27) {
-                printf("Do you want to save your game?\n");
-                save_pressed = getch();
-                if (save_pressed == 121 || save_pressed == 89) {
-                    save_game(map_layout, selected_level, player, bot, missile, wind_speed, playerTurn);
-                }
-                quit = true;
-            }
-
-            if(key_pressed == 13)
-            {
-                missile_data *missile;
-                missile = initializeMissile(bot.x, bot.y);
-                playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
-                falling(map_layout);
-
-                playerTurn = true;
-
-            }
-            else switch(getch())
-
+                key_pressed = getch();
+                if (key_pressed == 32)
                 {
-                case 72:
-                    if(bot_angle < 180)bot_angle = bot_angle + 1;
-                    break;
-
-                case 75:
-                    if(bot_power > 0)bot_power = bot_power - 1;
-                    break;
-
-                case 77:
-                    if(bot_power < 200)bot_power = bot_power + 1;
-                    break;
-
-                case 80:
-                    if(bot_angle > 0)bot_angle = bot_angle - 1;
-                    break;
+                    sauron_creation(map_layout, &bot);
+                    falling(map_layout);
+                    if(player.hp <= 0)quit=true;
+                    else sauron_destruction(map_layout, &bot);
                 }
-        }
+
+                if(key_pressed == 27)
+                {
+                    printf("Do you want to save your game?\n");
+                    save_pressed = getch();
+                    if (save_pressed == 121 || save_pressed == 89)
+                    {
+                        map_layout[bot.x][bot.y] = 1;
+                        map_layout[player.x][player.y] = 1;
+                        save_game(map_layout, selected_level, player, bot, wind_speed);
+                        map_layout[bot.x][bot.y] = 2;
+                        map_layout[player.x][player.y] = 3;
+
+                    }
+                    quit = true;
+                }
+
+                if(key_pressed == 13)
+                {
+                    missile_data *missile;
+                    missile = initializeMissile(bot.x, bot.y);
+                    playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
+                    falling(map_layout);
+
+                    playerTurn = true;
+
+                }
+                else switch(getch())
+
+                    {
+                    case 72:
+                        if(bot_angle < 180)bot_angle = bot_angle + 1;
+                        break;
+
+                    case 75:
+                        if(bot_power > 0)bot_power = bot_power - 1;
+                        break;
+
+                    case 77:
+                        if(bot_power < 200)bot_power = bot_power + 1;
+                        break;
+
+                    case 80:
+                        if(bot_angle > 0)bot_angle = bot_angle - 1;
+                        break;
+                    }
+            }
         }
         falling(map_layout);
 

@@ -68,7 +68,6 @@ int choose_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testi
     create_mountain_map(map_layout);
     game_loop(map_layout);
 
-
     return selected_option;
 
 }
