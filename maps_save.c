@@ -27,12 +27,13 @@ bool save_map(int map_layout[MAX_X][MAX_Y])
         {
             for (y = 0; y < MAX_Y; y++)
             {
-                fprintf(map_file,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
-                if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
-                {
-                    fprintf(stderr, "Map generation error: Contents of array different than expected.\n");
-                    return false;
-                }
+                fprintf(map_file, "%d", map_layout[x][y]);
+//                fprintf(map_file,"map_layout\t[%d]\t[%d]\t%d\n",x ,y ,map_layout[x][y]); // Not sure if the parenthesis are needed
+//                if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
+//                {
+//                    fprintf(stderr, "Map generation error: Contents of array different than expected.\n");
+//                    return false;
+//                }
             }
         }
         printf("\nMap saved in maps_save.txt\n");

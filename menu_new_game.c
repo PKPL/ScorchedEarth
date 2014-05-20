@@ -63,6 +63,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         {
 
             test_drawing_map(map_layout);
+            constructor(bot.x, bot.y, &map_layout[bot.x][bot.y], 1);
+            constructor(player.x, player.y, &map_layout[player.x][player.y], 1);
+            save_map(map_layout);
+            constructor(bot.x, bot.y, &map_layout[bot.x][bot.y], 2);
+            constructor(player.x, player.y, &map_layout[player.x][player.y], 3);
             first_frame = 0;
             printf("\n\n");
         }

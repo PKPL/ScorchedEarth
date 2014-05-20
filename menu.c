@@ -62,13 +62,13 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         break;
     }
     case 2: {
-//        level_struct level;
-//        unit player, bot;
-//        missile_data missile;
-//        float wind_speed;
-//        bool playerTurn;
-//        game_load(map_layout, &level, &player, &bot, &missile, &wind_speed, &playerTurn);
-//        game_loop(map_layout);
+        level_struct level;
+        unit player, bot;
+        missile_data missile;
+        float wind_speed;
+        bool playerTurn;
+        game_load(map_layout, &level, &player, &bot, &missile, &wind_speed, &playerTurn);
+        game_loop(map_layout);
         break;
     }
     case 3:// highscore

@@ -24,16 +24,13 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
         }
         else
         {
-            for (y = 0; y < MAX_Y; y++)
+            char ch;
+            for (x = 0; x < MAX_X; x++)
             {
-                for (x = 0; x < MAX_X; x++)
+                for (y = 0; y < MAX_Y; y++)
                 {
-                    fscanf (map_Load, "%d", map_layout[x][y]);
-                    if (map_layout[x][y] % 2 != 0 && map_layout[x][y] % 2 != 1) // is not integer
-                    {
-                        perror("Map generation error: Contents of array different than expected.\n");
-                        return false;
-                    }
+                    fscanf (map_Load, "%c", &ch);
+                    map_layout[x][y] = ch - '0';
                 }
             }
             fclose (map_Load);
