@@ -72,6 +72,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="game_save.h" />
+		<Unit filename="instructions.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="instructions.h" />
 		<Unit filename="levels.c">
 			<Option compilerVar="CC" />
 		</Unit>
