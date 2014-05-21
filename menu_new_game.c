@@ -14,6 +14,7 @@
 #include "sauron.h"
 #include "menu_highscore.h"
 #include "shot_final_equation.h"
+#include "game_save.h"
 
 #define PI 3.14159265
 
@@ -24,10 +25,10 @@ int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
+
 void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
-    int c = '\13\n';
     system("cls");
     unit_func(&player);
     unit_func(&bot);
@@ -37,27 +38,35 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     CurInfo.bVisible=FALSE;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 
-    int i;
-    int queue = 1; //1 - Player, 2 - Bot
-    int max_players = 2;
     int key_pressed;
     int missile_option = 1; // the missile you want to use. 1 set as default
     int player_angle = 60;
     int player_power = 100;
-    int draw_hp;
-    int armors[NUMBER_OF_ARMORS] = {1};
     bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
     bool saved = false;
-    char missile_name[7]; // the name of the missile you are using
+    char missile_name[7] = {'\0'};
 
+    int map_layout_backup[MAX_X][MAX_Y];
+
+    int x, y;
+
+    for (x = 0; x < MAX_X; x++)
+    {
+        for (y = 0; y < MAX_Y; y++)
+        {
+            map_layout_backup[x][y] = map_layout[x][y];
+        }
+    }
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
     //else
     //{
     int bot_angle = 180-60;
     int bot_power = 100;
     //}
+
+
 
 
     if (game_loaded == false)
@@ -72,16 +81,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         if(quit == false && first_frame == 1)
         {
             drawing_map(map_layout);
-            if (game_loaded == false && map_loaded == false)
-            {
-                map_layout[bot.x][bot.y] = 1;
-                map_layout[player.x][player.y] = 1;
-                save_map(map_layout);
-                system("cls");
-                map_layout[bot.x][bot.y] = 2;
-                map_layout[player.x][player.y] = 3;
-                drawing_map(map_layout);
-            }
             first_frame = 0;
             printf("\n\n");
         }
@@ -93,9 +92,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             if(quit == true)break;
             //Player move
 
-
+            identificating_missile(missile_name, missile_option);
             //Choose power and angle
-            information(player_power, player_angle);
+            information(player_power, player_angle, missile_name);
             angle_drawing_distanse = player_power/20;
 
 
@@ -166,33 +165,70 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 else sauron_destruction(map_layout, &bot);
             }
 
-            if(key_pressed == 27)
+           else if(key_pressed == 27)
             {
                 system("cls");
-                saved = save_game(map_layout, selected_level, player, bot, wind_speed);
+                char option;
+                printf ("Press 'Q' to quit or 'S' to save the map or the game: ");
+                do
+                {
+                    option = getchar ();
+                    option = toupper (option);
+                    while( getchar () != '\n' );
+                    if (option != 'Q' && option != 'S')
+                    {
+                        printf ("Only 'Q' or 'S': ");
+                    }
+                }
+                while (option != 'E' && option != 'S');
+
+                if (option == 'S')
+                {
+                    saved = true;
+
+                    if (map_loaded)
+                    {
+                        save_game(map_layout, selected_level, player, bot, wind_speed);
+                    }
+                    else
+                    {
+                        option = option_User("Save the game ('Y') or the map only ('N')");
+                        if (option == 'Y')
+                            save_game(map_layout, selected_level, player, bot, wind_speed);
+                        else
+                            save_map(map_layout_backup);
+                    }
+                }
                 quit = true;
             }
-            if(key_pressed == 13)
+                else if(key_pressed == 49)
+            {
+                missile_option = 1;
+            }
+
+            else if(key_pressed == 50)
+            {
+                missile_option = 2;
+            }
+
+            else if(key_pressed == 51)
+            {
+                missile_option = 3;
+            }
+
+            else if(key_pressed == 13)
             {
                 missile_data *missile;
                 missile = initializeMissile(player.x, player.y, missile_option);
-                playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, ai_angle);
+                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle);
                 falling(map_layout);
 
                 playerTurn = false;
 
             }
 
-            if(key_pressed == 49)
-                missile_option = 1;
-
-            if(key_pressed == 50)
-                missile_option = 2;
-
-            if(key_pressed == 51)
-                missile_option = 3;
-
-            else switch(getch())
+            else {
+                switch(getch())
                 {
                 case 72:
                     if(player_angle < 180)player_angle = player_angle + 1;
@@ -210,11 +246,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                     if(player_angle > 0)player_angle = player_angle - 1;
                     break;
                 }
-                information(player_power, player_angle);
+        }
+            information(player_power, player_angle, missile_name);
         }
 
         angle_drawing_distanse = player_power/20;
-
 
         if(quit == true)break;
         if(bot.hp <= 0 || player.hp <= 0)break;
@@ -235,7 +271,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
 
                 //Choose power and angle
-                information(player_power, player_angle);
+                information(player_power, player_angle, missile_name);
                 angle_drawing_distanse = player_power/20;
 
                 //Drawing angle tray
@@ -310,13 +346,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
                 if(key_pressed == 27)
                 {
-                    saved = save_game(map_layout, selected_level, player, bot, wind_speed);
+                    save_game(map_layout, selected_level, player, bot, wind_speed);
                     quit = true;
                     if(key_pressed == 13)
                     {
                         missile_data *missile;
                         missile = initializeMissile(bot.x, bot.y, missile_option);
-                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
+                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle);
                         falling(map_layout);
 
                         playerTurn = true;
@@ -402,7 +438,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         {
             //Inform about victory
 
-            if (!saved) {
+            if (!saved)
+            {
                 gotoxy(30,20);
                 printf("DEFEAT");
             }

@@ -12,6 +12,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
     missile_data *leiria_missile;
     missile_data *milano_missile;
     missile_data *krakow_missile;
+    missile_data *missile_choosed;
     switch (missile_type)
     {
     case 1:
@@ -24,15 +25,15 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         leiria_missile->initial_velocity = 0;
         leiria_missile->shot_angle = 0;
         leiria_missile->x_turret_position = x_coord;
-        leiria_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        leiria_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         leiria_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {
             leiria_missile->x_vector_velocity[i] = 0;
             leiria_missile->y_vector_velocity[i] = 0;
         }
-        return leiria_missile;
-
+        missile_choosed = leiria_missile;
+        break;
     case 2:
         milano_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(milano_missile->name, "Milano");
@@ -43,15 +44,15 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         milano_missile->initial_velocity = 0;
         milano_missile->shot_angle = 0;
         milano_missile->x_turret_position = x_coord;
-        milano_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        milano_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         milano_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {
             milano_missile->x_vector_velocity[i] = 0;
             milano_missile->y_vector_velocity[i] = 0;
         }
-        return milano_missile;
-
+        missile_choosed = milano_missile;
+        break;
     case 3:
         krakow_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(krakow_missile->name, "Milano");
@@ -62,15 +63,17 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         krakow_missile->initial_velocity = 0;
         krakow_missile->shot_angle = 0;
         krakow_missile->x_turret_position = x_coord;
-        krakow_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        krakow_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         krakow_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {
             krakow_missile->x_vector_velocity[i] = 0;
             krakow_missile->y_vector_velocity[i] = 0;
         }
-        return milano_missile;
+        missile_choosed = krakow_missile;
+        break;
     }
+    return missile_choosed;
 }
 
 void identificating_missile (char missile_name[], int missile_option) {
@@ -85,7 +88,7 @@ void identificating_missile (char missile_name[], int missile_option) {
     case 3:
         strcpy(missile_name, "Krakow");
         break;
-        }
+    }
 }
 
 double cosDegrees (double alpha)   //Modifies cos() function in math.h so that it accepts values in degrees instead of radians
@@ -100,6 +103,7 @@ double sinDegrees (double alpha)   //Modifies sin() function in math.h so that i
 
 void setInitialVelocity (missile_data *m, float v)   //Allows the player to set the initial velocity of the shot
 {
+
     m->initial_velocity = v;
 }
 

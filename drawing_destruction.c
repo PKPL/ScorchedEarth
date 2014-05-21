@@ -171,10 +171,13 @@ void create_destruction(int map_layout [MAX_X][MAX_Y])
     }
 }
 
-void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
+void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number, bool isBot, bool hit_unit, int hit)
 {
     int x_pos = (int)m->x_vector_coordinate[number];
     int y_pos = (int)m->y_vector_coordinate[number];
+
+    int damage;
+    int check = 0;
 
     int i,j, h,h_x, h_y;
     int error = 0;
@@ -200,28 +203,51 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
                 }
                 else
                 {
+                    damage = m->unit_damage;
+                    if (hit == 1)
+                        check = 1;
                     if(h <= destruct_radius && map_layout[i][j] == 3) {
+                        if (hit_unit == false)
+                            damage = m->unit_damage / 2;
+
                         if (player.armor <= 0)
-                            player.hp -= m->unit_damage;
+                            player.hp -= damage;
                         else if (player.armor > 0) {
-                            player.armor -= m->unit_damage;
+                            player.armor -= damage;
                             if (player.armor < 0)
                                 player.hp += player.armor;
                         }
-                        }
+                    }
                     else if (h <= destruct_radius)
                     {
                         if (bot.armor <= 0)
-                            bot.hp -= m->unit_damage;
+                            bot.hp -= damage;
                         else if (bot.armor > 0) {
-                            bot.armor -= m->unit_damage;
+                            bot.armor -= damage;
                             if (bot.armor < 0)
-                                bot.hp += bot.armor;
+                                bot.hp += damage;
                     }
                 }
             }
         }
     }
+    if (isBot == false) {
+        if (hit_unit == true) {
+            if (hit == ENEMY && bot.armor <= 0)
+                player.points += 50;
+            else if (hit == ENEMY && bot.armor > 0)
+                player.points += 40;
+        }
+        else if (hit_unit == false) {
+            if (check == 1 && bot.armor <= 0 && hit == ENEMY)
+                player.points += 30;
+            else if (check == 1 && bot.armor > 0 && hit == ENEMY)
+                player.points += 20;
+            else if (hit == 1)
+                player.points += 5;
+        }
+    }
+
     }
 
 }

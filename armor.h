@@ -16,5 +16,6 @@ typedef struct {
 void drawing_armors(int map_layout[MAX_X][MAX_Y], int);
 armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int);
 void hit_armor(int map_layout[MAX_X][MAX_Y], int, int, bool);
+void draw_armor_hit (int map_layout[MAX_X][MAX_Y], int x, int y);
 
 #endif // __ARMOR_H__

@@ -28,5 +28,6 @@
 #define ARMOR 4
 #define SHOT_TIME 60
 
+void gotoxy(int x, int y);
 
 #endif // DEFINES_H_INCLUDED

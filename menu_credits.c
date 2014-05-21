@@ -2,6 +2,7 @@
 // Credits - list of people involved in creating a game
 //------------------------------------------------------------------------
 #include "menu_credits.h"
+#include <stdio.h>
 
 void setcursortype(CURSOR_TYPE c)
 {
@@ -29,30 +30,30 @@ void credits()
 {
     setcursortype(NOCURSOR);
     printf("The game is made by international team of students from:");
-    Sleep( 1500 );
+    Sleep( 2500 );
     system( "cls" );
     printf("\tItaly");
-    Sleep( 1500 );
+    Sleep( 1000 );
     printf("\n\nFederico Bollotta");
     printf("\n  Lorenzo Romanelli");
     printf("\n");
-    Sleep( 3000 );
+    Sleep( 2500 );
     system( "cls" );
     printf("\tPoland");
-    Sleep( 1500 );
+    Sleep( 1000 );
     printf("\n\nLukasz Czechowicz");
     printf("\n  Anna Gil");
     printf("\n    Konrad Dziurdz");
     printf("\n");
-    Sleep( 3000 );
+    Sleep( 2500 );
     system( "cls" );
     printf("\tPortugal");
-    Sleep( 1500 );
+    Sleep( 1000 );
     printf("\n\nDaniel Pinto");
     printf("\n  Nuno Valente");
     printf("\n    Roberto Ribeiro");
     printf("\n");
-    Sleep( 3000 );
+    Sleep( 2500 );
     system( "cls" );
     printf("Coordinator of the project was Mr. Pawel Lempa and Mr. Grzegorz Filo");
     Sleep( 3000 );
@@ -61,10 +62,7 @@ void credits()
     Sleep( 4000 );
 
     printf("\n\n \tLeiria, Portugal 2014");
-
-    printf("\n\n \tPress any button to back to menu");
+    printf("\n\n\tPress any button to back to menu");
     setcursortype(NORMALCURSOR);
     getch();
-    return(0);
-
 }

@@ -2,15 +2,16 @@
 // Top ten scores of a game
 //------------------------------------------------------------------------
 #include "menu_highscore.h"
+#include <stdio.h>
 
-FILE *fp;
+FILE *fp  = NULL;
 char c_open;
 
 // bubble sorting
 
 void add_score(player_highscore players[11])
 {
-    fp=fopen("highscore.txt", "w+r");
+    fp = fopen("highscore.txt", "w+r");
     check_top_ten(players);
     fclose(fp);
 }
@@ -38,13 +39,14 @@ void bubblesort(player_highscore players[11])
 void save_score (player_highscore players[11])
 {
     int counter_loop;
-    for (counter_loop=0; counter_loop<10; counter_loop++)
+    for (counter_loop=0; counter_loop <10; counter_loop++)
     {
-        fputs(players[counter_loop].nickname,fp);
-        fputs(players[counter_loop].points,fp);
+        fputs(players[counter_loop].nickname, fp);
+        fputs(players[counter_loop].points, fp);
     }
 
 }
+
 void check_top_ten(player_highscore players[11])
 {
     if (players[10].points> players[9].points)
@@ -52,19 +54,15 @@ void check_top_ten(player_highscore players[11])
         bubblesort(players);
     }
     save_score(players);
-
 }
 
-void highscore(player_highscore players[11])
+void highscore()
 {
     fp=fopen("highscore.txt", "r+");
     while ((c_open=fgetc(fp))!=EOF)
         printf("%c", c_open);
-
     fclose(fp);
 
     printf("\n\n \tPress any button to back to menu");
     getch();
-    return(0);
-
 }

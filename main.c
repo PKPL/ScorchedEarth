@@ -36,11 +36,6 @@ SetConsoleWindowInfo(wHnd, 1, &windowSize);
 COORD bufferSize = {100, 84};
 SetConsoleScreenBufferSize(wHnd, bufferSize);
 
-
-
-    level_struct selected_level;
-    //system("mode 100, 80");
-
     /*Since the array is initialized with the value 0, which stands for empty in the map, we won't have to fill empty spots with value 0 when the map is created*/
     printf("Scorched Earth\n");
     //Tests

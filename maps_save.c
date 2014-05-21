@@ -29,37 +29,33 @@ void save_map(int map_layout[MAX_X][MAX_Y])
 
 
     create_folder("Saved_Maps");
-    gotoxy(MAX_X, MAX_Y - 78);
-    char option = option_User("\nDo you want to save your map");
-
-    if (option == 'Y')
+    printf ("Name of the map to save: ");
+    read_String(name_File_Map, MAX_NAME_FILE);
+    while(kbhit())getch();
+    map_file = fopen(name_File_Map,"w"); // w means we are able to write it and create it if it didn't exist
+    if (map_file == NULL)
     {
-        printf ("Name of the map to save: ");
-        read_String(name_File_Map, MAX_NAME_FILE);
-        while(kbhit())getch();
-        map_file = fopen(name_File_Map,"w"); // w means we are able to write it and create it if it didn't exist
-        if (map_file == NULL)
+        perror("Error:\t The program could not open the file where the map was saved");
+    }
+    else
+    {
+        for (x = 0; x < MAX_X; x++)
         {
-            perror("Error:\t The program could not open the file where the map was saved");
-        }
-        else
-        {
-            for (x = 0; x < MAX_X; x++)
+            for (y = 0; y < MAX_Y; y++)
             {
-                for (y = 0; y < MAX_Y; y++)
-                {
-                    fprintf(map_file, "%d", map_layout[x][y]);
-                }
+                fprintf(map_file, "%d", map_layout[x][y]);
             }
-            int i;
-            printf("\nMap saved in a file named \"");
-            for (i = 11; i < strlen(name_File_Map) - 4; i++) {
-                printf ("%c", name_File_Map[i]);
-
-            }
-            printf("\"\n");
-            Sleep (1500);
-            fclose(map_file);
         }
+        int i;
+        printf("\nMap saved in a file named \"");
+        int array_length = strlen(name_File_Map) - 4;
+        for (i = 11; i < array_length; i++)
+        {
+            printf ("%c", name_File_Map[i]);
+
+        }
+        printf("\"\n");
+        Sleep (1500);
+        fclose(map_file);
     }
 }
