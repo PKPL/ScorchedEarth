@@ -76,9 +76,10 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     }
     case 3:// highscore
     {
-        player_highscore players[11];
         system("cls");
-        highscore(players);
+        read_highscores();
+        printf("\n\nPress any key to go back to the menu...");
+        getch();
         break;
     }
     case 4://instructions

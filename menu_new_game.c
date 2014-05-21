@@ -398,7 +398,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     {
         player_highscore players[11];
         players[10].points=player.points;
-        add_score(players );
 
         if(selected_level.level_ai != PVP_MODE )
         {
@@ -406,6 +405,10 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             gotoxy(30,20);
             printf("VICTORY");
             gotoxy(30,21);
+            printf("Insert your name: ");
+            gets(players[10].nickname);
+            save_highscore(players);
+            gotoxy(30,22);
             printf("Press any button to go to the menu");
             getch();
             menu();
