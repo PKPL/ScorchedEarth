@@ -48,7 +48,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
-
+    bool saved = false;
 
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
     //else
@@ -209,9 +209,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             if(key_pressed == 27)
             {
                 system("cls");
-                char option = option_User("Do you want to save your game");
-                if (option == 'Y')
-                    save_game(map_layout, selected_level, player, bot, wind_speed);
+                saved = save_game(map_layout, selected_level, player, bot, wind_speed);
                 quit = true;
             }
             if(key_pressed == 13)
@@ -436,9 +434,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
                 if(key_pressed == 27)
                 {
-                    char option = option_User("Do you want to save your game");
-                    if (option == 'Y')
-                        save_game(map_layout, selected_level, player, bot, wind_speed);
+                    saved = save_game(map_layout, selected_level, player, bot, wind_speed);
                     quit = true;
                     if(key_pressed == 13)
                     {
@@ -528,8 +524,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         if(selected_level.level_ai != PVP_MODE )
         {
             //Inform about victory
-            gotoxy(30,20);
-            printf("DEFEAT");
+
+            if (!saved) {
+                gotoxy(30,20);
+                printf("DEFEAT");
+            }
             gotoxy(30,21);
             printf("Press any button to go to the menu");
             getch();
@@ -548,5 +547,4 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         //------------
     }
 }
-
 
