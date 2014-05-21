@@ -22,6 +22,7 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
         {
             perror("Error on trying to load the map");
             Sleep(1500);
+            return false;
         }
         else
         {
@@ -38,22 +39,21 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
             return true;
         }
     }
-    else
-        return false;
+    return false;
 }
 
 char option_User (char *str)
 {
     char option;
-    printf ("%s?\n(Y/N)", str);
+    printf ("%s? (Y/N): ", str);
     do
     {
         option = getchar ();
         option = toupper (option);
-        fflush(stdin);
+        while( getchar () != '\n' );
         if (option != 'Y' && option != 'N')
         {
-            printf ("Only 'Y' or 'N'\n");
+            printf ("Only 'Y' or 'N': ");
         }
     }
     while (option != 'Y' && option != 'N');

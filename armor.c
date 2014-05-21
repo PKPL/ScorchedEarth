@@ -68,7 +68,6 @@ void drawing_armors (int map_layout[MAX_X][MAX_Y], int armor_number)
 }
 
 void hit_armor (int map_layout[MAX_X][MAX_Y], int x, int y, bool isBot) {
-    int i;
     if (isBot)
         bot.armor = 100;
     else
@@ -76,6 +75,13 @@ void hit_armor (int map_layout[MAX_X][MAX_Y], int x, int y, bool isBot) {
     gotoxy(x, 79 - y);
     printf("ARMOR!");
     Sleep(1000);
+    draw_armor_hit(map_layout[MAX_X][MAX_Y], x, y);
+    player.points += 10;
+    map_layout[x][y] = 0;
+}
+
+void draw_armor_hit (int map_layout[MAX_X][MAX_Y], int x, int y) {
+    int i;
     for (i = 0; i < 6; i++) {
         gotoxy(x+i, 79 - y);
         switch (map_layout[x+i][y]) {
@@ -83,7 +89,7 @@ void hit_armor (int map_layout[MAX_X][MAX_Y], int x, int y, bool isBot) {
             case GROUND: printf("1"); break;
             case PLAYER: printf("3"); break;
             case ENEMY: printf("2"); break;
+            case ARMOR: printf(" "); break;
         }
     }
-    map_layout[x][y] = 0;
 }

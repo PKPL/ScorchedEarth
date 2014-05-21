@@ -18,7 +18,8 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 
 
 void menu() // function for agreagate testing
-{//unit player, bot;
+{
+    //unit player, bot;
 
     int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
     system("COLOR 8F");
@@ -62,15 +63,18 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         choose_levels(map_layout);
         break;
     }
-    case 2: {
-       bool game_loaded = game_load(map_layout, &selected_level, &player, &bot, &wind_speed);
-       if (game_loaded == false) {
+    case 2:
+    {
+        bool game_loaded = game_load(map_layout, &selected_level, &player, &bot, &wind_speed);
+        if (game_loaded == false)
+        {
             game_loop(map_layout, true, false);
-       }
+        }
         break;
     }
     case 3:// highscore
-    {   player_highscore players[11];
+    {
+        player_highscore players[11];
         system("cls");
         highscore(players);
         break;

@@ -10,7 +10,7 @@
 #include "defines.h"
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y]);
-void create_explosion(int map_layout [MAX_X][MAX_Y],missile_data *m,int i);
+void create_explosion(int map_layout [MAX_X][MAX_Y],missile_data *m,int i, bool, bool, int);
 void create_destruction(int map_layout [MAX_X][MAX_Y]);
 
 #endif // __DRAWING_DESTRUCTION_H__

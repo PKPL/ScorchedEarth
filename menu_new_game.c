@@ -52,6 +52,18 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
     bool saved = false;
     char missile_name[7]; // the name of the missile you are using
+
+    int map_layout_backup[MAX_X][MAX_Y];
+
+    int x, y;
+
+    for (x = 0; x < MAX_X; x++)
+    {
+        for (y = 0; y < MAX_Y; y++)
+        {
+            map_layout_backup[x][y] = map_layout[x][y];
+        }
+    }
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
     //else
     //{
@@ -74,16 +86,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         if(quit == false && first_frame == 1)
         {
             drawing_map(map_layout);
-            if (game_loaded == false && map_loaded == false)
-            {
-                map_layout[bot.x][bot.y] = 1;
-                map_layout[player.x][player.y] = 1;
-                save_map(map_layout);
-                system("cls");
-                map_layout[bot.x][bot.y] = 2;
-                map_layout[player.x][player.y] = 3;
-                drawing_map(map_layout);
-            }
             first_frame = 0;
             printf("\n\n");
         }
@@ -171,7 +173,37 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
            else if(key_pressed == 27)
             {
                 system("cls");
-                saved = save_game(map_layout, selected_level, player, bot, wind_speed);
+                char option;
+                printf ("Press 'Q' to quit or 'S' to save the map or the game: ");
+                do
+                {
+                    option = getchar ();
+                    option = toupper (option);
+                    while( getchar () != '\n' );
+                    if (option != 'Q' && option != 'S')
+                    {
+                        printf ("Only 'Q' or 'S': ");
+                    }
+                }
+                while (option != 'E' && option != 'S');
+
+                if (option == 'S')
+                {
+                    saved = true;
+
+                    if (map_loaded)
+                    {
+                        save_game(map_layout, selected_level, player, bot, wind_speed);
+                    }
+                    else
+                    {
+                        option = option_User("Save the game ('Y') or the map only ('N')");
+                        if (option == 'Y')
+                            save_game(map_layout, selected_level, player, bot, wind_speed);
+                        else
+                            save_map(map_layout_backup);
+                    }
+                }
                 quit = true;
             }
                 else if(key_pressed == 49)
@@ -219,7 +251,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                     if(player_angle > 0)player_angle = player_angle - 1;
                     break;
                 }
-            }
+        }
             information(player_power, player_angle, missile_name);
         }
 
