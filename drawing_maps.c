@@ -13,7 +13,7 @@
 
 extern int map_layout [MAX_X][MAX_Y];
 
-void test_drawing_map (int map_layout [MAX_X][MAX_Y])
+void drawing_map (int map_layout [MAX_X][MAX_Y])
 {
     double x;
     double y;
@@ -87,7 +87,7 @@ void falling(int map_layout[MAX_X][MAX_Y])
     {
         for(j = MAX_Y - 1; j > 0; j--)
         {
-            if(map_layout[i][j] != 0 && map_layout[i][j-1] == 0)
+            if(map_layout[i][j] != 0 && map_layout[i][j-1] == 0 && map_layout[i][j] != 4)
             {
                 //Sleep(10);
                 if(map_layout[i][j] == 3)player.y--;

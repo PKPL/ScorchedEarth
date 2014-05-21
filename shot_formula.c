@@ -48,6 +48,10 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
             case 4:
                 drawing_shots(i,matrix,missile);
                 break;
+            case 5:
+                hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
+                flag = 1;
+                break;
         }
         if ( flag == 1 ) break;
     }

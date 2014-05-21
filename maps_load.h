@@ -20,9 +20,11 @@ DANIEL PINTO
 #include <string.h>
 #include "defines.h"
 #include <ctype.h>
+#include <dirent.h>
 
 char option_User (char *str);
 bool load_Map (int map_layout[MAX_X][MAX_Y]);
 void readString (char *str, int max);
+void list_dir(void);
 
 #endif // __MAPS_LOAD_H__

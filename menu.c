@@ -16,6 +16,7 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 #include "unit.h"
 #include "shot_final_equation.h"
 
+
 void menu() // function for agreagate testing
 {//unit player, bot;
 
@@ -62,13 +63,10 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         break;
     }
     case 2: {
-//        level_struct level;
-//        unit player, bot;
-//        missile_data missile;
-//        float wind_speed;
-//        bool playerTurn;
-//        game_load(map_layout, &level, &player, &bot, &missile, &wind_speed, &playerTurn);
-//        game_loop(map_layout);
+       bool game_loaded = game_load(map_layout, &selected_level, &player, &bot, &wind_speed);
+       if (game_loaded == false) {
+            game_loop(map_layout, true, false);
+       }
         break;
     }
     case 3:// highscore

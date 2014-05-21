@@ -24,6 +24,7 @@
 #include "levels.h"
 #include "unit.h"
 #include "maps_create.h"
+#include "armor.h"
 #include <windows.h>
 #include <stdbool.h>
 

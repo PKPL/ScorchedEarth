@@ -17,6 +17,6 @@ DANIEL PINTO
 #include "shot_final_equation.h"
 #include "unit.h"
 
-bool save_game(int map_layout[MAX_X][MAX_Y], level_struct level, unit player, unit bot, missile_data *missile, float wind,  bool playerTurn);
+bool save_game(int map_layout[MAX_X][MAX_Y], level_struct level, unit player, unit bot, float wind);
 
 #endif // GAME_SAVE_H

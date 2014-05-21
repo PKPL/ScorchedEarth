@@ -19,6 +19,7 @@ missile_data* initializeMissile(int x_coord, int y_coord) { //Initializes missil
     light_missile->shot_angle = 0;
     light_missile->x_turret_position = x_coord;
     light_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+    light_missile->unit_damage = 50;
     for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
         light_missile->y_vector_velocity[i] = 0;
@@ -119,7 +120,6 @@ void shotFunction (missile_data *m, float wf) { //Puts together coordinates calc
     yVelocityFormula(m);
     yCoordinate(m);
     xCoordinate(m, wf);
-
 }
 
 float bounce (float coord) {
