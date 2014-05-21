@@ -29,7 +29,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
             case 0: create_arrow(i,matrix, missile);
                 continue;
 
-            
+
             case 1: if(isBot)
                         *enemy_angle -= 2;
                     break;
@@ -96,3 +96,69 @@ float AIcheck (int x_enemy_coord, int y_enemy_coord, float missile_weight, int a
     return -1;
 
 }
+
+int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX_Y],int tarX, int tarY,float some_wind_speed)
+{
+    int flag;
+    //bool higher = false;
+    int velocity = 10;
+    int i;
+    //getch();
+    while(velocity <50)
+    {
+        //printf("ai fixed|angle= %d",givenAngle);
+
+          missile_data *missile;
+          missile = initializeMissile(xTurr, yTurr);
+//        setInitialVelocity(missile, velocity/4);
+          setShootingAngle(missile, givenAngle);
+//        shotFunction(missile, windForce(some_wind_speed));
+        for(i=0;i<VECTOR_LENGTH;i++)
+        {
+        //missile_data *missile;
+        //missile = initializeMissile(xTurr, yTurr);
+        setInitialVelocity(missile, velocity);
+        //setShootingAngle(missile, givenAngle);
+        shotFunction(missile, windForce(some_wind_speed));
+        flag = 0;
+
+            switch (checkHit(i, missile, map_layout))
+            {
+                case 1:
+                    return -1; //out of map
+                    break;
+                case 2: //hit ground
+
+                    if(how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY)<=4)
+                    {
+                        //gotoxy(10,35);
+                        //printf("how far = %d",how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY));
+                        return velocity;
+                    }
+                    flag=1;
+
+                    break;
+                case 3: //gotoxy(10,36);
+                //printf("succCCES centralny");
+                flag=1;
+
+                return velocity;
+                break;
+//                case 4:
+//                    drawing_shots(i,map_layout,missile);
+//                    break;
+            }
+            if(flag==1)break;
+        }
+    velocity += 2;
+    }
+    return -1;
+}
+
+int how_far(int misX,int misY,int tarX,int tarY)
+{
+    float result = sqrt((tarX - misX)*(tarX - misX)+(tarY-misY)*(tarY-misY));
+    gotoxy(10,36);
+    return (int)abs(result);
+}
+

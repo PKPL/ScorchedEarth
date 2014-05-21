@@ -210,7 +210,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
         if(quit == true)break;
         if(bot.hp <= 0 || player.hp <= 0)break;
         //-----------------------------------end of player's turn
-        Sleep(2000);
+        //Sleep(2000);
 
         if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
         else
