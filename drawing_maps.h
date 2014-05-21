@@ -9,7 +9,7 @@
 #include "maps_create.h"
 #include "defines.h"
 
-void test_drawing_map (int map_layout [MAX_X][MAX_Y]);
+void drawing_map (int map_layout [MAX_X][MAX_Y]);
 void gotoxy(int x, int y);
 void drawing_game_screen();
 

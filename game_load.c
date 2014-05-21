@@ -8,6 +8,7 @@ bool game_load(int map_layout[MAX_X][MAX_Y], level_struct *level, unit *player, 
     if (game_load_file == NULL)
     {
         perror ("Error on trying to load the game");
+        Sleep (1500);
         return false;
     }
     else

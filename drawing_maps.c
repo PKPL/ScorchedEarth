@@ -13,7 +13,7 @@
 
 extern int map_layout [MAX_X][MAX_Y];
 
-void test_drawing_map (int map_layout [MAX_X][MAX_Y])
+void drawing_map (int map_layout [MAX_X][MAX_Y])
 {
     double x;
     double y;

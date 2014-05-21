@@ -24,8 +24,7 @@ int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
-
-void game_loop(int map_layout [MAX_X][MAX_Y])
+void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
     int c = '\13\n';
@@ -59,23 +58,26 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
     //}
 
 
-
+    if (game_loaded == false) {
     drawing_units(map_layout, &player, &bot);
     drawing_armors(map_layout, NUMBER_OF_ARMORS);
+    }
 
     while(player.hp > 0 && bot.hp > 0)
     {
 
         if(quit == false && first_frame == 1)
         {
-            test_drawing_map(map_layout);
+            drawing_map(map_layout);
+            if (game_loaded == false) {
             map_layout[bot.x][bot.y] = 1;
             map_layout[player.x][player.y] = 1;
             save_map(map_layout);
             system("cls");
             map_layout[bot.x][bot.y] = 2;
             map_layout[player.x][player.y] = 3;
-            test_drawing_map(map_layout);
+            drawing_map(map_layout);
+            }
             first_frame = 0;
             printf("\n\n");
         }
@@ -204,11 +206,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                 save_pressed = getch();
                 if (save_pressed == 121 || save_pressed == 89)
                 {
-                    map_layout[bot.x][bot.y] = 1;
-                    map_layout[player.x][player.y] = 1;
                     save_game(map_layout, selected_level, player, bot, wind_speed);
-                    map_layout[bot.x][bot.y] = 2;
-                    map_layout[player.x][player.y] = 3;
                 }
                 quit = true;
             }
@@ -418,11 +416,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y])
                     save_pressed = getch();
                     if (save_pressed == 121 || save_pressed == 89)
                     {
-                        map_layout[bot.x][bot.y] = 1;
-                        map_layout[player.x][player.y] = 1;
                         save_game(map_layout, selected_level, player, bot, wind_speed);
-                        map_layout[bot.x][bot.y] = 2;
-                        map_layout[player.x][player.y] = 3;
 
                     }
                     quit = true;
