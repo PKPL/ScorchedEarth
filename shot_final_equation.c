@@ -24,7 +24,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         leiria_missile->initial_velocity = 0;
         leiria_missile->shot_angle = 0;
         leiria_missile->x_turret_position = x_coord;
-        leiria_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        leiria_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         leiria_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {
@@ -43,7 +43,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         milano_missile->initial_velocity = 0;
         milano_missile->shot_angle = 0;
         milano_missile->x_turret_position = x_coord;
-        milano_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        milano_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         milano_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {
@@ -62,7 +62,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         krakow_missile->initial_velocity = 0;
         krakow_missile->shot_angle = 0;
         krakow_missile->x_turret_position = x_coord;
-        krakow_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        krakow_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
         krakow_missile->unit_damage = 50;
         for (i = 0; i < VECTOR_LENGTH; i++)
         {

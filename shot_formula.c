@@ -14,7 +14,7 @@ extern int ai_angle;
 
 void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed, int *enemy_angle) {
 
-    int i, flag = 0;
+    int i, flag = 0, check;
 
     setInitialVelocity(missile, initial_velocity/4);
     setShootingAngle(missile, shooting_angle);
@@ -24,25 +24,26 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++) {
 
-        switch (checkHit(i, missile, matrix)) {
+        switch (check = checkHit(i, missile, matrix)) {
 
             case 0: create_arrow(i,matrix, missile);
                 continue;
 
 
-            case 1: if(isBot)
+            case -1: if(isBot)
                         *enemy_angle -= 2;
                     break;
-            case 2: /*explosion: hit ground*/
-                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+            case 1: /*explosion: hit ground*/
+                    create_explosion(matrix,missile,i, isBot, false, 1); //connection with drawing_destruction.c
                     if(isBot)
                         *enemy_angle -= 2;
                    // extra_explosion(missile); //you can find it in shot_hit.c
                     flag=1;
 
                     break;
-            case 3: /*explosion: hit unit*/
+            case 2: case 3: /*explosion: hit unit*/
                 //Call function Destruction of Unit or similar. TODO
+                create_explosion(matrix, missile, i, isBot, true, check);
                 flag=1;
                 break;
             case 4:
