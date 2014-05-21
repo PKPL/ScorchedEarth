@@ -9,10 +9,12 @@
 missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //Initializes missile information
 {
     int i;
+    missile_data *leiria_missile;
+    missile_data *milano_missile;
+    missile_data *krakow_missile;
     switch (missile_type)
     {
     case 1:
-        missile_data *leiria_missile;
         leiria_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(leiria_missile->name, "Leiria");
         leiria_missile->weight = 1.8 ;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).
@@ -31,7 +33,6 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         }
         return leiria_missile;
     case 2:
-        missile_data *milano_missile;
         milano_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(milano_missile->name, "Milano");
         milano_missile->weight = 0.5 ;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).
@@ -50,7 +51,6 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         }
         return milano_missile;
     case 3:
-        missile_data *krakow_missile;
         krakow_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(krakow_missile->name, "Milano");
         krakow_missile->weight = 0.5 ;  /* Weight is assumed according to Colonel Albert Borgard's standardization of the Royal Ordnance cannonballs (1716).

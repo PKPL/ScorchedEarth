@@ -38,7 +38,7 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
 
     missile_data *missile;
-    missile = initializeMissile(local_bot.x, local_bot.y);
+    missile = initializeMissile(local_bot.x, local_bot.y, 1);
     playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,false, wind_speed, &ai_angle);
 
 
@@ -64,7 +64,7 @@ if(ai_angle <= 50)
 power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y, wind_speed);
 }
 missile_data *missile;
-    missile = initializeMissile(local_bot.x, local_bot.y);
+    missile = initializeMissile(local_bot.x, local_bot.y, 1);
 
 int rnd = find_random(-4,5);
 
@@ -88,7 +88,7 @@ while(power < 5)
 if(power == -1) power = AIcheckFixed(local_bot.x,local_bot.y, ai_angle, map_layout,player.x, player.y,wind_speed);
 }
 missile_data *missile;
-missile = initializeMissile(local_bot.x, local_bot.y);
+missile = initializeMissile(local_bot.x, local_bot.y, 1);
 
 int rnd = find_random(-5,6);
 gotoxy(20,31);

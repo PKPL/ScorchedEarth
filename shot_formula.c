@@ -113,7 +113,7 @@ int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX
         //printf("ai fixed|angle= %d",givenAngle);
 
           missile_data *missile;
-          missile = initializeMissile(xTurr, yTurr);
+          missile = initializeMissile(xTurr, yTurr, 1);
 //        setInitialVelocity(missile, velocity/4);
           setShootingAngle(missile, givenAngle);
 //        shotFunction(missile, windForce(some_wind_speed));

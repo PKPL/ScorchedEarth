@@ -40,6 +40,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
     int key_pressed;
+    int missile_option = 1;
     int player_angle = 60;
     int player_power = 100;
     int draw_hp;
@@ -52,14 +53,15 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
     //else
     //{
-        int bot_angle = 180-60;
-        int bot_power = 100;
+    int bot_angle = 180-60;
+    int bot_power = 100;
     //}
 
 
-    if (game_loaded == false) {
-    drawing_units(map_layout, &player, &bot);
-    drawing_armors(map_layout, NUMBER_OF_ARMORS);
+    if (game_loaded == false)
+    {
+        drawing_units(map_layout, &player, &bot);
+        drawing_armors(map_layout, NUMBER_OF_ARMORS);
     }
 
     while(player.hp > 0 && bot.hp > 0)
@@ -68,14 +70,15 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         if(quit == false && first_frame == 1)
         {
             drawing_map(map_layout);
-            if (game_loaded == false && map_loaded == false) {
-            map_layout[bot.x][bot.y] = 1;
-            map_layout[player.x][player.y] = 1;
-            save_map(map_layout);
-            system("cls");
-            map_layout[bot.x][bot.y] = 2;
-            map_layout[player.x][player.y] = 3;
-            drawing_map(map_layout);
+            if (game_loaded == false && map_loaded == false)
+            {
+                map_layout[bot.x][bot.y] = 1;
+                map_layout[player.x][player.y] = 1;
+                save_map(map_layout);
+                system("cls");
+                map_layout[bot.x][bot.y] = 2;
+                map_layout[player.x][player.y] = 3;
+                drawing_map(map_layout);
             }
             first_frame = 0;
             printf("\n\n");
@@ -97,7 +100,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             printf("\t\tPoints = %d", player.points);
             printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
             printf("Player HP = %d ", player.hp);
-            for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++) {
+            for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
+            {
                 printf("%c", 3);
             }
             for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
@@ -105,7 +109,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 printf(" ");
             }
             printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-            for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++) {
+            for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
+            {
                 printf("%c", 3);
             }
             for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
@@ -114,7 +119,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             }
             printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
             printf("Player armor = %d ", player.armor);
-            for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++) {
+            for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
+            {
                 printf("_");
             }
             for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
@@ -122,7 +128,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 printf(" ");
             }
             printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-            for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++) {
+            for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
+            {
                 printf("_");
             }
             for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
@@ -191,11 +198,12 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             //------------------
 
             key_pressed = getch();
-            if (key_pressed == 32) {
-                 sauron_creation(map_layout, &bot);
-                 falling(map_layout);
-                 if(player.hp <= 0)quit=true;
-                 else sauron_destruction(map_layout, &bot);
+            if (key_pressed == 32)
+            {
+                sauron_creation(map_layout, &bot);
+                falling(map_layout);
+                if(player.hp <= 0)quit=true;
+                else sauron_destruction(map_layout, &bot);
             }
 
             if(key_pressed == 27)
@@ -209,15 +217,24 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             if(key_pressed == 13)
             {
                 missile_data *missile;
-                missile = initializeMissile(player.x, player.y);
+                missile = initializeMissile(player.x, player.y, missile_option);
                 playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, ai_angle);
                 falling(map_layout);
 
                 playerTurn = false;
 
             }
-            else switch(getch())
 
+            if(key_pressed == 49)
+                missile_option = 1;
+
+            if(key_pressed == 50)
+                missile_option = 2;
+
+            if(key_pressed == 51)
+                missile_option = 3;
+
+            else switch(getch())
                 {
                 case 72:
                     if(player_angle < 180)player_angle = player_angle + 1;
@@ -238,45 +255,49 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         }
 
         gotoxy(0,80);
-            printf("Angle = %d", player_angle);
-            printf("\t\tPower = %d", player_power);
-            printf("\t\tWind = %d", (int)wind_speed);
-            printf("\t\tPoints = %d", player.points);
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player HP = %d ", player.hp);
-            for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++) {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-            for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++) {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player armor = %d ", player.armor);
-            for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++) {
-                printf("_");
-            }
-            for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-            for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++) {
-                printf("_");
-            }
-            for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            angle_drawing_distanse = player_power/20;
+        printf("Angle = %d", player_angle);
+        printf("\t\tPower = %d", player_power);
+        printf("\t\tWind = %d", (int)wind_speed);
+        printf("\t\tPoints = %d", player.points);
+        printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
+        printf("Player HP = %d ", player.hp);
+        for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
+        {
+            printf("%c", 3);
+        }
+        for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
+        {
+            printf(" ");
+        }
+        printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
+        for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
+        {
+            printf("%c", 3);
+        }
+        for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
+        {
+            printf(" ");
+        }
+        printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
+        printf("Player armor = %d ", player.armor);
+        for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
+        {
+            printf("_");
+        }
+        for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
+        {
+            printf(" ");
+        }
+        printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
+        for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
+        {
+            printf("_");
+        }
+        for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
+        {
+            printf(" ");
+        }
+        angle_drawing_distanse = player_power/20;
 
 
         if(quit == true)break;
@@ -284,7 +305,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         //-----------------------------------end of player's turn
 
         //Sleep(2000); comented cuz now, sometimes ai need some time to find good velo
-        if(selected_level.level_ai != PVP_MODE ) {
+        if(selected_level.level_ai != PVP_MODE )
+        {
             ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
         }
         else
@@ -293,158 +315,163 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             {
                 while(kbhit())getch();
                 if(quit == true)break;
-            //Player move
+                //Player move
 
 
-            //Choose power and angle
-            gotoxy(0,80);
-            printf("Angle = %d", player_angle);
-            printf("\t\tPower = %d", player_power);
-            printf("\t\tWind = %d", (int)wind_speed);
-            printf("\t\tPoints = %d", player.points);
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player HP = %d ", player.hp);
-            for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++) {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-            for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++) {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player armor = %d ", player.armor);
-            for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++) {
-                printf("_");
-            }
-            for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-            for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++) {
-                printf("_");
-            }
-            for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            angle_drawing_distanse = player_power/20;
-
-            //Drawing angle tray
-            if(first_angle == true)
-            {
-                int i;
-                for(i = 0; i < 3; i++)
+                //Choose power and angle
+                gotoxy(0,80);
+                printf("Angle = %d", player_angle);
+                printf("\t\tPower = %d", player_power);
+                printf("\t\tWind = %d", (int)wind_speed);
+                printf("\t\tPoints = %d", player.points);
+                printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
+                printf("Player HP = %d ", player.hp);
+                for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
                 {
-                    angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
-                    angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
-                    {
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        printf(".");
-                    }
+                    printf("%c", 3);
                 }
-                first_angle = false;
-
-            }
-            else
-            {
-                int i;
-                for(i = 0; i < 3; i++)
+                for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
                 {
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                    printf(" ");
+                }
+                printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
+                for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
+                {
+                    printf("%c", 3);
+                }
+                for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
+                {
+                    printf(" ");
+                }
+                printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
+                printf("Player armor = %d ", player.armor);
+                for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
+                {
+                    printf("_");
+                }
+                for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
+                {
+                    printf(" ");
+                }
+                printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
+                for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
+                {
+                    printf("_");
+                }
+                for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
+                {
+                    printf(" ");
+                }
+                angle_drawing_distanse = player_power/20;
+
+                //Drawing angle tray
+                if(first_angle == true)
+                {
+                    int i;
+                    for(i = 0; i < 3; i++)
                     {
-
-
-                        int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        switch(xxx)
+                        angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
+                        angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
                         {
-                        case 0:
-                            printf(" ");
-                            break;
-                        case 1:
-                            printf("1");
-                            break;
-                        case 4:
-                            printf("4");
-                            break;
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            printf(".");
+                        }
+                    }
+                    first_angle = false;
+
+                }
+                else
+                {
+                    int i;
+                    for(i = 0; i < 3; i++)
+                    {
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                        {
+
+
+                            int xxx = map_layout[angle_points[i][0]][79-angle_points[i][1]];
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            switch(xxx)
+                            {
+                            case 0:
+                                printf(" ");
+                                break;
+                            case 1:
+                                printf("1");
+                                break;
+                            case 4:
+                                printf("4");
+                                break;
 //                            default: printf(" "); break;
+                            }
+
                         }
 
                     }
 
-                }
 
-
-                for(i = 0; i < 3; i++)
-                {
-                    angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
-                    angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
-                    if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                    for(i = 0; i < 3; i++)
                     {
-                        gotoxy(angle_points[i][0],angle_points[i][1]);
-                        printf(".");
+                        angle_points[i][0] = bot.x + (int)angle_drawing_distanse*(i+1)*cos(bot_angle * PI / 180.0 );
+                        angle_points[i][1] = 79 - (bot.y + (int)angle_drawing_distanse*(i+1)*sin(bot_angle * PI / 180.0 ));
+                        if((angle_points[i][0] >=0)&&(angle_points[i][0] < MAX_X) && (angle_points[i][1] >=0) && (angle_points[i][1] < MAX_Y))
+                        {
+                            gotoxy(angle_points[i][0],angle_points[i][1]);
+                            printf(".");
+                        }
                     }
+
+                }
+                //------------------
+
+                key_pressed = getch();
+                if (key_pressed == 32)
+                {
+                    sauron_creation(map_layout, &bot);
+                    falling(map_layout);
+                    if(player.hp <= 0)quit=true;
+                    else sauron_destruction(map_layout, &bot);
                 }
 
-            }
-            //------------------
-
-            key_pressed = getch();
-            if (key_pressed == 32) {
-                 sauron_creation(map_layout, &bot);
-                 falling(map_layout);
-                 if(player.hp <= 0)quit=true;
-                 else sauron_destruction(map_layout, &bot);
-            }
-
-            if(key_pressed == 27)
+                if(key_pressed == 27)
                 {
                     char option = option_User("Do you want to save your game");
-                if (option == 'Y')
-                    save_game(map_layout, selected_level, player, bot, wind_speed);
+                    if (option == 'Y')
+                        save_game(map_layout, selected_level, player, bot, wind_speed);
                     quit = true;
-            if(key_pressed == 13)
-            {
-                missile_data *missile;
-                missile = initializeMissile(bot.x, bot.y);
-                playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
-                falling(map_layout);
+                    if(key_pressed == 13)
+                    {
+                        missile_data *missile;
+                        missile = initializeMissile(bot.x, bot.y, missile_option);
+                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
+                        falling(map_layout);
 
-                playerTurn = true;
+                        playerTurn = true;
 
-            }
-            else switch(getch())
+                    }
+                    else switch(getch())
 
-                {
-                case 72:
-                    if(player_angle < 180)bot_angle = bot_angle + 1;
-                    break;
+                        {
+                        case 72:
+                            if(player_angle < 180)bot_angle = bot_angle + 1;
+                            break;
 
-                case 75:
-                    if(player_power > 0)bot_power = bot_power - 1;
-                    break;
+                        case 75:
+                            if(player_power > 0)bot_power = bot_power - 1;
+                            break;
 
-                case 77:
-                    if(player_power < 200)bot_power = bot_power + 1;
-                    break;
+                        case 77:
+                            if(player_power < 200)bot_power = bot_power + 1;
+                            break;
 
-                case 80:
-                    if(player_angle > 0)bot_angle = bot_angle - 1;
-                    break;
+                        case 80:
+                            if(player_angle > 0)bot_angle = bot_angle - 1;
+                            break;
+                        }
                 }
             }
         }
-    }
         falling(map_layout);
 
 
@@ -459,19 +486,20 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
 
     if(bot.hp <= 0)
-    {           player_highscore players[11];
-    players[10].points=player.points;
-    add_score(players );
+    {
+        player_highscore players[11];
+        players[10].points=player.points;
+        add_score(players );
 
         if(selected_level.level_ai != PVP_MODE )
         {
-        //Inform about victory
-        gotoxy(30,20);
-        printf("VICTORY");
-        gotoxy(30,21);
-        printf("Press any button to go to the menu");
-        getch();
-        menu();
+            //Inform about victory
+            gotoxy(30,20);
+            printf("VICTORY");
+            gotoxy(30,21);
+            printf("Press any button to go to the menu");
+            getch();
+            menu();
         }
         else
         {
@@ -499,13 +527,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
         if(selected_level.level_ai != PVP_MODE )
         {
-        //Inform about victory
-        gotoxy(30,20);
-        printf("DEFEAT");
-        gotoxy(30,21);
-        printf("Press any button to go to the menu");
-        getch();
-        menu();
+            //Inform about victory
+            gotoxy(30,20);
+            printf("DEFEAT");
+            gotoxy(30,21);
+            printf("Press any button to go to the menu");
+            getch();
+            menu();
         }
         else
         {
