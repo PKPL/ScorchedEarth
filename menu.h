@@ -8,6 +8,7 @@
 // Team 2 File (Polish Group)
 
 // Included libraries
+#include <stdio.h>
 
 // Included files
 #include "menu_new_game.h"
@@ -18,8 +19,8 @@
 #include "drawing_maps.h"
 #include "drawing_units.h"
 #include "levels_level.h"
-#include <stdio.h>
 #include "defines.h"
+#include "instructions.h"
 
 void menu(); // function for agreagate testing
 void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y]);

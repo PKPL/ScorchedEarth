@@ -100,6 +100,7 @@ double sinDegrees (double alpha)   //Modifies sin() function in math.h so that i
 
 void setInitialVelocity (missile_data *m, float v)   //Allows the player to set the initial velocity of the shot
 {
+
     m->initial_velocity = v;
 }
 

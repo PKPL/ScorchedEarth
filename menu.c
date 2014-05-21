@@ -15,7 +15,11 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 #include "menu.h"
 #include "unit.h"
 #include "shot_final_equation.h"
+<<<<<<< HEAD
 #include "game_load.h"
+=======
+#include "instructions.h"
+>>>>>>> f6d33ecd487743a78c0fd14fda99c31d2bc4ed17
 
 
 void menu() // function for agreagate testing
@@ -40,7 +44,7 @@ void menu() // function for agreagate testing
         {
             printf("\n|Scorched Earth (Project Work In Progress) MENU|\n");
             printf("|______________________________________________|\n\n");
-            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> Load the last game\n[ 3 ] -> View Highscores\n[ 4 ] -> View Credits\n[ 5 ] -> Exit Game, although you don't want to do it =]\n");
+            printf("[ 1 ] -> Start a New Game\n[ 2 ] -> Load the last game\n[ 3 ] -> View Highscores\n[ 4 ] -> Instructions\n[ 5 ] -> View Credits\n[ 6 ] -> Exit Game, although you don't want to do it =]\n");
             printf("\nNumber of desired option: ");
             control = scanf("%d", &selectedOption);
             int c;
@@ -48,7 +52,7 @@ void menu() // function for agreagate testing
             wrongInput = 1;
         }
     }
-    while (selectedOption < 1 || selectedOption > 4 || control == 0);
+    while (selectedOption < 1 || selectedOption > 6 || control == 0);
     menu_reaction(selectedOption, map_layout);
 }
 
@@ -80,15 +84,20 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
         highscore(players);
         break;
     }
-
-    case 4:// credits
+    case 4://instructions
+        {
+            system("cls");
+           game_instructions();
+           break;
+        }
+    case 5:// credits
     {
         system("cls");
         credits();
         break;
     }
 
-    case 5://exit game
+    case 6://exit game
     {
         system("cls");
         close_game();

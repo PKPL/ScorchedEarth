@@ -25,6 +25,7 @@ int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
+
 void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
@@ -57,13 +58,14 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             map_layout_backup[x][y] = map_layout[x][y];
         }
     }
-
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
     //else
     //{
     int bot_angle = 180-60;
     int bot_power = 100;
     //}
+
+
 
 
     if (game_loaded == false)
@@ -89,9 +91,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             if(quit == true)break;
             //Player move
 
-
+            identificating_missile(missile_name, missile_option);
             //Choose power and angle
-            information(player_power, player_angle);
+            information(player_power, player_angle, missile_name);
             angle_drawing_distanse = player_power/20;
 
 
@@ -162,7 +164,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 else sauron_destruction(map_layout, &bot);
             }
 
-            if(key_pressed == 27)
+           else if(key_pressed == 27)
             {
                 system("cls");
                 char option;
@@ -198,7 +200,22 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 }
                 quit = true;
             }
-            if(key_pressed == 13)
+                else if(key_pressed == 49)
+            {
+                missile_option = 1;
+            }
+
+            else if(key_pressed == 50)
+            {
+                missile_option = 2;
+            }
+
+            else if(key_pressed == 51)
+            {
+                missile_option = 3;
+            }
+
+            else if(key_pressed == 13)
             {
                 missile_data *missile;
                 missile = initializeMissile(player.x, player.y, missile_option);
@@ -209,16 +226,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
             }
 
-            if(key_pressed == 49)
-                missile_option = 1;
-
-            if(key_pressed == 50)
-                missile_option = 2;
-
-            if(key_pressed == 51)
-                missile_option = 3;
-
-            else switch(getch())
+            else {
+                switch(getch())
                 {
                 case 72:
                     if(player_angle < 180)player_angle = player_angle + 1;
@@ -236,11 +245,11 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                     if(player_angle > 0)player_angle = player_angle - 1;
                     break;
                 }
-            information(player_power, player_angle);
+        }
+            information(player_power, player_angle, missile_name);
         }
 
         angle_drawing_distanse = player_power/20;
-
 
         if(quit == true)break;
         if(bot.hp <= 0 || player.hp <= 0)break;
@@ -261,7 +270,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
 
                 //Choose power and angle
-                information(player_power, player_angle);
+                information(player_power, player_angle, missile_name);
                 angle_drawing_distanse = player_power/20;
 
                 //Drawing angle tray
