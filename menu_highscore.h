@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <time.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "defines.h"
 
 typedef struct

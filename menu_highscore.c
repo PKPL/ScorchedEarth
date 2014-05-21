@@ -7,13 +7,33 @@
 #include "menu_highscore.h"
 
 FILE *fp  = NULL;
-char c_open;
+
 
 // bubble sorting
 
 void add_score(player_highscore players[11])
 {
     fp = fopen("highscore.txt", "w+r");
+    char c_open;
+    int array_points[5];
+    int k = 0, j;
+    bool exit = false;
+    //char array_nickname[20];
+    for (i = 0; i < 10; i++) {
+        while (1) {
+            c_open = fgetc(fp);
+            if (c_open == '\n' || c_open == EOF)
+                break;
+            else {
+                array_points[k++] = atoi(c_open);
+                printf()
+            }
+        }
+        if (c_open == EOF)
+            break;
+
+    }
+
     check_top_ten(players);
     fclose(fp);
 }
