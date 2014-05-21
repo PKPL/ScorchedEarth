@@ -23,7 +23,7 @@ int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
 
-void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded)
+void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
     int c = '\13\n';
@@ -68,7 +68,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded)
         if(quit == false && first_frame == 1)
         {
             drawing_map(map_layout);
-            if (game_loaded == false) {
+            if (game_loaded == false && map_loaded == false) {
             map_layout[bot.x][bot.y] = 1;
             map_layout[player.x][player.y] = 1;
             save_map(map_layout);
