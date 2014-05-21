@@ -25,7 +25,7 @@ float windForce(float);
 double cosDegrees(double);
 double sinDegrees(double);
 
-missile_data* initializeMissile(int, int);
+missile_data* initializeMissile(int, int, int);
 void setInitialVelocity(missile_data*, float);
 void setShootingAngle(missile_data*, int);
 
