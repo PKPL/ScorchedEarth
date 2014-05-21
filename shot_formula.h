@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "shot_final_equation.h"wind_speed
+#include "shot_final_equation.h"
 #include "shot_hit.h"
 #include "drawing_destruction.h"
 #include "drawing_shots.h"

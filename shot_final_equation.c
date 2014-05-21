@@ -32,6 +32,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             leiria_missile->y_vector_velocity[i] = 0;
         }
         return leiria_missile;
+
     case 2:
         milano_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(milano_missile->name, "Milano");
@@ -50,6 +51,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             milano_missile->y_vector_velocity[i] = 0;
         }
         return milano_missile;
+
     case 3:
         krakow_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(krakow_missile->name, "Milano");
@@ -69,7 +71,21 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         }
         return milano_missile;
     }
+}
 
+void identificating_missile (char missile_name[], int missile_option) {
+
+  switch (missile_option) {
+    case 1:
+        strcpy(missile_name, "Leiria");
+        break;
+    case 2:
+        strcpy(missile_name, "Milano");
+        break;
+    case 3:
+        strcpy(missile_name, "Krakow");
+        break;
+        }
 }
 
 double cosDegrees (double alpha)   //Modifies cos() function in math.h so that it accepts values in degrees instead of radians

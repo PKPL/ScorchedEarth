@@ -35,6 +35,7 @@ void xCoordinate(missile_data*, float);
 void yCoordinate(missile_data*);
 
 void shotFunction(missile_data*, float);
+void identificating_missile (char missile_name[], int missile_option);
 
 float bounce(float);
 float continuous(float);

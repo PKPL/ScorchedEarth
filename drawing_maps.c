@@ -12,6 +12,7 @@
 
 
 extern int map_layout [MAX_X][MAX_Y];
+extern float wind_speed;
 
 void drawing_map (int map_layout [MAX_X][MAX_Y])
 {
@@ -104,4 +105,39 @@ void falling(int map_layout[MAX_X][MAX_Y])
         }
 //        Sleep(10);
     }
+}
+
+void information(int pl_pow, int pl_ang)
+{
+    int i;
+    gotoxy(0,80);
+            printf("            ");
+            gotoxy(0,80);
+            printf("Angle = %d", pl_ang);
+            gotoxy(20,80);
+            printf("              ");
+            gotoxy(20,80);
+            printf("Power = %d", pl_pow);
+            gotoxy(40,80);
+            printf("          ");
+            gotoxy(40,80);
+            printf("Wind = %d", (int)wind_speed);
+            gotoxy(60,80);
+            printf("            ");
+            gotoxy(60,80);
+            printf("Points = %d", player.points);
+            gotoxy(0,81);
+            printf("Player HP = %d", player.hp);
+            gotoxy(40,81);
+            printf("              ");
+            gotoxy(40,81);
+            printf("Enemy HP = %d", bot.hp);
+            gotoxy(0,82);
+            printf("                  ");
+            gotoxy(0,82);
+            printf("Player armor = %d", player.armor);
+            gotoxy(40,82);
+            printf("                   ");
+            gotoxy(40,82);
+            printf("Enemy armor = %d", bot.armor);
 }

@@ -29,11 +29,11 @@ rHnd = GetStdHandle(STD_INPUT_HANDLE);
 // Change the window title:
 SetConsoleTitle("Scorched Earth");
 // Set up the required window size:
-SMALL_RECT windowSize = {0, 0, 100, 82};
+SMALL_RECT windowSize = {0, 0, 100, 84};
 SetConsoleWindowInfo(wHnd, 1, &windowSize);
 // Change the console window size:
 // Create a COORD to hold the buffer size:
-COORD bufferSize = {100, 82};
+COORD bufferSize = {100, 84};
 SetConsoleScreenBufferSize(wHnd, bufferSize);
 
 

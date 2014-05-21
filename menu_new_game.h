@@ -8,6 +8,7 @@
 #include "maps_create.h"
 #include "defines.h"
 #include "armor.h"
+#include "shot_final_equation.h"
 
 //extern int screen_bufor [MAX_X][MAX_Y];
 
