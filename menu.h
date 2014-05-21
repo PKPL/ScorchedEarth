@@ -9,6 +9,7 @@
 
 // Included libraries
 #include <stdio.h>
+#include <stdlib.h>
 
 // Included files
 #include "menu_new_game.h"

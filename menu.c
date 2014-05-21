@@ -23,6 +23,35 @@ void menu() // function for agreagate testing
 {
     //unit player, bot;
 
+    system("cls");
+    system("COLOR 9");
+
+    printf("#######   #######     #####     ######    #######   ##   ##   #######   ####\n");
+    printf("###       ###        ##000##    ##   ##   ###       ##   ##   ##        ##  ##\n");
+    printf(" ###      ##        ##00100##   ##   ##   ##        ##   ##   ###       ##    ##\n");
+    printf("  ###     ##        ##01110##   ######    ##        #######   #######   ##    ##\n");
+    printf("   ###    ##        ##11111##   ## ##     ##        ##   ##   ###       ##    ##\n");
+    printf("    ###   ###        ##111##    ##  ##    ###       ##   ##   ##        ##  ##\n");
+    printf("#######   #######     #####     ##   ##   #######   ##   ##   #######   ####\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("                                   ####   ####   ###   #####   #  #\n");
+    printf("                                   #      #  #   #  #    #     #  #\n");
+    printf("                                   ###    ####   ###     #     ####\n");
+    printf("                                   #      #  #   # #     #     #  #\n");
+    printf("                                   ####   #  #   #  #    #     #  #\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("                     Powered by Zrobimy Domani\n");
+
+
+
+    getchar();
+    fflush(stdin);
+
     int map_layout[MAX_X][MAX_Y] = {{0}}; /*Matrix containing the map information initialized with value 0 everywhere. It will work with [x][y] coordinates.*/
     system("COLOR 8F");
     system("cls");
