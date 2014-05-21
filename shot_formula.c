@@ -127,10 +127,18 @@ int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX
 
             switch (checkHit(i, missile, map_layout))
             {
-                case 1:
-                    return -1; //out of map
+            case -1:
+                if(selected_level.edge == EDGE_NO )
+                    return -1;
+                else
                     break;
-                case 2: //hit ground
+
+                break;
+                case 0:
+                    return -1; //out of map
+
+                    break;
+                case 1: //hit ground
 
                     if(how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY)<=4)
                     {
@@ -138,8 +146,22 @@ int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX
                         //printf("how far = %d",how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY));
                         return velocity;
                     }
+                    if(how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY)>=40)
+                    {
+                        //gotoxy(10,35);
+                        //printf("how far = %d",how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY));
+                        velocity += 3;
+                    }
+                                        if(how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY)>=20)
+                    {
+                        //gotoxy(10,35);
+                        //printf("how far = %d",how_far(missile->x_vector_coordinate[i],missile->y_vector_coordinate[i],tarX,tarY));
+                        velocity += 2;
+                    }
                     flag=1;
 
+                    break;
+                case 20:
                     break;
                 case 3: //gotoxy(10,36);
                 //printf("succCCES centralny");
@@ -147,14 +169,14 @@ int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX
 
                 return velocity;
                 break;
-//                case 4:
-//                    drawing_shots(i,map_layout,missile);
-//                    break;
+               // case 4:
+                 //   drawing_shots(i,map_layout,missile);
+                  //  break;
             }
             if(flag==1)break;
         }
         free (missile);
-    velocity += 3;
+    velocity += 1;
     }
     return -1;
 }

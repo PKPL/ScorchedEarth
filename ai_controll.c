@@ -80,14 +80,15 @@ void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
 void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
 int mini_ang = 180-(find_min_angle_fixed(map_layout,local_bot.x,player.x,local_bot.y));
-
+//gotoxy(30,30);
+//printf("min angle = %d", mini_ang);
 
 int power;
 power = -1;
 ai_angle = mini_ang ;
 while(power < 5)
 {
-    ai_angle  -= 7;
+    ai_angle  -= 10;
 
         if(power == -1) power = AIcheckFixed(local_bot.x,local_bot.y, ai_angle, map_layout,player.x, player.y,wind_speed);
     }
@@ -95,7 +96,6 @@ while(power < 5)
     missile = initializeMissile(local_bot.x, local_bot.y, 1);
 
     int rnd = find_random(-5,6);
-    gotoxy(20,31);
     playerShot(missile, ((power*4)+(2*rnd)), ai_angle, map_layout,true, wind_speed, &ai_angle);
 }
 

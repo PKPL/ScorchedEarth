@@ -90,6 +90,11 @@ int find_min_angle_fixed (int map_layout[MAX_X][MAX_Y], int Xturr,int Xtar, int 
     double alpha = atan(frac);//*180/PI;//*180/PI;
     ;
 
+//    gotoxy(30,26);
+//    printf("do naj ogólnie = %d",alpha*10);
+//    gotoxy(30,27);
+//    printf("do naj ogólnie = %f",alpha*10);
+
 
 /////////////////////////// already found highest
     TMP_ownerHighestX = 0;
@@ -117,9 +122,12 @@ int find_min_angle_fixed (int map_layout[MAX_X][MAX_Y], int Xturr,int Xtar, int 
     b = highestY - Yturr;
     frac = b/a;
     double alpha2 = atan(frac);//*180/PI;//*180/PI;
-
+//gotoxy(30,32);
+//printf("alpha = %f",10 * alpha);
+//gotoxy(30,33);
+//printf("alpha2 = %f",10 * alpha2);
 
     if(alpha2>alpha) alpha2=alpha;
 ///////////////////////////////////////////
-    return ((int)(10+(alpha*10)));
+    return ((int)(20+(alpha*10)));
 }
