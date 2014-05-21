@@ -75,12 +75,15 @@ int rnd = find_random(-4,5);
     playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false, wind_speed, &ai_angle);
 }
 
+
+
 void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y])
 {
+int mini_ang = 180-(find_min_angle_fixed(map_layout,local_bot.x,player.x,local_bot.y));
 
 int power;
 power = -1;
-ai_angle = 150;
+ai_angle = mini_ang ;
 while(power < 5)
 {
     ai_angle  -= 7;

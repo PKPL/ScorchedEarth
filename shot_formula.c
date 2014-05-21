@@ -154,7 +154,8 @@ int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX
             }
             if(flag==1)break;
         }
-    velocity += 2;
+        free (missile);
+    velocity += 3;
     }
     return -1;
 }

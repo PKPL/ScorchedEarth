@@ -57,3 +57,70 @@ void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
     else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout);
 
 }
+
+int find_min_angle_fixed (int map_layout[MAX_X][MAX_Y], int Xturr,int Xtar, int Yturr)
+{
+    int x,y;
+    int TMP_ownerHighestX = 0;
+    int TMP_highestY = 0;
+    int ownerHighestX = 0;
+    int highestY = 0;
+    float a,b;
+    double frac;
+    for(x=Xturr;x>=Xtar;x--)
+    {
+        for(y=0;y<MAX_Y;y++)
+        {
+            if(map_layout[x][y] == 1 && map_layout[x][y+1] ==0 )
+            {
+                TMP_ownerHighestX = x;
+                TMP_highestY = y;
+            }
+        }
+        if(TMP_highestY > highestY)
+        {
+            ownerHighestX = TMP_ownerHighestX;
+            highestY = TMP_highestY;
+        }
+    }
+    a = Xturr - ownerHighestX;
+    b = highestY - Yturr;
+    frac = b/a;
+
+    double alpha = atan(frac);//*180/PI;//*180/PI;
+;
+
+
+/////////////////////////// already found highest
+     TMP_ownerHighestX = 0;
+     TMP_highestY = 0;
+     ownerHighestX = 0;
+     highestY = 0;
+     a,b;
+     frac;
+    for(x=Xturr;x>=Xturr-10;x--)
+    {
+        for(y=0;y<MAX_Y;y++)
+        {
+            if(map_layout[x][y] == 1 && map_layout[x][y+1] ==0 )
+            {
+                TMP_ownerHighestX = x;
+                TMP_highestY = y;
+            }
+        }
+        if(TMP_highestY > highestY)
+        {
+            ownerHighestX = TMP_ownerHighestX;
+            highestY = TMP_highestY;
+        }
+    }
+    a = Xturr - ownerHighestX;
+    b = highestY - Yturr;
+    frac = b/a;
+    double alpha2 = atan(frac);//*180/PI;//*180/PI;
+
+
+    if(alpha2>alpha) alpha2=alpha;
+///////////////////////////////////////////
+    return ((int)(10+(alpha*10)));
+}

@@ -352,7 +352,8 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
         Sleep(1000);
         playerTurn = true;
-
+        if(player.y == 0)player.hp=0;
+        if(bot.y == 0)bot.hp=0;
     }//end of main loop
 
 
