@@ -69,7 +69,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             krakow_missile->x_vector_velocity[i] = 0;
             krakow_missile->y_vector_velocity[i] = 0;
         }
-        return milano_missile;
+        return krakow_missile;
     }
 }
 
@@ -100,6 +100,7 @@ double sinDegrees (double alpha)   //Modifies sin() function in math.h so that i
 
 void setInitialVelocity (missile_data *m, float v)   //Allows the player to set the initial velocity of the shot
 {
+
     m->initial_velocity = v;
 }
 

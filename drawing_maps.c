@@ -107,7 +107,7 @@ void falling(int map_layout[MAX_X][MAX_Y])
     }
 }
 
-void information(int pl_pow, int pl_ang)
+void information(int pl_pow, int pl_ang, char missile_name[])
 {
     int i;
     int draw_stuff;
@@ -159,4 +159,7 @@ void information(int pl_pow, int pl_ang)
                 putchar('-');
             for (draw_stuff = 10-(bot.armor/10), i = 0; i < draw_stuff; i++)
                 putchar(' ');
+            gotoxy(0,83);
+            printf("Missile = %s", missile_name);
+
 }
