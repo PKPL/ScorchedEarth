@@ -3,7 +3,7 @@
 
 #include "defines.h"
 #include "unit.h"
-
+#include "sauron_shoot.h"
 #define sauron_height 10
 #define sauron_width 4;
 

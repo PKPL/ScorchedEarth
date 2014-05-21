@@ -9,7 +9,7 @@
 extern int map_layout [MAX_X][MAX_Y];
 
 
-void create_arrow(int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
+void create_arrow(int i, missile_data *m)
 {
     int arr_offset = 2;
     if(m->x_vector_coordinate[i]>1 && m->x_vector_coordinate[i]<MAX_X-3)

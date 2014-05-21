@@ -20,10 +20,6 @@ void save_game(int map_layout[MAX_X][MAX_Y], level_struct level, unit player, un
     {
         perror("Error:\t The program could not open the file where the map was saved");
     }
-    else if (map_layout[MAX_X][MAX_Y] == NULL)
-    {
-        perror("Error:\t map");
-    }
     else
     {
         fwrite(map_layout, sizeof(int), MAX_X * MAX_Y, game_save_file);

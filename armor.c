@@ -1,10 +1,11 @@
+#include <stdio.h>
 #include "armor.h"
 
 armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int armor_number)
 {
     int tempX, tempY;
     armorCoords coords;
-
+    bool exit = false;
     if (armor_number%2 == 0) {
         srand(time(NULL));
         tempX = rand() % (MAX_X / 2);
@@ -12,11 +13,11 @@ armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int armor_number)
         srand(rand() + time(NULL) + NUMBER_OF_ARMORS);
         tempY = rand() % MAX_Y;
 
-        while (true) {
+        while (!exit) {
             if (map_layout[tempX][tempY] == 0) {
                 coords.x = tempX;
                 coords.y = tempY;
-                return coords;
+                exit = true;
             }
             else tempY--;
             if (tempY < 0) {
@@ -36,11 +37,11 @@ armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int armor_number)
         srand(time(NULL) - NUMBER_OF_ARMORS);
         tempY = rand() % MAX_Y;
 
-        while (true) {
+        while (!exit) {
             if (map_layout[MAX_X - tempX][tempY] == 0) {
                 coords.x = MAX_X - tempX;
                 coords.y = tempY;
-                return coords;
+                exit = true;
             }
             else tempY--;
             if (tempY < 0) {
@@ -52,6 +53,7 @@ armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int armor_number)
             }
         }
     }
+    return coords;
 }
 
 void drawing_armors (int map_layout[MAX_X][MAX_Y], int armor_number)
@@ -75,7 +77,7 @@ void hit_armor (int map_layout[MAX_X][MAX_Y], int x, int y, bool isBot) {
     gotoxy(x, 79 - y);
     printf("ARMOR!");
     Sleep(1000);
-    draw_armor_hit(map_layout[MAX_X][MAX_Y], x, y);
+    draw_armor_hit(map_layout, x, y);
     player.points += 10;
     map_layout[x][y] = 0;
 }

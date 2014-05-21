@@ -14,6 +14,7 @@
 #include "sauron.h"
 #include "menu_highscore.h"
 #include "shot_final_equation.h"
+#include "game_save.h"
 
 #define PI 3.14159265
 
@@ -27,7 +28,6 @@ float angle_drawing_distanse = 5;
 void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
-    int c = '\13\n';
     system("cls");
     unit_func(&player);
     unit_func(&bot);
@@ -37,20 +37,14 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     CurInfo.bVisible=FALSE;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 
-    int i;
-    int queue = 1; //1 - Player, 2 - Bot
-    int max_players = 2;
     int key_pressed;
     int missile_option = 1; // the missile you want to use. 1 set as default
     int player_angle = 60;
     int player_power = 100;
-    int draw_hp;
-    int armors[NUMBER_OF_ARMORS] = {1};
     bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
     bool saved = false;
-    char missile_name[7]; // the name of the missile you are using
 
     int map_layout_backup[MAX_X][MAX_Y];
 
@@ -208,7 +202,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             {
                 missile_data *missile;
                 missile = initializeMissile(player.x, player.y, missile_option);
-                playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, ai_angle);
+                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle);
                 falling(map_layout);
 
                 playerTurn = false;
@@ -342,13 +336,13 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
                 if(key_pressed == 27)
                 {
-                    saved = save_game(map_layout, selected_level, player, bot, wind_speed);
+                    save_game(map_layout, selected_level, player, bot, wind_speed);
                     quit = true;
                     if(key_pressed == 13)
                     {
                         missile_data *missile;
                         missile = initializeMissile(bot.x, bot.y, missile_option);
-                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, ai_angle);
+                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle);
                         falling(map_layout);
 
                         playerTurn = true;

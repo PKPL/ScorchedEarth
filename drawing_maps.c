@@ -81,7 +81,7 @@ void drawing_game_screen() //the parameters will be the info needed
 
 void falling(int map_layout[MAX_X][MAX_Y])
 {
-    int i, j, k;
+    int i, j;
 
     Sleep (7);
     for(i = 0; i < MAX_X; i++)

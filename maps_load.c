@@ -4,6 +4,8 @@
 //------------------------------------------------------------------------
 
 #include "maps_load.h"
+#include <conio.h>
+//#include <unistd.h>
 
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {
@@ -103,7 +105,6 @@ void list_dir()
     else
     {
         /* could not open directory */
-        perror ("");
-        return EXIT_FAILURE;
+        perror ("Error when trying to list the current directory");
     }
 }
