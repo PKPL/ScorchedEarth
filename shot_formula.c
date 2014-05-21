@@ -26,10 +26,8 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
         switch (check = checkHit(i, missile, matrix)) {
 
-            case 0: create_arrow(i,matrix, missile);
+            case 0: create_arrow(i, missile);
                 continue;
-
-
             case -1: if(isBot)
                         *enemy_angle -= 2;
                     break;

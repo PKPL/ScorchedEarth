@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 #include "armor.h"
 
 armorCoords create_armor(int map_layout[MAX_X][MAX_Y], int armor_number)
