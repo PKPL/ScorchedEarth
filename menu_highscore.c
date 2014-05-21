@@ -85,7 +85,7 @@ void bubblesort(player_highscore players[11])
         }
         if (i == 9 && isClear == false) {
             isClear = true;
-            i = 0;
+            i = -1;
         }
     }
 }
