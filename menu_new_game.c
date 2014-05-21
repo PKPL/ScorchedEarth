@@ -2,13 +2,13 @@
 // Start new game
 //------------------------------------------------------------------------
 
+#include <stdio.h>
+#include <conio.h>
+#include <stdbool.h>
 #include "menu_new_game.h"
 #include "levels_level.h"
 #include "drawing_units.h"
 #include "unit.h"
-#include <conio.h>
-#include <stdio.h>
-#include <stdbool.h>
 #include "shot.h"
 #include "ai.h"
 #include "sauron.h"

@@ -7,6 +7,8 @@ DANIEL PINTO
 
 */
 
+#include <stdio.h>
+#include <conio.h>
 #include "maps_save.h"
 #include "maps_load.h"
 

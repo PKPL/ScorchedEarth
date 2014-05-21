@@ -3,8 +3,9 @@
 // PORTUGUESE TEAM
 //------------------------------------------------------------------------
 
-#include "maps_load.h"
+#include <stdio.h>
 #include <conio.h>
+#include "maps_load.h"
 
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {

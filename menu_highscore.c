@@ -1,8 +1,10 @@
 //---------------------------- Highscore ---------------------------------
 // Top ten scores of a game
 //------------------------------------------------------------------------
-#include "menu_highscore.h"
+
 #include <stdio.h>
+#include <conio.h>
+#include "menu_highscore.h"
 
 FILE *fp  = NULL;
 char c_open;
