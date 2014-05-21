@@ -1,8 +1,8 @@
 //---------------------------- Credits -----------------------------------
 // Credits - list of people involved in creating a game
 //------------------------------------------------------------------------
-#include <stdio.h>
 #include "menu_credits.h"
+#include <stdio.h>
 
 void setcursortype(CURSOR_TYPE c)
 {

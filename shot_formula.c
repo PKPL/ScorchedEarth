@@ -5,8 +5,8 @@
 
 #include "shot_formula.h"
 #include "maps_create.h"
-
-
+#include "shot_formula.h"
+#include "drawing_shots.h"
 extern int ai_angle;
 
 

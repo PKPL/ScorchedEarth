@@ -5,7 +5,6 @@
 
 #include "maps_load.h"
 #include <conio.h>
-//#include <unistd.h>
 
 bool load_Map (int map_layout[MAX_X][MAX_Y])
 {

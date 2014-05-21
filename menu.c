@@ -15,11 +15,8 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 #include "menu.h"
 #include "unit.h"
 #include "shot_final_equation.h"
-<<<<<<< HEAD
 #include "game_load.h"
-=======
 #include "instructions.h"
->>>>>>> f6d33ecd487743a78c0fd14fda99c31d2bc4ed17
 
 
 void menu() // function for agreagate testing

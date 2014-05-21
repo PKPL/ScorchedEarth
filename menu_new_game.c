@@ -46,6 +46,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     bool quit = false;
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
     bool saved = false;
+    char missile_name[7] = {'\0'};
 
     int map_layout_backup[MAX_X][MAX_Y];
 

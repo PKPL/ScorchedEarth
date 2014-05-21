@@ -12,6 +12,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
     missile_data *leiria_missile;
     missile_data *milano_missile;
     missile_data *krakow_missile;
+    missile_data *missile_choosed;
     switch (missile_type)
     {
     case 1:
@@ -31,8 +32,8 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             leiria_missile->x_vector_velocity[i] = 0;
             leiria_missile->y_vector_velocity[i] = 0;
         }
-        return leiria_missile;
-
+        missile_choosed = leiria_missile;
+        break;
     case 2:
         milano_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(milano_missile->name, "Milano");
@@ -50,8 +51,8 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             milano_missile->x_vector_velocity[i] = 0;
             milano_missile->y_vector_velocity[i] = 0;
         }
-        return milano_missile;
-
+        missile_choosed = milano_missile;
+        break;
     case 3:
         krakow_missile = (missile_data*)malloc(sizeof(missile_data));
         strcpy(krakow_missile->name, "Milano");
@@ -69,8 +70,10 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
             krakow_missile->x_vector_velocity[i] = 0;
             krakow_missile->y_vector_velocity[i] = 0;
         }
-        return krakow_missile;
+        missile_choosed = krakow_missile;
+        break;
     }
+    return missile_choosed;
 }
 
 void identificating_missile (char missile_name[], int missile_option) {
@@ -85,7 +88,7 @@ void identificating_missile (char missile_name[], int missile_option) {
     case 3:
         strcpy(missile_name, "Krakow");
         break;
-        }
+    }
 }
 
 double cosDegrees (double alpha)   //Modifies cos() function in math.h so that it accepts values in degrees instead of radians
