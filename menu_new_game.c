@@ -19,7 +19,6 @@
 int screen_bufor [MAX_X][MAX_Y];
 unit player;
 unit bot;
-int save_pressed;
 int angle_points[3][2];
 bool first_angle = true;
 float angle_drawing_distanse = 5;
@@ -202,12 +201,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded)
             if(key_pressed == 27)
             {
                 system("cls");
-                printf("Do you want to save your game? (Y/N)\n");
-                save_pressed = getch();
-                if (save_pressed == 121 || save_pressed == 89)
-                {
+                char option = option_User("Do you want to save your game");
+                if (option == 'Y')
                     save_game(map_layout, selected_level, player, bot, wind_speed);
-                }
                 quit = true;
             }
             if(key_pressed == 13)
@@ -412,13 +408,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded)
 
             if(key_pressed == 27)
                 {
-                    printf("Do you want to save your game?\n");
-                    save_pressed = getch();
-                    if (save_pressed == 121 || save_pressed == 89)
-                    {
-                        save_game(map_layout, selected_level, player, bot, wind_speed);
-
-                    }
+                    char option = option_User("Do you want to save your game");
+                if (option == 'Y')
+                    save_game(map_layout, selected_level, player, bot, wind_speed);
                     quit = true;
             if(key_pressed == 13)
             {

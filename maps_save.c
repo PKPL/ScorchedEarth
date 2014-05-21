@@ -36,7 +36,7 @@ void save_map(int map_layout[MAX_X][MAX_Y])
     {
         printf ("Name of the map to save: ");
         read_String(name_File_Map, MAX_NAME_FILE);
-        fflush(stdin);
+        while(kbhit())getch();
         map_file = fopen(name_File_Map,"w"); // w means we are able to write it and create it if it didn't exist
         if (map_file == NULL)
         {

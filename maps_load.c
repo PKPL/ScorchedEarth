@@ -16,7 +16,7 @@ bool load_Map (int map_layout[MAX_X][MAX_Y])
         list_dir ();
         printf ("\n\nName of the map to load: ");
         read_String(name_File_Map, MAX_NAME_FILE);
-        fflush(stdin);
+        while(kbhit())getch();
         map_Load = fopen (name_File_Map, "r");
         if (map_Load == NULL)
         {
