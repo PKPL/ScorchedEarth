@@ -110,6 +110,7 @@ void falling(int map_layout[MAX_X][MAX_Y])
 void information(int pl_pow, int pl_ang)
 {
     int i;
+    int draw_stuff;
     gotoxy(0,80);
             printf("            ");
             gotoxy(0,80);
@@ -127,17 +128,35 @@ void information(int pl_pow, int pl_ang)
             gotoxy(60,80);
             printf("Points = %d", player.points);
             gotoxy(0,81);
-            printf("Player HP = %d", player.hp);
+            printf("                                      ");
+            gotoxy(0,81);
+            printf("Player HP = %d ", player.hp);
+            for (draw_stuff = (player.hp)/10, i = 0; i < draw_stuff; i++)
+                putchar(3);
+            for (draw_stuff = 10-(player.hp/10), i = 0; i < draw_stuff; i++)
+                putchar(' ');
             gotoxy(40,81);
             printf("              ");
             gotoxy(40,81);
-            printf("Enemy HP = %d", bot.hp);
+            printf("Enemy HP = %d ", bot.hp);
+            for (draw_stuff = (bot.hp)/10, i = 0; i < draw_stuff; i++)
+                putchar(3);
+            for (draw_stuff = 10-(bot.hp/10), i = 0; i < draw_stuff; i++)
+                putchar(' ');
             gotoxy(0,82);
-            printf("                  ");
+            printf("                                ");
             gotoxy(0,82);
-            printf("Player armor = %d", player.armor);
+            printf("Player armor = %d ", player.armor);
+            for (draw_stuff = (player.armor)/10, i = 0; i < draw_stuff; i++)
+                putchar('-');
+            for (draw_stuff = 10-(player.armor/10), i = 0; i < draw_stuff; i++)
+                putchar(' ');
             gotoxy(40,82);
-            printf("                   ");
+            printf("                                ");
             gotoxy(40,82);
-            printf("Enemy armor = %d", bot.armor);
+            printf("Enemy armor = %d ", bot.armor);
+            for (draw_stuff = (bot.armor)/10, i = 0; i < draw_stuff; i++)
+                putchar('-');
+            for (draw_stuff = 10-(bot.armor/10), i = 0; i < draw_stuff; i++)
+                putchar(' ');
 }
