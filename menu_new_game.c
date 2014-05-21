@@ -93,50 +93,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
 
             //Choose power and angle
-            gotoxy(0,80);
-            printf("Angle = %d", player_angle);
-            printf("\t\tPower = %d", player_power);
-            printf("\t\tWind = %d", (int)wind_speed);
-            printf("\t\tPoints = %d", player.points);
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player HP = %d ", player.hp);
-            for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
-            {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-            for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
-            {
-                printf("%c", 3);
-            }
-            for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-            printf("Player armor = %d ", player.armor);
-            for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
-            {
-                printf("_");
-            }
-            for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-            for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
-            {
-                printf("_");
-            }
-            for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
-            {
-                printf(" ");
-            }
-            angle_drawing_distanse = player_power/20;
+            information(player_power, player_angle);
 
 
             //Drawing angle tray
@@ -220,6 +177,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 missile = initializeMissile(player.x, player.y, missile_option);
                 playerShot(missile, player_power, player_angle, map_layout,false, wind_speed, ai_angle);
                 falling(map_layout);
+                information(player_power, player_angle);
 
                 playerTurn = false;
 
@@ -254,50 +212,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 }
         }
 
-        gotoxy(0,80);
-        printf("Angle = %d", player_angle);
-        printf("\t\tPower = %d", player_power);
-        printf("\t\tWind = %d", (int)wind_speed);
-        printf("\t\tPoints = %d", player.points);
-        printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-        printf("Player HP = %d ", player.hp);
-        for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
-        {
-            printf("%c", 3);
-        }
-        for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
-        {
-            printf(" ");
-        }
-        printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-        for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
-        {
-            printf("%c", 3);
-        }
-        for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
-        {
-            printf(" ");
-        }
-        printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-        printf("Player armor = %d ", player.armor);
-        for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
-        {
-            printf("_");
-        }
-        for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
-        {
-            printf(" ");
-        }
-        printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-        for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
-        {
-            printf("_");
-        }
-        for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
-        {
-            printf(" ");
-        }
-        angle_drawing_distanse = player_power/20;
 
 
         if(quit == true)break;
@@ -319,49 +233,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
 
                 //Choose power and angle
-                gotoxy(0,80);
-                printf("Angle = %d", player_angle);
-                printf("\t\tPower = %d", player_power);
-                printf("\t\tWind = %d", (int)wind_speed);
-                printf("\t\tPoints = %d", player.points);
-                printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-                printf("Player HP = %d ", player.hp);
-                for (draw_hp = player.hp / 10, i = 0; i < draw_hp; i++)
-                {
-                    printf("%c", 3);
-                }
-                for (draw_hp = 10-(player.hp/10); draw_hp > 0; draw_hp--)
-                {
-                    printf(" ");
-                }
-                printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
-                for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
-                {
-                    printf("%c", 3);
-                }
-                for (draw_hp = 10-(bot.hp/10); draw_hp > 0; draw_hp--)
-                {
-                    printf(" ");
-                }
-                printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
-                printf("Player armor = %d ", player.armor);
-                for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
-                {
-                    printf("_");
-                }
-                for (draw_hp = 10-(player.armor/10); draw_hp > 0; draw_hp--)
-                {
-                    printf(" ");
-                }
-                printf("\t\t\t\t\t\tEnemy armor = %d ", bot.armor);
-                for (draw_hp = bot.armor / 10, i = 0; i < draw_hp; i++)
-                {
-                    printf("_");
-                }
-                for (draw_hp = 10-(bot.armor/10); draw_hp > 0; draw_hp--)
-                {
-                    printf(" ");
-                }
+                information(player_power, player_angle);
                 angle_drawing_distanse = player_power/20;
 
                 //Drawing angle tray
