@@ -13,6 +13,7 @@
 #include "ai.h"
 #include "sauron.h"
 #include "menu_highscore.h"
+#include "shot_final_equation.h"
 
 #define PI 3.14159265
 
@@ -40,7 +41,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     int queue = 1; //1 - Player, 2 - Bot
     int max_players = 2;
     int key_pressed;
-    int missile_option = 1;
+    int missile_option = 1; // the missile you want to use. 1 set as default
     int player_angle = 60;
     int player_power = 100;
     int draw_hp;
@@ -48,6 +49,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
     bool first_frame = 1; // thanks to this bool, map, draws only once
     bool quit = false;
     bool playerTurn = 1; // it should be an option to choose - who will begin the game - player or ai?
+    char missile_name[7]; // the name of the missile you are using
 
 
     //if(selected_level.level_ai != PVP_MODE )ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
@@ -108,7 +110,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             {
                 printf(" ");
             }
-            printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
+            identificating_missile(missile_name, missile_option);
+            printf("\t\tMissile =\t %s", missile_name);
+            printf("\t\t\tEnemy HP = %d ", bot.hp);
             for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
             {
                 printf("%c", 3);
@@ -269,7 +273,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         {
             printf(" ");
         }
-        printf("\t\t\t\t\t\tEnemy HP = %d ", bot.hp);
+ identificating_missile(missile_name, missile_option);
+            printf("\t\tMissile =\t %s", missile_name);
+            printf("\t\t\tEnemy HP = %d ", bot.hp);
         for (draw_hp = bot.hp / 10, i = 0; i < draw_hp; i++)
         {
             printf("%c", 3);
@@ -278,7 +284,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         {
             printf(" ");
         }
-        printf("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r");
+        printf("\n\t\t\r");
         printf("Player armor = %d ", player.armor);
         for (draw_hp = player.armor / 10, i = 0; i < draw_hp; i++)
         {
