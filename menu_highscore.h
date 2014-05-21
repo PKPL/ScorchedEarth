@@ -16,6 +16,7 @@ typedef struct
     int points;
 
 } player_highscore;
+
 extern player_highscore players[11];
 
 void add_score (player_highscore players[11];);
