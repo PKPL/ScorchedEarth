@@ -67,9 +67,9 @@ int find_min_angle_fixed (int map_layout[MAX_X][MAX_Y], int Xturr,int Xtar, int 
     int highestY = 0;
     float a,b;
     double frac;
-    for(x=Xturr;x>=Xtar;x--)
+    for(x=Xturr; x>=Xtar; x--)
     {
-        for(y=0;y<MAX_Y;y++)
+        for(y=0; y<MAX_Y; y++)
         {
             if(map_layout[x][y] == 1 && map_layout[x][y+1] ==0 )
             {
@@ -88,19 +88,18 @@ int find_min_angle_fixed (int map_layout[MAX_X][MAX_Y], int Xturr,int Xtar, int 
     frac = b/a;
 
     double alpha = atan(frac);//*180/PI;//*180/PI;
-;
+    ;
 
 
 /////////////////////////// already found highest
-     TMP_ownerHighestX = 0;
-     TMP_highestY = 0;
-     ownerHighestX = 0;
-     highestY = 0;
-     a,b;
-     frac;
-    for(x=Xturr;x>=Xturr-10;x--)
+    TMP_ownerHighestX = 0;
+    TMP_highestY = 0;
+    ownerHighestX = 0;
+    highestY = 0;
+    int aux = Xturr-10;
+    for(x = Xturr; x >= aux; x--)
     {
-        for(y=0;y<MAX_Y;y++)
+        for(y=0; y<MAX_Y; y++)
         {
             if(map_layout[x][y] == 1 && map_layout[x][y+1] ==0 )
             {

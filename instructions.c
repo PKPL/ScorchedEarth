@@ -2,8 +2,8 @@
 // Objective and keyboard instructions
 //------------------------------------------------------------------------
 // Portugal Team
-
-#include <stdio.h>
+#include<stdio.h>
+#include<conio.h>
 
 void game_instructions () {
 
