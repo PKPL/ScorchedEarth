@@ -45,8 +45,7 @@ void menu() // function for agreagate testing
     printf("\n");
     printf("\n");
     printf("\n");
-    printf("                     Powered by Zrobimy Domani\n");
-
+    printf("                     Powered by Zrobimy Domani\n\n");
 
 
     getchar();
