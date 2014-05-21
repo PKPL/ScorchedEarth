@@ -17,7 +17,7 @@ void create_arrow(int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
 
     gotoxy(m->x_vector_coordinate[i],arr_offset-1);
     printf("^");
-    gotoxy(m->x_vector_coordinate[i],arr_offset);
+    gotoxy(m->x_vector_coordinate[i]-1,arr_offset);
     printf("%d",m->y_vector_coordinate[i]);
 
     Sleep(20);
@@ -25,7 +25,7 @@ void create_arrow(int i,int map_layout[MAX_X][MAX_Y], missile_data *m)
 
     gotoxy(m->x_vector_coordinate[i],arr_offset-1);
     printf(" ");
-    gotoxy(m->x_vector_coordinate[i],arr_offset);
+    gotoxy(m->x_vector_coordinate[i]-1,arr_offset);
     printf("   ");
 
     }

@@ -11,7 +11,7 @@
 
 
 extern int map_layout [MAX_X][MAX_Y];
-int destruct_radius = 2;
+int destruct_radius = 4;
 
 
 void test_drawing_destruction(int map_layout [MAX_X][MAX_Y])

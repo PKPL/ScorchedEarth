@@ -10,11 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "shot_final_equation.h"
+#include "shot_final_equation.h"wind_speed
 #include "shot_hit.h"
 #include "drawing_destruction.h"
 #include "drawing_shots.h"
 #include "levels_level.h"
+
 #include "maps.h"
 #include "drawing.h"
 #include "shot.h"
@@ -27,8 +28,11 @@
 #include <windows.h>
 #include <stdbool.h>
 
+
 void playerShot(missile_data*, float, int, int[MAX_X][MAX_Y],bool isBot, float, int*);
 void AIShoot(missile_data*, float, int);
 float AIcheck(int, int, float, int, int, int, float);
+int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX_Y],int tarX, int tarY,float some_wind_speed);
+int how_far(int misX,int misY,int tarX,int tarY);
 
 #endif // __SHOT_FORMULA_H__
