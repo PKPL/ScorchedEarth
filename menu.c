@@ -96,7 +96,7 @@ void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
     case 2:
     {
         bool game_loaded = game_load(map_layout, &selected_level, &player, &bot, &wind_speed);
-        if (game_loaded == false)
+        if (game_loaded == true)
         {
             game_loop(map_layout, true, false);
         }
