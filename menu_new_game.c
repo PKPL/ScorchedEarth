@@ -216,11 +216,16 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                 missile_option = 3;
             }
 
+            else if(key_pressed == 52)
+            {
+                missile_option = 4;
+            }
+
             else if(key_pressed == 13)
             {
                 missile_data *missile;
                 missile = initializeMissile(player.x, player.y, missile_option);
-                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle);
+                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle, map_layout);
                 falling(map_layout);
 
                 playerTurn = false;
@@ -256,7 +261,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
         if(bot.hp <= 0 || player.hp <= 0)break;
         //-----------------------------------end of player's turn
 
-        //Sleep(2000); comented cuz now, sometimes ai need some time to find good velo
+        Sleep(1000);
         if(selected_level.level_ai != PVP_MODE )
         {
             ai(bot, map_layout); // chain of few functions, which ends with calling function playerShot()
@@ -352,7 +357,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                     {
                         missile_data *missile;
                         missile = initializeMissile(bot.x, bot.y, missile_option);
-                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle);
+                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle, map_layout);
                         falling(map_layout);
 
                         playerTurn = true;

@@ -12,6 +12,7 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
     missile_data *leiria_missile;
     missile_data *milano_missile;
     missile_data *krakow_missile;
+    missile_data *terraformer_missile;
     missile_data *missile_choosed;
     switch (missile_type)
     {
@@ -72,6 +73,22 @@ missile_data* initializeMissile(int x_coord, int y_coord, int missile_type)   //
         }
         missile_choosed = krakow_missile;
         break;
+    case 4:
+        terraformer_missile = (missile_data*)malloc(sizeof(missile_data));
+        strcpy(terraformer_missile->name, "Terraformer");
+        terraformer_missile->weight = 1.3;
+        terraformer_missile->initial_velocity = 0;
+        terraformer_missile->shot_angle = 0;
+        terraformer_missile->x_turret_position = x_coord;
+        terraformer_missile->y_turret_position = y_coord+1; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+        terraformer_missile->unit_damage = 50;
+        for (i = 0; i < VECTOR_LENGTH; i++)
+        {
+            terraformer_missile->x_vector_velocity[i] = 0;
+            terraformer_missile->y_vector_velocity[i] = 0;
+        }
+        missile_choosed = terraformer_missile;
+        break;
     }
     return missile_choosed;
 }
@@ -87,6 +104,9 @@ void identificating_missile (char missile_name[], int missile_option) {
         break;
     case 3:
         strcpy(missile_name, "Krakow");
+        break;
+    case 4:
+        strcpy(missile_name, "Terraformer");
         break;
     }
 }
