@@ -29,7 +29,7 @@
 #include <stdbool.h>
 
 
-void playerShot(missile_data*, float, int, int[MAX_X][MAX_Y],bool isBot, float, int*, int map_layout[MAX_X][MAX_Y]);
+void playerShot(missile_data*, float, int, int[MAX_X][MAX_Y],bool isBot, float, int*);
 void AIShoot(missile_data*, float, int);
 float AIcheck(int, int, float, int, int, int, float);
 int AIcheckFixed(int xTurr, int yTurr, int givenAngle, int map_layout[MAX_X][MAX_Y],int tarX, int tarY,float some_wind_speed);

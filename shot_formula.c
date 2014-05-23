@@ -12,7 +12,7 @@ extern int ai_angle;
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed, int *enemy_angle, int map_layout[MAX_X][MAX_Y])
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed, int *enemy_angle)
 {
 
     int i, flag = 0, check;

@@ -39,7 +39,7 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
     missile_data *missile;
     missile = initializeMissile(local_bot.x, local_bot.y, 1);
-    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,true, wind_speed, &ai_angle, map_layout);
+    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,true, wind_speed, &ai_angle);
 
 
 }
@@ -72,7 +72,7 @@ void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
 
 
-    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,true, wind_speed, &ai_angle, map_layout);
+    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,true, wind_speed, &ai_angle);
 }
 
 
@@ -96,7 +96,7 @@ while(power < 5)
     missile = initializeMissile(local_bot.x, local_bot.y, 1);
 
     int rnd = find_random(-5,6);
-    playerShot(missile, ((power*4)+(2*rnd)), ai_angle, map_layout,true, wind_speed, &ai_angle, map_layout);
+    playerShot(missile, ((power*4)+(2*rnd)), ai_angle, map_layout,true, wind_speed, &ai_angle);
 }
 
 

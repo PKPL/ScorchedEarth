@@ -180,7 +180,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                         printf ("Only 'Q' or 'S': ");
                     }
                 }
-                while (option != 'E' && option != 'S');
+                while (option != 'Q' && option != 'S');
 
                 if (option == 'S')
                 {
@@ -225,7 +225,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             {
                 missile_data *missile;
                 missile = initializeMissile(player.x, player.y, missile_option);
-                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle, map_layout);
+                playerShot(missile, player_power, player_angle, map_layout, false, wind_speed, &ai_angle);
                 falling(map_layout);
 
                 playerTurn = false;
@@ -357,7 +357,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                     {
                         missile_data *missile;
                         missile = initializeMissile(bot.x, bot.y, missile_option);
-                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle, map_layout);
+                        playerShot(missile, bot_power, bot_angle, map_layout,false, wind_speed, &ai_angle);
                         falling(map_layout);
 
                         playerTurn = true;

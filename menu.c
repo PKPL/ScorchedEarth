@@ -12,12 +12,14 @@ Should it not be in this file, advise us (Portuguese team) as soon as possible.
 */
 
 // Included files
+#include <stdio.h>
+#include <conio.h>
 #include "menu.h"
 #include "unit.h"
 #include "shot_final_equation.h"
 #include "game_load.h"
 #include "instructions.h"
-
+#include "menu_highscore.h"
 
 void menu() // function for agreagate testing
 {
