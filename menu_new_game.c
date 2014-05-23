@@ -184,8 +184,6 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
 
                 if (option == 'S')
                 {
-                    saved = true;
-
                     if (map_loaded)
                     {
                         save_game(map_layout, selected_level, player, bot, wind_speed);
@@ -199,6 +197,7 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
                             save_map(map_layout_backup);
                     }
                 }
+                saved = true;
                 quit = true;
             }
                 else if(key_pressed == 49)
