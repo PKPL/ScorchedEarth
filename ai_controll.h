@@ -13,7 +13,7 @@
 extern int ai_angle;
 void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y]);
 void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y]);
-void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y]);
+void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y],bool);
 
 #endif // __AI_MEDIUM_H__
 

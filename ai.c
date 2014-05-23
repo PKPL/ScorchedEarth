@@ -54,7 +54,7 @@ void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
 
     if(selected_level.level_ai == AI_EASY)ai_easy(local_bot, map_layout);
     else if(selected_level.level_ai == AI_MEDIUM)ai_medium(local_bot, map_layout);
-    else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout);
+    else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout,false);
 
 }
 
