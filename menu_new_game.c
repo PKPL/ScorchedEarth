@@ -413,6 +413,9 @@ void game_loop(int map_layout [MAX_X][MAX_Y], bool game_loaded, bool map_loaded)
             printf("Insert your name: ");
             gets(players[10].nickname);
             save_highscore(players);
+            char option = option_User("Do you want to save the map");
+            if (option == 'Y')
+                save_map(map_layout_backup);
             gotoxy(30,22);
             printf("Press any button to go to the menu");
             getch();
